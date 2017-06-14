@@ -58,6 +58,7 @@ class ZadanieController extends Controller
      * @Route("/", name="zadanie_index")
      * @Method("GET")
      */
+
     public function indexAction()
     {
         //this function returns "" if the user is allowed and if not returns $this->render
