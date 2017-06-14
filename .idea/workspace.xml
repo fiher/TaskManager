@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="056da0cf-db80-498e-bebe-f46eea1f8975" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/ZadanieController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/ZadanieController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Zadanie.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Zadanie.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,7 +19,19 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-609">
               <caret line="46" column="20" lean-forward="false" selection-start-line="46" selection-start-column="20" selection-end-line="46" selection-end-column="20" />
-              <folding />
+              <folding>
+                <marker date="1497443471235" expanded="true" signature="1737:1811" ph="{% if zadanie.Executioner ...%}" />
+                <marker date="1497443471235" expanded="true" signature="4647:5002" ph="{% if app.user.type == &quot;LittleBoss&quot; ...%}" />
+                <marker date="1497443471235" expanded="true" signature="4688:4966" ph="..." />
+                <marker date="1497443471235" expanded="true" signature="4773:4903" ph="..." />
+                <marker date="1497443471235" expanded="true" signature="5027:5788" ph="..." />
+                <marker date="1497443471235" expanded="false" signature="5053:5075" ph="comments/new" />
+                <marker date="1497443471235" expanded="true" signature="5166:5773" ph="..." />
+                <marker date="1497443471235" expanded="true" signature="5238:5725" ph="..." />
+                <marker date="1497443471235" expanded="true" signature="5280:5483" ph="..." />
+                <marker date="1497443471235" expanded="true" signature="5525:5698" ph="..." />
+                <marker date="1497443471235" expanded="true" signature="5578:5667" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -36,7 +46,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ZadanieController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ZadanieController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ZadanieController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="394">
@@ -59,7 +69,7 @@
         <entry file="file://$PROJECT_DIR$/app/DoctrineMigrations/Version20170614113440.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="399">
-              <caret line="20" column="23" lean-forward="true" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
+              <caret line="20" column="77" lean-forward="true" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="77" />
               <folding>
                 <marker date="1497440080697" expanded="true" signature="585:639" ph="ALTER TABLE zadanie... " />
               </folding>
@@ -67,11 +77,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Version20170614114459.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Version20170614114459.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/DoctrineMigrations/Version20170614114459.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="15" column="38" lean-forward="true" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
+            <state relative-caret-position="231">
+              <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
               <folding>
                 <marker date="1497440699724" expanded="true" signature="585:637" ph="ALTER TABLE zadanie... " />
                 <marker date="1497440699724" expanded="true" signature="991:1020" ph="ALTER TABLE zadanie... " />
@@ -738,25 +748,25 @@
       <workItem from="1496840063452" duration="38788000" />
       <workItem from="1497244520747" duration="22269000" />
       <workItem from="1497331698842" duration="15707000" />
-      <workItem from="1497426059846" duration="9333000" />
+      <workItem from="1497426059846" duration="10011000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="164723000" />
+    <option name="totallyTimeSpent" value="165401000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1932" height="1038" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29903018" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29903018" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32875144" sideWeight="0.51508623" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32875144" sideWeight="0.4849138" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32875144" sideWeight="0.4849138" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1149,27 +1159,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/DoctrineMigrations/Version20170614113440.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="20" column="23" lean-forward="true" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
-          <folding>
-            <marker date="1497440080697" expanded="true" signature="585:639" ph="ALTER TABLE zadanie... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/DoctrineMigrations/Version20170614114459.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="15" column="38" lean-forward="true" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
-          <folding>
-            <marker date="1497440699724" expanded="true" signature="585:637" ph="ALTER TABLE zadanie... " />
-            <marker date="1497440699724" expanded="true" signature="991:1020" ph="ALTER TABLE zadanie... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
@@ -1182,7 +1171,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-609">
           <caret line="46" column="20" lean-forward="false" selection-start-line="46" selection-start-column="20" selection-end-line="46" selection-end-column="20" />
-          <folding />
+          <folding>
+            <marker date="1497443471235" expanded="true" signature="1737:1811" ph="{% if zadanie.Executioner ...%}" />
+            <marker date="1497443471235" expanded="true" signature="4647:5002" ph="{% if app.user.type == &quot;LittleBoss&quot; ...%}" />
+            <marker date="1497443471235" expanded="true" signature="4688:4966" ph="..." />
+            <marker date="1497443471235" expanded="true" signature="4773:4903" ph="..." />
+            <marker date="1497443471235" expanded="true" signature="5027:5788" ph="..." />
+            <marker date="1497443471235" expanded="false" signature="5053:5075" ph="comments/new" />
+            <marker date="1497443471235" expanded="true" signature="5166:5773" ph="..." />
+            <marker date="1497443471235" expanded="true" signature="5238:5725" ph="..." />
+            <marker date="1497443471235" expanded="true" signature="5280:5483" ph="..." />
+            <marker date="1497443471235" expanded="true" signature="5525:5698" ph="..." />
+            <marker date="1497443471235" expanded="true" signature="5578:5667" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1199,6 +1200,27 @@
             <element signature="e#5787#7266#0#PHP" expanded="false" />
             <element signature="e#11091#12165#0#PHP" expanded="false" />
             <element signature="e#12965#13234#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/DoctrineMigrations/Version20170614113440.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="20" column="77" lean-forward="true" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="77" />
+          <folding>
+            <marker date="1497440080697" expanded="true" signature="585:639" ph="ALTER TABLE zadanie... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/DoctrineMigrations/Version20170614114459.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+          <folding>
+            <marker date="1497440699724" expanded="true" signature="585:637" ph="ALTER TABLE zadanie... " />
+            <marker date="1497440699724" expanded="true" signature="991:1020" ph="ALTER TABLE zadanie... " />
           </folding>
         </state>
       </provider>

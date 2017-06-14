@@ -143,7 +143,7 @@ class ZadanieController extends Controller
             }
             if($zadanie->isHold()){
                 $zadanie->setClass("onHold");
-                $zadanie->setStatus("Изчакванне");
+                $zadanie->setStatus("Изчакване");
             }
             if($userType != "LittleBoss" && $userType != "Boss"){
                 if($userType == "Designer" && $user->getUsername() == $zadanie->getDesigner()){
