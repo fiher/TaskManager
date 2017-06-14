@@ -47,7 +47,7 @@ class ZadanieType extends AbstractType
                 'choices'=>array(
                     "Александра Вали" => "a.vali",
                     "Йоана Борисова" => "yoana",
-                    "Ваня Иванова" => "v.ivanova",
+                    "Рената Дудлей" => "r.dudley",
                 ),
             'data'=>$zadanie->getDesigner()
             ))->

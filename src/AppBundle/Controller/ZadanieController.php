@@ -121,18 +121,22 @@ class ZadanieController extends Controller
             $datediff = $term  - $now;
             $datediff = floor($datediff / (60 * 60 * 24));
 
-            if($datediff<5){
-                $zadanie->setClass("due");
-            }
-            if($zadanie->isApproved()) {
-                $zadanie->setClass("approved");
-                $zadanie->setErgent(false);
 
-            }if($zadanie->isRejected()){
-                $zadanie->setClass("rejected");
-
-            }
             if(!in_array("Manager",explode(" ",$user->getRole()))) {
+                if($datediff<5){
+                    $zadanie->setClass("due");
+                    $zadanie->setStatus("Изтичащ срок");
+                }
+                if($zadanie->isApproved()) {
+                    $zadanie->setClass("approved");
+                    $zadanie->setStatus("Одобрено");
+                    $zadanie->setErgent(false);
+
+                }if($zadanie->isRejected()){
+                    $zadanie->setStatus("Отхвърлено");
+                    $zadanie->setClass("rejected");
+
+                }
                 if ($zadanie->isErgent()) {
                     $zadanie->setClass($zadanie->getClass() . " urgent");
                 }
