@@ -52,6 +52,8 @@ class ZadanieController extends Controller
             "successMessage"=>""
         ));
     }
+
+
     /**
      * Lists all zadanie entities.
      *
