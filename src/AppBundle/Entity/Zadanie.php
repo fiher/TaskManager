@@ -91,10 +91,21 @@ class Zadanie
      */
     private $executionerAccepted;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="overDate", type="datetime", nullable=true)
+     */
+    private $overDate;
 
     private $status;
 
-
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="hold", type="boolean", nullable=true)
+     */
+    private $hold;
     /**
      * @var \DateTime
      *
@@ -187,6 +198,23 @@ class Zadanie
      * @ORM\Column(name="rejected", type="boolean", nullable=true)
      */
     private $rejected;
+
+    /**
+     * @return \DateTime
+     */
+    public function getOverDate()
+    {
+        return $this->overDate;
+    }
+
+    /**
+     * @param \DateTime $overDate
+     */
+    public function setOverDate($overDate)
+    {
+        $this->overDate = $overDate;
+    }
+
 
     /**
      * @return bool
@@ -716,6 +744,22 @@ class Zadanie
     public function getIsOver()
     {
         return $this->isOver;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isHold()
+    {
+        return $this->hold;
+    }
+
+    /**
+     * @param bool $hold
+     */
+    public function setHold($hold)
+    {
+        $this->hold = $hold;
     }
 
 

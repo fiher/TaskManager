@@ -141,6 +141,10 @@ class ZadanieController extends Controller
                     $zadanie->setClass($zadanie->getClass() . " urgent");
                 }
             }
+            if($zadanie->isHold()){
+                $zadanie->setClass("onHold");
+                $zadanie->setStatus("Изчакванне");
+            }
             if($userType != "LittleBoss" && $userType != "Boss"){
                 if($userType == "Designer" && $user->getUsername() == $zadanie->getDesigner()){
                     $filteredZadanies[] = $zadanie;
@@ -255,10 +259,13 @@ class ZadanieController extends Controller
             if ($zadanie->isApproved()) {
                 $successMessage = "Успешно архивирахте заявката!";
                 $zadanie->setIsOver(true);
+                $zadanie->setOverDate(new \DateTime());
 
             } else {
                 $errorMessage = "Не можете да архивирате заявка, която не е одобрена!";
             }
+        }elseif(isset($_POST['hold'])){
+            $zadanie->setHold(true);
         }
         $em = $this->getDoctrine()->getManager();
         $em->persist($zadanie);
@@ -290,7 +297,7 @@ class ZadanieController extends Controller
         }
         for($i = 0 ; $i<count($comments);$i++){
             $comment = $comments[$i];
-            if(!in_array($comment->getToUser(),explode(" ",$user->getRoles()))){
+            if(!in_array($comment->getToUser(),explode(" ",$user->getRole()))){
                 unset($comments[$i]);
                 $i--;
                 $comments = array_values($comments);
@@ -380,7 +387,7 @@ class ZadanieController extends Controller
             if($allowedUserRoles == "all"){
                 return "";
             }
-            foreach (explode(" ",$user->getRoles()) as $role){
+            foreach (explode(" ",$user->getRole()) as $role){
                 if(in_array($role,$allowedUserRoles)){
                     return "";
                 }
