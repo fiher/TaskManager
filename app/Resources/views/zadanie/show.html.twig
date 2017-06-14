@@ -1,0 +1,138 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Заявка</h1>
+    <div class="content">
+        <table class="show_query">
+            <tbody>
+            <tr>
+                <th>Отдел</th>
+                <td>{{ zadanie.department }}</td>
+            </tr>
+            <tr>
+                <th>От</th>
+                <td>{{ zadanie.fromUser }}</td>
+            </tr>
+            <tr>
+                <th>Вид</th>
+                <td>{{ zadanie.typeTask }}</td>
+            </tr>
+            <tr>
+                <th>Описание</th>
+                <td style="font-size:30px;">{{ zadanie.description }}</td>
+            </tr>
+            <tr>
+                <th>Краен Срок</th>
+                <td>{% if zadanie.term %}{{ zadanie.term|date('d-m-Y H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Създаден на</th>
+                <td>{% if zadanie.date %}{{ zadanie.date|date('d-m-Y H:i:s') }}{% endif %}</td>
+            </tr>
+            {% if zadanie.designer %}
+                <tr>
+                    <th>Дизайнер</th>
+                    <td>{{ zadanie.designer }}</td>
+                </tr>
+                {%if zadanie.designerAccepted  %}
+                    <tr>
+                        <th>Дизайнер приел на:</th>
+                        <td>{{ zadanie.dateDesigner|date("d-m-Y H:i:s") }}</td>
+                    </tr>
+                    {% if zadanie.designerFinishedDate %}
+                        <tr>
+                            <th>Дизайнер приключил на:</th>
+                            <td>{{ zadanie.designerFinishedDate|date("d-m-Y H:i:s") }}</td>
+                        </tr>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+            {% if zadanie.Executioner %}
+                <tr>
+                    <th>Executioner</th>
+                    <td>{{ zadanie.executioner }}</td>
+                </tr>
+                {%if zadanie.designerAccepted  %}
+                    <tr>
+                        <th>Подизпълнител приел на:</th>
+                        <td>{{ zadanie.dateDesigner }}</td>
+                    </tr>
+                {% endif %}
+            {% endif %}
+            <tr>
+                <th>Линк</th>
+                <td>{% if zadanie.file%}<a href="{{ zadanie.file }}">Линк към файла</a> {% else %}Няма качени файлове{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Одобрена</th>
+                <td>{% if zadanie.isApproved %}Да{% else %}Не{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Приключилa </th>
+                <td>{% if zadanie.isOver %}Да{% else %}Не{% endif %}</td>
+            </tr>
+            {% if zadanie.isOver %}
+            <tr>
+                <th>Дата на приключване </th>
+                <td>TODO:add data</td>
+            </tr>
+            {% endif %}
+            </tbody>
+        </table>
+        {% if app.user.type == "Boss" or app.user.type == "LittleBoss"%}
+            <div class="row">
+                <form method="post" style="margin-top: 10px; margin-left: 0px; margin-right: 0px;">
+                    <div class="col-md-2">
+                        <input type="submit" id="approve" name="approve" value="Одобрявам"><div class="approve_icon"></div>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="submit" id="reject" name="reject" value="Отхвърлям"><div class="reject_icon"></div>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="submit" id="archive" name="archive" value="Архивирай"><div class="archive_icon"></div>
+                    </div>
+                </form>
+            </div>
+        {% endif %}
+        <div class="row">
+            <div class="query_buttons">
+                <div class="col-md-4">
+                    <input id="button_edit" value="Обратно към заявките" onclick="location.href='{{ path('zadanie_index') }}'"/><div class="back_icon"></div>
+                </div>
+                {% if app.user.type == "LittleBoss" %}
+                <div class="col-md-2">
+                    <input id="button_edit" value="Промяна" onclick="location.href='{{ path('zadanie_edit', { 'id': zadanie.id }) }}'"/><div class="edit_icon"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="query_buttons">
+                {{ form_start(delete_form) }}
+                <div class="col-md-2">
+                    <input id="button_delete" type="submit" value="Изтрий"><div class="delete_icon"></div>
+                </div>
+                {{ form_end(delete_form) }}
+            </div>
+        </div>
+        {% endif %}
+        <div class="row">
+            {% include 'comments/new.html.twig' with {form:form,zadanieID:zadanie.id} %}
+            <div class="container" id="comments">
+                {% for comment in comments %}
+                    <div>
+                        <div class="row">
+                            <span class="pull-left">Author:{{ comment.madeBy }}</span>
+                            <span class="pull-right">Date: {{ comment.date }}</span>
+                        </div>
+                        <div class="row">
+                            <div class="text-field">
+                                {{ comment.content }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

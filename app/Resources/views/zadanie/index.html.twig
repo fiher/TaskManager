@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>Заявки</h1>
+    <ul>
+        <li>
+            {% if app.user.type != "Designer" and app.user.type != "Executioner" %}
+                <a class="new_query_button" href="{{ path('zadanie_new') }}">Създай нова заявка</a>
+            {% endif %}
+        </li>
+    </ul>
+    {% if zadanies %}
+        <table id="index">
+            <thead>
+            <tr>
+                <th>Отдел</th>
+                <th>От</th>
+                <th>Вид</th>
+                <th>Описание</th>
+                <th>Краен Срок</th>
+                <th>Дата</th>
+                <th>Дизайнер</th>
+                <th>Подизпълнител</th>
+                <th>Приключил</th>
+                <th>Статус</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for zadanie in zadanies %}
+                <tr class="{{ zadanie.class }}">
+                    <td>{{ zadanie.department }}</td>
+                    <td>{{ zadanie.fromUser }}</td>
+                    <td>{{ zadanie.typeTask }}</td>
+                    <td>{{ zadanie.description }}</td>
+                    <td>{% if zadanie.term %}{{ zadanie.term|date('d-m-Y H:i:s') }}{% endif %}</td>
+                    <td>{% if zadanie.date %}{{ zadanie.date|date('d-m-Y H:i:s') }}{% endif %}</td>
+                    <td>{{ zadanie.designer }}</td>
+                    <td>{{ zadanie.executioner }}</td>
+                    <td>{% if zadanie.isOver %}Да{% else %}Не{% endif %}</td>
+                    <td>{{ zadanie.status }}</td>
+                    <td id="actions">
+                        <ul class="show_edit_buttons">
+                            <li style="border-bottom: 1px solid #000;">
+                                <a href="{{ path('zadanie_show', { 'id': zadanie.id }) }}">Детайли</a>
+                            </li>
+                            {% if app.user.type != "Designer" and app.user.type != "Executioner" %}
+                                <li>
+                                    <a href="{{ path('zadanie_edit', { 'id': zadanie.id }) }}">Промяна</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div>Нямате задания към момента!</div>
+    {% endif %}
+
+{% endblock %}

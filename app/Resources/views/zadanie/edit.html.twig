@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>Промяна на заявка</h1>
+        <div class="content">
+            {{ form_start(edit_form) }}
+            {{ form_widget(edit_form) }}
+            <div class="row">
+                <div class="col-md-2">
+                    <input id="approve" type="submit" value="Запази"/><div class="save_new_query_icon"></div>
+                </div>
+            </div>
+            {{ form_end(edit_form) }}
+            <div class="row">
+                <div class="col-md-4">
+                    <input id="button_edit" value="Обратно към заявките" onclick="location.href='{{ path('zadanie_index') }}'"><div class="back_icon"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

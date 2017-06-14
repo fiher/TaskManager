@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+{% block head %}
+    <head>
+        <meta charset="UTF-8" />
+        <title id="title">{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset("styles/bootstrap.min.css") }}">
+            <link rel="stylesheet" href="{{ asset("styles/main.css") }}">
+            <link rel="stylesheet" href="{{ asset("styles/fonts/font-awesome.min.css") }}">
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+{% endblock %}
+<body>
+<div class="container">
+    <nav>
+        <div>
+            <div class="pull-left">
+                {% if app.user %}
+                    <a href="{{ path('zadanie_index') }}">Заявки</a>
+                    <a href="{{ path('zadanie_archive') }}">Архивирани Заявки</a>
+                    {% if (app.user.type == "Manager") or (app.user.type == "LittleBoss") %}
+                        <a href="{{ path('zadanie_new') }}">Нова заявка</a>
+                    {% endif %}
+                {% else %}
+                    <a href="{{ path('homepage') }}">Home</a>
+                    <a href="{{ path('user_login') }}">Вход</a>
+                {% endif %}
+            </div>
+            <div class="pull-right">
+                {% if app.user %}
+                    <a class="logout" href="{{ path('user_logout') }}">Изход</a>
+                {% endif %}
+            </div>
+        </div>
+
+    </nav>
+
+        {% if successMessage is defined and successMessage%}
+        <div class="row">
+            <div class="success">
+                <p>{{ successMessage }}</p>
+            </div>
+        </div>
+        {% elseif errorMessage is defined and errorMessage %}
+        <div class="row">
+            <div class="error">
+                <p>{{ errorMessage }}</p>
+            </div>
+        </div>
+        {% endif %}
+
+    {% block body %}{% endblock %}
+    {% block javascripts %}
+        <script src="{{ asset("scripts/bootstrap.min.js") }}"></script>
+        <script src="{{ asset("scripts/main.js") }}"></script>
+    {% endblock %}
+</div>
+</body>
+</html>

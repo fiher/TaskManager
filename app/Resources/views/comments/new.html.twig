@@ -1,0 +1,7 @@
+{% block comment %}
+    {{ form_start(form, {'action': path('comments_new'), 'method': 'POST'}) }}
+    {{ form_widget(form.zadanieID,{value: zadanieID},{ 'attr': {'class': 'hidden-row'} }) }}
+    {{ form_end(form) }}
+
+{% endblock %}
+
