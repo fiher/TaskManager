@@ -106,9 +106,10 @@
                 <div class="col-md-2">
                     <input id="button_edit" value="Промяна" onclick="location.href='{{ path('zadanie_edit', { 'id': zadanie.id }) }}'"/><div class="edit_icon"></div>
                 </div>
+				{% endif %}
             </div>
         </div>
-        {% if zadanie.isOver %}
+        {% if zadanie.isOver  and app.user.type == "LittleBoss" %}
         <div class="row" style="background: #f0d9d9;">
             <div class="query_buttons">
                 {{ form_start(delete_form) }}
@@ -118,13 +119,13 @@
                 {{ form_end(delete_form) }}
             </div>
         </div>
-            {% endif %}
+
         {% endif %}
         <div class="row">
             {% include 'comments/new.html.twig' with {form:form,zadanieID:zadanie.id} %}
             <div class="container" id="comments">
                 {% for comment in comments %}
-                    <div>
+                    <div class="{{ comment.class }}">
                         <div class="row">
                             <span class="pull-left">Author:{{ comment.madeBy }}</span>
                             <span class="pull-right">Date: {{ comment.date }}</span>

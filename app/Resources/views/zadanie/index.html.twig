@@ -36,7 +36,7 @@
                     <td>{{ zadanie.department }}</td>
                     <td>{{ zadanie.fromUser }}</td>
                     <td>{{ zadanie.typeTask }}</td>
-                    <td>{{ zadanie.description }}</td>
+                    <td class="more">{{ zadanie.description }}</td>
                     <td>{% if zadanie.term %}{{ zadanie.term|date('d-m-Y H:i:s') }}{% endif %}</td>
                     <td>{% if zadanie.date %}{{ zadanie.date|date('d-m-Y H:i:s') }}{% endif %}</td>
                     <td>{{ zadanie.designer }}</td>

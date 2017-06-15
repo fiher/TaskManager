@@ -25,7 +25,10 @@ Default index page
 }
 /*
 Default index page
-*/		
+*/	
+textarea{
+	vertical-align: top;
+}	
 .container {
     margin-right: auto;
     margin-left: auto;
@@ -520,8 +523,10 @@ input#button_delete:hover, #reject:hover, input#archive:hover, #button_edit:hove
 	display: inline-block;
     width:70%;
 }
+
 #appbundle_zadanie_ergent{
-	width:10%;
+    width: 30px;
+    height: 30px;
 }
 #comments{
 	background-color:#9ba2b6;
@@ -685,4 +690,25 @@ select{
 	width:100%;
     text-align: center;
 	color:#fa0f0f;
+}
+.Boss{
+	background:#d56868;
+}
+.LittleBoss.vali{
+	background:#a3df00;	
+}
+.LittleBoss.deleva{
+	background:#00dfa3;
+}
+.Manager{
+	background:#7b74ff;
+}
+.Designer{
+	background:#ffea00;
+}
+.Executioner{
+	background:#007336;
+}
+.morecontent span {
+    display: none;
 }
