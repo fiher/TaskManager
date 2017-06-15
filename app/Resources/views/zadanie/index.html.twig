@@ -46,20 +46,20 @@
 					
 				    <!--
 					<td id="actions" style="padding:10px 10px 0 10px">
-				    {% if zadanie.isOver and app.user.type == "LittleBoss" %}
+				    {% if zadanie.isOver and app.user.type == "LittleBoss" or app.user.type == "Boss"  %}
 
 						<div> 
 					 	     <input id="button_delete" type="submit" value="Изтрий"><div class="delete_icon"></div>
 						</div>
 
-					{% elseif app.user.type == "LittleBoss" %}
+					{% elseif app.user.type == "LittleBoss" or app.user.type == "Boss"  %}
 						<div>
 							<input type="submit" id="approve" name="approve" value="Одобрявам"><div class="approve_icon"></div>
 						</div>
 						<div>
 							<input type="submit" id="archive" name="archive" value="Архивирай"><div class="archive_icon"></div>
 						</div>
-                    {% else %}
+					{% elseif app.user.type == "Designer" %}
 					    Button for Designer
 						</td>
 					{% endif %}
