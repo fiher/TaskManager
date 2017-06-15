@@ -136,6 +136,7 @@ class ZadanieController extends Controller
                     $zadanie->setStatus("Отхвърлено");
                     $zadanie->setClass("rejected");
 
+
                 }
                 if ($zadanie->isErgent()) {
                     $zadanie->setClass($zadanie->getClass() . " urgent");
@@ -251,7 +252,7 @@ class ZadanieController extends Controller
             $zadanie->setRejected(false);
             $zadanie->setDesignerFinishedDate(new \DateTime());
             $successMessage = "Успешно одобрихте заявката!";
-        } elseif (isset($_POST['rejected'])) {
+        } elseif (isset($_POST['reject'])) {
             $successMessage = "Успешно отхвърлихте заявката!";
             $zadanie->setRejected(true);
             $zadanie->setApproved(false);

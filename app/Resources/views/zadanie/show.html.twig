@@ -74,7 +74,7 @@
             {% if zadanie.isOver %}
             <tr>
                 <th>Дата на приключване </th>
-                <td>TODO:add data</td>
+                <td>{{ zadanie.overDate|date("d-m-Y H:i:s") }}</td>
             </tr>
             {% endif %}
             </tbody>
@@ -108,6 +108,7 @@
                 </div>
             </div>
         </div>
+        {% if zadanie.isOver %}
         <div class="row" style="background: #f0d9d9;">
             <div class="query_buttons">
                 {{ form_start(delete_form) }}
@@ -117,6 +118,7 @@
                 {{ form_end(delete_form) }}
             </div>
         </div>
+            {% endif %}
         {% endif %}
         <div class="row">
             {% include 'comments/new.html.twig' with {form:form,zadanieID:zadanie.id} %}
