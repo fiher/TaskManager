@@ -62,11 +62,13 @@ td, th, tr{
 td#actions{
 	background: #ece9f2;
     padding: 0px;
+    height: 100%;
 }
 ul{
     list-style: none;
     list-style-position: outside;
     -webkit-padding-start: 0px;
+    height: 100%;
 }
 td ul li a{
     text-decoration: none;
@@ -349,6 +351,7 @@ nav a:active, nav a:hover{
 .show_edit_buttons li{
 	text-align: center;
     padding: 10px;
+    height: 50%;
 }
 .show_edit_buttons li:hover{
 	background-color:#d2c4f0;
