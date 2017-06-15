@@ -132,7 +132,7 @@ class ZadanieController extends Controller
             $datediff = $term  - $now;
             $datediff = floor($datediff / (60 * 60 * 24));
             $createdDate = strtotime($zadanie->getDate()->format("Y-m-d"));
-            $diffCreatedToday = $createdDate  - $now;
+            $diffCreatedToday = $now - $createdDate;
             $diffCreatedToday = floor($diffCreatedToday / (60 * 60 * 24));
             if($diffCreatedToday<= 1){
                 $zadanie->setErgent(true);
