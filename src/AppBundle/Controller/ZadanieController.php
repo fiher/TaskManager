@@ -42,9 +42,19 @@ class ZadanieController extends Controller
         $zadanies = $em->getRepository('AppBundle:Zadanie')->findBy(array(
             'isOver'=>true
         ));
+        $filteredZadanies = [];
         foreach ($zadanies as $zadanie){
+            /** @var $zadanie Zadanie */
             $zadanie->setClass("archive");
             $zadanie->setStatus("Приключено");
+            if($user->getType() == "LittleBoss"){
+                $filteredZadanies[] = $zadanie;
+            }elseif($zadanie->getDesigner() == $user->getUsername()
+                || $zadanie->getExecutioner() == $user->getUsername()
+                || $zadanie->getFromUser() == $user->getUsername()){
+                $filteredZadanies[] = $zadanie;
+            }
+
         }
         return $this->render('zadanie/index.html.twig', array(
             'zadanies' => $zadanies,
@@ -79,6 +89,7 @@ class ZadanieController extends Controller
             'zadanies' => $filteredZadanies,
         ));
     }
+
     private function filterZadanies($zadanies,$user,$userType){
         $filteredZadanies = [];
         /**
@@ -106,7 +117,7 @@ class ZadanieController extends Controller
                 $zadanie->setStatus("Видяно");
             }else{
                 $zadanie->setClass("notSeen");
-                $zadanie->setClass("Видяно");
+                $zadanie->setStatus("Не е видяно");
             }
 
             if ($zadanie->getClass() == "seen"&& !$zadanie->getDesigner()){
@@ -120,10 +131,15 @@ class ZadanieController extends Controller
             $term = strtotime($zadanie->getTerm()->format("Y-m-d"));
             $datediff = $term  - $now;
             $datediff = floor($datediff / (60 * 60 * 24));
-
+            $createdDate = strtotime($zadanie->getDate()->format("Y-m-d"));
+            $diffCreatedToday = $createdDate  - $now;
+            $diffCreatedToday = floor($diffCreatedToday / (60 * 60 * 24));
+            if($diffCreatedToday<= 1){
+                $zadanie->setErgent(true);
+            }
 
             if(!in_array("Manager",explode(" ",$user->getRole()))) {
-                if($datediff<5){
+                if($datediff<1){
                     $zadanie->setClass("due");
                     $zadanie->setStatus("Изтичащ срок");
                 }
@@ -267,6 +283,8 @@ class ZadanieController extends Controller
             }
         }elseif(isset($_POST['hold'])){
             $zadanie->setHold(true);
+        }elseif(isset($_POST['working'])){
+
         }
         $em = $this->getDoctrine()->getManager();
         $em->persist($zadanie);
@@ -287,6 +305,7 @@ class ZadanieController extends Controller
         ));
 
     }
+
     function filterComments($comments){
         /**
          * @var $comment Comments
@@ -303,6 +322,9 @@ class ZadanieController extends Controller
                 $i--;
                 $comments = array_values($comments);
             }
+        }
+        foreach ($comments as $comment){
+           $comment->setClass($comment->getCreatorRole());
         }
         return $comments;
 
@@ -323,9 +345,11 @@ class ZadanieController extends Controller
 
         $successMessage = "";
         $deleteForm = $this->createDeleteForm($zadanie);
+        $zadanie->setHold(false);
         $editForm = $this->createForm('AppBundle\Form\ZadanieType', $zadanie);
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
             $this->getDoctrine()->getManager()->flush();
             $successMessage = "Успешно променихте заявката!";
             return $this->redirectToRoute('zadanie_show', array('id' => $zadanie->getId()));
@@ -403,9 +427,5 @@ class ZadanieController extends Controller
             'successMessage'=>"",
             'last_username'=> $lastUsername
         ));
-
-
     }
-
-
 }

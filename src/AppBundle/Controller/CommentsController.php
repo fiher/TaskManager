@@ -50,7 +50,7 @@ class CommentsController extends Controller
             $user = $this->getUser();
 
             $comment->setMadeBy($user->getUsername());
-            $comment->setCreatorRole($user->getRole());
+            $comment->setCreatorRole($user->getType());
             $comment->setDate(new \DateTime());
             $em = $this->getDoctrine()->getManager();
             $em->persist($comment);
