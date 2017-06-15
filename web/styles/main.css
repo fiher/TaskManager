@@ -308,12 +308,11 @@ nav a:active, nav a:hover{
 }
 .onHold{
     background-color:#fc9e18 ;
-    color: #fff;
-    text-shadow: rgba(0,0,0,0.8) 1px 1px 1px;
+    color: #000;
 }
 .onHold.urgent{
 	background-color:#f13e3e;
-    color: #fff;
+    color: #000;
   transition: background-color 1s linear;
   -webkit-transition: background-color 1s linear;
   -o-transition: background-color 1s linear;
@@ -337,6 +336,38 @@ nav a:active, nav a:hover{
 }
 .archive{
 	background-color:#909a60;
+	color:#fff;
+}
+.working{
+    background-color:#a3df00  ;
+    color: #000;
+}
+.working.urgent{
+	background-color:#f13e3e;
+    color: #000;
+  transition: background-color 1s linear;
+  -webkit-transition: background-color 1s linear;
+  -o-transition: background-color 1s linear;
+  -moz-transition: background-color 1s linear;
+  -ms-transition: background-color 1s linear;
+  animation: working 1s infinite;
+}
+@keyframes working {
+  0% {
+    background-color: #f13e3e;
+  }
+    30% {
+    background-color: #f13e3e;
+  }
+  60% {
+    background-color: #fc9e18 ;
+  }
+  100% {
+    background-color: #a3df00  ;
+  }
+}
+.archive{
+	background-color:#a3df00 ;
 	color:#fff;
 }
 .razpredelenopodizpulnitel{

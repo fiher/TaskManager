@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     <h1>Заявки</h1>
-    <ul>
+    <!--
+	<ul>
         <li>
-            {% if app.user.type != "Designer" and app.user.type != "Executioner" %}
-                <a class="new_query_button" href="{{ path('zadanie_new') }}">Създай нова заявка</a>
+		    {% if app.user.type != "Designer" and app.user.type != "Executioner" %}
+            <a class="new_query_button" href="{{ path('zadanie_new') }}">Създай нова заявка</a>
             {% endif %}
         </li>
     </ul>
+	-->
     {% if zadanies %}
         <table id="index">
             <thead>
@@ -22,7 +24,10 @@
                 <th>Подизпълнител</th>
                 <th>Приключил</th>
                 <th>Статус</th>
-                <th>Actions</th>
+				<!--
+                <th>Опции</th>
+                -->
+				<th>Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -38,7 +43,29 @@
                     <td>{{ zadanie.executioner }}</td>
                     <td>{% if zadanie.isOver %}Да{% else %}Не{% endif %}</td>
                     <td>{{ zadanie.status }}</td>
-                    <td id="actions">
+					
+				    <!--
+					<td id="actions" style="padding:10px 10px 0 10px">
+				    {% if zadanie.isOver and app.user.type == "LittleBoss" %}
+
+						<div> 
+					 	     <input id="button_delete" type="submit" value="Изтрий"><div class="delete_icon"></div>
+						</div>
+
+					{% elseif app.user.type == "LittleBoss" %}
+						<div>
+							<input type="submit" id="approve" name="approve" value="Одобрявам"><div class="approve_icon"></div>
+						</div>
+						<div>
+							<input type="submit" id="archive" name="archive" value="Архивирай"><div class="archive_icon"></div>
+						</div>
+                    {% else %}
+					    Button for Designer
+						</td>
+					{% endif %}
+					-->
+					
+					<td id="actions">
                         <ul class="show_edit_buttons">
                             <li style="border-bottom: 1px solid #000;">
                                 <a href="{{ path('zadanie_show', { 'id': zadanie.id }) }}">Детайли</a>
