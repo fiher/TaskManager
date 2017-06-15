@@ -13,7 +13,11 @@
     </head>
 {% endblock %}
 <body>
-<div class="container">
+    <div class="row" id="header">
+	    <div class="pull-left">
+		     <img src="{{ asset("images/new_logo.png") }}" alt="" class="logo">
+	    </div>
+	</div>
     <nav>
         <div>
             <div class="pull-left">
@@ -21,7 +25,7 @@
                     <a href="{{ path('zadanie_index') }}">Заявки</a>
                     <a href="{{ path('zadanie_archive') }}">Архивирани Заявки</a>
                     {% if (app.user.type == "Manager") or (app.user.type == "LittleBoss") %}
-                        <a href="{{ path('zadanie_new') }}">Нова заявка</a>
+                    <a href="{{ path('zadanie_new') }}">Нова заявка</a>
                     {% endif %}
                 {% else %}
                     <a href="{{ path('homepage') }}">Home</a>
