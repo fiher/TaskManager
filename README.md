@@ -1,4 +1,1 @@
-.checkout
-=========
-
-A Symfony project created on May 18, 2017, 2:26 pm.
+Symfony based app for Casino Solutions company created by me and my co-worker Aleksay Yaramov. It is made for sending requests between casino managers and Design Department. You need your own parameters.yml file and to install 'vendor' folder in order to run the app.
