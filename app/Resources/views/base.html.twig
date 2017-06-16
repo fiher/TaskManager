@@ -35,6 +35,7 @@
             </div>
             <div class="pull-right">
                 {% if app.user %}
+				    <a class="username">Здравейте, {{ app.user.username }}</a>
                     <a class="logout" href="{{ path('user_logout') }}">Изход</a>
                 {% endif %}
             </div>

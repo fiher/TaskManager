@@ -712,3 +712,8 @@ select{
 .morecontent span {
     display: none;
 }
+.username, .username:hover{
+	background: none;
+    color: #fff;
+    border: none;
+}
