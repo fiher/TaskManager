@@ -27,8 +27,12 @@ class CommentsType extends AbstractType
             "Под изпълнители" =>"Executioner",
             "Шеф" => "Boss"
         )))->
-        add('content',TextareaType::class,array('label'=>"Съдържание"))->
-        add('Comment',SubmitType::class,array('Коментирай'));
+        add('content',TextareaType::class,array(
+            'label'=>"Съдържание"
+        ))->
+        add('Comment',SubmitType::class,array(
+            'label'=>"Коментирай"
+        ));
     }
     
     /**
