@@ -76,6 +76,13 @@ class Zadanie
      * @ORM\Column(name="designerAccepted", type="boolean", nullable=true)
      */
     private $designerAccepted;
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="forApproval", type="boolean", nullable=true)
+     */
+    private $forApproval;
+
 
     /**
      * @var \DateTime
@@ -761,7 +768,21 @@ class Zadanie
     {
         $this->hold = $hold;
     }
+    /**
+     * @return bool
+     */
+    public function isForApproval()
+    {
+        return $this->forApproval;
+    }
 
+    /**
+     * @param bool $forApproval
+     */
+    public function setForApproval($forApproval)
+    {
+        $this->forApproval = $forApproval;
+    }
 
 
 }

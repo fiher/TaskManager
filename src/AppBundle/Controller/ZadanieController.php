@@ -56,10 +56,9 @@ class ZadanieController extends Controller
             }
 
         }
+        $filteredZadanies = array_reverse($filteredZadanies);
         return $this->render('zadanie/index.html.twig', array(
-            'zadanies' => $zadanies,
-            'errorMessage'=>"",
-            "successMessage"=>""
+            'zadanies' => $filteredZadanies,
         ));
     }
 
@@ -111,7 +110,9 @@ class ZadanieController extends Controller
                     $functionName = "isSeenByExecutioner";
                 }
             }
-
+            if($functionName == "isSeenByManager"){
+                $functionName = "isSeenByLittleBoss";
+            }
             if($zadanie->$functionName()){
                 $zadanie->setClass("seen");
                 $zadanie->setStatus("Видяно");
@@ -315,12 +316,20 @@ class ZadanieController extends Controller
         if($user->getType() == "LittleBoss"){
             return $comments;
         }
-        for($i = 0 ; $i<count($comments);$i++){
+        for($i = 0 ; $i<count($comments);$i++) {
             $comment = $comments[$i];
-            if(!in_array($comment->getToUser(),explode(" ",$user->getRole()))){
-                unset($comments[$i]);
-                $i--;
-                $comments = array_values($comments);
+            if ($comment->getCreatorRole() == "LittleBoss") {
+                if (!in_array($comment->getToUser(), explode(" ", $user->getRole()))) {
+                    unset($comments[$i]);
+                    $i--;
+                    $comments = array_values($comments);
+                }
+            }else{
+                if($comment->getCreatorRole() != $user->getType()){
+                    unset($comments[$i]);
+                    $i--;
+                    $comments = array_values($comments);
+                }
             }
         }
         foreach ($comments as $comment){
@@ -342,11 +351,15 @@ class ZadanieController extends Controller
         if($forbidden){
             return $forbidden;
         }
-
+        $userType = $this->getUser()->getType();
         $successMessage = "";
         $deleteForm = $this->createDeleteForm($zadanie);
         $zadanie->setHold(false);
         $editForm = $this->createForm('AppBundle\Form\ZadanieType', $zadanie);
+        if($userType != "Little Boss"){
+            $editForm->remove('designer');
+            $editForm->remove("executioner");
+        }
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
@@ -400,6 +413,40 @@ class ZadanieController extends Controller
         ;
     }
 
+    /**
+     *Updates zadanie by one property only.
+     *
+     * @Route("/{id}/update", name="zadanie_update")
+     * @Method("POST")
+     */
+    public function updateAction(Zadanie $zadanie){
+        /**@var Zadanie $zadanie */
+        if (isset($_POST['approve'])) {
+            $zadanie->setApproved(true);
+            $zadanie->setRejected(false);
+            $zadanie->setDesignerFinishedDate(new \DateTime());
+            $successMessage = "Успешно одобрихте заявката!";
+        } elseif (isset($_POST['reject'])) {
+            $successMessage = "Успешно отхвърлихте заявката!";
+            $zadanie->setRejected(true);
+            $zadanie->setApproved(false);
+        } elseif (isset($_POST['archive'])) {
+            if ($zadanie->isApproved()) {
+                $successMessage = "Успешно архивирахте заявката!";
+                $zadanie->setIsOver(true);
+                $zadanie->setOverDate(new \DateTime());
+
+            } else {
+                $errorMessage = "Не можете да архивирате заявка, която не е одобрена!";
+            }
+        }elseif(isset($_POST['hold'])){
+            $zadanie->setHold(true);
+        }elseif(isset($_POST['forApproval'])){
+            $zadanie->setForApproval(true);
+        }
+
+        return $this->redirectToRoute("zadanie_index");
+    }
 
     private function checkCredentials($allowedUserRoles){
         $authenticationUtils = $this->get('security.authentication_utils');
