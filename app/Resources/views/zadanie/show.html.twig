@@ -32,8 +32,16 @@
             {% if zadanie.designer %}
                 <tr>
                     <th>Дизайнер</th>
+					{% if app.user.type == "LittleBoss" or app.user.type == "Boss"  %}
                     <td>{{ zadanie.designer }}</td>
-                </tr>
+                    {% else %}
+							{% if zadanie.designerAccepted %}
+							<td>Разпределена</td>
+							{% else %}
+							<td></td>
+					        {% endif %}
+					{% endif %}
+				</tr>
                 {%if zadanie.designerAccepted  %}
                     <tr>
                         <th>Дизайнер приел на:</th>
@@ -121,14 +129,14 @@
         </div>
 
         {% endif %}
+		<h1>Коментари</h1>
         <div class="row">
-            {% include 'comments/new.html.twig' with {form:form,zadanieID:zadanie.id} %}
             <div class="container" id="comments">
                 {% for comment in comments %}
                     <div class="{{ comment.class }}">
                         <div class="row">
-                            <span class="pull-left">Author:{{ comment.madeBy }}</span>
-                            <span class="pull-right">Date: {{ comment.date }}</span>
+                            <span class="pull-left">{{ comment.madeBy }}</span>
+                            <span class="pull-right">{{ comment.date }}</span>
                         </div>
                         <div class="row">
                             <div class="text-field">
@@ -136,8 +144,10 @@
                             </div>
                         </div>
                     </div>
-                {% endfor %}
-            </div>
+               {% endfor %}
+			</div>
+		<h1>Нов коментар</h1>
+		{% include 'comments/new.html.twig' with {form:form,zadanieID:zadanie.id} %}
         </div>
     </div>
 {% endblock %}

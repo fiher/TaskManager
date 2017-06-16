@@ -90,7 +90,6 @@ ul{
     list-style: none;
     list-style-position: outside;
     -webkit-padding-start: 0px;
-    height: 100%;
 }
 td ul li a{
     text-decoration: none;

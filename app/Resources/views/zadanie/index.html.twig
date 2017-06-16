@@ -39,7 +39,15 @@
                     <td class="more">{{ zadanie.description }}</td>
                     <td>{% if zadanie.term %}{{ zadanie.term|date('d-m-Y H:i:s') }}{% endif %}</td>
                     <td>{% if zadanie.date %}{{ zadanie.date|date('d-m-Y H:i:s') }}{% endif %}</td>
+					{% if app.user.type == "LittleBoss" or app.user.type == "Boss"  %}
                     <td>{{ zadanie.designer }}</td>
+					{% else %}
+							{% if zadanie.designerAccepted %}
+							<td>Разпределена</td>
+							{% else %}
+							<td></td>
+					        {% endif %}
+					{% endif %}
                     <td>{{ zadanie.executioner }}</td>
                     <td>{% if zadanie.isOver %}Да{% else %}Не{% endif %}</td>
                     <td>{{ zadanie.status }}</td>
@@ -70,8 +78,10 @@
                             <li style="border-bottom: 1px solid #000;">
                                 <a href="{{ path('zadanie_show', { 'id': zadanie.id }) }}">Детайли</a>
                             </li>
-                            {% if app.user.type != "Designer" and app.user.type != "Executioner" %}
-                                <li>
+                            {% if zadanie.isOver %}
+
+							{% elseif app.user.type != "Designer" and app.user.type != "Executioner"  %}	
+							    <li>
                                     <a href="{{ path('zadanie_edit', { 'id': zadanie.id }) }}">Промяна</a>
                                 </li>
                             {% endif %}
