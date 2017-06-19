@@ -133,7 +133,7 @@ class ZadanieController extends Controller
             $datediff = $term  - $now;
             $datediff = floor($datediff / (60 * 60 * 24));
             $createdDate = strtotime($zadanie->getDate()->format("Y-m-d"));
-            $diffCreatedToday = $now - $createdDate;
+            $diffCreatedToday = $createdDate - $now;
             $diffCreatedToday = floor($diffCreatedToday / (60 * 60 * 24));
             if($diffCreatedToday<= 1){
                 $zadanie->setErgent(true);
@@ -152,8 +152,6 @@ class ZadanieController extends Controller
                 }if($zadanie->isRejected()){
                     $zadanie->setStatus("Отхвърлено");
                     $zadanie->setClass("rejected");
-
-
                 }
                 if ($zadanie->isErgent()) {
                     $zadanie->setClass($zadanie->getClass() . " urgent");
@@ -162,6 +160,10 @@ class ZadanieController extends Controller
             if($zadanie->isHold()){
                 $zadanie->setClass("onHold");
                 $zadanie->setStatus("Изчакване");
+            }
+            if($zadanie->isForApproval()){
+                $zadanie->setClass("forApproval");
+                $zadanie->setStatus("За одобрение");
             }
             if($userType != "LittleBoss" && $userType != "Boss"){
                 if($userType == "Designer" && $user->getUsername() == $zadanie->getDesigner()){
@@ -426,24 +428,37 @@ class ZadanieController extends Controller
             $zadanie->setApproved(true);
             $zadanie->setRejected(false);
             $zadanie->setDesignerFinishedDate(new \DateTime());
+            $zadanie->setForApproval(false);
+            $zadanie->setHold(false);
             $successMessage = "Успешно одобрихте заявката!";
         } elseif (isset($_POST['reject'])) {
             $successMessage = "Успешно отхвърлихте заявката!";
             $zadanie->setRejected(true);
             $zadanie->setApproved(false);
+            $zadanie->setForApproval(false);
+            $zadanie->setHold(false);
         } elseif (isset($_POST['archive'])) {
             if ($zadanie->isApproved()) {
                 $successMessage = "Успешно архивирахте заявката!";
                 $zadanie->setIsOver(true);
                 $zadanie->setOverDate(new \DateTime());
-
+                $zadanie->setForApproval(true);
+                $zadanie->setHold(false);
+                $zadanie->setRejected(false);
             } else {
                 $errorMessage = "Не можете да архивирате заявка, която не е одобрена!";
             }
         }elseif(isset($_POST['hold'])){
             $zadanie->setHold(true);
+            $zadanie->setRejected(false);
+            $zadanie->setForApproval(false);
+            $zadanie->setApproved(false);
+
         }elseif(isset($_POST['forApproval'])){
             $zadanie->setForApproval(true);
+            $zadanie->setRejected(false);
+            $zadanie->setHold(false);
+            $zadanie->setApproved(false);
         }
         $em = $this->getDoctrine()->getManager();
         $em->persist($zadanie);
