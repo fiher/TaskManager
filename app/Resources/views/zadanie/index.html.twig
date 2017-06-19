@@ -23,11 +23,8 @@
                 <th>Дизайнер</th>
                 <th>Подизпълнител</th>
                 <th>Приключил</th>
-                <th>Статус</th>
-				<!--
+                <th>Статус</th>	
                 <th>Опции</th>
-                -->
-				<th>Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -37,8 +34,8 @@
                     <td>{{ zadanie.fromUser }}</td>
                     <td>{{ zadanie.typeTask }}</td>
                     <td class="more">{{ zadanie.description }}</td>
-                    <td>{% if zadanie.term %}{{ zadanie.term|date('d-m-Y H:i:s') }}{% endif %}</td>
-                    <td>{% if zadanie.date %}{{ zadanie.date|date('d-m-Y H:i:s') }}{% endif %}</td>
+                    <td class="date">{% if zadanie.term %}{{ zadanie.term|date('d-m-Y H:i:s') }}{% endif %}</td>
+                    <td class="date">{% if zadanie.date %}{{ zadanie.date|date('d-m-Y H:i:s') }}{% endif %}</td>
 					{% if app.user.type == "LittleBoss" or app.user.type == "Boss"  %}
                     <td>{{ zadanie.designer }}</td>
 					{% else %}
@@ -53,12 +50,12 @@
                     <td>{{ zadanie.status }}</td>
 					
 
-					<td id="actions" style="padding:10px 10px 0 10px">
+					<td id="actions" style="padding:0">
 				    {% if zadanie.isOver and app.user.type == "LittleBoss" or app.user.type == "Boss"  %}
 
 
 					{% elseif app.user.type == "LittleBoss" or app.user.type == "Boss"  %}
-                        <form action="{{ path('zadanie_update', { 'id': zadanie.id }) }}" method="post" style="margin-top: 10px; margin-left: 0px; margin-right: 0px;">
+                        <form action="{{ path('zadanie_update', { 'id': zadanie.id }) }}" method="post" style="margin: 10px 0px 0px 0px;">
                             <div class="col-md-2">
                                 <input type="submit" id="approve" name="approve" value="Одобрявам"><div class="approve_icon"></div>
                             </div>
@@ -68,30 +65,26 @@
                             <div class="col-md-2">
                                 <input type="submit" id="hold" name="hold" value="На изчакване"><div class="hold_icon"></div>
                             </div>
-                            <div>
-                                <input type="submit" id="forApproval" name="forApproval" value="За одобрение"/>
+                            <div class="col-md-2">
+                                <input type="submit" id="forApproval" name="forApproval" value="За одобрение"/><div class="forApproval_icon"></div>
                             </div>
                         </form>
 					{% elseif app.user.type == "Designer" %}
-					    Button for Designer
-						</td>
+                            <div class="col-md-2">
+                                <input type="submit" id="working" name="working" value="Работи се"/><div class="working_icon"></div>
+                            </div>						
 					{% endif %}
 
-					
-					<td id="actions">
-                        <ul class="show_edit_buttons">
-                            <li style="border-bottom: 1px solid #000;">
-                                <a href="{{ path('zadanie_show', { 'id': zadanie.id }) }}">Детайли</a>
-                            </li>
+								<div class="col-md-2" style="margin: 10px 0px 0px 0px;">
+									<input id="button_details" value="Детайли" onclick="location.href='{{ path('zadanie_show', { 'id': zadanie.id }) }}'"/><div class="details_icon"></div>
+								</div>
                             {% if zadanie.isOver %}
 
 							{% elseif app.user.type != "Designer" and app.user.type != "Executioner"  %}	
-							    <li>
-                                    <a href="{{ path('zadanie_edit', { 'id': zadanie.id }) }}">Промяна</a>
-                                </li>
+								<div class="col-md-2">
+									<input id="button_edit" value="Промяна" onclick="location.href='{{ path('zadanie_edit', { 'id': zadanie.id }) }}'"/><div class="edit_icon"></div>
+								</div>
                             {% endif %}
-                        </ul>
-                    </td>
                 </tr>
             {% endfor %}
             </tbody>
