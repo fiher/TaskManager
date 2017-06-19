@@ -128,13 +128,15 @@ class ZadanieController extends Controller
                 $zadanie->setClass("assigned");
                 $zadanie->setStatus("Разпределено");
             }
-            $now = time(); // or your date as well
-            $term = strtotime($zadanie->getTerm()->format("Y-m-d"));
-            $datediff = $term  - $now;
+            $now = strtotime(date('Y-m-d H:i:s'));
+            $term = strtotime($zadanie->getTerm()->format("Y-m-d H:i:s"));
+
+            $datediff = $now - $term;
             $datediff = floor($datediff / (60 * 60 * 24));
             $createdDate = strtotime($zadanie->getDate()->format("Y-m-d"));
-            $diffCreatedToday = $createdDate - $now;
+            $diffCreatedToday = $term - $createdDate;
             $diffCreatedToday = floor($diffCreatedToday / (60 * 60 * 24));
+            dump($diffCreatedToday);
             if($diffCreatedToday<= 1){
                 $zadanie->setErgent(true);
             }
@@ -419,7 +421,7 @@ class ZadanieController extends Controller
      *Updates zadanie by one property only.
      *
      * @Route("/{id}/update", name="zadanie_update")
-     * @Route("/{id}/edit", name="zadanie_fast_edit")
+     * @Route("/{id}/fastupdate", name="zadanie_fast_update")
      * @Method("POST")
      */
     public function updateAction(Request $request, Zadanie $zadanie){

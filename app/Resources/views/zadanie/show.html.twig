@@ -89,7 +89,7 @@
         </table>
         {% if app.user.type == "Boss" or app.user.type == "LittleBoss"%}
 		    <div class="row" style="background: #dcf0d9;">
-                <form action="{{ path('zadanie_fast_edit', { 'id': zadanie.id }) }}" method="post" style="margin-top: 10px; margin-left: 0px; margin-right: 0px;">
+                <form action="{{ path('zadanie_fast_update', { 'id': zadanie.id }) }}" method="post" style="margin-top: 10px; margin-left: 0px; margin-right: 0px;">
                     <div class="col-md-2">
                         <input type="submit" id="approve" name="approve" value="Одобрявам"><div class="approve_icon"></div>
                     </div>

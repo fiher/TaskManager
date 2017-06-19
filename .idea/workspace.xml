@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="056da0cf-db80-498e-bebe-f46eea1f8975" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/zadanie/show.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/zadanie/show.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/ZadanieController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/ZadanieController.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,57 +19,41 @@
       <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/zadanie/show.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2247">
-              <caret line="107" column="23" lean-forward="false" selection-start-line="107" selection-start-column="23" selection-end-line="107" selection-end-column="23" />
+            <state relative-caret-position="2037">
+              <caret line="97" column="26" lean-forward="false" selection-start-line="97" selection-start-column="26" selection-end-line="97" selection-end-column="26" />
               <folding>
-                <marker date="1497863297404" expanded="true" signature="32:6475" ph="{% block body ...%}" />
-                <marker date="1497863297404" expanded="true" signature="4407:4498" ph="{% if app.user.type == &quot;Boss&quot; or app.user.type == &quot;LittleBoss&quot;...%}" />
-                <marker date="1497863297404" expanded="false" signature="4531:4551" ph="..." />
-                <marker date="1497863297404" expanded="true" signature="4552:5145" ph="..." />
-                <marker date="1497863297404" expanded="true" signature="4592:5130" ph="..." />
-                <marker date="1497863297404" expanded="true" signature="4631:4812" ph="..." />
-                <marker date="1497863297404" expanded="true" signature="4830:5112" ph="{% if app.user.type == &quot;LittleBoss&quot; ...%}" />
-                <marker date="1497863297404" expanded="true" signature="4906:5095" ph="..." />
-                <marker date="1497863297404" expanded="true" signature="5155:5622" ph="{% if zadanie.isOver  and app.user.type == &quot;LittleBoss&quot; ...%}" />
-                <marker date="1497863297404" expanded="false" signature="5246:5266" ph="..." />
-                <marker date="1497863297404" expanded="true" signature="5267:5600" ph="..." />
-                <marker date="1497863297404" expanded="true" signature="5307:5585" ph="..." />
-                <marker date="1497863297404" expanded="true" signature="5392:5522" ph="..." />
-                <marker date="1497863297404" expanded="true" signature="5668:6448" ph="..." />
-                <marker date="1497863297404" expanded="true" signature="5718:6330" ph="..." />
-                <marker date="1497863297404" expanded="true" signature="5736:6321" ph="{% for comment in comments ...%}" />
-                <marker date="1497863297404" expanded="true" signature="5818:6292" ph="..." />
-                <marker date="1497863297404" expanded="true" signature="5860:6050" ph="..." />
-                <marker date="1497863297404" expanded="true" signature="6092:6265" ph="..." />
-                <marker date="1497863297404" expanded="true" signature="6145:6234" ph="..." />
+                <element signature="e#12#26#0#Twig" expanded="false" />
+                <element signature="e#4741#4754#0#Twig" expanded="false" />
+                <element signature="e#5003#5015#0#Twig" expanded="false" />
+                <element signature="e#6372#6394#0#Twig" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ZadanieController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ZadanieController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ZadanieController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="163" column="42" lean-forward="false" selection-start-line="163" selection-start-column="42" selection-end-line="163" selection-end-column="42" />
+            <state relative-caret-position="376">
+              <caret line="138" column="36" lean-forward="true" selection-start-line="138" selection-start-column="36" selection-end-line="138" selection-end-column="36" />
               <folding>
                 <element signature="e#40#64#0#PHP" expanded="true" />
                 <element signature="e#1211#1230#1#PHP" expanded="true" />
                 <element signature="e#2621#2640#1#PHP" expanded="true" />
-                <element signature="e#6817#8296#0#PHP" expanded="false" />
-                <element signature="e#11420#12437#0#PHP" expanded="false" />
-                <element signature="e#14034#14512#0#PHP" expanded="false" />
-                <element signature="e#14701#14970#0#PHP" expanded="false" />
-                <element signature="e#17211#18242#0#PHP" expanded="false" />
+                <element signature="e#6861#8340#0#PHP" expanded="false" />
+                <element signature="e#11464#12481#0#PHP" expanded="false" />
+                <element signature="e#14078#14556#0#PHP" expanded="false" />
+                <element signature="e#14745#15014#0#PHP" expanded="false" />
+                <element signature="e#17263#18294#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/styles/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
+            <state relative-caret-position="13104">
               <caret line="624" column="166" lean-forward="false" selection-start-line="624" selection-start-column="165" selection-end-line="624" selection-end-column="166" />
               <folding />
             </state>
@@ -83,16 +68,6 @@
               <folding>
                 <element signature="e#34#74#0#PHP" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/default/index.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="10" column="14" lean-forward="false" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -124,7 +99,13 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="257">
               <caret line="68" column="87" lean-forward="false" selection-start-line="68" selection-start-column="76" selection-end-line="68" selection-end-column="87" />
-              <folding />
+              <folding>
+                <element signature="e#12#26#0#Twig" expanded="false" />
+                <element signature="e#229#240#0#Twig" expanded="false" />
+                <element signature="e#2108#2122#0#Twig" expanded="false" />
+                <element signature="e#3550#3562#0#Twig" expanded="false" />
+                <element signature="e#3892#3904#0#Twig" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -212,10 +193,10 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Form/CommentsType.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml" />
-        <option value="$PROJECT_DIR$/app/Resources/views/zadanie/show.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/zadanie/index.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/ZadanieController.php" />
         <option value="$PROJECT_DIR$/web/styles/main.css" />
+        <option value="$PROJECT_DIR$/app/Resources/views/zadanie/show.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/ZadanieController.php" />
       </list>
     </option>
   </component>
@@ -289,6 +270,60 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="styles" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WINbetTaskManager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WINbetTaskManager" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WINbetTaskManager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WINbetTaskManager" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AppBundle" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WINbetTaskManager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WINbetTaskManager" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AppBundle" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controller" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -495,15 +530,16 @@
       <workItem from="1497426059846" duration="11745000" />
       <workItem from="1497503620446" duration="25087000" />
       <workItem from="1497849568999" duration="5766000" />
-      <workItem from="1497863257263" duration="2846000" />
+      <workItem from="1497863257263" duration="5125000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="200834000" />
+    <option name="totallyTimeSpent" value="203113000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="0" width="1932" height="1038" extended-state="1" />
+    <frame x="-8" y="0" width="1932" height="1038" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30980605" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -512,7 +548,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29896906" sideWeight="0.4849138" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29896906" sideWeight="0.4849138" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -556,13 +592,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/Downloads/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="17" column="33" lean-forward="true" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/phpstorm.jar!/resources/html5-schema/html5/web-forms2.rnc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="670">
@@ -910,65 +939,63 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/zadanie/show.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2247">
-          <caret line="107" column="23" lean-forward="false" selection-start-line="107" selection-start-column="23" selection-end-line="107" selection-end-column="23" />
-          <folding>
-            <marker date="1497863297404" expanded="true" signature="32:6475" ph="{% block body ...%}" />
-            <marker date="1497863297404" expanded="true" signature="4407:4498" ph="{% if app.user.type == &quot;Boss&quot; or app.user.type == &quot;LittleBoss&quot;...%}" />
-            <marker date="1497863297404" expanded="false" signature="4531:4551" ph="..." />
-            <marker date="1497863297404" expanded="true" signature="4552:5145" ph="..." />
-            <marker date="1497863297404" expanded="true" signature="4592:5130" ph="..." />
-            <marker date="1497863297404" expanded="true" signature="4631:4812" ph="..." />
-            <marker date="1497863297404" expanded="true" signature="4830:5112" ph="{% if app.user.type == &quot;LittleBoss&quot; ...%}" />
-            <marker date="1497863297404" expanded="true" signature="4906:5095" ph="..." />
-            <marker date="1497863297404" expanded="true" signature="5155:5622" ph="{% if zadanie.isOver  and app.user.type == &quot;LittleBoss&quot; ...%}" />
-            <marker date="1497863297404" expanded="false" signature="5246:5266" ph="..." />
-            <marker date="1497863297404" expanded="true" signature="5267:5600" ph="..." />
-            <marker date="1497863297404" expanded="true" signature="5307:5585" ph="..." />
-            <marker date="1497863297404" expanded="true" signature="5392:5522" ph="..." />
-            <marker date="1497863297404" expanded="true" signature="5668:6448" ph="..." />
-            <marker date="1497863297404" expanded="true" signature="5718:6330" ph="..." />
-            <marker date="1497863297404" expanded="true" signature="5736:6321" ph="{% for comment in comments ...%}" />
-            <marker date="1497863297404" expanded="true" signature="5818:6292" ph="..." />
-            <marker date="1497863297404" expanded="true" signature="5860:6050" ph="..." />
-            <marker date="1497863297404" expanded="true" signature="6092:6265" ph="..." />
-            <marker date="1497863297404" expanded="true" signature="6145:6234" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/zadanie/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="257">
           <caret line="68" column="87" lean-forward="false" selection-start-line="68" selection-start-column="76" selection-end-line="68" selection-end-column="87" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ZadanieController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="163" column="42" lean-forward="false" selection-start-line="163" selection-start-column="42" selection-end-line="163" selection-end-column="42" />
           <folding>
-            <element signature="e#40#64#0#PHP" expanded="true" />
-            <element signature="e#1211#1230#1#PHP" expanded="true" />
-            <element signature="e#2621#2640#1#PHP" expanded="true" />
-            <element signature="e#6817#8296#0#PHP" expanded="false" />
-            <element signature="e#11420#12437#0#PHP" expanded="false" />
-            <element signature="e#14034#14512#0#PHP" expanded="false" />
-            <element signature="e#14701#14970#0#PHP" expanded="false" />
-            <element signature="e#17211#18242#0#PHP" expanded="false" />
+            <element signature="e#12#26#0#Twig" expanded="false" />
+            <element signature="e#229#240#0#Twig" expanded="false" />
+            <element signature="e#2108#2122#0#Twig" expanded="false" />
+            <element signature="e#3550#3562#0#Twig" expanded="false" />
+            <element signature="e#3892#3904#0#Twig" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/styles/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
+        <state relative-caret-position="13104">
           <caret line="624" column="166" lean-forward="false" selection-start-line="624" selection-start-column="165" selection-end-line="624" selection-end-column="166" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/zadanie/show.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2037">
+          <caret line="97" column="26" lean-forward="false" selection-start-line="97" selection-start-column="26" selection-end-line="97" selection-end-column="26" />
+          <folding>
+            <element signature="e#12#26#0#Twig" expanded="false" />
+            <element signature="e#4741#4754#0#Twig" expanded="false" />
+            <element signature="e#5003#5015#0#Twig" expanded="false" />
+            <element signature="e#6372#6394#0#Twig" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_1.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="978" column="9" lean-forward="false" selection-start-line="978" selection-start-column="9" selection-end-line="978" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ZadanieController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="376">
+          <caret line="138" column="36" lean-forward="true" selection-start-line="138" selection-start-column="36" selection-end-line="138" selection-end-column="36" />
+          <folding>
+            <element signature="e#40#64#0#PHP" expanded="true" />
+            <element signature="e#1211#1230#1#PHP" expanded="true" />
+            <element signature="e#2621#2640#1#PHP" expanded="true" />
+            <element signature="e#6861#8340#0#PHP" expanded="false" />
+            <element signature="e#11464#12481#0#PHP" expanded="false" />
+            <element signature="e#14078#14556#0#PHP" expanded="false" />
+            <element signature="e#14745#15014#0#PHP" expanded="false" />
+            <element signature="e#17263#18294#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
