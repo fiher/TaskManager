@@ -417,9 +417,10 @@ class ZadanieController extends Controller
      *Updates zadanie by one property only.
      *
      * @Route("/{id}/update", name="zadanie_update")
+     * @Route("/{id}/edit", name="zadanie_fast_edit")
      * @Method("POST")
      */
-    public function updateAction(Zadanie $zadanie){
+    public function updateAction(Request $request, Zadanie $zadanie){
         /**@var Zadanie $zadanie */
         if (isset($_POST['approve'])) {
             $zadanie->setApproved(true);
@@ -444,8 +445,15 @@ class ZadanieController extends Controller
         }elseif(isset($_POST['forApproval'])){
             $zadanie->setForApproval(true);
         }
-
-        return $this->redirectToRoute("zadanie_index");
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($zadanie);
+        $em->flush();
+        $requestURL = explode("/",$request->getUri())[5];
+        if($requestURL== "update") {
+            return $this->redirectToRoute("zadanie_index");
+        }else{
+            return $this->redirectToRoute("zadanie_show", array('id' => $zadanie->getId()));
+        }
     }
 
     private function checkCredentials($allowedUserRoles){
