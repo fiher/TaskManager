@@ -405,6 +405,34 @@ nav a:active, nav a:hover{
 	background-color:#909a60;
 	color:#fff;
 }
+.forApproval{
+    background-color:#84cc06   ;
+    color: #000;
+}
+.forApproval.urgent{
+	background-color:#f13e3e;
+    color: #000;
+  transition: background-color 1s linear;
+  -webkit-transition: background-color 1s linear;
+  -o-transition: background-color 1s linear;
+  -moz-transition: background-color 1s linear;
+  -ms-transition: background-color 1s linear;
+  animation: forApproval 1s infinite;
+}
+@keyframes forApproval {
+  0% {
+    background-color: #f13e3e;
+  }
+    30% {
+    background-color: #f13e3e;
+  }
+  60% {
+    background-color: #84cc06  ;
+  }
+  100% {
+    background-color: #84cc06   ;
+  }
+}
 .razpredelenopodizpulnitel{
     background: -webkit-linear-gradient(left, #007f33 , #ffda45);
     background: -o-linear-gradient(right, #007f33, #ffda45);
