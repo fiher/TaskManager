@@ -49,7 +49,7 @@
                     <td>{{ zadanie.executioner }}</td>
                     <td class="status">{{ zadanie.status }}</td>
 					<td rowspan = "2" class="comments">
-                        <div style="overflow-y: auto; width: 100%;height: 180px;margin: 0;padding: 0;">
+                        <div class="overflow">
                             {% for comment in zadanie.comments %}
                            <p class="row">От: {{ comment.madeBy }}</p>
                            <p class="row">Дата {{ comment.date|date("d-m-Y H:i:s") }}</p>
