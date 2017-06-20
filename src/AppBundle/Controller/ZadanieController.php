@@ -336,7 +336,7 @@ class ZadanieController extends Controller
         $deleteForm = $this->createDeleteForm($zadanie);
         $zadanie->setHold(false);
         $editForm = $this->createForm('AppBundle\Form\ZadanieType', $zadanie);
-        if($userType != "Little Boss"){
+        if($userType != "LittleBoss"){
             $editForm->remove('designer');
             $editForm->remove("executioner");
         }
