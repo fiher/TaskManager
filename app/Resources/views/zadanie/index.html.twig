@@ -53,8 +53,10 @@
                             {% for comment in zadanie.comments %}
                            <p class="row">От: {{ comment.madeBy }}</p>
                            <p class="row">Дата {{ comment.date|date("d-m-Y H:i:s") }}</p>
-	                       <span>Коментар: </span>{{ comment.content }}
-                            {% endfor %}
+	                       <div class="border_for_comments">
+						   <span>Коментар: </span>{{ comment.content }}
+                            </div>
+							{% endfor %}
                         </div>
 
                     </td>
