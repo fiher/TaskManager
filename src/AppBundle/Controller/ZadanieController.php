@@ -351,7 +351,7 @@ class ZadanieController extends Controller
     public function editAction(Request $request, Zadanie $zadanie)
     {
         //this function returns "" if the user is allowed and if not returns $this->render
-        $forbidden = $this->checkCredentials(array("Manager","LittleBoss","Boss"));
+        $forbidden = $this->checkCredentials(array("Manager","LittleBoss","Boss","Designer"));
         if($forbidden){
             return $forbidden;
         }
@@ -363,6 +363,14 @@ class ZadanieController extends Controller
         if($userType != "Little Boss"){
             $editForm->remove('designer');
             $editForm->remove("executioner");
+        }
+        if($userType == "Designer"){
+            $editForm->remove('description');
+            $editForm->remove('term');
+            $editForm->remove('fromUser');
+            $editForm->remove('department');
+            $editForm->remove('ergent');
+
         }
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -461,6 +469,18 @@ class ZadanieController extends Controller
             $zadanie->setRejected(false);
             $zadanie->setHold(false);
             $zadanie->setApproved(false);
+        }elseif(isset($_POST['working'])){
+            $em = $this->getDoctrine()->getManager();
+            $query = $em->getRepository('AppBundle:Zadanie')->
+            createQueryBuilder('zadanie')->
+            where('zadanie.id != currentId')->setParameter('currentId',$zadanie->getId())->getQuery();
+            $zadanies = $query->getResult();
+            if($zadanies){
+                foreach ($zadanies as $singleZadanie){
+                    /** @var  $singleZadanie Zadanie */
+
+                }
+            }
         }
         $em = $this->getDoctrine()->getManager();
         $em->persist($zadanie);
