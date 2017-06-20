@@ -84,6 +84,15 @@ class ZadanieController extends Controller
         $zadanies = $em->getRepository('AppBundle:Zadanie')->findAll();
         $zadanies = array_reverse($zadanies);
         $filteredZadanies = $this->filterZadanies($zadanies,$user,$userType);
+        foreach ($filteredZadanies as $zadanie){
+            /** @var Zadanie $zadanie */
+            $comments = $this->getDoctrine()
+                ->getRepository('AppBundle:Comments')
+                ->findBy(
+                    array("zadanieID" => $zadanie->getId())
+                );
+            $zadanie->setComments($this->filterComments($comments));
+        }
         return $this->render('zadanie/index.html.twig', array(
             'zadanies' => $filteredZadanies,
         ));

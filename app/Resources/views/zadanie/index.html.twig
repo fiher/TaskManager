@@ -52,11 +52,15 @@
                     <td>{{ zadanie.status }}</td>
 					<td rowspan = "2" style="    border-bottom: 3px solid #a5b2cb;"	>
 
-							<div style="overflow-y: auto; width: 100%;height: 180px;margin: 0;padding: 0;">					       
-							<p class="row">От: Алекс</p>
-                           <p class="row">Дата 20.06.2017</p>
-	                       <span>Коментар: </span>dsdcjsdcbsjd hbfksjnf sjknf sjfn sjfnsjfbndbjh sbdfj bdfjhb fjsdb jshdbfn jsdndsdc jsdcbsjdhbfk sjnf sjknf sjfn sjfnsjfbndbjh sbdfj bdfjhb fjsdb jshdbfn jsf jshdbfnj ehsbfn
-					jhsnfjsfs fnis fneifneifnein  ni fi fni ienfi nfisufnisdfnids fnisd fws efwefsefsdfdsfsd</div></td>
+                        <div style="overflow-y: auto; width: 100%;height: 180px;margin: 0;padding: 0;">
+                            {% for comment in zadanie.comments %}
+                           <p class="row">От: {{ comment.madeBy }}</p>
+                           <p class="row">Дата {{ comment.date|date("d-m-Y H:i:s") }}</p>
+	                       <span>Коментар: </span>{{ comment.content }}
+                            {% endfor %}
+                        </div>
+
+                    </td>
                 </tr>
 			    <tr id="actions" class="{{ zadanie.class }}">
 				    <td colspan = "11" id="buttons" style="padding: 10px 0px 0px 0px;">
