@@ -293,27 +293,26 @@ class ZadanieController extends Controller
          * @var $user User
          */
         $user = $this->getUser();
-        if($user->getType() == "LittleBoss"){
-            return $comments;
-        }
-        for($i = 0 ; $i<count($comments);$i++) {
-            $comment = $comments[$i];
-            if ($comment->getCreatorRole() == "LittleBoss") {
-                if (!in_array($comment->getToUser(), explode(" ", $user->getRole()))) {
-                    unset($comments[$i]);
-                    $i--;
-                    $comments = array_values($comments);
-                }
-            }else{
-                if($comment->getCreatorRole() != $user->getType()){
-                    unset($comments[$i]);
-                    $i--;
-                    $comments = array_values($comments);
+        if($user->getType() != "LittleBoss") {
+            for ($i = 0; $i < count($comments); $i++) {
+                $comment = $comments[$i];
+                if ($comment->getCreatorRole() == "LittleBoss") {
+                    if (!in_array($comment->getToUser(), explode(" ", $user->getRole()))) {
+                        unset($comments[$i]);
+                        $i--;
+                        $comments = array_values($comments);
+                    }
+                } else {
+                    if ($comment->getCreatorRole() != $user->getType()) {
+                        unset($comments[$i]);
+                        $i--;
+                        $comments = array_values($comments);
+                    }
                 }
             }
         }
         foreach ($comments as $comment){
-           $comment->setClass($comment->getCreatorRole());
+            $comment->setClass($comment->getCreatorRole());
         }
         return $comments;
 
