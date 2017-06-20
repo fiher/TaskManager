@@ -1,6 +1,7 @@
 body {
     background-color: #f2f2f2;
     color: black;
+	font-size: 14px;
     font-family: "Roboto";
     line-height: normal;
     overflow-y: scroll;
@@ -73,7 +74,11 @@ thead{
 }
 td, th, tr{
     border: 1px solid #a5b2cb;
-    padding: 15px;
+	padding: 15px;
+}
+#index td, #index th, #index tr{
+    border:0;
+	padding: 10px;
 }
 .description{
 	font-size: 22px;
@@ -89,8 +94,9 @@ td, th, tr{
     word-break: break-all;
     table-layout: fixed;
 }
-#index td{
+td#buttons{
     border-bottom: 3px solid #a5b2cb;	
+	padding: 0;
 }
 #index th{
 	text-shadow: rgba(0,0,0,0.8) 1px 1px 1px;
@@ -99,6 +105,12 @@ td#actions{
 	background: #ece9f2;
     padding: 0px;
     height: 100%;
+}
+#buttons{
+	background:rgba(255,255,255,0.5);
+}
+.due #buttons{
+	background:rgba(255,255,255,0.8);
 }
 ul{
     list-style: none;
@@ -635,9 +647,9 @@ select{
     text-decoration: inherit;
     color: #ebebeb;
     font-size: 20px;
-    position: relative;
-    top: -32px;
-	left: 15px;
+    position: absolute;
+    top: 10px;
+    left: 28px;
 }	
 .approve_icon:before {
     content: "\f00c";
@@ -647,9 +659,9 @@ select{
     text-decoration: inherit;
     color: #ebebeb;
     font-size: 20px;
-    position: relative;
-    top: -32px;
-	left: 15px;
+    position: absolute;
+    top: 10px;
+    left: 28px;
 }		
 .reject_icon:before {
     content: "\f00d";
@@ -659,9 +671,9 @@ select{
     text-decoration: inherit;
     color: #ebebeb;
     font-size: 20px;
-    position: relative;
-    top: -32px;
-	left: 15px;
+    position: absolute;
+    top: 10px;
+    left: 28px;
 }	
 .archive_icon:before {
     content: "\f07c";
@@ -671,9 +683,9 @@ select{
     text-decoration: inherit;
     color: #ebebeb;
     font-size: 20px;
-    position: relative;
-    top: -32px;
-	left: 15px;
+    position: absolute;
+    top: 10px;
+    left: 28px;
 }
 .back_icon:before {
     content: "\f060";
@@ -683,9 +695,9 @@ select{
     text-decoration: inherit;
     color: #ebebeb;
     font-size: 20px;
-    position: relative;
-    top: -32px;
-	left: 15px;
+    position: absolute;
+    top: 10px;
+    left: 28px;
 }	
 .edit_icon:before {
     content: "\f0ad";
@@ -695,9 +707,9 @@ select{
     text-decoration: inherit;
     color: #ebebeb;
     font-size: 20px;
-    position: relative;
-    top: -32px;
-	left: 15px;
+    position: absolute;
+    top: 10px;
+    left: 28px;
 }
 .comment_icon:before {
     content: "\f0ad";
@@ -707,9 +719,9 @@ select{
     text-decoration: inherit;
     color: #ebebeb;
     font-size: 20px;
-    position: relative;
-    top: -20px;
-	left: 15px;
+    position: absolute;
+    top: 10px;
+    left: 28px;
 }	
 .save_new_query_icon:before {
     content: "\f0c7";
@@ -719,9 +731,9 @@ select{
     text-decoration: inherit;
     color: #ebebeb;
     font-size: 20px;
-    position: relative;
-    top: -32px;
-	left: 15px;
+    position: absolute;
+    top: 10px;
+    left: 28px;
 }	
 .login_icon:before {
     content: "\f13e";
@@ -733,7 +745,7 @@ select{
     font-size: 20px;
     position: relative;
     top: -31px;
-	left: 15px;
+    left: 20px;
 }
 .hold_icon:before {
     content: "\f04c";
@@ -743,9 +755,9 @@ select{
     text-decoration: inherit;
     color: #ebebeb;
     font-size: 20px;
-    position: relative;
-    top: -32px;
-	left: 15px;
+    position: absolute;
+    top: 10px;
+    left: 28px;
 }		
 .forApproval_icon:before{
 	content: "\f045";
@@ -755,9 +767,9 @@ select{
     text-decoration: inherit;
     color: #ebebeb;
     font-size: 20px;
-    position: relative;
-    top: -30px;
-	left: 15px;
+    position: absolute;
+    top: 10px;
+    left: 28px;
 }
 .details_icon:before{
 	content: "\f05a";
@@ -767,9 +779,9 @@ select{
     text-decoration: inherit;
     color: #ebebeb;
     font-size: 20px;
-    position: relative;
-    top: -32px;
-	left: 15px;
+    position: absolute;
+    top: 10px;
+    left: 28px;
 }
 .working_icon:before{
 	content: "\f04b";
@@ -779,9 +791,9 @@ select{
     text-decoration: inherit;
     color: #ebebeb;
     font-size: 20px;
-    position: relative;
-    top: -32px;
-	left: 15px;
+    position: absolute;
+    top: 10px;
+    left: 28px;
 }
 .success p{
 	width:100%;
@@ -809,7 +821,7 @@ select{
 	background:#ffea00;
 }
 .Executioner{
-	background:#007336;
+	background:#069147;
 }
 .morecontent span {
     display: none;
@@ -820,7 +832,7 @@ select{
     border: none;
 }
 .more{
-	width: 25%;
+	width: 28%;
     /* white-space: pre; */
     white-space: pre-wrap;
     white-space: pre-line;
@@ -834,5 +846,5 @@ select{
     table-layout: fixed;
 }
 .date{
-    width: 8%;
+    width: 10%;
 }

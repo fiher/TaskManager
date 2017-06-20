@@ -3,10 +3,10 @@
 {% block body %}
     <div class="content">
         <form class="login_register" action="{{ path('user_check') }}" method="post">
-            <h1 style="padding:0;">Welcome</h1>
-            <label for="username">Username</label>
+            <h1 style="padding:0;">Добре дошли</h1>
+            <label for="username">Име</label>
             <input class="login" type="text" id="username" name="_username" value="{{ last_username }}" />
-            <label for="password">Password</label>
+            <label for="password">Парола</label>
             <input class="login"  type="password" id="password" name="_password"/>
             <div class="col-md-1">
                 <button id="button_edit" type="submit">Влез</button><div class="login_icon"></div>
