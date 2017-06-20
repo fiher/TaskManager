@@ -131,7 +131,7 @@ class ZadanieController extends Controller
             $now = strtotime(date('Y-m-d H:i:s'));
             $term = strtotime($zadanie->getTerm()->format("Y-m-d H:i:s"));
 
-            $datediff = $now - $term;
+            $datediff = $term - $now;
             $datediff = floor($datediff / (60 * 60 * 24));
             $createdDate = strtotime($zadanie->getDate()->format("Y-m-d"));
             $diffCreatedToday = $term - $createdDate;
@@ -142,7 +142,7 @@ class ZadanieController extends Controller
             }
 
             if(!in_array("Manager",explode(" ",$user->getRole()))) {
-                if($datediff<1){
+                if($datediff<=1){
                     $zadanie->setClass("due");
                     $zadanie->setStatus("Изтичащ срок");
                 }
