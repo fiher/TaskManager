@@ -23,7 +23,6 @@
                 <th>Дата</th>
                 <th>Дизайнер</th>
                 <th>Подизпълнител</th>
-                <th>Приключил</th>
                 <th>Статус</th>	
                 <th>Коментари</th>	
             </tr>
@@ -31,9 +30,9 @@
             <tbody>
             {% for zadanie in zadanies %}
                 <tr class="{{ zadanie.class }}">
-                    <td>{{ zadanie.department }}</td>
-                    <td>{{ zadanie.fromUser }}</td>
-                    <td>{{ zadanie.typeTask }}</td>
+                    <td class="department">{{ zadanie.department }}</td>
+                    <td class="user">{{ zadanie.fromUser }}</td>
+                    <td class="type">{{ zadanie.typeTask }}</td>
                     <td class="more">{{ zadanie.description }}</td>
 					<td>{% if zadanie.file%}<a href="{{ zadanie.file }}" target="_blank">Линк към файла</a> {% else %}Няма качени файлове{% endif %}</td>
                     <td class="date">{% if zadanie.term %}{{ zadanie.term|date('d-m-Y H:i:s') }}{% endif %}</td>
@@ -48,10 +47,8 @@
 					        {% endif %}
 					{% endif %}
                     <td>{{ zadanie.executioner }}</td>
-                    <td>{% if zadanie.isOver %}Да{% else %}Не{% endif %}</td>
-                    <td>{{ zadanie.status }}</td>
-					<td rowspan = "2" style="    border-bottom: 3px solid #a5b2cb;"	>
-
+                    <td class="status">{{ zadanie.status }}</td>
+					<td rowspan = "2" class="comments">
                         <div style="overflow-y: auto; width: 100%;height: 180px;margin: 0;padding: 0;">
                             {% for comment in zadanie.comments %}
                            <p class="row">От: {{ comment.madeBy }}</p>
