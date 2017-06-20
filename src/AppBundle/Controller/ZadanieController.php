@@ -255,41 +255,18 @@ class ZadanieController extends Controller
                 array("zadanieID" => $zadanie->getId())
             );
         $comments = $this->filterComments($comments);
-        if ($userType == "LittleBoss") {
+        if ($userType == "LittleBoss" && $zadanie->isSeenByLittleBoss()) {
             $zadanie->setSeenByLittleBoss(true);
-        } elseif ($userType == "Manager") {
+        } elseif ($userType == "Manager" && $zadanie->isSeenByManager()) {
             $zadanie->setSeenByManager(true);
-        } elseif ($userType == "Designer") {
+        } elseif ($userType == "Designer" && !$zadanie->isSeenByDesigner()) {
             $zadanie->setDesignerAccepted(true);
             $zadanie->setDateDesigner(new \DateTime());
             $zadanie->setSeenByDesigner(true);
-        } elseif ($userType == "Executioner") {
+        } elseif ($userType == "Executioner" && !$zadanie->isSeenByExecutioner()) {
             $zadanie->setExecutionerAccepted(true);
             $zadanie->setDateExecutioner(new \DateTime());
             $zadanie->setSeenByExecutioner(true);
-        }
-        if (isset($_POST['approve'])) {
-            $zadanie->setApproved(true);
-            $zadanie->setRejected(false);
-            $zadanie->setDesignerFinishedDate(new \DateTime());
-            $successMessage = "Успешно одобрихте заявката!";
-        } elseif (isset($_POST['reject'])) {
-            $successMessage = "Успешно отхвърлихте заявката!";
-            $zadanie->setRejected(true);
-            $zadanie->setApproved(false);
-        } elseif (isset($_POST['archive'])) {
-            if ($zadanie->isApproved()) {
-                $successMessage = "Успешно архивирахте заявката!";
-                $zadanie->setIsOver(true);
-                $zadanie->setOverDate(new \DateTime());
-
-            } else {
-                $errorMessage = "Не можете да архивирате заявка, която не е одобрена!";
-            }
-        }elseif(isset($_POST['hold'])){
-            $zadanie->setHold(true);
-        }elseif(isset($_POST['working'])){
-
         }
         $em = $this->getDoctrine()->getManager();
         $em->persist($zadanie);
@@ -308,7 +285,6 @@ class ZadanieController extends Controller
             'errorMessage' => $errorMessage,
             'successMessage' => $successMessage
         ));
-
     }
 
     function filterComments($comments){
