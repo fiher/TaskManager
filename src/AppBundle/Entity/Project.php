@@ -4,13 +4,14 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+//TODO: Change table name from zadanie to project
 /**
- * Zadanie
+ * Project
  *
  * @ORM\Table(name="zadanie")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ZadanieRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ProjectRepository")
  */
-class Zadanie
+class Project
 {
     /**
      * @var int
@@ -423,7 +424,7 @@ class Zadanie
      *
      * @param string $department
      *
-     * @return Zadanie
+     * @return Project
      */
     public function setDepartment($department)
     {
@@ -447,7 +448,7 @@ class Zadanie
      *
      * @param string $fromUser
      *
-     * @return Zadanie
+     * @return Project
      */
     public function setFromUser($fromUser)
     {
@@ -471,7 +472,7 @@ class Zadanie
      *
      * @param string $typeTask
      *
-     * @return Zadanie
+     * @return Project
      */
     public function setTypeTask($typeTask)
     {
@@ -495,7 +496,7 @@ class Zadanie
      *
      * @param string $description
      *
-     * @return Zadanie
+     * @return Project
      */
     public function setDescription($description)
     {
@@ -519,7 +520,7 @@ class Zadanie
      *
      * @param \DateTime $term
      *
-     * @return Zadanie
+     * @return Project
      */
     public function setTerm($term)
     {
@@ -559,7 +560,7 @@ class Zadanie
      *
      * @param \DateTime $date
      *
-     * @return Zadanie
+     * @return Project
      */
     public function setDate($date)
     {
@@ -583,7 +584,7 @@ class Zadanie
      *
      * @param \DateTime $dateDesigner
      *
-     * @return Zadanie
+     * @return Project
      */
     public function setDateDesigner($dateDesigner)
     {
@@ -607,7 +608,7 @@ class Zadanie
      *
      * @param boolean $designerAccepted
      *
-     * @return Zadanie
+     * @return Project
      */
     public function setDesignerAccepted($designerAccepted)
     {
@@ -631,7 +632,7 @@ class Zadanie
      *
      * @param \DateTime $dateExecutioner
      *
-     * @return Zadanie
+     * @return Project
      */
     public function setDateExecutioner($dateExecutioner)
     {
@@ -655,7 +656,7 @@ class Zadanie
      *
      * @param boolean $executionerAccepted
      *
-     * @return Zadanie
+     * @return Project
      */
     public function setExecutionerAccepted($executionerAccepted)
     {
@@ -679,7 +680,7 @@ class Zadanie
      *
      * @param \DateTime $designerFinishedDate
      *
-     * @return Zadanie
+     * @return Project
      */
     public function setDesignerFinishedDate($designerFinishedDate)
     {
@@ -703,7 +704,7 @@ class Zadanie
      *
      * @param string $designer
      *
-     * @return Zadanie
+     * @return Project
      */
     public function setDesigner($designer)
     {
@@ -727,7 +728,7 @@ class Zadanie
      *
      * @param string $executioner
      *
-     * @return Zadanie
+     * @return Project
      */
     public function setExecutioner($executioner)
     {
@@ -751,7 +752,7 @@ class Zadanie
      *
      * @param boolean $isOver
      *
-     * @return Zadanie
+     * @return Project
      */
     public function setIsOver($isOver)
     {

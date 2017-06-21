@@ -7,89 +7,89 @@
             <tbody>
             <tr>
                 <th>Отдел</th>
-                <td>{{ zadanie.department }}</td>
+                <td>{{ project.department }}</td>
             </tr>
             <tr>
                 <th>От</th>
-                <td>{{ zadanie.fromUser }}</td>
+                <td>{{ project.fromUser }}</td>
             </tr>
             <tr>
                 <th>Вид</th>
-                <td>{{ zadanie.typeTask }}</td>
+                <td>{{ project.typeTask }}</td>
             </tr>
             <tr>
                 <th>Описание</th>
-                <td class="description">{{ zadanie.description }}</td>
+                <td class="description">{{ project.description }}</td>
             </tr>
             <tr>
                 <th>Краен Срок</th>
-                <td>{% if zadanie.term %}{{ zadanie.term|date('d-m-Y H:i:s') }}{% endif %}</td>
+                <td>{% if project.term %}{{ project.term|date('d-m-Y H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Създаден на</th>
-                <td>{% if zadanie.date %}{{ zadanie.date|date('d-m-Y H:i:s') }}{% endif %}</td>
+                <td>{% if project.date %}{{ project.date|date('d-m-Y H:i:s') }}{% endif %}</td>
             </tr>
-            {% if zadanie.designer %}
+            {% if project.designer %}
                 <tr>
                     <th>Дизайнер</th>
 					{% if app.user.type == "LittleBoss" or app.user.type == "Boss"  %}
-                    <td>{{ zadanie.designer }}</td>
+                    <td>{{ project.designer }}</td>
                     {% else %}
-							{% if zadanie.designerAccepted %}
+							{% if project.designerAccepted %}
 							<td>Разпределена</td>
 							{% else %}
 							<td></td>
 					        {% endif %}
 					{% endif %}
 				</tr>
-                {%if zadanie.designerAccepted  %}
+                {%if project.designerAccepted  %}
                     <tr>
                         <th>Дизайнер приел на:</th>
-                        <td>{{ zadanie.dateDesigner|date("d-m-Y H:i:s") }}</td>
+                        <td>{{ project.dateDesigner|date("d-m-Y H:i:s") }}</td>
                     </tr>
-                    {% if zadanie.designerFinishedDate %}
+                    {% if project.designerFinishedDate %}
                         <tr>
                             <th>Дизайнер приключил на:</th>
-                            <td>{{ zadanie.designerFinishedDate|date("d-m-Y H:i:s") }}</td>
+                            <td>{{ project.designerFinishedDate|date("d-m-Y H:i:s") }}</td>
                         </tr>
                     {% endif %}
                 {% endif %}
             {% endif %}
-            {% if zadanie.Executioner %}
+            {% if project.Executioner %}
                 <tr>
                     <th>Подизпълнител</th>
-                    <td>{{ zadanie.executioner }}</td>
+                    <td>{{ project.executioner }}</td>
                 </tr>
-                {%if zadanie.designerAccepted  %}
+                {%if project.designerAccepted  %}
                     <tr>
                         <th>Подизпълнител приел на:</th>
-                        <td>{{ zadanie.dateDesigner|date("d-m-Y H:i:s") }}</td>
+                        <td>{{ project.dateDesigner|date("d-m-Y H:i:s") }}</td>
                     </tr>
                 {% endif %}
             {% endif %}
             <tr>
                 <th>Линк</th>
-                <td>{% if zadanie.file%}<a href="{{ zadanie.file }}" target="_blank">Линк към файла</a> {% else %}Няма качени файлове{% endif %}</td>
+                <td>{% if project.file%}<a href="{{ project.file }}" target="_blank">Линк към файла</a> {% else %}Няма качени файлове{% endif %}</td>
             </tr>
             <tr>
                 <th>Одобрена</th>
-                <td>{% if zadanie.isApproved %}Да{% else %}Не{% endif %}</td>
+                <td>{% if project.isApproved %}Да{% else %}Не{% endif %}</td>
             </tr>
             <tr>
                 <th>Приключилa </th>
-                <td>{% if zadanie.isOver %}Да{% else %}Не{% endif %}</td>
+                <td>{% if project.isOver %}Да{% else %}Не{% endif %}</td>
             </tr>
-            {% if zadanie.isOver %}
+            {% if project.isOver %}
             <tr>
                 <th>Дата на приключване </th>
-                <td>{{ zadanie.overDate|date("d-m-Y H:i:s") }}</td>
+                <td>{{ project.overDate|date("d-m-Y H:i:s") }}</td>
             </tr>
             {% endif %}
             </tbody>
         </table>
         {% if app.user.type == "Boss" or app.user.type == "LittleBoss"%}
 		    <div class="row" style="background: #dcf0d9;">
-                <form action="{{ path('zadanie_fast_update', { 'id': zadanie.id }) }}" method="post" style="margin-top: 10px; margin-left: 0px; margin-right: 0px;">
+                <form action="{{ path('project_fast_update', { 'id': project.id }) }}" method="post" style="margin-top: 10px; margin-left: 0px; margin-right: 0px;">
                     <div class="col-md-2">
                         <input type="submit" id="approve" name="approve" value="Одобрявам"><div class="approve_icon"></div>
                     </div>
@@ -111,16 +111,16 @@
         <div class="row" style="background: #dde5ee;">
             <div class="query_buttons">
                 <div class="col-md-4">
-                    <input id="button_edit" value="Обратно към заявките" onclick="location.href='{{ path('zadanie_index') }}'"/><div class="back_icon"></div>
+                    <input id="button_edit" value="Обратно към заявките" onclick="location.href='{{ path('project_index') }}'"/><div class="back_icon"></div>
                 </div>
                 {% if app.user.type == "LittleBoss" %}
                 <div class="col-md-2">
-                    <input id="button_edit" value="Промяна" onclick="location.href='{{ path('zadanie_edit', { 'id': zadanie.id }) }}'"/><div class="edit_icon"></div>
+                    <input id="button_edit" value="Промяна" onclick="location.href='{{ path('project_edit', { 'id': project.id }) }}'"/><div class="edit_icon"></div>
                 </div>
 				{% endif %}
             </div>
         </div>
-        {% if zadanie.isOver  and app.user.type == "LittleBoss" %}
+        {% if project.isOver  and app.user.type == "LittleBoss" %}
         <div class="row" style="background: #f0d9d9;">
             <div class="query_buttons">
                 {{ form_start(delete_form) }}
@@ -150,7 +150,7 @@
                {% endfor %}
 			</div>
 		<h1>Нов коментар</h1>
-		{% include 'comments/new.html.twig' with {form:form,zadanieID:zadanie.id} %}
+		{% include 'comments/new.html.twig' with {form:form,zadanieID:project.id} %}
         </div>
     </div>
 {% endblock %}

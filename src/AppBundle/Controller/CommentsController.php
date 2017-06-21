@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Comments;
 use AppBundle\Entity\User;
+use AppBundle\Service\CommentsService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -46,20 +47,17 @@ class CommentsController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var  $user  User*/
+            /**
+             * @var  $user  User
+             * @var $commentsService CommentsService
+             */
             $user = $this->getUser();
-
-            $comment->setMadeBy($user->getUsername());
-            $comment->setCreatorRole($user->getType());
-            $comment->setDate(new \DateTime());
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($comment);
-            $em->flush();
-
-            return $this->redirectToRoute('zadanie_show', array('id' => $comment->getZadanieID()));
+            $commentsService = $this->get('app.service.comments_service');
+            $commentsService->newComment($comment,$user,new \DateTime());
+            return $this->redirectToRoute('project_show', array('id' => $comment->getZadanieID()));
         }
 
-        return $this->render('zadanie/show.html.twig', array(
+        return $this->render('project/show.html.twig', array(
             'comment' => $comment,
             'form' => $form->createView(),
         ));

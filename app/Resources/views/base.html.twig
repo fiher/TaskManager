@@ -23,10 +23,10 @@
         <div>
             <div class="pull-left">
                 {% if app.user %}
-                    <a href="{{ path('zadanie_index') }}">Заявки</a>
-                    <a href="{{ path('zadanie_archive') }}">Архивирани Заявки</a>
+                    <a href="{{ path('project_index') }}">Заявки</a>
+                    <a href="{{ path('project_archive') }}">Архивирани Заявки</a>
                     {% if (app.user.type == "Manager") or (app.user.type == "LittleBoss") %}
-                    <a href="{{ path('zadanie_new') }}">Нова заявка</a>
+                    <a href="{{ path('project_new') }}">Нова заявка</a>
                     {% endif %}
                 {% else %}
                     <a href="{{ path('homepage') }}">Начало</a>

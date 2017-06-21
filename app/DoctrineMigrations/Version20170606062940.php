@@ -19,7 +19,7 @@ class Version20170606062940 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('ALTER TABLE comments ADD `to` LONGTEXT DEFAULT NULL');
-        $this->addSql('ALTER TABLE zadanie ADD approved TINYINT(1) DEFAULT NULL, ADD file LONGTEXT DEFAULT NULL');
+        $this->addSql('ALTER TABLE project ADD approved TINYINT(1) DEFAULT NULL, ADD file LONGTEXT DEFAULT NULL');
     }
 
     /**
@@ -31,6 +31,6 @@ class Version20170606062940 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('ALTER TABLE comments DROP `to`');
-        $this->addSql('ALTER TABLE zadanie DROP approved, DROP file');
+        $this->addSql('ALTER TABLE project DROP approved, DROP file');
     }
 }

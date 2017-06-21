@@ -18,7 +18,7 @@ class Version20170607104442 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE zadanie ADD ergent TINYINT(1) DEFAULT NULL, ADD rejected TINYINT(1) DEFAULT NULL');
+        $this->addSql('ALTER TABLE project ADD ergent TINYINT(1) DEFAULT NULL, ADD rejected TINYINT(1) DEFAULT NULL');
     }
 
     /**
@@ -29,6 +29,6 @@ class Version20170607104442 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE zadanie DROP ergent, DROP rejected');
+        $this->addSql('ALTER TABLE project DROP ergent, DROP rejected');
     }
 }

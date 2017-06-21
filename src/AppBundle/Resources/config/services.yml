@@ -1,0 +1,8 @@
+services:
+    app.service.comments_service:
+        class: AppBundle\Service\CommentsService
+        autowire: true
+
+    app.service.zadanies_service:
+        class: AppBundle\Service\ProjectService
+        autowire: true

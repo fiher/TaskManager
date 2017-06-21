@@ -18,7 +18,7 @@ class Version20170614113440 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE zadanie ADD overDate DATETIME DEFAULT NULL');
+        $this->addSql('ALTER TABLE project ADD overDate DATETIME DEFAULT NULL');
     }
 
     /**
@@ -29,6 +29,6 @@ class Version20170614113440 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE zadanie DROP overDate');
+        $this->addSql('ALTER TABLE project DROP overDate');
     }
 }
