@@ -9,10 +9,12 @@ use AppBundle\Entity\Project;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Project controller.
@@ -21,6 +23,9 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ProjectController extends Controller
 {
+    //if new term is entered without a term date this will be set as a date then it will be checked when rendering them
+    //if term is this exact date and if so - we display "No date" in bulgarian!
+    const NO_TERM_DEFAULT_VALUE = '2090-03-19';
     /**
      * Lists all project entities.
      *
@@ -39,9 +44,8 @@ class ProjectController extends Controller
 
         $userType = $user->getType();
         $em = $this->getDoctrine()->getManager();
-        $projects = $em->getRepository('AppBundle:Project')->findBy(array(
-            'isOver'=>true
-        ));
+        $projects = $em->getRepository('AppBundle:Project')->findArchivedProjects();
+
         $filteredProjects = [];
         foreach ($projects as $project){
             /** @var $project Project */
@@ -78,20 +82,19 @@ class ProjectController extends Controller
             return $forbidden;
         }
         $commentsService = $this->get('app.service.comments_service');
+        $projectService = $this->get('app.service.projects_service');
         /** @var User $user */
         $user = $this->getUser();
         $userType = $user->getType();
         $em = $this->getDoctrine()->getManager();
         $projects = $em->getRepository('AppBundle:Project')->findAll();
         $projects = array_reverse($projects);
-        $filteredProjects = $this->filterProjects($projects,$user,$userType);
+        $filteredProjects = $projectService->filterProjects($projects,$user,$userType);
         foreach ($filteredProjects as $project){
             /** @var Project $project */
             $comments = $this->getDoctrine()
                 ->getRepository('AppBundle:Comments')
-                ->findBy(
-                    array("zadanieID" => $project->getId())
-                );
+                ->findByProjectID($project->getId());
             $project->setComments($commentsService->filterComments($comments,$user));
         }
         return $this->render('project/index.html.twig', array(
@@ -99,96 +102,7 @@ class ProjectController extends Controller
         ));
     }
 
-    private function filterProjects($projects,$user,$userType){
-        $filteredProjects = [];
-        /**
-         * @var $project Project
-         */
-        foreach ($projects as $project){
-            if($project->getIsOver()){
-                continue;
-            }
-            /**
-             * @var Project $project
-             * @var $user User
-             */
-            $functionName = "isSeenBy".$userType;
-            if($user->getUsername() == "sky.stroy"){
-                if($project->getFromUser() == "sky.stroy"){
-                    $functionName = "isSeenByManager";
-                }elseif ($project->getExecutioner()== "sky.stroy"){
-                    $functionName = "isSeenByExecutioner";
-                }
-            }
-            if($functionName == "isSeenByManager"){
-                $functionName = "isSeenByLittleBoss";
-            }
-            if($project->$functionName()){
-                $project->setClass("seen");
-                $project->setStatus("Видяно");
-            }else{
-                $project->setClass("notSeen");
-                $project->setStatus("Не е видяно");
-            }
 
-            if ($project->getClass() == "seen"&& !$project->getDesigner()){
-                $project->setClass("seenNotAsssigned");
-                $project->setStatus("Видяно, но неразпределено");
-            }elseif ($project->getClass() == "seen"&& $project->getDesigner()){
-                $project->setClass("assigned");
-                $project->setStatus("Разпределено");
-            }
-            $now = strtotime(date('Y-m-d H:i:s'));
-            $term = strtotime($project->getTerm()->format("Y-m-d H:i:s"));
-
-            $datediff = $term - $now;
-            $datediff = floor($datediff / (60 * 60 * 24));
-            $createdDate = strtotime($project->getDate()->format("Y-m-d"));
-            $diffCreatedToday = $term - $createdDate;
-            $diffCreatedToday = floor($diffCreatedToday / (60 * 60 * 24));if($diffCreatedToday<= 1){
-                $project->setErgent(true);
-            }
-
-            if(!in_array("Manager",explode(" ",$user->getRole()))) {
-                if($datediff<=1){
-                    $project->setClass("due");
-                    $project->setStatus("Изтичащ срок");
-                }
-                if($project->isApproved()) {
-                    $project->setClass("approved");
-                    $project->setStatus("Одобрено");
-                    $project->setErgent(false);
-
-                }if($project->isRejected()){
-                    $project->setStatus("Отхвърлено");
-                    $project->setClass("rejected");
-                }
-                if ($project->isErgent()) {
-                    $project->setClass($project->getClass() . " urgent");
-                }
-            }
-            if($project->isHold()){
-                $project->setClass("onHold");
-                $project->setStatus("Изчакване");
-            }
-            if($project->isForApproval()){
-                $project->setClass("forApproval");
-                $project->setStatus("За одобрение");
-            }
-            if($userType != "LittleBoss" && $userType != "Boss"){
-                if($userType == "Designer" && $user->getUsername() == $project->getDesigner()){
-                    $filteredProjects[] = $project;
-                }elseif($userType == "Executioner" && $user->getUsername() == $project->getExecutioner()){
-                    $filteredProjects[] = $project;
-                }elseif ($userType == "Manager" && $user->getUsername() == $project->getFromUser()){
-                    $filteredProjects[] = $project;
-                }
-            }else {
-                $filteredProjects[] = $project;
-            }
-        }
-        return $filteredProjects;
-    }
     /**
      * Creates a new project entity.
      *
@@ -199,7 +113,6 @@ class ProjectController extends Controller
     {
         //this function returns "" if the user is allowed and if not returns $this->render
         $this->checkCredentials(array("Manager","LittleBoss","Boss"));
-
         /** @var  $user User */
         $user = $this->getUser();
         $project = new Project();
@@ -214,19 +127,23 @@ class ProjectController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
         //$project->setFromUser($user->getUsername());
         //$project->setDepartment($user->getDepartment());
+            $isWithTerm = false;
+            $isWithoutTerm  = $request->request->get('appbundle_zadanie')['noTerm'] == 1;
         $project->setIsOver(false);
         $project->setDate(new \DateTime());
         $project->setSeenByDesigner(false);
         $project->setSeenByExecutioner(false);
         $project->setSeenByLittleBoss(false);
         $project->setSeenByManager(false);
+        if($isWithoutTerm){
+            $project->setTerm(\DateTime::createFromFormat('Y-m-d', self::NO_TERM_DEFAULT_VALUE));
+        }
         if($project->getTerm() == $project->getDate()){
             $project->setErgent(true);
         }
             $em = $this->getDoctrine()->getManager();
             $em->persist($project);
             $em->flush();
-
             return $this->redirectToRoute('project_show', array('id' => $project->getId()));
         }
 
@@ -260,9 +177,7 @@ class ProjectController extends Controller
         $deleteForm = $this->createDeleteForm($project);
         $comments = $this->getDoctrine()
             ->getRepository('AppBundle:Comments')
-            ->findBy(
-                array("zadanieID" => $project->getId())
-            );
+            ->findByProjectID($project->getId());
         $comments = $commentsService->filterComments($comments,$user);
         if ($userType == "LittleBoss" && !$project->isSeenByLittleBoss()) {
             $project->setSeenByLittleBoss(true);
@@ -442,7 +357,8 @@ class ProjectController extends Controller
         if($requestURL== "update") {
             return $this->redirectToRoute("project_index");
         }else{
-            return $this->redirectToRoute("project_show", array('id' => $project->getId()));
+            return $this->redirectToRoute("project_show", array('id' => $project->getId()
+            ));
         }
     }
 
@@ -473,4 +389,5 @@ class ProjectController extends Controller
             'last_username'=> $lastUsername
         ));
     }
+
 }

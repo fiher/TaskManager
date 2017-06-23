@@ -13,6 +13,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\DateTime;
+
 class ProjectType extends AbstractType
 {
     /**
@@ -21,6 +23,10 @@ class ProjectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $project =$options['data'];
+        $data = new \DateTime();
+        if($project->getTerm()){
+            $data = $project->getTerm();
+        }
         /** @var  $project Project */
         $builder->add('fromUser',TextType::class,array(
             "required"=>true,
@@ -40,18 +46,22 @@ class ProjectType extends AbstractType
         add('term',DateType::class, array(
             'widget' => 'choice',
             'label'=>"Краен срок",
-            'data'=>$project->getTerm()
+            'data'=>$data
+        ))->add('noTerm',CheckboxType::class,array(
+            "mapped"=>false,
+            'label'=>"Без Срок"
         ))->
         add('designer',ChoiceType::class,array('label'=>"Дизайнер",
             "required"=>false,
                 'choices'=>array(
+                    "Няма дизайнер"=>"no designer",
                     "Александра Вали" => "a.vali",
                     "Йоана Борисова" => "yoana",
                     "Рената Дудлей" => "r.dudley",
                 ),
             'data'=>$project->getDesigner()
             ))->
-        add('executioner',ChoiceType::class,array('label'=>"Под изпълнител",
+        add('executioner',ChoiceType::class,array('label'=>"Подизпълнител",
             "required"=>false,
                 'choices'=> array(
                     "Скай Строй" => "sky.stroy",

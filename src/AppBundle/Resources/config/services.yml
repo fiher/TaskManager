@@ -3,6 +3,6 @@ services:
         class: AppBundle\Service\CommentsService
         autowire: true
 
-    app.service.zadanies_service:
+    app.service.projects_service:
         class: AppBundle\Service\ProjectService
         autowire: true

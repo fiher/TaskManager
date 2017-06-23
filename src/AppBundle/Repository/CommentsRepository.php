@@ -10,4 +10,11 @@ namespace AppBundle\Repository;
  */
 class CommentsRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findByProjectID($id){
+        return $this->createQueryBuilder('comment')->
+        where("comment.zadanieID = :ID")->
+        setParameter("ID",$id)->
+        getQuery()->
+        getResult();
+    }
 }
