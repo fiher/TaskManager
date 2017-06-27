@@ -24,8 +24,9 @@ class CommentsType extends AbstractType
         add('toUser',ChoiceType::class,array('choices'=> array(
             "Управители" => "Manager",
             "Дизайнери" => "Designer",
-            "Под изпълнители" =>"Executioner",
-            "Шеф" => "Boss"
+            "Подизпълнители" =>"Executioner",
+            "Шеф" => "Boss",
+            "label" => "За:"
         )))->
         add('content',TextareaType::class,array(
             'label'=>"Съдържание"
