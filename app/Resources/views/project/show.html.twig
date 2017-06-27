@@ -90,21 +90,27 @@
         {% if app.user.type == "Boss" or app.user.type == "LittleBoss"%}
 		    <div class="row" style="background: #dcf0d9;">
                 <form action="{{ path('project_fast_update', { 'id': project.id }) }}" method="post" style="margin-top: 10px; margin-left: 0px; margin-right: 0px;">
+				    {% if project.forApproval or project.isApproved %}
                     <div class="col-md-2">
                         <input type="submit" id="approve" name="approve" value="Одобрявам"><div class="approve_icon"></div>
                     </div>
                     <div class="col-md-2">
                         <input type="submit" id="reject" name="reject" value="Отхвърлям"><div class="reject_icon"></div>
                     </div>
+					{% else %}
                     <div class="col-md-2">
                         <input type="submit" id="hold" name="hold" value="На изчакване"><div class="hold_icon"></div>
-                    </div>
-                    <div class="col-md-3">
-                        <input type="submit" id="archive" name="archive" value="Архивирай"><div class="archive_icon"></div>
                     </div>
                     <div class="col-md-2">
                         <input type="submit" id="forApproval" name="forApproval" value="За одобрение"/><div class="forApproval_icon"></div>
                     </div>
+					{% endif %}
+					{% if project.isApproved %}
+					<div class="col-md-3">
+						<input type="submit" id="archive" name="archive" value="Архивирай"><div class="archive_icon"></div>
+					</div>
+					{% endif %}
+
                 </form>
             </div>
         {% endif %}
@@ -113,7 +119,7 @@
                 <div class="col-md-4">
                     <input id="button_edit" value="Обратно към заявките" onclick="location.href='{{ path('project_index') }}'"/><div class="back_icon"></div>
                 </div>
-                {% if app.user.type == "LittleBoss" %}
+                {% if app.user.type == "LittleBoss" or app.user.type == "Manager" %}
                 <div class="col-md-2">
                     <input id="button_edit" value="Промяна" onclick="location.href='{{ path('project_edit', { 'id': project.id }) }}'"/><div class="edit_icon"></div>
                 </div>

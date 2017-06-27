@@ -68,19 +68,21 @@
 
 					{% elseif app.user.type == "LittleBoss" or app.user.type == "Boss"  %}
                         <form action="{{ path('project_update', { 'id': project.id }) }}" method="post">
+				            {% if project.forApproval or project.isApproved %}
                             <div class="col-md-2">
                                 <input type="submit" id="approve" name="approve" value="Одобрявам"><div class="approve_icon"></div>
                             </div>
                             <div class="col-md-2">
                                 <input type="submit" id="reject" name="reject" value="Отхвърлям"><div class="reject_icon"></div>
                             </div>
+							{% else %}
                             <div class="col-md-2">
                                 <input type="submit" id="hold" name="hold" value="На изчакване"><div class="hold_icon"></div>
                             </div>
                             <div class="col-md-2" >
                                 <input type="submit" id="forApproval" name="forApproval" value="За одобрение"/><div class="forApproval_icon"></div>
                             </div>
-							
+						    {% endif %}
 					{% elseif app.user.type == "Designer" %}
 					<!--
                             <div class="col-md-2">
@@ -96,7 +98,7 @@
 								</div>
                             {% if project.isOver %}
 
-							{% elseif app.user.type != "Executioner" and app.user.type != "Manager" %}	
+							{% elseif app.user.type != "Executioner" and app.user.type != "Designer" %}	
 								<div class="col-md-2">
 									<input id="button_edit" value="Промяна" onclick="location.href='{{ path('project_edit', { 'id': project.id }) }}'"/><div class="edit_icon"></div>
 								</div>

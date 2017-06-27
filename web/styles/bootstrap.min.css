@@ -23,7 +23,7 @@
     outline: none;
     border: 0;
 }
-#appbundle_zadanie input{
+#appbundle_project input{
 	    border: 1px solid #a5b2cb;
 }
  input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
