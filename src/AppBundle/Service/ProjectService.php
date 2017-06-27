@@ -78,7 +78,7 @@ class ProjectService
             $createdDate = strtotime($project->getDate()->format("Y-m-d"));
             $diffCreatedToday = $term - $createdDate;
             $diffCreatedToday = floor($diffCreatedToday / (60 * 60 * 24));if($diffCreatedToday<= 1){
-                $project->setErgent(true);
+                $project->setUrgent(true);
             }
 
             if(!in_array("Manager",explode(" ",$user->getRole()))) {
@@ -89,13 +89,13 @@ class ProjectService
                 if($project->isApproved()) {
                     $project->setClass("approved");
                     $project->setStatus("Одобрено");
-                    $project->setErgent(false);
+                    $project->setUrgent(false);
 
                 }if($project->isRejected()){
                     $project->setStatus("Отхвърлено");
                     $project->setClass("rejected");
                 }
-                if ($project->isErgent()) {
+                if ($project->isUrgent()) {
                     $project->setClass($project->getClass() . " urgent");
                 }
             }

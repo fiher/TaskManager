@@ -54,7 +54,7 @@ class CommentsController extends Controller
             $user = $this->getUser();
             $commentsService = $this->get('app.service.comments_service');
             $commentsService->newComment($comment,$user,new \DateTime());
-            return $this->redirectToRoute('project_show', array('id' => $comment->getZadanieID()));
+            return $this->redirectToRoute('project_show', array('id' => $comment->getProjectID()));
         }
 
         return $this->render('project/show.html.twig', array(

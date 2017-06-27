@@ -12,7 +12,7 @@ class CommentsRepository extends \Doctrine\ORM\EntityRepository
 {
     public function findByProjectID($id){
         return $this->createQueryBuilder('comment')->
-        where("comment.zadanieID = :ID")->
+        where("comment.projectID = :ID")->
         setParameter("ID",$id)->
         getQuery()->
         getResult();

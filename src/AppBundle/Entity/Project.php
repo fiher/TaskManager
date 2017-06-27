@@ -4,11 +4,10 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-//TODO: Change table name from zadanie to project
 /**
  * Project
  *
- * @ORM\Table(name="zadanie")
+ * @ORM\Table(name="project")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProjectRepository")
  */
 class Project
@@ -112,6 +111,12 @@ class Project
     /**
      * @var bool
      *
+     * @ORM\Column(name="working", type="boolean", nullable=true)
+     */
+    private $working;
+    /**
+     * @var bool
+     *
      * @ORM\Column(name="hold", type="boolean", nullable=true)
      */
     private $hold;
@@ -204,16 +209,22 @@ class Project
     /**
      * @var bool
      *
-     * @ORM\Column(name="ergent", type="boolean", nullable=true)
+     * @ORM\Column(name="urgent", type="boolean", nullable=true)
      */
-    private $ergent;
+    private $urgent;
     /**
      * @var string
      *
-     * @ORM\Column(name="file", type="text", nullable=true)
+     * @ORM\Column(name="files", type="text", nullable=true)
      */
     private $file;
 
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="designerFiles",type="array",nullable=true)
+     */
+    private $designerFiles;
 
     private $class;
 
@@ -240,6 +251,25 @@ class Project
     {
         $this->overDate = $overDate;
     }
+
+    /**
+     * @return bool
+     */
+    public function isWorking()
+    {
+        return $this->working;
+    }
+
+    /**
+     * @param bool $working
+     */
+    public function setWorking($working)
+    {
+        $this->working = $working;
+    }
+
+
+
 
 
     /**
@@ -295,17 +325,17 @@ class Project
     /**
      * @return bool
      */
-    public function isErgent()
+    public function isUrgent()
     {
-        return $this->ergent;
+        return $this->urgent;
     }
 
     /**
-     * @param bool $ergent
+     * @param bool $urgent
      */
-    public function setErgent($ergent)
+    public function setUrgent($urgent)
     {
-        $this->ergent = $ergent;
+        $this->urgent = $urgent;
     }
 
 

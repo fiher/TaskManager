@@ -20,7 +20,7 @@ class CommentsType extends AbstractType
     {
         $builder->
 
-        add('zadanieID',HiddenType::class)->
+        add('projectID',HiddenType::class)->
         add('toUser',ChoiceType::class,array('choices'=> array(
             "Управители" => "Manager",
             "Дизайнери" => "Designer",

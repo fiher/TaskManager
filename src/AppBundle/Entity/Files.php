@@ -31,9 +31,9 @@ class Files
     /**
      * @var int
      *
-     * @ORM\Column(name="zadanieID", type="integer")
+     * @ORM\Column(name="projectID", type="integer")
      */
-    private $zadanieID;
+    private $projectID;
 
 
     /**
@@ -71,27 +71,22 @@ class Files
     }
 
     /**
-     * Set zadanieID
-     *
-     * @param integer $zadanieID
-     *
-     * @return Files
+     * @return int
      */
-    public function setZadanieID($zadanieID)
+    public function getProjectID()
     {
-        $this->zadanieID = $zadanieID;
-
-        return $this;
+        return $this->projectID;
     }
 
     /**
-     * Get zadanieID
-     *
-     * @return int
+     * @param int $projectID
      */
-    public function getZadanieID()
+    public function setProjectID($projectID)
     {
-        return $this->zadanieID;
+        $this->projectID = $projectID;
     }
+
+
+
 }
 

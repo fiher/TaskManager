@@ -52,9 +52,9 @@ class Comments
     /**
      * @var int
      *
-     * @ORM\Column(name="zadanieID", type="integer")
+     * @ORM\Column(name="projectID", type="integer")
      */
-    private $zadanieID;
+    private $projectID;
 
     private $class;
 
@@ -205,27 +205,28 @@ class Comments
     }
 
     /**
+     * @return int
+     */
+    public function getProjectID()
+    {
+        return $this->projectID;
+    }
+
+    /**
+     * @param int $projectID
+     */
+    public function setProjectID($projectID)
+    {
+        $this->projectID = $projectID;
+    }
+
+    /**
      * Set zadanieID
      *
      * @param integer $zadanieID
      *
      * @return Comments
      */
-    public function setZadanieID($zadanieID)
-    {
-        $this->zadanieID = $zadanieID;
 
-        return $this;
-    }
-
-    /**
-     * Get zadanieID
-     *
-     * @return int
-     */
-    public function getZadanieID()
-    {
-        return $this->zadanieID;
-    }
 }
 

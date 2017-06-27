@@ -49,7 +49,8 @@ class ProjectType extends AbstractType
             'data'=>$data
         ))->add('noTerm',CheckboxType::class,array(
             "mapped"=>false,
-            'label'=>"Без Срок"
+            'label'=>"Без Срок",
+            'required'=> false
         ))->
         add('designer',ChoiceType::class,array('label'=>"Дизайнер",
             "required"=>false,
@@ -73,7 +74,7 @@ class ProjectType extends AbstractType
         add("file",TextType::class,array('label'=>"Файл",
             "required"=>false,
             "data"=>$project->getFile()))->
-        add("ergent",CheckboxType::class,array('label'=>"Спешно",
+        add("urgent",CheckboxType::class,array('label'=>"Спешно",
             "required"=>false,
             "data"=>$project->isErgent()
                 ))->

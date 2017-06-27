@@ -150,7 +150,7 @@
                {% endfor %}
 			</div>
 		<h1>Нов коментар</h1>
-		{% include 'comments/new.html.twig' with {form:form,zadanieID:project.id} %}
+		{% include 'comments/new.html.twig' with {form:form,projectID:project.id} %}
         </div>
     </div>
 {% endblock %}

@@ -9,10 +9,6 @@ use AppBundle\Entity\Project;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\DateTime;
 
@@ -127,7 +123,6 @@ class ProjectController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
         //$project->setFromUser($user->getUsername());
         //$project->setDepartment($user->getDepartment());
-            $isWithTerm = false;
             $isWithoutTerm  = $request->request->get('appbundle_zadanie')['noTerm'] == 1;
         $project->setIsOver(false);
         $project->setDate(new \DateTime());
@@ -139,7 +134,7 @@ class ProjectController extends Controller
             $project->setTerm(\DateTime::createFromFormat('Y-m-d', self::NO_TERM_DEFAULT_VALUE));
         }
         if($project->getTerm() == $project->getDate()){
-            $project->setErgent(true);
+            $project->setUrgent(true);
         }
             $em = $this->getDoctrine()->getManager();
             $em->persist($project);
@@ -237,7 +232,7 @@ class ProjectController extends Controller
             $editForm->remove('term');
             $editForm->remove('fromUser');
             $editForm->remove('department');
-            $editForm->remove('ergent');
+            $editForm->remove('urgent');
 
         }
         $editForm->handleRequest($request);
