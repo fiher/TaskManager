@@ -26,7 +26,7 @@ class CommentsType extends AbstractType
             "Дизайнери" => "Designer",
             "Подизпълнители" =>"Executioner",
             "Шеф" => "Boss",
-            "label" => "За:"
+            'label' => "За:"
         )))->
         add('content',TextareaType::class,array(
             'label'=>"Съдържание"

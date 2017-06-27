@@ -1,6 +1,6 @@
 {% block comment %}
     {{ form_start(form, {'action': path('comments_new'), 'method': 'POST'}) }}
-    {{ form_widget(form.projectID,{value: zadanieID},{ 'attr': {'class': 'hidden-row'} }) }}
+    {{ form_widget(form.projectID,{value: projectID},{ 'attr': {'class': 'hidden-row'} }) }}
     {{ form_end(form) }}
 
 {% endblock %}

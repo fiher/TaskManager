@@ -76,7 +76,7 @@ class ProjectType extends AbstractType
             "data"=>$project->getFile()))->
         add("urgent",CheckboxType::class,array('label'=>"Спешно",
             "required"=>false,
-            "data"=>$project->isErgent()
+            "data"=>$project->isUrgent()
                 ))->
         add("approved",HiddenType::class,array(
             "required"=>false,
@@ -103,7 +103,7 @@ class ProjectType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_zadanie';
+        return 'appbundle_project';
     }
 
 

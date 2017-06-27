@@ -220,13 +220,7 @@ class Comments
         $this->projectID = $projectID;
     }
 
-    /**
-     * Set zadanieID
-     *
-     * @param integer $zadanieID
-     *
-     * @return Comments
-     */
+
 
 }
 
