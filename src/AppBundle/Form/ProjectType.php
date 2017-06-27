@@ -71,7 +71,7 @@ class ProjectType extends AbstractType
                 ),
                 'data'=>$project->getExecutioner()
             ))->
-        add("file",TextType::class,array('label'=>"Файл",
+        add("file",TextType::class,array('label'=>"Линк: ",
             "required"=>false,
             "data"=>$project->getFile()))->
         add("urgent",CheckboxType::class,array('label'=>"Спешно",

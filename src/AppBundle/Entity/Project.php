@@ -64,6 +64,7 @@ class Project
      */
     private $date;
 
+
     /**
      * @var \DateTime
      *

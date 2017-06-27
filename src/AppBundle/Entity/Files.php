@@ -20,7 +20,18 @@ class Files
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime")
+     */
+    private $date;
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="rejected", type="boolean", nullable=true)
+     */
+    private $rejected;
     /**
      * @var string
      *
@@ -84,6 +95,38 @@ class Files
     public function setProjectID($projectID)
     {
         $this->projectID = $projectID;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param \DateTime $date
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isRejected()
+    {
+        return $this->rejected;
+    }
+
+    /**
+     * @param bool $rejected
+     */
+    public function setRejected($rejected)
+    {
+        $this->rejected = $rejected;
     }
 
 
