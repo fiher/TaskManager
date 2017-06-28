@@ -108,11 +108,11 @@ class ProjectService
                 $project->setStatus("За одобрение");
             }
             if($userType != "LittleBoss" && $userType != "Boss"){
-                if($userType == "Designer" && $user->getUsername() == $project->getDesigner()){
+                if($userType == "Designer" && $user->getFullName() == $project->getDesigner()){
                     $filteredProjects[] = $project;
-                }elseif($userType == "Executioner" && $user->getUsername() == $project->getExecutioner()){
+                }elseif($userType == "Executioner" && $user->getFullName() == $project->getExecutioner()){
                     $filteredProjects[] = $project;
-                }elseif ($userType == "Manager" && $user->getUsername() == $project->getFromUser()){
+                }elseif ($userType == "Manager" && $user->getFullName() == $project->getFromUser()){
                     $filteredProjects[] = $project;
                 }
             }else {
