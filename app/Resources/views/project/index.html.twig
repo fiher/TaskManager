@@ -65,7 +65,7 @@
                 </tr>
 			    <tr id="actions" class="{{ project.class }}">
 				    <td colspan = "10" id="buttons" style="padding: 10px 0px 0px 0px;">
-				    {% if project.isOver and app.user.type == "LittleBoss" or app.user.type == "Boss"  %}
+				    {% if project.isOver and (app.user.type == "LittleBoss" or app.user.type == "Boss" ) %}
 
 
 					{% elseif app.user.type == "LittleBoss" or app.user.type == "Boss"  %}
@@ -95,12 +95,14 @@
 									</div>
 								</div>							
 							{% else %}
+                                {% if app.user.type != "Boss" %}
                             <div class="col-md-2">
                                 <input type="submit" id="hold" name="hold" value="На изчакване"><div class="hold_icon"></div>
                             </div>
                             <div class="col-md-2" >
                                 <input type="submit" id="forApproval" name="forApproval" value="За одобрение"/><div class="forApproval_icon"></div>
                             </div>
+                                {% endif %}
 						    {% endif %}
 					{% elseif app.user.type == "Designer" %}
 					<!--

@@ -119,7 +119,7 @@ class ProjectService
                 $filteredProjects[] = $project;
             }
         }
-        usort($filteredProjects, array($this, "sortProjects"));
+        //usort($filteredProjects, array($this, "sortProjects"));
         return $filteredProjects;
     }
     public function sortProjects(Project $a,Project $b)
