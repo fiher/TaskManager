@@ -51,18 +51,20 @@
 					<td rowspan = "2" class="comments">
                         <div class="overflow">
                             {% for comment in project.comments %}
+                           <div class="{{ comment.class }}">
                            <p class="row">От: {{ comment.madeBy }}</p>
                            <p class="row">Дата {{ comment.date|date("d-m-Y H:i:s") }}</p>
 	                       <div class="border_for_comments">
 						   <span>Коментар: </span>{{ comment.content }}
-                            </div>
+                           </div>
+						   </div>
 							{% endfor %}
                         </div>
 
                     </td>
                 </tr>
 			    <tr id="actions" class="{{ project.class }}">
-				    <td colspan = "11" id="buttons" style="padding: 10px 0px 0px 0px;">
+				    <td colspan = "10" id="buttons" style="padding: 10px 0px 0px 0px;">
 				    {% if project.isOver and app.user.type == "LittleBoss" or app.user.type == "Boss"  %}
 
 
@@ -98,7 +100,7 @@
 								</div>
                             {% if project.isOver %}
 
-							{% elseif app.user.type != "Executioner" and app.user.type != "Designer" %}	
+							{% elseif app.user.type == "LittleBoss" or app.user.type == "Boss" %}	
 								<div class="col-md-2">
 									<input id="button_edit" value="Промяна" onclick="location.href='{{ path('project_edit', { 'id': project.id }) }}'"/><div class="edit_icon"></div>
 								</div>

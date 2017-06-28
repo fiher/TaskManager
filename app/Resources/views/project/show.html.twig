@@ -119,7 +119,7 @@
                 <div class="col-md-4">
                     <input id="button_edit" value="Обратно към заявките" onclick="location.href='{{ path('project_index') }}'"/><div class="back_icon"></div>
                 </div>
-                {% if app.user.type == "LittleBoss" or app.user.type == "Manager" %}
+                {% if app.user.type == "LittleBoss" or app.user.type == "Boss"  %}
                 <div class="col-md-2">
                     <input id="button_edit" value="Промяна" onclick="location.href='{{ path('project_edit', { 'id': project.id }) }}'"/><div class="edit_icon"></div>
                 </div>
