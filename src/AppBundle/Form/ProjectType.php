@@ -28,13 +28,7 @@ class ProjectType extends AbstractType
             $data = $project->getTerm();
         }
         /** @var  $project Project */
-        $builder->add('fromUser',TextType::class,array(
-            "required"=>true,
-            "label"=>"От"
-        ))->add('department',TextType::class,array(
-            "required"=>true,
-            "label"=>"Отдел"
-        ))->
+        $builder->
         add('typeTask',TextType::class,array(
             'label'=>"Вид заявка",
             'data'=>$project->getTypeTask()
@@ -55,19 +49,19 @@ class ProjectType extends AbstractType
         add('designer',ChoiceType::class,array('label'=>"Дизайнер",
             "required"=>false,
                 'choices'=>array(
-                    "Няма дизайнер"=>"no designer",
-                    "Александра Вали" => "a.vali",
-                    "Йоана Борисова" => "yoana",
-                    "Рената Дудлей" => "r.dudley",
+                    "Няма дизайнер"=>"Няма дизайнер",
+                    "Александра Вали" => "Александра Вали",
+                    "Йоана Борисова" => "Йоана Борисова",
+                    "Рената Дудлей" => "Рената Дудлей",
                 ),
             'data'=>$project->getDesigner()
             ))->
         add('executioner',ChoiceType::class,array('label'=>"Подизпълнител",
             "required"=>false,
                 'choices'=> array(
-                    "Скай Строй" => "sky.stroy",
-                    "Митко"=> "map.design",
-                    "Димитринка"=>"dimitrinka"
+                    "Скай Строй" => "Скай Строй",
+                    "Митко"=> "Митко",
+                    "Димитринка"=>"Димитринка"
                 ),
                 'data'=>$project->getExecutioner()
             ))->

@@ -121,8 +121,8 @@ class ProjectController extends Controller
 
 
         if ($form->isSubmitted() && $form->isValid()) {
-        //$project->setFromUser($user->getUsername());
-        //$project->setDepartment($user->getDepartment());
+        $project->setFromUser($user->getFullName());
+        $project->setDepartment($user->getDepartment());
             $isWithoutTerm  = array_key_exists('noTerm',$request->request->get('appbundle_project'));
         $project->setIsOver(false);
         $project->setDate(new \DateTime());

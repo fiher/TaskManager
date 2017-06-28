@@ -12,8 +12,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
 {
     public function findArchivedProjects(){
         return $this->createQueryBuilder('project')->
-        where("project.isOver = :over")->
-        setParameter("over","true")->
+        where("project.isOver = true")->
         getQuery()->
         getResult();
 
