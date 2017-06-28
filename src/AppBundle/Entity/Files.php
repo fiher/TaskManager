@@ -27,6 +27,12 @@ class Files
      */
     private $date;
     /**
+     * @var string
+     *
+     * @ORM\Column(name="from", type="string", nullable=true)
+     */
+    private $from;
+    /**
      * @var bool
      *
      * @ORM\Column(name="rejected", type="boolean", nullable=true)
@@ -127,6 +133,22 @@ class Files
     public function setRejected($rejected)
     {
         $this->rejected = $rejected;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFrom()
+    {
+        return $this->from;
+    }
+
+    /**
+     * @param string $from
+     */
+    public function setFrom($from)
+    {
+        $this->from = $from;
     }
 
 
