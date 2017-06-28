@@ -53,7 +53,7 @@
                             {% for comment in project.comments %}
                            <div class="{{ comment.class }}">
                            <p class="row">От: {{ comment.madeBy }}</p>
-                           <p class="row">Дата {{ comment.date|date("d-m-Y H:i:s") }}</p>
+                           <p class="row">Дата: {{ comment.date|date("d-m-Y H:i:s") }}</p>
 	                       <div class="border_for_comments">
 						   <span>Коментар: </span>{{ comment.content }}
                            </div>
@@ -69,14 +69,31 @@
 
 
 					{% elseif app.user.type == "LittleBoss" or app.user.type == "Boss"  %}
-                        <form action="{{ path('project_update', { 'id': project.id }) }}" method="post">
+                        <form action="{{ path('project_update', { 'id': project.id }) }}" method="post"  id="buttons_form" name='buttons_form'>
 				            {% if project.forApproval or project.isApproved %}
                             <div class="col-md-2">
                                 <input type="submit" id="approve" name="approve" value="Одобрявам"><div class="approve_icon"></div>
                             </div>
                             <div class="col-md-2">
-                                <input type="submit" id="reject" name="reject" value="Отхвърлям"><div class="reject_icon"></div>
+                                <input id="reject" name="reject" value="Отхвърлям"><div class="reject_icon"></div>
                             </div>
+								<div id="mypopup" class="popup">
+									<div class="popup-content">
+										<span class="close">&times;</span>
+										<p>Сигурни ли сте, че искате да отхвърлите заявката?</p>
+                                        <p>Напишете причина.</p>
+										<textarea required data-required-message="Name is required."></textarea>
+										<div id="name-error" class="error"></div>
+										<div style="height: 40px; margin-top: 20px;">
+											<div class="col-md-2">
+											<button type="button" id="button_cancel_popup">Не</button><div class="reject_icon"></div>
+											</div>
+											<div class="col-md-2">
+											<button type="submit" id="button_submit_popup">Да</button><div class="approve_icon"></div>    
+											</div>
+										</div>
+									</div>
+								</div>							
 							{% else %}
                             <div class="col-md-2">
                                 <input type="submit" id="hold" name="hold" value="На изчакване"><div class="hold_icon"></div>
