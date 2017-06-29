@@ -35,29 +35,21 @@ $(document).ready(function() {
 
 /* popup for button reject */
 
-var popup = document.getElementById('mypopup');
-var btn = document.getElementById("reject");
-var span = document.getElementsByClassName("close")[0];
-var button_cancel_popup = document.getElementById("button_cancel_popup");
-var button_submit_popup = document.getElementById("button_submit_popup");
 								
-btn.onclick = function() {
-	popup.style.display = "block";
+function btnShowPopup() {
+	document.getElementById("mypopup").style.display = "block";
 }
-button_cancel_popup.onclick = function() {
-	popup.style.display = "none";
-}
-
-span.onclick = function() {
-	popup.style.display = "none";
+function btnHidePopup() {
+	document.getElementById("mypopup").style.display = "none";
 }
 window.onclick = function(event) {
-if (event.target == popup) {
-	popup.style.display = "none";
-									}
+if (event.target == document.getElementById("mypopup")) {
+	document.getElementById("mypopup").style.display = "none";
+    }
 }
 
 
+/*
 
 function validate() {
     var errorNode = this.parentNode.querySelector( ".error" ),
@@ -74,14 +66,11 @@ function validate() {
         span.classList.add( "error" );
         span.innerHTML = this.getAttribute(
         this.validity.valueMissing ? "data-required-message" : "data-type-message" );
-		button_submit_popup.onclick = function() {
-	    popup.style.display = "none";
-}
     }
 };
 
 var form = document.querySelector( "form" ),
-    inputs = form.querySelectorAll( "input" );
+    inputs = form.querySelectorAll( "textarea" );
 
 for ( var i = 0; i < inputs.length; i++ ) {
     inputs[ i ].addEventListener( "blur", validate );
@@ -101,6 +90,8 @@ document.querySelector( "form" ).addEventListener( "submit", function( event ) {
         event.preventDefault();
     }
 });
+
+*/
 
 
 

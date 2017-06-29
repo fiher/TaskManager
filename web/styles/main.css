@@ -511,7 +511,7 @@ nav a:active, nav a:hover{
 	width:100%;
 }
 
-input#button_delete, #reject, #button_submit_popup{
+input#button_delete, #reject, #button_submit_popup, #rejectPopup{
     background-color: #ee5454;
     border-bottom: 2px solid #ff1212;
     border-top: 0;
