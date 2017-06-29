@@ -18,7 +18,6 @@
                 <th>От</th>
                 <th>Вид</th>
                 <th>Описание</th>
-                <th>Файл</th>
                 <th>Краен Срок</th>
                 <th>Дата</th>
                 <th>Дизайнер</th>
@@ -34,7 +33,6 @@
                     <td class="user">{{ project.fromUser }}</td>
                     <td class="type">{{ project.typeTask }}</td>
                     <td class="more">{{ project.description }}</td>
-					<td>{% if project.file%}<a href="{{ project.file }}" target="_blank">Линк към файла</a> {% else %}Няма качени файлове{% endif %}</td>
                     <td class="date">{% if project.term %}{{ project.term|date('d-m-Y H:i:s') }}{% endif %}</td>
                     <td class="date">{% if project.date %}{{ project.date|date('d-m-Y H:i:s') }}{% endif %}</td>
 					{% if app.user.type == "LittleBoss" or app.user.type == "Boss"  %}
