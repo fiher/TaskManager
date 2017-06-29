@@ -23,7 +23,7 @@ class SecurityController extends Controller
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         if($error){
-            //$error = "Невалидни данни, моля проверете си данните и пробвайте отново!";
+            $error = "Невалидни данни, моля проверете си данните и пробвайте отново!";
         }
 
         // last username entered by the user

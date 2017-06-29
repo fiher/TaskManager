@@ -214,7 +214,7 @@ class ProjectController extends Controller
     public function editAction(Request $request, Project $project)
     {
         //this function returns "" if the user is allowed and if not returns $this->render
-        $forbidden = $this->checkCredentials(array("Manager","LittleBoss","Boss","Designer"));
+        $forbidden = $this->checkCredentials(array("Manager","LittleBoss","Boss"));
         if($forbidden){
             return $forbidden;
         }
