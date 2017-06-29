@@ -4,7 +4,6 @@
     <list default="true" id="056da0cf-db80-498e-bebe-f46eea1f8975" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/ProjectType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/ProjectType.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -82,21 +81,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProjectType.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ProjectType.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/ProjectType.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
+            <state relative-caret-position="-585">
               <caret line="61" column="49" lean-forward="true" selection-start-line="61" selection-start-column="49" selection-end-line="61" selection-end-column="49" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/User.php">
+      <file leaf-file-name="SecurityController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/SecurityController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
-              <caret line="46" column="17" lean-forward="false" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="17" />
+            <state relative-caret-position="-648">
+              <caret line="25" column="12" lean-forward="false" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -115,11 +114,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProjectController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ProjectController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="150" column="7" lean-forward="true" selection-start-line="150" selection-start-column="7" selection-end-line="150" selection-end-column="7" />
+            <state relative-caret-position="337">
+              <caret line="375" column="59" lean-forward="true" selection-start-line="375" selection-start-column="59" selection-end-line="375" selection-end-column="59" />
               <folding>
                 <element signature="e#40#64#0#PHP" expanded="true" />
                 <element signature="e#915#2171#0#PHP" expanded="false" />
@@ -135,13 +134,15 @@
                 <element signature="e#5510#7711#0#PHP" expanded="false" />
                 <element signature="e#6148#6168#1#PHP" expanded="true" />
                 <element signature="e#7362#7386#0#PHP" expanded="true" />
-                <element signature="e#9118#9132#0#PHP" expanded="true" />
-                <element signature="e#9208#9232#0#PHP" expanded="true" />
-                <element signature="e#10035#10050#1#PHP" expanded="true" />
-                <element signature="e#10390#10406#0#PHP" expanded="true" />
-                <element signature="e#12504#12523#1#PHP" expanded="true" />
-                <element signature="e#13955#13973#0#PHP" expanded="true" />
-                <element signature="e#14141#14172#0#PHP" expanded="true" />
+                <element signature="e#9107#9121#0#PHP" expanded="true" />
+                <element signature="e#9197#9221#0#PHP" expanded="true" />
+                <element signature="e#10024#10039#1#PHP" expanded="true" />
+                <element signature="e#10379#10395#0#PHP" expanded="true" />
+                <element signature="e#12493#12512#1#PHP" expanded="true" />
+                <element signature="e#13130#13145#1#PHP" expanded="true" />
+                <element signature="e#13205#13219#0#PHP" expanded="true" />
+                <element signature="e#13938#13956#0#PHP" expanded="true" />
+                <element signature="e#14124#14155#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -217,7 +218,6 @@
         <option value="$USER_HOME$/tombola_06.12.2017.html" />
         <option value="$USER_HOME$/tombola_06.26.2017.html" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/User.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/SecurityController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/CommentsController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/comments/index.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/project/show.html.twig" />
@@ -238,8 +238,9 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Service/ProjectService.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/project/index.html.twig" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/ProjectType.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/SecurityController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php" />
       </list>
     </option>
   </component>
@@ -824,12 +825,12 @@
       <workItem from="1498490613170" duration="926000" />
       <workItem from="1498541220949" duration="12184000" />
       <workItem from="1498627891083" duration="11913000" />
-      <workItem from="1498713856042" duration="3003000" />
+      <workItem from="1498713856042" duration="3611000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="287007000" />
+    <option name="totallyTimeSpent" value="287615000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -993,14 +994,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
           <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/SecurityController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-19">
-          <caret line="25" column="14" lean-forward="false" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -1325,10 +1318,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/SecurityController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-648">
+          <caret line="25" column="12" lean-forward="false" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/ProjectType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-585">
+          <caret line="61" column="49" lean-forward="true" selection-start-line="61" selection-start-column="49" selection-end-line="61" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="150" column="7" lean-forward="true" selection-start-line="150" selection-start-column="7" selection-end-line="150" selection-end-column="7" />
+        <state relative-caret-position="337">
+          <caret line="375" column="59" lean-forward="true" selection-start-line="375" selection-start-column="59" selection-end-line="375" selection-end-column="59" />
           <folding>
             <element signature="e#40#64#0#PHP" expanded="true" />
             <element signature="e#915#2171#0#PHP" expanded="false" />
@@ -1344,22 +1353,16 @@
             <element signature="e#5510#7711#0#PHP" expanded="false" />
             <element signature="e#6148#6168#1#PHP" expanded="true" />
             <element signature="e#7362#7386#0#PHP" expanded="true" />
-            <element signature="e#9118#9132#0#PHP" expanded="true" />
-            <element signature="e#9208#9232#0#PHP" expanded="true" />
-            <element signature="e#10035#10050#1#PHP" expanded="true" />
-            <element signature="e#10390#10406#0#PHP" expanded="true" />
-            <element signature="e#12504#12523#1#PHP" expanded="true" />
-            <element signature="e#13955#13973#0#PHP" expanded="true" />
-            <element signature="e#14141#14172#0#PHP" expanded="true" />
+            <element signature="e#9107#9121#0#PHP" expanded="true" />
+            <element signature="e#9197#9221#0#PHP" expanded="true" />
+            <element signature="e#10024#10039#1#PHP" expanded="true" />
+            <element signature="e#10379#10395#0#PHP" expanded="true" />
+            <element signature="e#12493#12512#1#PHP" expanded="true" />
+            <element signature="e#13130#13145#1#PHP" expanded="true" />
+            <element signature="e#13205#13219#0#PHP" expanded="true" />
+            <element signature="e#13938#13956#0#PHP" expanded="true" />
+            <element signature="e#14124#14155#0#PHP" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/ProjectType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="61" column="49" lean-forward="true" selection-start-line="61" selection-start-column="49" selection-end-line="61" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
