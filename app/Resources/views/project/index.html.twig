@@ -65,12 +65,7 @@
                 </tr>
 			    <tr id="actions" class="{{ project.class }}">
 				    <td colspan = "10" id="buttons" style="padding: 10px 0px 0px 0px;">
-<<<<<<< HEAD
-				    {% if project.isOver and (app.user.type == "LittleBoss" or app.user.type == "Boss")  %}
-=======
 				    {% if project.isOver and (app.user.type == "LittleBoss" or app.user.type == "Boss" ) %}
->>>>>>> origin/master
-
 
 					{% elseif app.user.type == "LittleBoss" or app.user.type == "Boss"  %}
                         <form action="{{ path('project_update', { 'id': project.id }) }}" method="post">
@@ -80,11 +75,8 @@
                             </div>
 							
 							{% else %}
-<<<<<<< HEAD
-
-=======
                                 {% if app.user.type != "Boss" %}
->>>>>>> origin/master
+
                             <div class="col-md-2">
                                 <input type="submit" id="hold" name="hold" value="На изчакване"><div class="hold_icon"></div>
                             </div>

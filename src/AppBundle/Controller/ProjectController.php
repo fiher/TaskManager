@@ -297,6 +297,7 @@ class ProjectController extends Controller
      */
     public function updateAction(Request $request, Project $project){
         /**@var Project $project */
+        dump($request);
         if (isset($_POST['approve'])) {
             $project->setApproved(true);
             $project->setRejected(false);
@@ -350,10 +351,10 @@ class ProjectController extends Controller
         $em->flush();
         $requestURL = explode("/",$request->getUri())[5];
         if($requestURL== "update") {
-            return $this->redirectToRoute("project_index");
+            //return $this->redirectToRoute("project_index");
         }else{
-            return $this->redirectToRoute("project_show", array('id' => $project->getId()
-            ));
+            //return $this->redirectToRoute("project_show", array('id' => $project->getId()
+            //));
         }
     }
 
