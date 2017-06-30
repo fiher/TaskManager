@@ -119,26 +119,20 @@ class ProjectController extends Controller
         }
         $form->handleRequest($request);
 
-
         if ($form->isSubmitted() && $form->isValid()) {
-        $project->setFromUser($user->getFullName());
-        $project->setDepartment($user->getDepartment());
-            $isWithoutTerm  = array_key_exists('noTerm',$request->request->get('appbundle_project'));
-        $project->setIsOver(false);
-        $project->setDate(new \DateTime());
-        $project->setSeenByDesigner(false);
-        $project->setSeenByExecutioner(false);
-        $project->setSeenByLittleBoss(false);
-        $project->setSeenByManager(false);
-        if($isWithoutTerm){
-            $project->setTerm(\DateTime::createFromFormat('Y-m-d', self::NO_TERM_DEFAULT_VALUE));
-        }
-        if($project->getTerm() == $project->getDate()){
-            $project->setUrgent(true);
-        }
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($project);
-            $em->flush();
+                $this->getDoctrine()->getManager()->flush();
+                $projectService = $this->get('app.service.projects_service');
+                $managerFiles = $managerFiles = $request->files->get('appbundle_project')['managerFiles'];
+                $isWithoutTerm = array_key_exists('noTerm', $request->request->get('appbundle_project'));
+
+                    $projectService->createProject($project, $user, $isWithoutTerm, self::NO_TERM_DEFAULT_VALUE);
+                    $filesService = $this->get('app.service.files_service');
+                    foreach ($managerFiles as $managerFile) {
+                        $fileName = $filesService->uploadFileAndReturnName($managerFile,$this->getParameter('files_directory'));
+                        $filesService->createFile($fileName, $project, $user);
+
+                    }
+
             return $this->redirectToRoute('project_show', array('id' => $project->getId()));
         }
 
@@ -191,6 +185,7 @@ class ProjectController extends Controller
         $em->persist($project);
         $em->flush();
         $comment = new Comments();
+
         $form = $this->createForm('AppBundle\Form\CommentsType', $comment);
         if ($user->getType() != "LittleBoss") {
             $form->remove("toUser");

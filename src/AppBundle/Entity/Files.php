@@ -29,9 +29,9 @@ class Files
     /**
      * @var string
      *
-     * @ORM\Column(name="from", type="string", nullable=true)
+     * @ORM\Column(name="from_user", type="string", nullable=true)
      */
-    private $from;
+    private $fromUser;
     /**
      * @var bool
      *
@@ -46,13 +46,10 @@ class Files
     private $filePath;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="projectID", type="integer")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Project", inversedBy="files")
+     * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      */
-    private $projectID;
-
-
+    private $project;
     /**
      * Get id
      *
@@ -88,20 +85,39 @@ class Files
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getProjectID()
+    public function getFromUser(): string
     {
-        return $this->projectID;
+        return $this->fromUser;
     }
 
     /**
-     * @param int $projectID
+     * @param string $fromUser
      */
-    public function setProjectID($projectID)
+    public function setFromUser(string $fromUser)
     {
-        $this->projectID = $projectID;
+        $this->fromUser = $fromUser;
     }
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+
+    /**
+     * @param mixed $project
+     */
+    public function setProject($project)
+    {
+        $this->project = $project;
+    }
+
 
     /**
      * @return \DateTime
@@ -134,24 +150,5 @@ class Files
     {
         $this->rejected = $rejected;
     }
-
-    /**
-     * @return string
-     */
-    public function getFrom()
-    {
-        return $this->from;
-    }
-
-    /**
-     * @param string $from
-     */
-    public function setFrom($from)
-    {
-        $this->from = $from;
-    }
-
-
-
 }
 

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,14 +33,14 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="fromUser", type="string", length=255)
+     * @ORM\Column(name="from_user", type="string", length=255)
      */
     private $fromUser;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="typeTask", type="string", length=255, nullable=true)
+     * @ORM\Column(name="type_task", type="string", length=255, nullable=true)
      */
     private $typeTask;
 
@@ -68,20 +69,20 @@ class Project
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateDesigner", type="datetime", nullable=true)
+     * @ORM\Column(name="date_designer", type="datetime", nullable=true)
      */
     private $dateDesigner;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="designerAccepted", type="boolean", nullable=true)
+     * @ORM\Column(name="designer_accepted", type="boolean", nullable=true)
      */
     private $designerAccepted;
     /**
      * @var bool
      *
-     * @ORM\Column(name="forApproval", type="boolean", nullable=true)
+     * @ORM\Column(name="for_approval", type="boolean", nullable=true)
      */
     private $forApproval;
 
@@ -89,21 +90,21 @@ class Project
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateExecutioner", type="datetime", nullable=true)
+     * @ORM\Column(name="date_executioner", type="datetime", nullable=true)
      */
     private $dateExecutioner;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="executionerAccepted", type="boolean", nullable=true)
+     * @ORM\Column(name="executioner_accepted", type="boolean", nullable=true)
      */
     private $executionerAccepted;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="overDate", type="datetime", nullable=true)
+     * @ORM\Column(name="over_date", type="datetime", nullable=true)
      */
     private $overDate;
 
@@ -124,7 +125,7 @@ class Project
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="designerFinishedDate", type="datetime", nullable=true)
+     * @ORM\Column(name="designer_finished_date", type="datetime", nullable=true)
      */
     private $designerFinishedDate;
 
@@ -152,7 +153,7 @@ class Project
     /**
      * @var bool
      *
-     * @ORM\Column(name="seenByLittleBoss", type="boolean", nullable=true)
+     * @ORM\Column(name="seen_by_little_boss", type="boolean", nullable=true)
      */
     private $seenByLittleBoss;
 
@@ -176,28 +177,28 @@ class Project
     /**
      * @var bool
      *
-     * @ORM\Column(name="seenByDesigner", type="boolean", nullable=true)
+     * @ORM\Column(name="seen_by_designer", type="boolean", nullable=true)
      */
     private $seenByDesigner;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="seenByManager", type="boolean", nullable=true)
+     * @ORM\Column(name="seen_by_manager", type="boolean", nullable=true)
      */
     private $seenByManager;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="seenByExecutioner", type="boolean", nullable=true)
+     * @ORM\Column(name="seen_by_executioner", type="boolean", nullable=true)
      */
     private $seenByExecutioner;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="seenByBoss", type="boolean", nullable=true)
+     * @ORM\Column(name="seen_by_boss", type="boolean", nullable=true)
      */
     private $seenByBoss;
     /**
@@ -216,14 +217,25 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="files", type="text", nullable=true)
      */
-    private $file;
+    private $managerFiles;
 
     /**
-     * @var array
+     * @var string
      *
-     * @ORM\Column(name="designerFiles",type="array",nullable=true)
+     * @ORM\Column(name="manager_link", type="text", nullable=true)
+     */
+    private $managerLink;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="designer_link", type="text", nullable=true)
+     */
+    private $designerLink;
+    /**
+     * @var ArrayCollection
+     *
      */
     private $designerFiles;
 
@@ -231,11 +243,23 @@ class Project
 
 
     /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Files", mappedBy="project")
+     */
+    private $files;
+
+    /**
      * @var bool
      *
      * @ORM\Column(name="rejected", type="boolean", nullable=true)
      */
     private $rejected;
+
+
+    public function __construct()
+    {
+        $this->files = new ArrayCollection();
+    }
 
     /**
      * @return \DateTime
@@ -269,8 +293,21 @@ class Project
         $this->working = $working;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getFiles()
+    {
+        return $this->files;
+    }
 
-
+    /**
+     * @param mixed $files
+     */
+    public function setFiles($files)
+    {
+        $this->files = $files;
+    }
 
 
     /**
@@ -321,6 +358,85 @@ class Project
     {
         $this->seenByBoss = $seenByBoss;
     }
+
+    /**
+     * @return string
+     */
+    public function getManagerFiles()
+    {
+
+        foreach ($this->files as $file){
+            /** @var Files $file */
+            if($file->getFromUser() == 'Manager'){
+                $this->managerFiles[] = $file;
+            }
+        }
+        return $this->managerFiles;
+    }
+
+    /**
+     * @param string $managerFiles
+     */
+    public function setManagerFiles($managerFiles)
+    {
+        $this->managerFiles = $managerFiles;
+    }
+
+    /**
+     * @return string
+     */
+    public function getManagerLink()
+    {
+        return $this->managerLink;
+    }
+
+    /**
+     * @param string $managerLink
+     */
+    public function setManagerLink($managerLink)
+    {
+        $this->managerLink = $managerLink;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDesignerLink()
+    {
+        return $this->designerLink;
+    }
+
+    /**
+     * @param string $designerLink
+     */
+    public function setDesignerLink($designerLink)
+    {
+        $this->designerLink = $designerLink;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getDesignerFiles()
+    {
+        foreach ($this->files as $file){
+            /** @var Files $file */
+            if($file->getFromUser() == 'Designer'){
+                $this->managerFiles[] = $file;
+            }
+        }
+        return $this->designerFiles;
+    }
+
+    /**
+     * @param ArrayCollection $designerFiles
+     */
+    public function setDesignerFiles($designerFiles)
+    {
+        $this->designerFiles = $designerFiles;
+    }
+
+
 
 
     /**
@@ -420,22 +536,6 @@ class Project
     public function setApproved($approved)
     {
         $this->approved = $approved;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFile()
-    {
-        return $this->file;
-    }
-
-    /**
-     * @param string $file
-     */
-    public function setFile($file)
-    {
-        $this->file = $file;
     }
 
 

@@ -136,4 +136,22 @@ class ProjectService
             return false;
         }
     }
+    public function createProject(Project $project, User $user,bool $isWithoutTerm,string $noTermDefaultValue){
+        $project->setFromUser($user->getFullName());
+        $project->setDepartment($user->getDepartment());
+        $project->setIsOver(false);
+        $project->setDate(new \DateTime());
+        $project->setSeenByDesigner(false);
+        $project->setSeenByExecutioner(false);
+        $project->setSeenByLittleBoss(false);
+        $project->setSeenByManager(false);
+        if($isWithoutTerm){
+            $project->setTerm(\DateTime::createFromFormat('Y-m-d', $noTermDefaultValue));
+        }
+        if($project->getTerm() == $project->getDate()){
+            $project->setUrgent(true);
+        }
+        $this->entityManager->persist($project);
+        $this->entityManager->flush();
+    }
 }

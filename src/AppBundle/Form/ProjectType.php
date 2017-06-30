@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -68,9 +69,20 @@ class ProjectType extends AbstractType
                 ),
                 'data'=>$project->getExecutioner()
             ))->
-        add("file",TextType::class,array('label'=>"Линк: ",
+        add("managerLink",TextType::class,array('label'=>"Линк: ",
             "required"=>false,
-            "data"=>$project->getFile()))->
+            "data"=>$project->getManagerLink()))->
+        add("managerFiles",FileType::class,array(
+            'label'=>'Файлове',
+            'multiple'=> true,
+            'mapped'=> false
+            ))->
+        add("designerFiles",FileType::class,array(
+            'label'=>'Файлове',
+            'multiple'=> true,
+            'mapped'=> false,
+            'required'=>false
+            ))->
         add("urgent",CheckboxType::class,array('label'=>"Спешно",
             "required"=>false,
             "data"=>$project->isUrgent()

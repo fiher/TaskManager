@@ -68,10 +68,6 @@
                 {% endif %}
             {% endif %}
             <tr>
-                <th>Линк</th>
-                <td>{% if project.file%}<a href="{{ project.file }}" target="_blank">Линк към файла</a> {% else %}Няма качени файлове{% endif %}</td>
-            </tr>
-            <tr>
                 <th>Одобрена</th>
                 <td>{% if project.isApproved %}Да{% else %}Не{% endif %}</td>
             </tr>

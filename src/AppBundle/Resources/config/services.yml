@@ -6,3 +6,6 @@ services:
     app.service.projects_service:
         class: AppBundle\Service\ProjectService
         autowire: true
+    app.service.files_service:
+            class: AppBundle\Service\FilesService
+            autowire: true
