@@ -367,7 +367,7 @@ class Project
 
         foreach ($this->files as $file){
             /** @var Files $file */
-            if($file->getFromUser() == 'Manager'){
+            if($file->getFromUser() == 'Manager' || $file->getFromUser() == "LittleBoss"){
                 $this->managerFiles[] = $file;
             }
         }

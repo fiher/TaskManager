@@ -197,7 +197,9 @@ class ProjectController extends Controller
             'comments' => $comments,
             'form' => $form->createView(),
             'errorMessage' => $errorMessage,
-            'successMessage' => $successMessage
+            'successMessage' => $successMessage,
+            'designerFiles' => $project->getDesignerFiles(),
+            'managerFiles' => $project->getManagerFiles()
         ));
     }
     /**
