@@ -33,18 +33,27 @@ $(document).ready(function() {
 });
 
 
-/* popup for button reject */
+$(document).ready(function() {
+	$(".fancybox").fancybox({
+		prevEffect	: 'fade',
+		nextEffect	: 'fade',
+		openEffect	: 'fade',
+		closeEffect	: 'fade'
+	});
+});	
 
+/* popup for button reject */
 								
 function btnShowPopup() {
-	document.getElementById("mypopup").style.display = "block";
+	$(this).css("display", "block");
 }
+/*
 function btnHidePopup() {
-	document.getElementById("mypopup").style.display = "none";
+	$('#mypopup').css("display", "none");
 }
 window.onclick = function(event) {
-if (event.target == document.getElementById("mypopup")) {
-	document.getElementById("mypopup").style.display = "none";
+if (event.target == popup) {
+	$('#mypopup').css("display", "none");
     }
 }
 

@@ -67,7 +67,6 @@
                     </tr>
                 {% endif %}
             {% endif %}
-            <tr>
                 <th>Одобрена</th>
                 <td>{% if project.isApproved %}Да{% else %}Не{% endif %}</td>
             </tr>
@@ -83,10 +82,31 @@
             {% endif %}
             </tbody>
         </table>
-        {% if app.user.type == "Boss" or app.user.type == "LittleBoss"%}
+
+		<h1>Прикачени файлове</h1>
+		<div class="row" style="background: #f0d9d9;">
+		{% for file in managerFiles %}
+		<div class="col-md-4">
+		    <a class="fancybox" rel="gallery" href="{{ file.filePath }}">
+			    <img src="{{ file.filePath }}" class="projectImages"/>
+			</a>
+		</div>
+		{% endfor %}
+		</div>
+		{% if project.isOver and (app.user.type == "LittleBoss" or app.user.type == "Boss" ) %}
+			<div class="row" style="background: #f0d9d9;">
+				<div class="query_buttons">
+					{{ form_start(delete_form) }}
+					<div class="col-md-2">
+						<input id="button_delete" type="submit" value="Изтрий"><div class="delete_icon"></div>
+					</div>
+					{{ form_end(delete_form) }}
+				</div>
+			</div>
+		    {% else %}		
 		    <div class="row" style="background: #dcf0d9;">
                 <form action="{{ path('project_fast_update', { 'id': project.id }) }}" method="post" style="margin-top: 10px; margin-left: 0px; margin-right: 0px;">
-				    {% if project.forApproval or project.isApproved %}
+					{% if project.forApproval or project.isApproved and ( app.user.type == "LittleBoss" or app.user.type == "Boss" )  %}
                     <div class="col-md-2">
                         <input type="submit" id="approve" name="approve" value="Одобрявам"><div class="approve_icon"></div>
                     </div>
@@ -106,10 +126,10 @@
 						<input type="submit" id="archive" name="archive" value="Архивирай"><div class="archive_icon"></div>
 					</div>
 					{% endif %}
-
                 </form>
-            </div>
+            </div>		
         {% endif %}
+
         <div class="row" style="background: #dde5ee;">
             <div class="query_buttons">
                 <div class="col-md-4">
@@ -122,18 +142,7 @@
 				{% endif %}
             </div>
         </div>
-        {% if project.isOver  and app.user.type == "LittleBoss" %}
-        <div class="row" style="background: #f0d9d9;">
-            <div class="query_buttons">
-                {{ form_start(delete_form) }}
-                <div class="col-md-2">
-                    <input id="button_delete" type="submit" value="Изтрий"><div class="delete_icon"></div>
-                </div>
-                {{ form_end(delete_form) }}
-            </div>
-        </div>
 
-        {% endif %}
 		<h1>Коментари</h1>
         <div class="row">
             <div class="container" id="comments">

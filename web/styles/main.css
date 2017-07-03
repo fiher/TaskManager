@@ -65,7 +65,7 @@ table{
 table#index{
     border: 0 solid #a5b2cb;
     border-radius: 0;
-    color: #fff;
+    color: #303030;
 	margin-bottom: 100px;
     width: 100%;
 }
@@ -107,9 +107,6 @@ td#buttons{
     border-bottom: 6px solid #323232;	
 	padding: 0;
 	height: 60px;
-}
-#index th{
-	text-shadow: rgba(0,0,0,0.8) 1px 1px 1px;
 }
 td#actions{
 	background: #ece9f2;
@@ -534,7 +531,7 @@ input#archive{
 	width: 100%;
 	opacity:0.8;
 }
-#button_edit, #button_create, #button_cancel_popup{
+#button_edit, #button_create, #button_cancel_popup, #upload{
     background-color: #9caee7;
     border-bottom: 2px solid #8195d3;
 	border-top:0;
@@ -603,7 +600,7 @@ input#archive{
     width: 100%;
 	opacity:0.8;
 }
-input#button_delete:hover, #reject:hover, input#archive:hover, #button_edit:hover, #button_create:hover,#approve:hover, #appbundle_comments_Comment:hover, #hold:hover, #forApproval:hover, #button_details:hover{
+input#button_delete:hover, #reject:hover, input#archive:hover, #button_edit:hover, #button_create:hover,#approve:hover, #appbundle_comments_Comment:hover, #hold:hover, #forApproval:hover, #button_details:hover, #working:hover, #upload:hover{
     color: #fff;
 	opacity:1;
 	}
@@ -647,7 +644,7 @@ select{
 }
 
 
- .delete_icon a, .approve_icon a, .reject_icon a, .archive_icon a, .back_icon a, .edit_icon a, .comment_icon a, .save_new_query_icon a, .login_icon a, .hold_icon a, .forApproval_icon a, .details_icon a, .working_icon a{
+ .delete_icon a, .approve_icon a, .reject_icon a, .archive_icon a, .back_icon a, .edit_icon a, .comment_icon a, .save_new_query_icon a, .login_icon a, .hold_icon a, .forApproval_icon a, .details_icon a, .working_icon a, .upload_icon a{
     line-height: 2.5;
     -webkit-transition: .3s ease;
     transition: .3s ease; 		
@@ -808,6 +805,18 @@ select{
     top: 10px;
     left: 28px;
 }
+.upload_icon:before{
+	content: "\f093";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    color: #ebebeb;
+    font-size: 20px;
+    position: absolute;
+    top: 10px;
+    left: 28px;
+}
 .success p{
 	width:100%;
     text-align: center;
@@ -850,7 +859,7 @@ select{
 }
 .username, .username:hover{
 	background: none;
-    color: #fff;
+    color: #515151;
     border: none;
 }
 .more{
@@ -880,10 +889,9 @@ select{
 	padding-bottom: 15px;
 }
 .popup {
-    display: none;
-    position: fixed;
+	display:none;
     z-index: 1;
-    padding-top: 100px;
+    padding-top:0px;
     left: 0;
     top: 0;
     width: 100%;
@@ -921,4 +929,12 @@ select{
 }
 .error {
     color: red;
+}
+
+.block{
+	display:block;
+}
+.projectImages{
+	width: 100%;
+    padding:10px;	
 }

@@ -8,7 +8,9 @@
             <link rel="stylesheet" href="{{ asset("styles/bootstrap.min.css") }}">
             <link rel="stylesheet" href="{{ asset("styles/main.css") }}">
             <link rel="stylesheet" href="{{ asset("styles/fonts/font-awesome.min.css") }}">
-            <script src="{{ asset("scripts/jquery-3.2.1.min.js") }}"></script>
+            <link rel="stylesheet" href="{{ asset("styles/fancybox/source/jquery.fancybox.css") }}">
+			<link rel="stylesheet" href="{{ asset("styles/fancybox/source/helpers/jquery.fancybox-buttons.css") }}">
+			<script src="{{ asset("https://code.jquery.com/jquery-3.2.1.js") }}"></script>
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -24,6 +26,9 @@
             <div class="pull-left">
                 {% if app.user %}
                     <a href="{{ path('project_index') }}">Заявки</a>
+					{% if app.user.username == "a.vali" %}
+					<a href="{{ path('project_index') }}">Заявки Вали</a>
+					{% endif %}					
                     <a href="{{ path('project_archive') }}">Архивирани Заявки</a>
                     {% if (app.user.type == "Manager") or (app.user.type == "LittleBoss") %}
                     <a href="{{ path('project_new') }}">Нова заявка</a>
@@ -61,7 +66,8 @@
     {% block javascripts %}
         <script src="{{ asset("scripts/bootstrap.min.js") }}"></script>
         <script src="{{ asset("scripts/main.js") }}"></script>
-
+	    <script src="{{ asset("scripts/fancybox/source/jquery.fancybox.pack.js") }}"></script>
+		<script src="{{ asset("scripts/fancybox/lib/jquery.mousewheel-3.0.6.pack.js") }}"></script>
     {% endblock %}
 </div>
 </body>

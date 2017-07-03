@@ -28,7 +28,11 @@
             </thead>
             <tbody>
             {% for project in projects %}
-                <tr class="{{ project.class }}">
+			    {% if project.class == "notSeen" and (app.user.type == "LittleBoss" or app.user.type == "Boss" ) %}
+                    <tr class="{{ project.class }}">
+				{% else %}
+				    <tr>
+				{% endif %}
                     <td class="department">{{ project.department }}</td>
                     <td class="user">{{ project.fromUser }}</td>
                     <td class="type">{{ project.typeTask }}</td>
@@ -45,7 +49,7 @@
 					        {% endif %}
 					{% endif %}
                     <td>{{ project.executioner }}</td>
-                    <td class="status">{{ project.status }}</td>
+                    <td class="status {{ project.class }}">{{ project.status }}</td>
 					<td rowspan = "2" class="comments">
                         <div class="overflow">
                             {% for comment in project.comments %}
@@ -61,59 +65,39 @@
 
                     </td>
                 </tr>
-			    <tr id="actions" class="{{ project.class }}">
-				    <td colspan = "10" id="buttons" style="padding: 10px 0px 0px 0px;">
+			    <tr id="actions">
+				    <td colspan = "9" id="buttons" style="padding: 10px 0px 0px 0px;">
 				    {% if project.isOver and (app.user.type == "LittleBoss" or app.user.type == "Boss" ) %}
-
-					{% elseif app.user.type == "LittleBoss" or app.user.type == "Boss"  %}
-                        <form action="{{ path('project_update', { 'id': project.id }) }}" method="post">
-				            {% if project.forApproval or project.isApproved %}
-                            <div class="col-md-2">
-                                <input type="submit" id="approve" name="approve" value="Одобрявам"><div class="approve_icon"></div>
-                            </div>
-							
-							{% else %}
-                                {% if app.user.type != "Boss" %}
-
-                            <div class="col-md-2">
-                                <input type="submit" id="hold" name="hold" value="На изчакване"><div class="hold_icon"></div>
-                            </div>
-                            <div class="col-md-2" >
-                                <input type="submit" id="forApproval" name="forApproval" value="За одобрение"/><div class="forApproval_icon"></div>
-                            </div>
-                                {% endif %}
-						    {% endif %}
-					{% elseif app.user.type == "Designer" %}
-					<!--
-                            <div class="col-md-2">
-                                <input type="submit" id="working" name="working" value="Работи се"/><div class="working_icon"></div>
-                            </div>	
--->							
-					{% endif %}
-					
-					    </form>
+						<div class="col-md-2">
+							<input id="button_delete" type="submit" value="Изтрий"><div class="delete_icon"></div>
+						</div>
+					    {% else %}
 							<form action="{{ path('project_update', { 'id': project.id }) }}" method="post">
+					            {% if project.forApproval or project.isApproved and ( app.user.type == "LittleBoss" or app.user.type == "Boss" ) %}
 								<div class="col-md-2">
-									<input id="rejectPopup" name="rejectPopup" value="Отхвърлям" onclick="btnShowPopup()"><div class="reject_icon"></div>
+									<input type="submit" id="approve" name="approve" value="Одобрявам"><div class="approve_icon"></div>
 								</div>
-								<div id="mypopup" class="popup">
-									<div class="popup-content">
-										<span class="close" onclick="btnHidePopup()">&times;</span>
-										<p>Сигурни ли сте, че искате да отхвърлите заявката?</p>
-                                        <p>Напишете причина.</p>
-										<textarea id="comment_reject"></textarea>
-										<div id="name-error" class="error"></div>
-										<div style="height: 40px; margin-top: 20px;">
-											<div class="col-md-2">
-											<button type="button" id="button_cancel_popup" onclick="btnHidePopup()">Не</button><div class="reject_icon"></div>
-											</div>
-											<div class="col-md-2">
-											<input type="submit" id="reject" name="reject" value="Да"><div class="approve_icon"></div>    
-											</div>
-										</div>
-									</div>
+								<div class="col-md-2">
+									<input id="rejectPopup" name="rejectPopup" value="Отхвърлям" onclick="btnShowPopup(this)"><div class="reject_icon"></div>
 								</div>
-                            </form>	
+								{% elseif app.user.type == "LittleBoss" or app.user.type == "Boss" %}
+								<div class="col-md-2">
+									<input type="submit" id="hold" name="hold" value="На изчакване"><div class="hold_icon"></div>
+								</div>
+								<div class="col-md-2" >
+									<input type="submit" id="forApproval" name="forApproval" value="За одобрение"/><div class="forApproval_icon"></div>
+								</div>
+                                {% endif %}								
+						        {% if app.user.type == "Designer" %}
+								<div class="col-md-2">
+									<input type="submit" id="working" name="working" value="Работи се"/><div class="working_icon"></div>
+								</div>	
+								<div class="col-md-2">
+									<input type="file" id="upload" name="upload" value="Прикачи файл"/><div class="upload_icon"></div>
+								</div>	
+					            {% endif %}
+							</form>
+					{% endif %}						
                              <div>
 								<div class="col-md-2">
 									<input id="button_details" value="Детайли" onclick="location.href='{{ path('project_show', { 'id': project.id }) }}'"/><div class="details_icon"></div>
@@ -126,6 +110,29 @@
 								</div>
                             </div>
 							{% endif %}
+				    {% if project.isOver %}					
+					{% elseif project.forApproval or project.isApproved and ( app.user.type == "LittleBoss" or app.user.type == "Boss" )  %}
+							<form action="{{ path('project_update', { 'id': project.id }) }}" method="post">
+
+								<div id="mypopup" class="popup">
+									<div class="popup-content">
+										<span class="close" onclick="btnHidePopup(this)">&times;</span>
+										<p>Сигурни ли сте, че искате да отхвърлите заявката?</p>
+                                        <p>Напишете причина.</p>
+										<textarea id="comment_reject"></textarea>
+										<div id="name-error" class="error"></div>
+										<div style="height: 40px; margin-top: 20px;">
+											<div class="col-md-2">
+											<button type="button" id="button_cancel_popup" onclick="btnHidePopup(this)">Не</button><div class="reject_icon"></div>
+											</div>
+											<div class="col-md-2">
+											<input type="submit" id="reject" name="reject" value="Да"><div class="approve_icon"></div>    
+											</div>
+										</div>
+									</div>
+								</div>
+                            </form>
+                    {% endif %}	
 					</td>
 
                 </tr>
