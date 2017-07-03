@@ -27,7 +27,7 @@
                 {% if app.user %}
                     <a href="{{ path('project_index') }}">Заявки</a>
 					{% if app.user.username == "a.vali" %}
-					<a href="{{ path('project_index') }}">Заявки Вали</a>
+					<a href="{{ path('project_designer') }}">Заявки Вали</a>
 					{% endif %}					
                     <a href="{{ path('project_archive') }}">Архивирани Заявки</a>
                     {% if (app.user.type == "Manager") or (app.user.type == "LittleBoss") %}

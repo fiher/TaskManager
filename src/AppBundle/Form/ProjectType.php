@@ -77,12 +77,6 @@ class ProjectType extends AbstractType
             'multiple'=> true,
             'mapped'=> false
             ))->
-        add("designerFiles",FileType::class,array(
-            'label'=>'Файлове',
-            'multiple'=> true,
-            'mapped'=> false,
-            'required'=>false
-            ))->
         add("urgent",CheckboxType::class,array('label'=>"Спешно",
             "required"=>false,
             "data"=>$project->isUrgent()

@@ -62,7 +62,38 @@ class ProjectController extends Controller
         ));
     }
 
-
+    /**
+     * There is a user which is both LittleBoss and Designer (Senior Designer) that should be able to view all
+     * projects, but also manage it's own. This function shows only this person's
+     *
+     * @Route("/designer", name="project_designer")
+     * @Method("GET")
+     */
+    public function showDesignerOnlyProjects(){
+        //this function returns "" if the user is allowed and if not returns $this->render
+        $forbidden = $this->checkCredentials("all");
+        if($forbidden){
+            return $forbidden;
+        }
+        $commentsService = $this->get('app.service.comments_service');
+        $projectService = $this->get('app.service.projects_service');
+        /** @var User $user */
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $projects = $em->getRepository('AppBundle:Project')->findAll();
+        $projects = array_reverse($projects);
+        $filteredProjects = $projectService->filterProjects($projects,$user,"Designer");
+        foreach ($filteredProjects as $project){
+            /** @var Project $project */
+            $comments = $this->getDoctrine()
+                ->getRepository('AppBundle:Comments')
+                ->findByProjectID($project->getId());
+            $project->setComments($commentsService->filterComments($comments,$user));
+        }
+        return $this->render('project/index.html.twig', array(
+            'projects' => $filteredProjects,
+        ));
+    }
     /**
      * Lists all project entities.
      *
@@ -255,8 +286,11 @@ class ProjectController extends Controller
      */
     public function deleteAction(Request $request, Project $project)
     {
-        $this->checkCredentials(array("Manager","LittleBoss","Boss"));
-
+        //this function returns "" if the user is allowed and if not returns $this->render
+        $forbidden = $this->checkCredentials(array("LittleBoss","Boss"));
+        if($forbidden){
+            return $forbidden;
+        }
         $form = $this->createDeleteForm($project);
         $form->handleRequest($request);
 
@@ -293,6 +327,12 @@ class ProjectController extends Controller
      * @Method("POST")
      */
     public function updateAction(Request $request, Project $project){
+
+        //this function returns "" if the user is allowed and if not returns $this->render
+        $forbidden = $this->checkCredentials(array("LittleBoss","Boss"));
+        if($forbidden){
+            return $forbidden;
+        }
         /**@var Project $project */
         dump($request);
         if (isset($_POST['approve'])) {
@@ -348,10 +388,10 @@ class ProjectController extends Controller
         $em->flush();
         $requestURL = explode("/",$request->getUri())[5];
         if($requestURL== "update") {
-            //return $this->redirectToRoute("project_index");
+            return $this->redirectToRoute("project_index");
         }else{
-            //return $this->redirectToRoute("project_show", array('id' => $project->getId()
-            //));
+            return $this->redirectToRoute("project_show", array('id' => $project->getId()
+            ));
         }
     }
 
@@ -361,7 +401,7 @@ class ProjectController extends Controller
 
         /** @var User $user */
         $user = $this->getUser();
-        $error = $authenticationUtils->getLastAuthenticationError();
+
         if($user){
             if($allowedUserRoles == "all"){
                 return "";
@@ -381,6 +421,20 @@ class ProjectController extends Controller
             'successMessage'=>"",
             'last_username'=> $lastUsername
         ));
+    }
+    /**
+     *Uploads images
+     *
+     * @Route("/{id}/imageUpload", name="image_upload")
+     * @Method("POST")
+     */
+    public function uploadImage(Request $request, Project $project){
+        //this function returns "" if the user is allowed and if not returns $this->render
+        $forbidden = $this->checkCredentials(array("Manager","LittleBoss","Boss"));
+        if($forbidden){
+            return $forbidden;
+        }
+
     }
 
 }
