@@ -30,7 +30,7 @@ class CommentsService
         $this->manager = $manager;
     }
     public function newComment(Comments $comment, User $user, \DateTime $date){
-        $comment->setMadeBy($user->getUsername());
+        $comment->setMadeBy($user->getFullName());
         $comment->setCreatorRole($user->getType());
         $comment->setDate(new \DateTime());
         $this->entityManager->persist($comment);

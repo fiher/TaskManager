@@ -57,7 +57,12 @@ class Project
      * @ORM\Column(name="term", type="datetime")
      */
     private $term;
-
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="without_term", type="boolean", nullable=true)
+     */
+    private $withoutTerm;
     /**
      * @var \DateTime
      *
@@ -932,6 +937,22 @@ class Project
     public function setForApproval($forApproval)
     {
         $this->forApproval = $forApproval;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isWithoutTerm(): bool
+    {
+        return $this->withoutTerm == true;
+    }
+
+    /**
+     * @param bool $withoutTerm
+     */
+    public function setWithoutTerm(bool $withoutTerm)
+    {
+        $this->withoutTerm = $withoutTerm;
     }
 
 

@@ -3,9 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="056da0cf-db80-498e-bebe-f46eea1f8975" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Project.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Project.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/ProjectType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/ProjectType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Service/CommentsService.php" afterPath="$PROJECT_DIR$/src/AppBundle/Service/CommentsService.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Service/FilesService.php" afterPath="$PROJECT_DIR$/src/AppBundle/Service/FilesService.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Service/ProjectService.php" afterPath="$PROJECT_DIR$/src/AppBundle/Service/ProjectService.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,18 +23,58 @@
       <file leaf-file-name="ProjectController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="680">
-              <caret line="95" column="5" lean-forward="false" selection-start-line="95" selection-start-column="5" selection-end-line="95" selection-end-column="5" />
+            <state relative-caret-position="273">
+              <caret line="157" column="66" lean-forward="false" selection-start-line="157" selection-start-column="66" selection-end-line="157" selection-end-column="66" />
               <folding>
                 <element signature="e#40#64#0#PHP" expanded="true" />
-                <element signature="e#915#2171#0#PHP" expanded="false" />
                 <element signature="e#1355#1374#1#PHP" expanded="true" />
                 <element signature="e#3015#3034#1#PHP" expanded="true" />
                 <element signature="e#4352#4371#1#PHP" expanded="true" />
-                <element signature="e#14509#14528#1#PHP" expanded="true" />
-                <element signature="e#15146#15161#1#PHP" expanded="true" />
-                <element signature="e#15221#15235#0#PHP" expanded="true" />
+                <element signature="e#6474#6488#0#PHP" expanded="true" />
+                <element signature="e#14358#14377#1#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Version20170704085540.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/DoctrineMigrations/Version20170704085540.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="399">
+              <caret line="20" column="32" lean-forward="false" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+              <folding>
+                <marker date="1499158540499" expanded="true" signature="585:645" ph="ALTER TABLE project... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FilesService.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/FilesService.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="386">
+              <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CommentsController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/CommentsController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2097">
+              <caret line="138" column="23" lean-forward="false" selection-start-line="138" selection-start-column="23" selection-end-line="138" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CommentsService.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/CommentsService.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="19" column="27" lean-forward="false" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -39,57 +82,20 @@
       <file leaf-file-name="ProjectService.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/ProjectService.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
-              <caret line="33" column="62" lean-forward="false" selection-start-line="33" selection-start-column="62" selection-end-line="33" selection-end-column="62" />
+            <state relative-caret-position="407">
+              <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
               <folding>
-                <element signature="e#4635#4878#0#PHP" expanded="false" />
-                <element signature="e#4883#5103#0#PHP" expanded="false" />
+                <element signature="e#4307#4550#0#PHP" expanded="false" />
               </folding>
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="33" column="20" lean-forward="true" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="20" />
-              <folding>
-                <element signature="e#1256#1272#0#Twig" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jquery.fancybox-buttons.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/styles/fancybox/source/helpers/jquery.fancybox-buttons.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-567">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="a5c8cf006cc0467a2a5e0f71fa0a38c4.jpeg" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/files/a5c8cf006cc0467a2a5e0f71fa0a38c4.jpeg">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="5e0e7f92f402f5f70d8dbc3253fc6d58.jpeg" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/files/5e0e7f92f402f5f70d8dbc3253fc6d58.jpeg">
-          <provider selected="true" editor-type-id="images">
-            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="Project.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Project.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="395" column="48" lean-forward="false" selection-start-line="395" selection-start-column="48" selection-end-line="395" selection-end-column="48" />
+            <state relative-caret-position="311">
+              <caret line="950" column="26" lean-forward="false" selection-start-line="950" selection-start-column="26" selection-end-line="950" selection-end-column="26" />
               <folding>
                 <element signature="e#36#84#0#PHP" expanded="true" />
               </folding>
@@ -100,8 +106,8 @@
       <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/project/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="120" column="64" lean-forward="false" selection-start-line="120" selection-start-column="64" selection-end-line="120" selection-end-column="64" />
+            <state relative-caret-position="-903">
+              <caret line="31" column="52" lean-forward="false" selection-start-line="31" selection-start-column="52" selection-end-line="31" selection-end-column="52" />
               <folding>
                 <element signature="e#12#26#0#Twig" expanded="false" />
                 <element signature="e#229#240#0#Twig" expanded="false" />
@@ -114,21 +120,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProjectType.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ProjectType.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/ProjectType.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="86" column="12" lean-forward="false" selection-start-line="86" selection-start-column="12" selection-end-line="86" selection-end-column="12" />
+            <state relative-caret-position="465">
+              <caret line="77" column="33" lean-forward="true" selection-start-line="77" selection-start-column="33" selection-end-line="77" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommentsType.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/CommentsType.php">
+      <file leaf-file-name="parameters.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="28" column="24" lean-forward="false" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
+            <state relative-caret-position="126">
+              <caret line="6" column="27" lean-forward="false" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -138,8 +144,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>to</find>
-      <find>#r</find>
       <find>setR</find>
       <find>getDate</find>
       <find>Sta</find>
@@ -168,6 +172,8 @@
       <find>edit</find>
       <find>f</find>
       <find>filePath</find>
+      <find>noTerm</find>
+      <find>isWit</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -183,7 +189,6 @@
         <option value="$PROJECT_DIR$/app/Resources/views/zadanie/show.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/zadanie/index.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Service/ZadaniesService.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Service/CommentsService.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/ZadanieType.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/ZadanieController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Zadanie.php" />
@@ -212,21 +217,22 @@
         <option value="$PROJECT_DIR$/app/config/parameters.yml" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/SecurityController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/FilesRepository.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/project/index.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/config/services.yml" />
         <option value="$PROJECT_DIR$/app/Resources/views/project/show.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Service/ProjectService.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Files.php" />
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/app/config/config.yml" />
         <option value="$PROJECT_DIR$/web/app.php" />
         <option value="$PROJECT_DIR$/app/AppKernel.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Service/FilesService.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Service/CommentsService.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/project/index.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Service/FilesService.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Service/ProjectService.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Project.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/ProjectType.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
       </list>
     </option>
   </component>
@@ -239,7 +245,7 @@
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP" />
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
-    <option name="width" value="1932" />
+    <option name="width" value="1924" />
     <option name="height" value="1038" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -258,6 +264,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -726,10 +733,27 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WINbetTaskManager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WINbetTaskManager" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -864,18 +888,19 @@
       <workItem from="1498541220949" duration="12184000" />
       <workItem from="1498627891083" duration="11913000" />
       <workItem from="1498713856042" duration="36587000" />
-      <workItem from="1499079082136" duration="4237000" />
+      <workItem from="1499079082136" duration="5520000" />
+      <workItem from="1499146375863" duration="10081000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="324828000" />
+    <option name="totallyTimeSpent" value="336192000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="0" width="1932" height="1038" extended-state="0" />
+    <frame x="-8" y="0" width="1924" height="1038" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37068966" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37608224" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29896906" sideWeight="0.51731604" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -926,13 +951,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/comments/show.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="36" column="71" lean-forward="false" selection-start-line="36" selection-start-column="71" selection-end-line="36" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/default/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -954,28 +972,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/CommentsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2772">
-          <caret line="138" column="23" lean-forward="false" selection-start-line="138" selection-start-column="23" selection-end-line="138" selection-end-column="23" />
-          <folding>
-            <element signature="e#40#70#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/styles/main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-669">
           <caret line="822" column="15" lean-forward="false" selection-start-line="822" selection-start-column="15" selection-end-line="822" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/CommentsService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="811">
-          <caret line="65" column="5" lean-forward="false" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1118,13 +1118,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" column="29" lean-forward="false" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/SecurityController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-648">
@@ -1236,17 +1229,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/FilesService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="882">
-          <caret line="52" column="5" lean-forward="false" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
-          <folding>
-            <element signature="e#116#143#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1262,14 +1244,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1428">
           <caret line="68" column="23" lean-forward="false" selection-start-line="68" selection-start-column="23" selection-end-line="68" selection-end-column="23" />
-          <folding>
-            <marker date="1499081810520" expanded="true" signature="5815:6595" ph="..." />
-            <marker date="1499081810520" expanded="true" signature="5865:6477" ph="..." />
-            <marker date="1499081810520" expanded="true" signature="5965:6439" ph="..." />
-            <marker date="1499081810520" expanded="true" signature="6007:6197" ph="..." />
-            <marker date="1499081810520" expanded="true" signature="6239:6412" ph="..." />
-            <marker date="1499081810520" expanded="true" signature="6292:6381" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1277,7 +1251,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
           <caret line="19" column="10" lean-forward="false" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1285,13 +1258,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1071">
           <caret line="51" column="41" lean-forward="false" selection-start-line="51" selection-start-column="41" selection-end-line="51" selection-end-column="41" />
-          <folding>
-            <marker date="1499081810586" expanded="true" signature="448:454" ph=" " />
-            <marker date="1499081810586" expanded="true" signature="454:460" ph=" " />
-            <marker date="1499081810586" expanded="true" signature="1269:1276" ph="{...}" />
-            <marker date="1499081810586" expanded="true" signature="1269:1278" ph="{...}" />
-            <marker date="1499081810586" expanded="true" signature="1281:2491" ph="/*...*/" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1310,36 +1276,61 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Project.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="395" column="48" lean-forward="false" selection-start-line="395" selection-start-column="48" selection-end-line="395" selection-end-column="48" />
-          <folding>
-            <element signature="e#36#84#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/ProjectType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="86" column="12" lean-forward="false" selection-start-line="86" selection-start-column="12" selection-end-line="86" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/CommentsType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="441">
           <caret line="28" column="24" lean-forward="false" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
+          <folding>
+            <element signature="e#34#74#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/styles/fancybox/source/helpers/jquery.fancybox-buttons.js" />
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="33" column="20" lean-forward="false" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/CommentsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2097">
+          <caret line="138" column="23" lean-forward="false" selection-start-line="138" selection-start-column="23" selection-end-line="138" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" column="27" lean-forward="false" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/FilesService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="386">
+          <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/CommentsService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="19" column="27" lean-forward="false" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/project/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="120" column="64" lean-forward="false" selection-start-line="120" selection-start-column="64" selection-end-line="120" selection-end-column="64" />
+        <state relative-caret-position="-903">
+          <caret line="31" column="52" lean-forward="false" selection-start-line="31" selection-start-column="52" selection-end-line="31" selection-end-column="52" />
           <folding>
             <element signature="e#12#26#0#Twig" expanded="false" />
             <element signature="e#229#240#0#Twig" expanded="false" />
@@ -1351,49 +1342,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/styles/fancybox/source/helpers/jquery.fancybox-buttons.js">
+    <entry file="file://$PROJECT_DIR$/app/DoctrineMigrations/Version20170704085540.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-567">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/ProjectService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="33" column="62" lean-forward="false" selection-start-line="33" selection-start-column="62" selection-end-line="33" selection-end-column="62" />
+        <state relative-caret-position="399">
+          <caret line="20" column="32" lean-forward="false" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
           <folding>
-            <element signature="e#4635#4878#0#PHP" expanded="false" />
-            <element signature="e#4883#5103#0#PHP" expanded="false" />
+            <marker date="1499158540499" expanded="true" signature="585:645" ph="ALTER TABLE project... " />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="95" column="5" lean-forward="false" selection-start-line="95" selection-start-column="5" selection-end-line="95" selection-end-column="5" />
+        <state relative-caret-position="273">
+          <caret line="157" column="66" lean-forward="false" selection-start-line="157" selection-start-column="66" selection-end-line="157" selection-end-column="66" />
           <folding>
             <element signature="e#40#64#0#PHP" expanded="true" />
-            <element signature="e#915#2171#0#PHP" expanded="false" />
             <element signature="e#1355#1374#1#PHP" expanded="true" />
             <element signature="e#3015#3034#1#PHP" expanded="true" />
             <element signature="e#4352#4371#1#PHP" expanded="true" />
-            <element signature="e#14509#14528#1#PHP" expanded="true" />
-            <element signature="e#15146#15161#1#PHP" expanded="true" />
-            <element signature="e#15221#15235#0#PHP" expanded="true" />
+            <element signature="e#6474#6488#0#PHP" expanded="true" />
+            <element signature="e#14358#14377#1#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/ProjectService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="33" column="20" lean-forward="true" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="20" />
+        <state relative-caret-position="407">
+          <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
           <folding>
-            <element signature="e#1256#1272#0#Twig" expanded="true" />
+            <element signature="e#4307#4550#0#PHP" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Project.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="950" column="26" lean-forward="false" selection-start-line="950" selection-start-column="26" selection-end-line="950" selection-end-column="26" />
+          <folding>
+            <element signature="e#36#84#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/ProjectType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="77" column="33" lean-forward="true" selection-start-line="77" selection-start-column="33" selection-end-line="77" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>

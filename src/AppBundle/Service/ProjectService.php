@@ -44,18 +44,8 @@ class ProjectService
              * @var Project $project
              * @var $user User
              */
-            $functionName = "isSeenBy".$userType;
-            if($user->getUsername() == "sky.stroy"){
-                if($project->getFromUser() == "sky.stroy"){
-                    $functionName = "isSeenByManager";
-                }elseif ($project->getExecutioner()== "sky.stroy"){
-                    $functionName = "isSeenByExecutioner";
-                }
-            }
-            if($functionName == "isSeenByManager"){
-                $functionName = "isSeenByLittleBoss";
-            }
-            if($project->$functionName()){
+
+            if($project->isSeenByLittleBoss()){
                 $project->setClass("seen");
                 $project->setStatus("Видяно");
             }else{
@@ -70,35 +60,38 @@ class ProjectService
                 $project->setClass("assigned");
                 $project->setStatus("Разпределено");
             }
-            $now = strtotime(date('Y-m-d H:i:s'));
-            $term = strtotime($project->getTerm()->format("Y-m-d H:i:s"));
+            if(!$project->isWithoutTerm()){
+                $now = strtotime(date('Y-m-d H:i:s'));
+                $term = strtotime($project->getTerm()->format("Y-m-d H:i:s"));
 
-            $datediff = $term - $now;
-            $datediff = floor($datediff / (60 * 60 * 24));
-            $createdDate = strtotime($project->getDate()->format("Y-m-d"));
-            $diffCreatedToday = $term - $createdDate;
-            $diffCreatedToday = floor($diffCreatedToday / (60 * 60 * 24));if($diffCreatedToday<= 1){
-                $project->setUrgent(true);
+                $datediff = $term - $now;
+                $datediff = floor($datediff / (60 * 60 * 24));
+                $createdDate = strtotime($project->getDate()->format("Y-m-d"));
+                $diffCreatedToday = $term - $createdDate;
+                $diffCreatedToday = floor($diffCreatedToday / (60 * 60 * 24));if($diffCreatedToday<= 1){
+                    $project->setUrgent(true);
+                }
+
+                if(!in_array("Manager",explode(" ",$user->getRole()))) {
+                    if($datediff<=1){
+                        $project->setClass("due");
+                        $project->setStatus("Изтичащ срок");
+                    }
+                    if($project->isApproved()) {
+                        $project->setClass("approved");
+                        $project->setStatus("Одобрено");
+                        $project->setUrgent(false);
+
+                    }if($project->isRejected()){
+                        $project->setStatus("Отхвърлено");
+                        $project->setClass("rejected");
+                    }
+                    if ($project->isUrgent()) {
+                        $project->setClass($project->getClass() . " urgent");
+                    }
+                }
             }
 
-            if(!in_array("Manager",explode(" ",$user->getRole()))) {
-                if($datediff<=1){
-                    $project->setClass("due");
-                    $project->setStatus("Изтичащ срок");
-                }
-                if($project->isApproved()) {
-                    $project->setClass("approved");
-                    $project->setStatus("Одобрено");
-                    $project->setUrgent(false);
-
-                }if($project->isRejected()){
-                    $project->setStatus("Отхвърлено");
-                    $project->setClass("rejected");
-                }
-                if ($project->isUrgent()) {
-                    $project->setClass($project->getClass() . " urgent");
-                }
-            }
             if($project->isHold()){
                 $project->setClass("onHold");
                 $project->setStatus("Изчакване");
@@ -128,15 +121,7 @@ class ProjectService
         $projectBTerm = strtotime($b->getTerm()->format("Y-m-d"));
         return $projectATerm - $projectBTerm;
     }
-    private function isWithoutDate(\DateTime $term,$defaultValue){
-        $term = $term->format("j-M-Y");
-        if($term == $defaultValue){
-            return true;
-        }else{
-            return false;
-        }
-    }
-    public function createProject(Project $project, User $user,bool $isWithoutTerm,string $noTermDefaultValue){
+    public function createProject(Project $project, User $user){
         $project->setFromUser($user->getFullName());
         $project->setDepartment($user->getDepartment());
         $project->setIsOver(false);
@@ -145,9 +130,6 @@ class ProjectService
         $project->setSeenByExecutioner(false);
         $project->setSeenByLittleBoss(false);
         $project->setSeenByManager(false);
-        if($isWithoutTerm){
-            $project->setTerm(\DateTime::createFromFormat('Y-m-d', $noTermDefaultValue));
-        }
         if($project->getTerm() == $project->getDate()){
             $project->setUrgent(true);
         }

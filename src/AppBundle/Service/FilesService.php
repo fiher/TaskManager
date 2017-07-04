@@ -47,7 +47,6 @@ class FilesService
         $file->setFromUser($user->getType());
         $file->setProject($project);
         $file->setDate(new \DateTime());
-        dump($file);
         $this->entityManager->persist($file);
         $this->entityManager->flush();
     }

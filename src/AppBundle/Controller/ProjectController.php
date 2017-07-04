@@ -21,7 +21,7 @@ class ProjectController extends Controller
 {
     //if new term is entered without a term date this will be set as a date then it will be checked when rendering them
     //if term is this exact date and if so - we display "No date" in bulgarian!
-    const NO_TERM_DEFAULT_VALUE = '2090-03-19';
+    const NO_TERM_DEFAULT_VALUE = '2050-03-19';
     /**
      * Lists all project entities.
      *
@@ -154,9 +154,8 @@ class ProjectController extends Controller
                 $this->getDoctrine()->getManager()->flush();
                 $projectService = $this->get('app.service.projects_service');
                 $managerFiles = $managerFiles = $request->files->get('appbundle_project')['managerFiles'];
-                $isWithoutTerm = array_key_exists('noTerm', $request->request->get('appbundle_project'));
 
-                    $projectService->createProject($project, $user, $isWithoutTerm, self::NO_TERM_DEFAULT_VALUE);
+                    $projectService->createProject($project, $user);
                     $filesService = $this->get('app.service.files_service');
                     foreach ($managerFiles as $managerFile) {
                         $fileName = $filesService->uploadFileAndReturnName($managerFile,$this->getParameter('files_directory'));

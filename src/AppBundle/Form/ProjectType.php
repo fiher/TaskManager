@@ -42,8 +42,7 @@ class ProjectType extends AbstractType
             'widget' => 'choice',
             'label'=>"Краен срок",
             'data'=>$data
-        ))->add('noTerm',CheckboxType::class,array(
-            "mapped"=>false,
+        ))->add('withoutTerm',CheckboxType::class,array(
             'label'=>"Без Срок",
             'required'=> false
         ))->
@@ -75,7 +74,8 @@ class ProjectType extends AbstractType
         add("managerFiles",FileType::class,array(
             'label'=>'Файлове',
             'multiple'=> true,
-            'mapped'=> false
+            'mapped'=> false,
+                "required"=>false
             ))->
         add("urgent",CheckboxType::class,array('label'=>"Спешно",
             "required"=>false,
