@@ -44,7 +44,8 @@ $(document).ready(function() {
 
 /* popup for button reject */
 								
-function btnShowPopup() {
+function btnShowPopup(id) {
+	$('#rejectPopup'+id);
 	$(this).css("display", "block");
 }
 /*
