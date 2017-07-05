@@ -332,8 +332,8 @@ class ProjectController extends Controller
         if($forbidden){
             return $forbidden;
         }
-        /**@var Project $project */
-        dump($request);
+        /** @var User $user */
+        $user = $this->getUser();
         if (isset($_POST['approve'])) {
             $project->setApproved(true);
             $project->setRejected(false);
@@ -342,6 +342,12 @@ class ProjectController extends Controller
             $project->setHold(false);
             $successMessage = "Успешно одобрихте заявката!";
         } elseif (isset($_POST['reject'])) {
+            $comment =  new Comments();
+            $comment->setProjectID($project->getId());
+            $comment->setContent($_POST['rejectComment']);
+            $comment->setToUser("Designer");
+            $commentsService = $this->get('app.service.comments_service');
+            $commentsService->newComment($comment,$user,new \DateTime());
             $successMessage = "Успешно отхвърлихте заявката!";
             $project->setRejected(true);
             $project->setApproved(false);
@@ -429,11 +435,12 @@ class ProjectController extends Controller
      */
     public function uploadImage(Request $request, Project $project){
         //this function returns "" if the user is allowed and if not returns $this->render
+        dump($request);
         $forbidden = $this->checkCredentials(array("Manager","LittleBoss","Boss"));
         if($forbidden){
             return $forbidden;
         }
-
+        return "";
     }
 
 }
