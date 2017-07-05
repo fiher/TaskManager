@@ -531,7 +531,7 @@ input#archive{
 	width: 100%;
 	opacity:0.8;
 }
-#button_edit, #button_create, #button_cancel_popup, #upload{
+#button_edit, #button_create, #button_cancel_popup{
     background-color: #9caee7;
     border-bottom: 2px solid #8195d3;
 	border-top:0;
@@ -542,6 +542,19 @@ input#archive{
     padding: 10px 10px 10px 40px;
     text-align: center;
 	width: 100%;
+	cursor:pointer;
+	opacity:0.8;
+}
+#imageUpload{
+    background-color: #9caee7;
+    border-bottom: 2px solid #8195d3;
+	border-top:0;
+	border-left:0;
+	border-right:0;
+    border-radius: 0;
+    color: #f4f4f4;
+    padding: 10px 10px 10px 40px;
+    text-align: center;
 	cursor:pointer;
 	opacity:0.8;
 }
@@ -569,6 +582,9 @@ input#archive{
 	width: 100%;
 	cursor:pointer;
 	opacity:0.8;
+}
+#approveImages{
+	display:none;
 }
 #forApproval, #working{
 	background-color: #84cc06 ;
@@ -600,7 +616,7 @@ input#archive{
     width: 100%;
 	opacity:0.8;
 }
-input#button_delete:hover, #reject:hover, input#archive:hover, #button_edit:hover, #button_create:hover,#approve:hover, #appbundle_comments_Comment:hover, #hold:hover, #forApproval:hover, #button_details:hover, #working:hover, #upload:hover{
+input#button_delete:hover, #reject:hover, input#archive:hover, #button_edit:hover, #button_create:hover,#approve:hover, #appbundle_comments_Comment:hover, #hold:hover, #forApproval:hover, #button_details:hover, #working:hover{
     color: #fff;
 	opacity:1;
 	}
@@ -889,9 +905,18 @@ select{
 	padding-bottom: 15px;
 }
 .popup {
-	display:none;
+	background: rgba(100, 100, 100, 0.6);
+	position: fixed;
+	display: none;
+	z-index: 5000;
+	height: 100%;
+	width: 100%;
+	left: 0;
+	top: 0;
+    display: none;
+    position: fixed;
     z-index: 1;
-    padding-top:0px;
+    padding-top: 100px;
     left: 0;
     top: 0;
     width: 100%;
@@ -937,4 +962,13 @@ select{
 .projectImages{
 	width: 100%;
     padding:10px;	
+}
+input#imageUpload {
+	height: 25px;
+    margin-top: -25px;
+    width: 180px;
+    margin-left: -40px;
+    opacity: 0;
+    outline: none;
+    cursor: pointer;
 }

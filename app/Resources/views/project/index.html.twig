@@ -51,6 +51,11 @@
                     <td>{{ project.executioner }}</td>
                     <td class="status {{ project.class }}">{{ project.status }}</td>
 					<td rowspan = "2" class="comments">
+					    {% if project.comments == false %}
+                        <div class="overflow" style="padding-top: 40%; text-align: center;">
+                           <p class="row">Няма коментари</p>
+                        </div>
+						{% else %}
                         <div class="overflow">
                             {% for comment in project.comments %}
                            <div class="{{ comment.class }}">
@@ -62,77 +67,88 @@
 						   </div>
 							{% endfor %}
                         </div>
-
+						{% endif %}
                     </td>
                 </tr>
 			    <tr id="actions">
 				    <td colspan = "9" id="buttons" style="padding: 10px 0px 0px 0px;">
 				    {% if project.isOver and (app.user.type == "LittleBoss" or app.user.type == "Boss" ) %}
 						<div class="col-md-2">
-							<input id="button_delete" type="submit" value="Изтрий"><div class="delete_icon"></div>
+							<input id="button_delete" readonly="readonly" type="submit" value="Изтрий"><div class="delete_icon"></div>
 						</div>
 					    {% else %}
 							<form action="{{ path('project_update', { 'id': project.id }) }}" method="post">
 					            {% if project.forApproval or project.isApproved and ( app.user.type == "LittleBoss" or app.user.type == "Boss" ) %}
 								<div class="col-md-2">
-									<input type="submit" id="approve" name="approve" value="Одобрявам"><div class="approve_icon"></div>
+									<input type="submit" readonly="readonly" id="approve" name="approve" value="Одобрявам"><div class="approve_icon"></div>
 								</div>
 								<div class="col-md-2">
-									<input id="rejectPopup" name="rejectPopup" value="Отхвърлям" onclick="btnShowPopup(this)"><div class="reject_icon"></div>
+									<input id="rejectPopup" readonly="readonly" name="rejectPopup" value="Отхвърлям" onclick="btnShowPopup({{ project.id }})"><div class="reject_icon"></div>
 								</div>
+
 								{% elseif app.user.type == "LittleBoss" or app.user.type == "Boss" %}
 								<div class="col-md-2">
-									<input type="submit" id="hold" name="hold" value="На изчакване"><div class="hold_icon"></div>
+									<input type="submit" readonly="readonly" id="hold" name="hold" value="На изчакване"><div class="hold_icon"></div>
 								</div>
 								<div class="col-md-2" >
-									<input type="submit" id="forApproval" name="forApproval" value="За одобрение"/><div class="forApproval_icon"></div>
+									<input type="submit" readonly="readonly" id="forApproval" name="forApproval" value="За одобрение"/><div class="forApproval_icon"></div>
 								</div>
-                                {% endif %}								
-						        {% if app.user.type == "Designer" %}
-								<div class="col-md-2">
-									<input type="submit" id="working" name="working" value="Работи се"/><div class="working_icon"></div>
-								</div>	
-								<div class="col-md-2">
-									<input type="file" id="upload" name="upload" value="Прикачи файл"/><div class="upload_icon"></div>
-								</div>	
+                                {% endif %}		
+							    </form>	
+								{% if app.user.type == "Designer" %}
+							    <form action="{{ path('image_upload', { 'id': project.id }) }}" method="post">								
+									<div class="col-md-2">
+										<input type="submit" readonly="readonly" id="working" name="working" value="Работи се"/><div class="working_icon"></div>
+									</div>	
+									<!--
+									<div class="col-md-2" id="imageUpload">
+										<span>Прикачи файл</span>
+										<input type="file" readonly="readonly" id="imageUpload" name="image_upload" onclick="btnUploadImages({{ project.id }})"/><div class="upload_icon"></div>
+									</div>	
+									<div class="col-md-2" id="approveImages">
+										<input id="approve {{ project.id }}" readonly="readonly" type="submit" value="Запази"><div class="save_new_query_icon"></div>
+									</div>
+									-->
+							    </form>	
 					            {% endif %}
-							</form>
+
 					{% endif %}						
                              <div>
 								<div class="col-md-2">
-									<input id="button_details" value="Детайли" onclick="location.href='{{ path('project_show', { 'id': project.id }) }}'"/><div class="details_icon"></div>
+									<input id="button_details" readonly="readonly" value="Детайли" onclick="location.href='{{ path('project_show', { 'id': project.id }) }}'"/><div class="details_icon"></div>
 								</div>
                             {% if project.isOver %}
 
 							{% elseif app.user.type == "LittleBoss" or app.user.type == "Boss" %}	
 								<div class="col-md-2">
-									<input id="button_edit" value="Промяна" onclick="location.href='{{ path('project_edit', { 'id': project.id }) }}'"/><div class="edit_icon"></div>
+									<input id="button_edit" readonly="readonly" value="Промяна" onclick="location.href='{{ path('project_edit', { 'id': project.id }) }}'"/><div class="edit_icon"></div>
 								</div>
                             </div>
 							{% endif %}
+
 				    {% if project.isOver %}					
 					{% elseif project.forApproval or project.isApproved and ( app.user.type == "LittleBoss" or app.user.type == "Boss" )  %}
-							<form action="{{ path('project_update', { 'id': project.id }) }}" method="post">
-
-								<div id="mypopup" class="popup">
+								<form action="{{ path('project_update', { 'id': project.id }) }}" method="post">
+								<div  class="popup" id="{{ project.id }}">
 									<div class="popup-content">
-										<span class="close" onclick="btnHidePopup(this)">&times;</span>
+										<span class="close" onclick="btnHidePopup({{ project.id }})">&times;</span>
 										<p>Сигурни ли сте, че искате да отхвърлите заявката?</p>
                                         <p>Напишете причина.</p>
 										<textarea id="comment_reject"></textarea>
 										<div id="name-error" class="error"></div>
 										<div style="height: 40px; margin-top: 20px;">
 											<div class="col-md-2">
-											<button type="button" id="button_cancel_popup" onclick="btnHidePopup(this)">Не</button><div class="reject_icon"></div>
+											<button type="button" id="button_cancel_popup" onclick="btnHidePopup({{ project.id }})">Не</button><div class="reject_icon"></div>
 											</div>
-											<div class="col-md-2">
-											<input type="submit" id="reject" name="reject" value="Да"><div class="approve_icon"></div>    
-											</div>
+												<div class="col-md-2">
+												<input type="submit" readonly="readonly" id="reject" name="reject" value="Да"><div class="approve_icon"></div>    
+												</div>
 										</div>
 									</div>
 								</div>
-                            </form>
+                                </form>
                     {% endif %}	
+
 					</td>
 
                 </tr>
