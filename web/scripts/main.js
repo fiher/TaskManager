@@ -1,3 +1,4 @@
+/* click for more text in description */
 $(document).ready(function() {
 	var showChar = 330;
 	var ellipsestext = "...";
@@ -17,7 +18,6 @@ $(document).ready(function() {
 		}
 
 	});
-
 	$(".morelink").click(function(){
 		if($(this).hasClass("less")) {
 			$(this).removeClass("less");
@@ -32,7 +32,7 @@ $(document).ready(function() {
 	});
 });
 
-
+/* display image in full width */
 $(document).ready(function() {
 	$(".fancybox").fancybox({
 		prevEffect	: 'fade',
@@ -42,22 +42,34 @@ $(document).ready(function() {
 	});
 });	
 
+
 /* popup for button reject */
+<<<<<<< HEAD
 								
 function btnShowPopup(id) {
 	$('#rejectPopup'+id);
 	$(this).css("display", "block");
+=======
+function btnShowPopup(id) {
+	var popup = document.getElementById(id);
+	$(popup).css("display", "block");
+>>>>>>> e2822f9025c65c52fc12a735ed76fd625c8b79a0
 }
-/*
-function btnHidePopup() {
-	$('#mypopup').css("display", "none");
+function btnHidePopup(id) {
+	var popup = document.getElementById(id);
+	$(popup).css("display", "none");
 }
 window.onclick = function(event) {
 if (event.target == popup) {
-	$('#mypopup').css("display", "none");
+	$(popup).css("display", "none");
     }
 }
 
+
+function btnUploadImages(id) {
+	var UploadImages = document.getElementById(id);
+	$(UploadImages).css("display", "block");
+}
 
 /*
 
