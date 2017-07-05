@@ -44,16 +44,9 @@ $(document).ready(function() {
 
 
 /* popup for button reject */
-<<<<<<< HEAD
-								
-function btnShowPopup(id) {
-	$('#rejectPopup'+id);
-	$(this).css("display", "block");
-=======
 function btnShowPopup(id) {
 	var popup = document.getElementById(id);
 	$(popup).css("display", "block");
->>>>>>> e2822f9025c65c52fc12a735ed76fd625c8b79a0
 }
 function btnHidePopup(id) {
 	var popup = document.getElementById(id);

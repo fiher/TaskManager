@@ -89,6 +89,7 @@ td, th, tr{
 	font-size: 22px;
     word-break: break-word;
     table-layout: fixed;
+    white-space: pre-wrap;
 }
 .overflow{
 	overflow-y: scroll; 
@@ -882,6 +883,7 @@ select{
 	width: 28%;
     word-break: break-word;
     table-layout: fixed;
+    white-space: pre-wrap;
 }
 .type{
 	width: 11%;

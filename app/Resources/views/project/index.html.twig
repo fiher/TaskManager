@@ -100,15 +100,13 @@
 									<div class="col-md-2">
 										<input type="submit" readonly="readonly" id="working" name="working" value="Работи се"/><div class="working_icon"></div>
 									</div>	
-									<!--
 									<div class="col-md-2" id="imageUpload">
 										<span>Прикачи файл</span>
 										<input type="file" readonly="readonly" id="imageUpload" name="image_upload" onclick="btnUploadImages({{ project.id }})"/><div class="upload_icon"></div>
 									</div>	
 									<div class="col-md-2" id="approveImages">
-										<input id="approve {{ project.id }}" readonly="readonly" type="submit" value="Запази"><div class="save_new_query_icon"></div>
+										<input id="{{ project.id }}" readonly="readonly" type="submit" value="Запази"><div class="save_new_query_icon"></div>
 									</div>
-									-->
 							    </form>	
 					            {% endif %}
 
