@@ -9,6 +9,7 @@ use AppBundle\Entity\Project;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\DateTime;
 
@@ -156,13 +157,13 @@ class ProjectController extends Controller
                 $managerFiles = $managerFiles = $request->files->get('appbundle_project')['managerFiles'];
 
                     $projectService->createProject($project, $user);
+                    if($managerFiles){
                     $filesService = $this->get('app.service.files_service');
-                    foreach ($managerFiles as $managerFile) {
-                        $fileName = $filesService->uploadFileAndReturnName($managerFile,$this->getParameter('files_directory'));
-                        $filesService->createFile($fileName, $project, $user);
-
+                        foreach ($managerFiles as $managerFile) {
+                            $fileName = $filesService->uploadFileAndReturnName($managerFile,$this->getParameter('files_directory'));
+                            $filesService->createFile($fileName, $project, $user);
+                        }
                     }
-
             return $this->redirectToRoute('project_show', array('id' => $project->getId()));
         }
 
@@ -435,12 +436,20 @@ class ProjectController extends Controller
      */
     public function uploadImage(Request $request, Project $project){
         //this function returns "" if the user is allowed and if not returns $this->render
-        dump($request);
-        $forbidden = $this->checkCredentials(array("Manager","LittleBoss","Boss"));
+        $forbidden = $this->checkCredentials(array("Designer"));
         if($forbidden){
             return $forbidden;
         }
-        return "";
+        $user = $this->getUser();
+        $files = $request->request->get('image_upload');
+        $filesService = $this->get('app.service.files_service');
+        foreach ($files as $file) {
+            $file = new UploadedFile("C:\\xampp\\tmp",$file);
+            $fileName = $filesService->uploadFileAndReturnName($file,$this->getParameter('files_directory'));
+            $filesService->createFile($fileName, $project, $user);
+        }
+
+        return $this->redirectToRoute('project_index');
     }
 
 }
