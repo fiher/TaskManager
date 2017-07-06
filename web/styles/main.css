@@ -584,8 +584,8 @@ input#archive{
 	cursor:pointer;
 	opacity:0.8;
 }
-#approveImages{
-	display:none;
+.approveImages{
+
 }
 #forApproval, #working{
 	background-color: #84cc06 ;
