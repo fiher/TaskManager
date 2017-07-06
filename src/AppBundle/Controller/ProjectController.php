@@ -125,8 +125,10 @@ class ProjectController extends Controller
                 ->findByProjectID($project->getId());
             $project->setComments($commentsService->filterComments($comments,$user));
         }
+        $addFilesForm = $this->createForm('AppBundle\Form\AddFilesType');
         return $this->render('project/index.html.twig', array(
             'projects' => $filteredProjects,
+            'addFilesForm'=> $addFilesForm
         ));
     }
 
@@ -440,6 +442,7 @@ class ProjectController extends Controller
         if($forbidden){
             return $forbidden;
         }
+        dump($request);
         $user = $this->getUser();
         $files = $request->request->get('image_upload');
         $filesService = $this->get('app.service.files_service');

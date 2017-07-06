@@ -101,7 +101,7 @@
 										<input type="submit" readonly="readonly" id="working" name="working" value="Работи се"/><div class="working_icon"></div>
 									</div>		
 							    </form>	
-							    <form action="{{ path('image_upload', { 'id': project.id }) }}" method="post" name="form" id="project7">								
+							    <form action="{{ path('image_upload', { 'id': project.id }) }}" method="post" name="form">
 									<div class="col-md-2" id="imageUpload">
 										<span>Прикачи файл</span>
 										<input type="file" readonly="readonly" id="imageUpload" name="image_upload[]" onchange="form.submit()" multiple/><div class="upload_icon"></div>
