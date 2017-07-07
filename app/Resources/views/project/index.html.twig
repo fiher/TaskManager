@@ -100,7 +100,6 @@
                                     {{ form_start(form, {'action':path('image_upload', { 'id': project.id }),'attr': {'id': project.id}, 'method': 'POST'}) }}
 									{{ form_widget(form.files, {'attr' : {'onChange': 'submitForm(' ~ project.id ~ ')'}}) }}
                                     {{ form_end(form) }}
-
 					            {% endif %}
 
 					{% endif %}						

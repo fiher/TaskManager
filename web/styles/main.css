@@ -546,7 +546,7 @@ input#archive{
 	cursor:pointer;
 	opacity:0.8;
 }
-#imageUpload{
+label[for=appbundle_file_files]{
     background-color: #9caee7;
     border-bottom: 2px solid #8195d3;
 	border-top:0;
@@ -554,10 +554,14 @@ input#archive{
 	border-right:0;
     border-radius: 0;
     color: #f4f4f4;
-    padding: 10px 10px 10px 40px;
+    padding: 10px 0 10px 0;
+    width: 150px;
     text-align: center;
 	cursor:pointer;
 	opacity:0.8;
+}
+form[name=appbundle_file] {
+    float: left;
 }
 #button_details{
     background-color: #bd5cf5;
@@ -981,12 +985,12 @@ select{
 	width: 100%;
     padding:10px;	
 }
-input#imageUpload {
-	height: 25px;
-    margin-top: -25px;
-    width: 180px;
-    margin-left: -40px;
-    opacity: 0;
+input#appbundle_file_files {
+    height: 39px;
+    margin-top: 0;
+    width: 250px;
+    margin-left: 10px;
+    opacity: 1;
     outline: none;
     cursor: pointer;
 }

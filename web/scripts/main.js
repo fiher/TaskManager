@@ -84,96 +84,23 @@ window.onload = HideTerm;
 
 
 
+/* scroll for commnets always bottom */
 
 var height = 0;
-$('div p').each(function(i, value){
+$('.overflow').each(function(i, value){
     height += parseInt($(this).height());
 });
-
 height += '';
-
-$('div').animate({scrollTop: height});
-
-
-/*
-$(function() {
-   $("#appbundle_project_managerFiles").change(function() {
-     $("form").submit();
-   });
- });
-*/
-
-
-/*
-$(document).ready( function() {
-    $('#project7').change(function() {
-        // to get the selected value
-        var selected = $(this).val()
-
-        // do your magic pony stuff
-    });
-});
+$('.overflow').animate({scrollTop: height});
 
 
 
-var form = document.getElementById(id);
-var input = document.getElementById('imageUpload');
-
-input.addEventListener('change', function(){
-    form.submit();
-});
-
-
-
-
-function btnUploadImages(id) {
-	var UploadImages = document.getElementById(id);
-	$(UploadImages).css("display", "block");
+/* submit form after choose images */
+function submitForm(id) {
+   var uploadimg = document.getElementById(id);
+	$(uploadimg).submit();
 }
 
-
-
-function validate() {
-    var errorNode = this.parentNode.querySelector( ".error" ),
-        span = document.createElement( "span" )
-    
-    this.classList.remove( "invalid" );
-    if ( errorNode ) {
-        errorNode.parentNode.removeChild( errorNode );
-    }
-
-    if ( !this.validity.valid ) {
-        this.classList.add( "invalid" );
-        this.parentNode.appendChild( span );
-        span.classList.add( "error" );
-        span.innerHTML = this.getAttribute(
-        this.validity.valueMissing ? "data-required-message" : "data-type-message" );
-    }
-};
-
-var form = document.querySelector( "form" ),
-    inputs = form.querySelectorAll( "textarea" );
-
-for ( var i = 0; i < inputs.length; i++ ) {
-    inputs[ i ].addEventListener( "blur", validate );
-    inputs[ i ].addEventListener( "invalid", validate );
-};
-
-// Turn off the bubbles
-form.addEventListener( "invalid", function( event ) {
-    event.preventDefault();
-}, true );
-
-// Support: Safari, iOS Safari, default Android browser
-document.querySelector( "form" ).addEventListener( "submit", function( event ) {
-    if ( this.checkValidity() ) {
-        alert( "Successful submission" );
-    } else {
-        event.preventDefault();
-    }
-});
-
-*/
 
 
 
