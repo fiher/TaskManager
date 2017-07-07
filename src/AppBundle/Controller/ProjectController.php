@@ -128,7 +128,7 @@ class ProjectController extends Controller
         $addFilesForm = $this->createForm('AppBundle\Form\AddFilesType');
         return $this->render('project/index.html.twig', array(
             'projects' => $filteredProjects,
-            'add_files_form'=> $addFilesForm->createView()
+            'add_files_form'=> $addFilesForm
         ));
     }
 

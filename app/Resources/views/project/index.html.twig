@@ -96,8 +96,9 @@
                                 {% endif %}		
 							    </form>	
 								{% if app.user.type == "Designer" %}
-                                    {{ form_start(add_files_form, {'action':path('image_upload', { 'id': project.id }),'attr': {'id': project.id}, 'method': 'POST'}) }}
-                                    {{ form_end(add_files_form) }}
+									{% set form = add_files_form.createView %}
+                                    {{ form_start(form, {'action':path('image_upload', { 'id': project.id }),'attr': {'id': project.id}, 'method': 'POST'}) }}
+                                    {{ form_end(form) }}
 							    <!--<form action="" method="post" name="form">
 									<div class="col-md-2" id="imageUpload">
 										<span>Прикачи файл</span>
