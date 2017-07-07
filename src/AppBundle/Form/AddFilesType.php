@@ -23,7 +23,7 @@ class AddFilesType  extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->
-        add("managerFiles",FileType::class,array(
+        add("files",FileType::class,array(
             'label'=>'Прикачи файл',
             'multiple'=> true,
             'mapped'=> false,

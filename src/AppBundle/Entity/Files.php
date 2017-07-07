@@ -41,10 +41,16 @@ class Files
     /**
      * @var string
      *
-     * @ORM\Column(name="filePath", type="text")
+     * @ORM\Column(name="file_path", type="text")
      */
     private $filePath;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="file_extension", type="text")
+     */
+    private $fileExtension;
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Project", inversedBy="files")
      * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
@@ -150,5 +156,24 @@ class Files
     {
         $this->rejected = $rejected;
     }
+
+    /**
+     * @return string
+     */
+    public function getFileExtension(): string
+    {
+        return $this->fileExtension;
+    }
+
+    /**
+     * @param string $fileExtension
+     */
+    public function setFileExtension(string $fileExtension)
+    {
+        $this->fileExtension = $fileExtension;
+    }
+
+
+
 }
 

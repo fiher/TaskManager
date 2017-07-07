@@ -40,13 +40,14 @@ class FilesService
             $fileName);
         return $fileName;
     }
-    public function createFile($fileName,$project,User $user){
+    public function createFile($fileName,$project,User $user,$fileExtension){
         $file = new Files();
         $file->setRejected(false);
         $file->setFilePath($this->targetDirectory."/".$fileName);
         $file->setFromUser($user->getType());
         $file->setProject($project);
         $file->setDate(new \DateTime());
+        $file->setFileExtension($fileExtension);
         $this->entityManager->persist($file);
         $this->entityManager->flush();
     }

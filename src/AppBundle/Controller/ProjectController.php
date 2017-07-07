@@ -128,7 +128,7 @@ class ProjectController extends Controller
         $addFilesForm = $this->createForm('AppBundle\Form\AddFilesType');
         return $this->render('project/index.html.twig', array(
             'projects' => $filteredProjects,
-            'addFilesForm'=> $addFilesForm
+            'add_files_form'=> $addFilesForm->createView()
         ));
     }
 
@@ -162,8 +162,9 @@ class ProjectController extends Controller
                     if($managerFiles){
                     $filesService = $this->get('app.service.files_service');
                         foreach ($managerFiles as $managerFile) {
+                            /** @var UploadedFile  $managerFile */
                             $fileName = $filesService->uploadFileAndReturnName($managerFile,$this->getParameter('files_directory'));
-                            $filesService->createFile($fileName, $project, $user);
+                            $filesService->createFile($fileName, $project, $user,$managerFile->guessExtension());
                         }
                     }
             return $this->redirectToRoute('project_show', array('id' => $project->getId()));
@@ -253,6 +254,7 @@ class ProjectController extends Controller
         $deleteForm = $this->createDeleteForm($project);
         $project->setHold(false);
         $editForm = $this->createForm('AppBundle\Form\ProjectType', $project);
+        $editForm->remove('managerFiles');
         if($userType != "LittleBoss"){
             $editForm->remove('designer');
             $editForm->remove("executioner");
