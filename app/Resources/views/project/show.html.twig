@@ -23,7 +23,7 @@
             </tr>
             <tr>
                 <th>Краен Срок</th>
-                <td>{% if project.term %}{{ project.term|date('d-m-Y H:i:s') }}{% endif %}</td>
+                <td>{% if project.term and project.withoutTerm %}Без срок{% else %}{{ project.term|date('d-m H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Създаден на</th>
@@ -74,10 +74,15 @@
                 <th>Приключилa </th>
                 <td>{% if project.isOver %}Да{% else %}Не{% endif %}</td>
             </tr>
-            <tr>
-                <th>Линк</th>
-                <td style="cursor:pointer" onclick="window.open('{{ project.ManagerLink }}')">{{ project.ManagerLink }}</td>
-            </tr>
+			{% if project.ManagerLink == "  " %}
+	            <tr>		
+			    </tr>
+				{% else %}
+	            <tr>
+				    <th>Линк</th>
+                    <td style="cursor:pointer" onclick="window.open('{{ project.ManagerLink }}')">{{ project.ManagerLink }}</td>			
+			    </tr>				
+            {% endif %}
             {% if project.isOver %}
             <tr>
                 <th>Дата на приключване </th>
@@ -86,15 +91,18 @@
             {% endif %}
             </tbody>
         </table>
-
 		<h1>Прикачени файлове</h1>
 		<div class="row" style="background: #f0d9d9;">
 		{% for file in managerFiles %}
-		<div class="col-md-4">
-		    <a class="fancybox" rel="gallery" href="{{ file.filePath }}">
-			    <img src="{{ file.filePath }}" class="projectImages"/>
-			</a>
-		</div>
+		{% if file == "" %}
+		{% else %}
+			<div class="col-md-4" id="showImg">
+		        <a class="fancybox" rel="gallery" href="{{ file.filePath }}">
+			        <img src="{{ file.filePath }}" class="projectImages"/>
+			    </a>
+		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали файл<div class="downloadImg_icon"></div></a>
+		    </div>
+		{% endif %}
 		{% endfor %}
 		</div>
 		{% if project.isOver and (app.user.type == "LittleBoss" or app.user.type == "Boss" ) %}

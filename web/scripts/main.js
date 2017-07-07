@@ -52,11 +52,78 @@ function btnHidePopup(id) {
 	var popup = document.getElementById(id);
 	$(popup).css("display", "none");
 }
-window.onclick = function(event) {
-if (event.target == popup) {
-	$(popup).css("display", "none");
+/*
+window.onclick = function btnHidePopup() {
+    if (event.target == popup) {
+	    $(popup).css("display", "none");
     }
 }
+*/
+
+/* checkbox hide and show termdate */
+function HideTerm(){
+	var check = document.getElementById('appbundle_project_term');
+	var isCheck = document.getElementById('appbundle_project_withoutTerm');
+		if(isCheck.checked) {
+		check.style.display = 'none';
+	    }else{
+		check.style.display = 'inline-block';
+	    }
+    $( isCheck ).click (function() {
+	var check = document.getElementById('appbundle_project_term');
+	var isCheck = document.getElementById('appbundle_project_withoutTerm');
+	    if(isCheck.checked) {
+		check.style.display = 'none';
+	    }else{
+		check.style.display = 'inline-block';
+	   }
+    });
+}
+window.onload = HideTerm;
+
+
+
+
+
+var height = 0;
+$('div p').each(function(i, value){
+    height += parseInt($(this).height());
+});
+
+height += '';
+
+$('div').animate({scrollTop: height});
+
+
+/*
+$(function() {
+   $("#appbundle_project_managerFiles").change(function() {
+     $("form").submit();
+   });
+ });
+*/
+
+
+/*
+$(document).ready( function() {
+    $('#project7').change(function() {
+        // to get the selected value
+        var selected = $(this).val()
+
+        // do your magic pony stuff
+    });
+});
+
+
+
+var form = document.getElementById(id);
+var input = document.getElementById('imageUpload');
+
+input.addEventListener('change', function(){
+    form.submit();
+});
+
+
 
 
 function btnUploadImages(id) {
@@ -64,7 +131,7 @@ function btnUploadImages(id) {
 	$(UploadImages).css("display", "block");
 }
 
-/*
+
 
 function validate() {
     var errorNode = this.parentNode.querySelector( ".error" ),

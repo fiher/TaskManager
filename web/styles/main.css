@@ -629,7 +629,7 @@ input#button_delete:hover, #reject:hover, input#archive:hover, #button_edit:hove
     width:70%;
 }
 
-#appbundle_project_urgent, #appbundle_project_noTerm{
+#appbundle_project_urgent, #appbundle_project_withoutTerm{
     width: 30px;
     height: 30px;
 }
@@ -660,8 +660,7 @@ select{
     border-radius: 3px;
 }
 
-
- .delete_icon a, .approve_icon a, .reject_icon a, .archive_icon a, .back_icon a, .edit_icon a, .comment_icon a, .save_new_query_icon a, .login_icon a, .hold_icon a, .forApproval_icon a, .details_icon a, .working_icon a, .upload_icon a{
+ .delete_icon a, .approve_icon a, .reject_icon a, .archive_icon a, .back_icon a, .edit_icon a, .comment_icon a, .save_new_query_icon a, .login_icon a, .hold_icon a, .forApproval_icon a, .details_icon a, .working_icon a, .upload_icon a, .downloadImg_icon a{
     line-height: 2.5;
     -webkit-transition: .3s ease;
     transition: .3s ease; 		
@@ -834,6 +833,22 @@ select{
     top: 10px;
     left: 28px;
 }
+.downloadImg_icon:before{
+	content: "\f063";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    color: #6dc831;
+    font-size: 20px;
+    position: relative;
+    top: 42px;
+    left: 0;	
+}
+.downloadLink{
+    color: #6dc831;
+    margin-left:10px;	
+}
 .success p{
 	width:100%;
     text-align: center;
@@ -892,6 +907,7 @@ select{
 }
 .date{
    width:6%;
+   font-size:17px;
 }
 .department{
 	width:6%;
@@ -973,4 +989,7 @@ input#imageUpload {
     opacity: 0;
     outline: none;
     cursor: pointer;
+}
+#showImg{
+	height:100%;
 }
