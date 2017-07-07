@@ -98,13 +98,9 @@
 								{% if app.user.type == "Designer" %}
 									{% set form = add_files_form.createView %}
                                     {{ form_start(form, {'action':path('image_upload', { 'id': project.id }),'attr': {'id': project.id}, 'method': 'POST'}) }}
+									{{ form_widget(form.files, {'attr' : {'onChange': 'submitForm(' ~ project.id ~ ')'}}) }}
                                     {{ form_end(form) }}
-							    <!--<form action="" method="post" name="form">
-									<div class="col-md-2" id="imageUpload">
-										<span>Прикачи файл</span>
-										<input type="file" readonly="readonly" id="imageUpload" name="image_upload[]" onchange="form.submit()" multiple/><div class="upload_icon"></div>
-									</div>
-							    </form>!-->
+
 					            {% endif %}
 
 					{% endif %}						

@@ -451,7 +451,7 @@ class ProjectController extends Controller
         foreach ($files as $file) {
             $file = new UploadedFile("C:\\xampp\\tmp",$file);
             $fileName = $filesService->uploadFileAndReturnName($file,$this->getParameter('files_directory'));
-            $filesService->createFile($fileName, $project, $user);
+            $filesService->createFile($fileName, $project, $user,$file->guessExtension());
         }
 
         return $this->redirectToRoute('project_index');
