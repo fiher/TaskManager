@@ -224,6 +224,7 @@ class ProjectController extends Controller
         if ($user->getType() != "LittleBoss") {
             $form->remove("toUser");
         }
+        dump($project->getDesignerFiles());
         return $this->render('project/show.html.twig', array(
             'project' => $project,
             'delete_form' => $deleteForm->createView(),
@@ -452,7 +453,7 @@ class ProjectController extends Controller
             /** @var UploadedFile $file */
             dump($file);
             $fileName = $filesService->uploadFileAndReturnName($file,$this->getParameter('files_directory'));
-            $filesService->createFile($fileName, $project, $user,"pesho");
+            $filesService->createFile($fileName, $project, $user,$file->guessExtension());
         }
 
         return $this->redirectToRoute('project_index');
