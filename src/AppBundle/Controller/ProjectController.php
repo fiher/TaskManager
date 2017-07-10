@@ -164,7 +164,7 @@ class ProjectController extends Controller
                         foreach ($managerFiles as $managerFile) {
                             /** @var UploadedFile  $managerFile */
                             $fileName = $filesService->uploadFileAndReturnName($managerFile,$this->getParameter('files_directory'));
-                            $filesService->createFile($fileName, $project, $user,$managerFile->guessExtension());
+                            $filesService->createFile($fileName, $project, $user,$managerFile->getExtension());
                         }
                     }
             return $this->redirectToRoute('project_show', array('id' => $project->getId()));
@@ -453,7 +453,7 @@ class ProjectController extends Controller
             /** @var UploadedFile $file */
             dump($file);
             $fileName = $filesService->uploadFileAndReturnName($file,$this->getParameter('files_directory'));
-            $filesService->createFile($fileName, $project, $user,$file->guessExtension());
+            $filesService->createFile($fileName, $project, $user,$file->getExtension());
         }
 
         return $this->redirectToRoute('project_index');
