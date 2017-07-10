@@ -47,7 +47,7 @@ class FilesService
         $file->setFromUser($user->getType());
         $file->setProject($project);
         $file->setDate(new \DateTime());
-        $file->setFileExtension($fileExtension);
+        $file->setFileExtension(explode('.',$fileName)[1]);
         $this->entityManager->persist($file);
         $this->entityManager->flush();
     }
