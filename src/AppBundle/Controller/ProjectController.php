@@ -446,12 +446,13 @@ class ProjectController extends Controller
         }
         dump($request);
         $user = $this->getUser();
-        $files = $request->request->get('image_upload');
+        $files = $managerFiles = $request->files->get('appbundle_file')['files'];
         $filesService = $this->get('app.service.files_service');
         foreach ($files as $file) {
-            $file = new UploadedFile("C:\\xampp\\tmp",$file);
+            /** @var UploadedFile $file */
+            dump($file);
             $fileName = $filesService->uploadFileAndReturnName($file,$this->getParameter('files_directory'));
-            $filesService->createFile($fileName, $project, $user,$file->guessExtension());
+            $filesService->createFile($fileName, $project, $user,"pesho");
         }
 
         return $this->redirectToRoute('project_index');
