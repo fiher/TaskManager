@@ -88,20 +88,23 @@
 
 								{% elseif app.user.type == "LittleBoss" or app.user.type == "Boss" %}
 								<div class="col-md-2">
-									<input type="submit" readonly="readonly" id="hold" name="hold" value="На изчакване"><div class="hold_icon"></div>
+									<input type="submit" readonly="readonly" id="hold" name="hold" value="На изчакване" onclick="return check()"><div class="hold_icon"></div>
 								</div>
 								<div class="col-md-2" >
 									<input type="submit" readonly="readonly" id="forApproval" name="forApproval" value="За одобрение"/><div class="forApproval_icon"></div>
 								</div>
                                 {% endif %}		
 							    </form>	
-								{% if app.user.type == "Designer" %}
+								{% if project.isOver %}
+								{% elseif app.user.type == "Designer" or app.user.username == "metro.reklama" %}
+								<div class="col-md-2">
 									{% set form = add_files_form.createView %}
+									<input value="Прикачи файл" id="button_upload">
                                     {{ form_start(form, {'action':path('image_upload', { 'id': project.id }),'attr': {'id': project.id}, 'method': 'POST'}) }}
 									{{ form_widget(form.files, {'attr' : {'onChange': 'submitForm(' ~ project.id ~ ')'}}) }}
                                     {{ form_end(form) }}
-					            {% endif %}
-
+					            </div>
+								{% endif %}
 					{% endif %}						
                              <div>
 								<div class="col-md-2">

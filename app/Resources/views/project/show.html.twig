@@ -91,16 +91,13 @@
             {% endif %}
             </tbody>
         </table>
-		{% if app.user.type == "LittleBoss" or app.user.type == "Boss" %}
-		<h1>Прикачени файлове от Жени</h1>
-		{% elseif  app.user.type == "Manager" %}
-		<h1>Прикачени файлове от управител</h1>
-		{% else %}
-		<h1>Прикачени файлове от дизайнер</h1>
-		{% endif %}
-		<div class="row" style="background: #f0d9d9;">
+		<div class="row" style="background: #dde5ee;border-bottom: 2px solid #9ba2b6;">
+		<div class="col-md-5">
+			 <h1 class="h1files">Прикачени файлове от управител</h1>
+		</div>
+		<div class="col-md-6">
 		{% for file in managerFiles %}
-		{% if file.fileExtension == "png" or file.fileExtension == "jpg" or file.fileExtension == "jpeg" %}
+		{% if  file.fileExtension == "png" or file.fileExtension == "jpg" or file.fileExtension == "jpeg"  %}
 			<div class="col-md-4" id="showImg">
 		        <a class="fancybox" rel="gallery" href="{{ file.filePath }}">
 			        <img src="{{ file.filePath }}" class="projectImages"/>
@@ -117,6 +114,31 @@
 		{% endif %}
 		{% endfor %}
 		</div>
+		</div>
+		<div class="row" style="background: #dde5ee;border-bottom: 2px solid #9ba2b6;">
+		<div class="col-md-5">
+			 <h1 class="h1files">Прикачени файлове от дизайнер</h1>
+		</div>
+		<div class="col-md-6">
+		{% for file in designerFiles %}
+		{% if  file.fileExtension == "png" or file.fileExtension == "jpg" or file.fileExtension == "jpeg"  %}
+			<div class="col-md-4" id="showImg">
+		        <a class="fancybox" rel="gallery" href="{{ file.filePath }}">
+			        <img src="{{ file.filePath }}" class="projectImages"/>
+			    </a>
+		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали файл<div class="downloadImg_icon"></div></a>
+		    </div>
+		{% else %}
+			<div class="col-md-4" id="showImg">
+		        <a rel="gallery" href="{{ file.filePath }}" target="_blank">
+			        <img src="{{ asset("images/pdf.png") }}" class="projectImages"/>
+			    </a>
+		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали файл<div class="downloadImg_icon"></div></a>
+		    </div>
+		{% endif %}
+		{% endfor %}
+	    </div>
+		</div>
 		{% if project.isOver and (app.user.type == "LittleBoss" or app.user.type == "Boss" ) %}
 			<div class="row" style="background: #f0d9d9;">
 				<div class="query_buttons">
@@ -130,22 +152,22 @@
 		    {% else %}		
 		    <div class="row" style="background: #dcf0d9;">
                 <form action="{{ path('project_fast_update', { 'id': project.id }) }}" method="post" style="margin-top: 10px; margin-left: 0px; margin-right: 0px;">
-					{% if project.forApproval or project.isApproved and ( app.user.type == "LittleBoss" or app.user.type == "Boss" )  %}
+					{% if ( project.forApproval or project.isApproved ) and ( app.user.type == "LittleBoss" or app.user.type == "Boss" )  %}
                     <div class="col-md-2">
                         <input type="submit" readonly="readonly" id="approve" name="approve" value="Одобрявам"><div class="approve_icon"></div>
                     </div>
-                    <div class="col-md-2">
-                        <input type="submit" readonly="readonly" id="reject" name="reject" value="Отхвърлям"><div class="reject_icon"></div>
-                    </div>
-					{% else %}
-                    <div class="col-md-2">
-                        <input type="submit" readonly="readonly" id="hold" name="hold" value="На изчакване"><div class="hold_icon"></div>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="submit" readonly="readonly" id="forApproval" name="forApproval" value="За одобрение"/><div class="forApproval_icon"></div>
-                    </div>
-					{% endif %}
-					{% if project.isApproved %}
+					<div class="col-md-2">
+						<input id="rejectPopup" readonly="readonly" name="rejectPopup" value="Отхвърлям" onclick="btnShowPopup({{ project.id }})"><div class="reject_icon"></div>
+					</div>
+					{% elseif app.user.type == "LittleBoss" or app.user.type == "Boss" %}
+					<div class="col-md-2">
+						<input type="submit" readonly="readonly" id="hold" name="hold" value="На изчакване"><div class="hold_icon"></div>
+					</div>
+					<div class="col-md-2" >
+						<input type="submit" readonly="readonly" id="forApproval" name="forApproval" value="За одобрение"/><div class="forApproval_icon"></div>
+					</div>
+                    {% endif %}		
+					{% if project.isApproved and app.user.type == "LittleBoss" %}
 					<div class="col-md-3">
 						<input type="submit" readonly="readonly" id="archive" name="archive" value="Архивирай"><div class="archive_icon"></div>
 					</div>
@@ -166,7 +188,30 @@
 				{% endif %}
             </div>
         </div>
-
+				    {% if project.isOver %}					
+					{% elseif project.forApproval or project.isApproved and ( app.user.type == "LittleBoss" or app.user.type == "Boss" )  %}
+								<form action="{{ path('project_update', { 'id': project.id }) }}" method="post">
+								<div  class="popup" id="{{ project.id }}">
+									<div class="popup-content">
+										<span class="close" onclick="btnHidePopup({{ project.id }})">&times;</span>
+										<p>Сигурни ли сте, че искате да отхвърлите заявката?</p>
+                                        <p>Напишете причина.</p>
+										<textarea id="rejectComment" name="rejectComment" required="required"></textarea>
+										<div id="name-error" class="error"></div>
+										<div style="height: 40px; margin-top: 20px;">
+											<div class="col-md-2">
+											<button type="button" id="button_cancel_popup" onclick="btnHidePopup({{ project.id }})">Не</button><div class="reject_icon"></div>
+											</div>
+												<div class="col-md-2">
+												<input type="submit" readonly="readonly" id="reject" name="reject" value="Да"><div class="approve_icon"></div>    
+												</div>
+										</div>
+									</div>
+								</div>
+                                </form>
+                    {% endif %}	
+		
+		
 		{% if comments == false %}
 		<h1>Няма коментари</h1>
 		{% else %}

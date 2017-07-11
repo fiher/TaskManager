@@ -24,6 +24,11 @@ Default index page
 	display: block; 
 	font-size: 35px; 
 }
+.h1files{
+	text-align: left;
+	padding:0;
+	font-size: 20px; 
+}
 /*
 Default index page
 */	
@@ -532,7 +537,7 @@ input#archive{
 	width: 100%;
 	opacity:0.8;
 }
-#button_edit, #button_create, #button_cancel_popup{
+#button_edit, #button_create, #button_cancel_popup, #button_upload{
     background-color: #9caee7;
     border-bottom: 2px solid #8195d3;
 	border-top:0;
@@ -664,7 +669,7 @@ select{
     border-radius: 3px;
 }
 
- .delete_icon a, .approve_icon a, .reject_icon a, .archive_icon a, .back_icon a, .edit_icon a, .comment_icon a, .save_new_query_icon a, .login_icon a, .hold_icon a, .forApproval_icon a, .details_icon a, .working_icon a, .upload_icon a, .downloadImg_icon a{
+ .delete_icon a, .approve_icon a, .reject_icon a, .archive_icon a, .back_icon a, .edit_icon a, .comment_icon a, .save_new_query_icon a, .login_icon a, .hold_icon a, .forApproval_icon a, .details_icon a, .working_icon a, .upload_icon a{
     line-height: 2.5;
     -webkit-transition: .3s ease;
     transition: .3s ease; 		
@@ -837,6 +842,10 @@ select{
     top: 10px;
     left: 28px;
 }
+.downloadImg_icon{
+    position: relative;
+    float: left;
+}
 .downloadImg_icon:before{
 	content: "\f063";
     font-family: FontAwesome;
@@ -845,13 +854,13 @@ select{
     text-decoration: inherit;
     color: #6dc831;
     font-size: 20px;
-    position: relative;
-    top: 42px;
-    left: 0;	
+    margin-right: 5px;
 }
-.downloadLink{
+.downloadLink, .downloadLink:hover{
     color: #6dc831;
-    margin-left:10px;	
+    margin-left: 30px;
+    text-decoration: none;
+    float: left;
 }
 .success p{
 	width:100%;
@@ -987,13 +996,12 @@ select{
 }
 input#appbundle_file_files {
     height: 39px;
-    margin-top: 0;
-    width: 250px;
-    margin-left: 10px;
-    opacity: 1;
+    margin-top: -35px;
+    width: 150px;
+    opacity: 0;
     outline: none;
     cursor: pointer;
 }
 #showImg{
-	height:100%;
+	height:250px;
 }
