@@ -45,11 +45,11 @@ $(document).ready(function() {
 
 /* popup for button reject */
 function btnShowPopup(id) {
-	var popup = document.getElementById(id);
+	var popup = document.getElementById('popup'+id);
 	$(popup).css("display", "block");
 }
 function btnHidePopup(id) {
-	var popup = document.getElementById(id);
+	var popup = document.getElementById('popup'+id);
 	$(popup).css("display", "none");
 }
 /*
@@ -59,6 +59,17 @@ window.onclick = function btnHidePopup() {
     }
 }
 */
+
+/* popup for insert link */
+function btnShowLink(id) {
+	var link = document.getElementById('link'+id);
+	$(link).css("display", "block");
+}
+function btnHideLink(id) {
+	var link = document.getElementById('link'+id);
+	$(link).css("display", "none");
+}
+
 
 /* checkbox hide and show termdate */
 function HideTerm(){
@@ -102,5 +113,28 @@ function submitForm(id) {
 }
 
 
+
+
+
+
+/* ajax request */
+/*
+$(function () {
+        $('form').on('submit', function (e) {
+          e.preventDefault();
+
+          $.ajax({
+            type: 'post',
+            url: '/project/16/update',
+            data: $('form'),
+            success: function () {
+              alert('form was submitted');
+            }
+          });
+
+        });
+});
+
+*/
 
 

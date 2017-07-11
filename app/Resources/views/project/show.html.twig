@@ -137,7 +137,7 @@
 		    </div>
 		{% endif %}
 		{% endfor %}
-	    </div>
+		</div>
 		</div>
 		{% if project.isOver and (app.user.type == "LittleBoss" or app.user.type == "Boss" ) %}
 			<div class="row" style="background: #f0d9d9;">
@@ -190,7 +190,7 @@
         </div>
 				    {% if project.isOver %}					
 					{% elseif project.forApproval or project.isApproved and ( app.user.type == "LittleBoss" or app.user.type == "Boss" )  %}
-								<form action="{{ path('project_update', { 'id': project.id }) }}" method="post">
+								<form action="{{ path('project_fast_update', { 'id': project.id }) }}" method="post">
 								<div  class="popup" id="{{ project.id }}">
 									<div class="popup-content">
 										<span class="close" onclick="btnHidePopup({{ project.id }})">&times;</span>
