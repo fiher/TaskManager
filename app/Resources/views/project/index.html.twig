@@ -126,9 +126,8 @@
 								</div>
                             </div>
 							{% endif %}
-
-				    {% if project.isOver %}					
-					{% elseif project.forApproval or project.isApproved and ( app.user.type == "LittleBoss" or app.user.type == "Boss" or app.user.type == "Designer")  %}
+				
+					{% if app.user.type == "LittleBoss" or app.user.type == "Boss" or app.user.type == "Designer" %}
 								<form action="{{ path('project_update', { 'id': project.id }) }}" method="post">
 								<div  class="popup" id="popup{{ project.id }}">
 									<div class="popup-content">
