@@ -395,17 +395,17 @@ class ProjectController extends Controller
                 }
             }
         }elseif(isset($_POST['link'])){
-            dump($request);
+            $project->setDesignerLink($_POST['link']);
         }
         $em = $this->getDoctrine()->getManager();
         $em->persist($project);
         $em->flush();
         $requestURL = explode("/",$request->getUri())[5];
         if($requestURL== "update") {
-            return $this->redirectToRoute("project_index");
+            return '';//$this->redirectToRoute("project_index");
         }else{
-            return $this->redirectToRoute("project_show", array('id' => $project->getId()
-            ));
+            return '';//$this->redirectToRoute("project_show", array('id' => $project->getId()
+            //));
         }
     }
 

@@ -4,7 +4,6 @@
     <list default="true" id="056da0cf-db80-498e-bebe-f46eea1f8975" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/AddFilesType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/AddFilesType.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,16 +18,14 @@
       <file leaf-file-name="ProjectController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="421">
-              <caret line="407" column="12" lean-forward="false" selection-start-line="407" selection-start-column="12" selection-end-line="407" selection-end-column="12" />
+            <state relative-caret-position="303">
+              <caret line="407" column="14" lean-forward="false" selection-start-line="407" selection-start-column="14" selection-end-line="407" selection-end-column="14" />
               <folding>
                 <element signature="e#40#64#0#PHP" expanded="true" />
                 <element signature="e#1411#1430#1#PHP" expanded="true" />
                 <element signature="e#3073#3092#1#PHP" expanded="true" />
                 <element signature="e#4410#4429#1#PHP" expanded="true" />
                 <element signature="e#15223#15242#1#PHP" expanded="true" />
-                <element signature="e#15928#15943#1#PHP" expanded="true" />
-                <element signature="e#16003#16017#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -49,7 +46,38 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-1191">
               <caret line="141" column="28" lean-forward="false" selection-start-line="141" selection-start-column="24" selection-end-line="141" selection-end-column="28" />
-              <folding />
+              <folding>
+                <marker date="1499860400916" expanded="true" signature="32:10301" ph="{% block body ...%}" />
+                <marker date="1499860400916" expanded="true" signature="5403:7384" ph="{% if project.isOver and (app.user.type == &quot;LittleBoss&quot; or app.user.type == &quot;Boss&quot; ) ...%}" />
+                <marker date="1499860400916" expanded="true" signature="7163:7301" ph="..." />
+                <marker date="1499860400916" expanded="false" signature="7418:7438" ph="..." />
+                <marker date="1499860400916" expanded="true" signature="7439:8100" ph="..." />
+                <marker date="1499860400916" expanded="true" signature="7479:8085" ph="..." />
+                <marker date="1499860400916" expanded="true" signature="7518:7719" ph="..." />
+                <marker date="1499860400916" expanded="false" signature="7646:7659" ph="project/" />
+                <marker date="1499860400916" expanded="true" signature="7737:8067" ph="{% if app.user.type == &quot;LittleBoss&quot; or app.user.type == &quot;Boss&quot;  ...%}" />
+                <marker date="1499860400916" expanded="true" signature="7841:8050" ph="..." />
+                <marker date="1499860400916" expanded="false" signature="7956:7968" ph="project/{id}/edit" />
+                <marker date="1499860400916" expanded="true" signature="8110:9359" ph="{% if project.isOver ...%}" />
+                <marker date="1499860400916" expanded="false" signature="8296:8315" ph="project/{id}/fastupdate" />
+                <marker date="1499860400916" expanded="true" signature="8357:9326" ph="..." />
+                <marker date="1499860400916" expanded="true" signature="8408:9286" ph="..." />
+                <marker date="1499860400916" expanded="true" signature="8445:9271" ph="..." />
+                <marker date="1499860400916" expanded="false" signature="8518:8525" ph="×" />
+                <marker date="1499860400916" expanded="false" signature="8831:8862" ph="..." />
+                <marker date="1499860400916" expanded="true" signature="8863:9255" ph="..." />
+                <marker date="1499860400916" expanded="true" signature="8897:9057" ph="..." />
+                <marker date="1499860400916" expanded="true" signature="9092:9238" ph="..." />
+                <marker date="1499860400916" expanded="true" signature="9369:9469" ph="{% if comments == false ...%}" />
+                <marker date="1499860400916" expanded="true" signature="9494:10274" ph="..." />
+                <marker date="1499860400916" expanded="true" signature="9544:10156" ph="..." />
+                <marker date="1499860400916" expanded="true" signature="9562:10147" ph="{% for comment in comments ...%}" />
+                <marker date="1499860400916" expanded="true" signature="9644:10118" ph="..." />
+                <marker date="1499860400916" expanded="true" signature="9686:9876" ph="..." />
+                <marker date="1499860400916" expanded="true" signature="9918:10091" ph="..." />
+                <marker date="1499860400916" expanded="true" signature="9971:10060" ph="..." />
+                <marker date="1499860400916" expanded="false" signature="10196:10218" ph="comments/new" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -80,12 +108,16 @@
             <state relative-caret-position="1020">
               <caret line="80" column="114" lean-forward="false" selection-start-line="80" selection-start-column="113" selection-end-line="80" selection-end-column="114" />
               <folding>
-                <marker date="1499859052486" expanded="false" signature="6271:6285" ph="project/{id}/update" />
-                <marker date="1499859052486" expanded="false" signature="6493:6500" ph="×" />
-                <marker date="1499859052486" expanded="false" signature="6806:6837" ph="..." />
-                <marker date="1499859052486" expanded="false" signature="7335:7349" ph="project/{id}/update" />
-                <marker date="1499859052486" expanded="false" signature="7553:7560" ph="×" />
-                <marker date="1499859052486" expanded="false" signature="7743:7774" ph="..." />
+                <marker date="1499860400911" expanded="true" signature="31:8485" ph="{% block body ...%}" />
+                <marker date="1499860400911" expanded="true" signature="327:8469" ph="{% if projects ...%}" />
+                <marker date="1499860400911" expanded="true" signature="810:8354" ph="{% for project in projects ...%}" />
+                <marker date="1499860400911" expanded="true" signature="6143:8293" ph="{% if app.user.type == &quot;LittleBoss&quot; or app.user.type == &quot;Boss&quot; or app.user.type == &quot;Designer&quot; ...%}" />
+                <marker date="1499860400911" expanded="false" signature="6271:6285" ph="project/{id}/update" />
+                <marker date="1499860400911" expanded="false" signature="6493:6500" ph="×" />
+                <marker date="1499860400911" expanded="false" signature="6806:6837" ph="..." />
+                <marker date="1499860400911" expanded="false" signature="7335:7349" ph="project/{id}/update" />
+                <marker date="1499860400911" expanded="false" signature="7553:7560" ph="×" />
+                <marker date="1499860400911" expanded="false" signature="7743:7774" ph="..." />
               </folding>
             </state>
           </provider>
@@ -636,16 +668,15 @@
       <workItem from="1499146375863" duration="39975000" />
       <workItem from="1499664396575" duration="9030000" />
       <workItem from="1499751865055" duration="2655000" />
-      <workItem from="1499839412288" duration="2578000" />
+      <workItem from="1499839412288" duration="2964000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="380349000" />
+    <option name="totallyTimeSpent" value="380735000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38990334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -654,7 +685,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2434881" sideWeight="0.48066595" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2434881" sideWeight="0.48066595" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1049,12 +1080,16 @@
         <state relative-caret-position="1020">
           <caret line="80" column="114" lean-forward="false" selection-start-line="80" selection-start-column="113" selection-end-line="80" selection-end-column="114" />
           <folding>
-            <marker date="1499859052486" expanded="false" signature="6271:6285" ph="project/{id}/update" />
-            <marker date="1499859052486" expanded="false" signature="6493:6500" ph="×" />
-            <marker date="1499859052486" expanded="false" signature="6806:6837" ph="..." />
-            <marker date="1499859052486" expanded="false" signature="7335:7349" ph="project/{id}/update" />
-            <marker date="1499859052486" expanded="false" signature="7553:7560" ph="×" />
-            <marker date="1499859052486" expanded="false" signature="7743:7774" ph="..." />
+            <marker date="1499860400911" expanded="true" signature="31:8485" ph="{% block body ...%}" />
+            <marker date="1499860400911" expanded="true" signature="327:8469" ph="{% if projects ...%}" />
+            <marker date="1499860400911" expanded="true" signature="810:8354" ph="{% for project in projects ...%}" />
+            <marker date="1499860400911" expanded="true" signature="6143:8293" ph="{% if app.user.type == &quot;LittleBoss&quot; or app.user.type == &quot;Boss&quot; or app.user.type == &quot;Designer&quot; ...%}" />
+            <marker date="1499860400911" expanded="false" signature="6271:6285" ph="project/{id}/update" />
+            <marker date="1499860400911" expanded="false" signature="6493:6500" ph="×" />
+            <marker date="1499860400911" expanded="false" signature="6806:6837" ph="..." />
+            <marker date="1499860400911" expanded="false" signature="7335:7349" ph="project/{id}/update" />
+            <marker date="1499860400911" expanded="false" signature="7553:7560" ph="×" />
+            <marker date="1499860400911" expanded="false" signature="7743:7774" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1063,22 +1098,51 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1191">
           <caret line="141" column="28" lean-forward="false" selection-start-line="141" selection-start-column="24" selection-end-line="141" selection-end-column="28" />
-          <folding />
+          <folding>
+            <marker date="1499860400916" expanded="true" signature="32:10301" ph="{% block body ...%}" />
+            <marker date="1499860400916" expanded="true" signature="5403:7384" ph="{% if project.isOver and (app.user.type == &quot;LittleBoss&quot; or app.user.type == &quot;Boss&quot; ) ...%}" />
+            <marker date="1499860400916" expanded="true" signature="7163:7301" ph="..." />
+            <marker date="1499860400916" expanded="false" signature="7418:7438" ph="..." />
+            <marker date="1499860400916" expanded="true" signature="7439:8100" ph="..." />
+            <marker date="1499860400916" expanded="true" signature="7479:8085" ph="..." />
+            <marker date="1499860400916" expanded="true" signature="7518:7719" ph="..." />
+            <marker date="1499860400916" expanded="false" signature="7646:7659" ph="project/" />
+            <marker date="1499860400916" expanded="true" signature="7737:8067" ph="{% if app.user.type == &quot;LittleBoss&quot; or app.user.type == &quot;Boss&quot;  ...%}" />
+            <marker date="1499860400916" expanded="true" signature="7841:8050" ph="..." />
+            <marker date="1499860400916" expanded="false" signature="7956:7968" ph="project/{id}/edit" />
+            <marker date="1499860400916" expanded="true" signature="8110:9359" ph="{% if project.isOver ...%}" />
+            <marker date="1499860400916" expanded="false" signature="8296:8315" ph="project/{id}/fastupdate" />
+            <marker date="1499860400916" expanded="true" signature="8357:9326" ph="..." />
+            <marker date="1499860400916" expanded="true" signature="8408:9286" ph="..." />
+            <marker date="1499860400916" expanded="true" signature="8445:9271" ph="..." />
+            <marker date="1499860400916" expanded="false" signature="8518:8525" ph="×" />
+            <marker date="1499860400916" expanded="false" signature="8831:8862" ph="..." />
+            <marker date="1499860400916" expanded="true" signature="8863:9255" ph="..." />
+            <marker date="1499860400916" expanded="true" signature="8897:9057" ph="..." />
+            <marker date="1499860400916" expanded="true" signature="9092:9238" ph="..." />
+            <marker date="1499860400916" expanded="true" signature="9369:9469" ph="{% if comments == false ...%}" />
+            <marker date="1499860400916" expanded="true" signature="9494:10274" ph="..." />
+            <marker date="1499860400916" expanded="true" signature="9544:10156" ph="..." />
+            <marker date="1499860400916" expanded="true" signature="9562:10147" ph="{% for comment in comments ...%}" />
+            <marker date="1499860400916" expanded="true" signature="9644:10118" ph="..." />
+            <marker date="1499860400916" expanded="true" signature="9686:9876" ph="..." />
+            <marker date="1499860400916" expanded="true" signature="9918:10091" ph="..." />
+            <marker date="1499860400916" expanded="true" signature="9971:10060" ph="..." />
+            <marker date="1499860400916" expanded="false" signature="10196:10218" ph="comments/new" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="407" column="12" lean-forward="false" selection-start-line="407" selection-start-column="12" selection-end-line="407" selection-end-column="12" />
+        <state relative-caret-position="303">
+          <caret line="407" column="14" lean-forward="false" selection-start-line="407" selection-start-column="14" selection-end-line="407" selection-end-column="14" />
           <folding>
             <element signature="e#40#64#0#PHP" expanded="true" />
             <element signature="e#1411#1430#1#PHP" expanded="true" />
             <element signature="e#3073#3092#1#PHP" expanded="true" />
             <element signature="e#4410#4429#1#PHP" expanded="true" />
             <element signature="e#15223#15242#1#PHP" expanded="true" />
-            <element signature="e#15928#15943#1#PHP" expanded="true" />
-            <element signature="e#16003#16017#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
