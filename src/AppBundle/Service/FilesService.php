@@ -43,7 +43,7 @@ class FilesService
     public function createFile($fileName,$project,User $user,$fileExtension){
         $file = new Files();
         $file->setRejected(false);
-        $file->setFilePath(str_replace('/home/winb0maq/','http://',$this->targetDirectory."/".$fileName));
+        $file->setFilePath(str_replace('/home/winb0maq/','http://',"http://img.winbet-bg.com/files/".$fileName));
         $file->setFromUser($user->getType());
         $file->setProject($project);
         $file->setDate(new \DateTime());

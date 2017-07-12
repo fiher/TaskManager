@@ -224,7 +224,6 @@ class ProjectController extends Controller
         if ($user->getType() != "LittleBoss") {
             $form->remove("toUser");
         }
-        dump($project->getDesignerFiles());
         return $this->render('project/show.html.twig', array(
             'project' => $project,
             'delete_form' => $deleteForm->createView(),
@@ -441,17 +440,17 @@ class ProjectController extends Controller
      */
     public function uploadImage(Request $request, Project $project){
         //this function returns "" if the user is allowed and if not returns $this->render
-        $forbidden = $this->checkCredentials(array("Designer"));
+        $forbidden = $this->checkCredentials(array("Designer","LittleBoss","Manager","Executioner"));
         if($forbidden){
             return $forbidden;
         }
-        dump($request);
+
         $user = $this->getUser();
         $files = $managerFiles = $request->files->get('appbundle_file')['files'];
         $filesService = $this->get('app.service.files_service');
         foreach ($files as $file) {
             /** @var UploadedFile $file */
-            dump($file);
+
             $fileName = $filesService->uploadFileAndReturnName($file,$this->getParameter('files_directory'));
             $filesService->createFile($fileName, $project, $user,$file->getExtension());
         }
