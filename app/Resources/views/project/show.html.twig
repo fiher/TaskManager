@@ -74,13 +74,22 @@
                 <th>Приключилa </th>
                 <td>{% if project.isOver %}Да{% else %}Не{% endif %}</td>
             </tr>
-			{% if project.ManagerLink == "  " %}
+			{% if project.ManagerLink == false %}
 	            <tr>		
 			    </tr>
 				{% else %}
 	            <tr>
 				    <th>Линк</th>
                     <td style="cursor:pointer" onclick="window.open('{{ project.ManagerLink }}')">{{ project.ManagerLink }}</td>			
+			    </tr>	
+		    {% endif %}
+			{% if project.DesignerLink == false %}
+	            <tr>		
+			    </tr>
+				{% else %}
+	            <tr>
+				    <th>Линк от дизайнер</th>
+                    <td style="cursor:pointer" onclick="window.open('{{ project.DesignerLink }}')">{{ project.DesignerLink }}</td>			
 			    </tr>				
             {% endif %}
             {% if project.isOver %}
