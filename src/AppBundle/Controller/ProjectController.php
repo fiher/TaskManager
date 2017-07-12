@@ -333,7 +333,6 @@ class ProjectController extends Controller
      * @Method("POST")
      */
     public function updateAction(Request $request, Project $project){
-        dump($request);
         //this function returns "" if the user is allowed and if not returns $this->render
         $forbidden = $this->checkCredentials(array("LittleBoss","Boss","Designer"));
         if($forbidden){
@@ -402,10 +401,10 @@ class ProjectController extends Controller
         $em->flush();
         $requestURL = explode("/",$request->getUri())[5];
         if($requestURL== "update") {
-            return '';//$this->redirectToRoute("project_index");
+            return $this->redirectToRoute("project_index");
         }else{
-            return '';//$this->redirectToRoute("project_show", array('id' => $project->getId()
-            //));
+            return $this->redirectToRoute("project_show", array('id' => $project->getId()
+            ));
         }
     }
 
