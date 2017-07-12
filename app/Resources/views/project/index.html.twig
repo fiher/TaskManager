@@ -73,9 +73,7 @@
 			    <tr id="actions">
 				    <td colspan = "9" id="buttons" style="padding: 10px 0px 0px 0px;">
 				    {% if project.isOver and (app.user.type == "LittleBoss" or app.user.type == "Boss" ) %}
-						<div class="col-md-2">
-							<input id="button_delete" readonly="readonly" type="submit" value="Изтрий"><div class="delete_icon"></div>
-						</div>
+
 					    {% else %}
 							<form action="{{ path('project_update', { 'id': project.id }) }}" method="post">
 					            {% if ( project.forApproval or project.isApproved ) and ( app.user.type == "LittleBoss" or app.user.type == "Boss" ) %}
@@ -95,8 +93,9 @@
 
                                 {% endif %}		
 							    </form>	
-								{% if project.isOver %}
-								{% elseif app.user.type == "Designer" or app.user.username == "metro.reklama" %}
+
+								
+								{% if app.user.type == "Designer" or app.user.type == "LittleBoss" or ( app.user.type == "Executioner" and app.user.username == "metro.reklama" ) %}
 								<div class="col-md-2">
 									{% set form = add_files_form.createView %}
 									<input value="Прикачи файл" id="button_upload"><div class="upload_icon"></div>
@@ -104,16 +103,20 @@
 									{{ form_widget(form.files, {'attr' : {'onChange': 'submitForm(' ~ project.id ~ ')'}}) }}
                                     {{ form_end(form) }}
 					            </div>
-								<div class="col-md-2">
-									<input id="inserLink" readonly="readonly" name="inserLink" value="Линк" onclick="btnShowLink({{ project.id }})"><div class="link_icon"></div>
-								</div>
+								{% endif %}
+								{% if app.user.type == "Designer" %}
+							    <form action="{{ path('project_update', { 'id': project.id }) }}" method="post">
+									<div class="col-md-2">
+										<input id="inserLink" readonly="readonly" name="inserLink" value="Линк" onclick="btnShowLink({{ project.id }})"><div class="link_icon"></div>
+									</div>
+								</form>
 								{% endif %}
 					{% endif %}						
                              <div>
-												<form action="{{ path('project_update', { 'id': project.id }) }}" method="post">
-								<div class="col-md-2">
-									<input id="button_details" readonly="readonly" value="Детайли" onclick="location.href='{{ path('project_show', { 'id': project.id }) }}'"/><div class="details_icon"></div>
-								</div>
+								<form action="{{ path('project_update', { 'id': project.id }) }}" method="post">
+									<div class="col-md-2">
+										<input id="button_details" readonly="readonly" value="Детайли" onclick="location.href='{{ path('project_show', { 'id': project.id }) }}'"/><div class="details_icon"></div>
+									</div>
 								</form>
                             {% if project.isOver %}
 
