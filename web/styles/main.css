@@ -582,7 +582,7 @@ form[name=appbundle_file] {
 	cursor:pointer;
 	opacity:0.8;
 }
-#approve, #inserLink{
+#approve, #inserLink, #approveLink{
     background-color: #18bc9c;
     border-bottom: 2px solid #3a9b88;
     border-radius: 0;
