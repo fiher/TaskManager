@@ -167,7 +167,7 @@
 						<input type="submit" readonly="readonly" id="forApproval" name="forApproval" value="За одобрение"/><div class="forApproval_icon"></div>
 					</div>
                     {% endif %}		
-					{% if project.isApproved and app.user.type == "LittleBoss" %}
+					{% if ( project.isApproved or project.isRejected ) and app.user.type == "LittleBoss" %}
 					<div class="col-md-3">
 						<input type="submit" readonly="readonly" id="archive" name="archive" value="Архивирай"><div class="archive_icon"></div>
 					</div>
