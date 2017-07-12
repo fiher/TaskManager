@@ -57,7 +57,7 @@ class ProjectController extends Controller
             }
 
         }
-        $filteredProjects = array_reverse($filteredProjects);
+        usort($filteredProjects, array($this, "sortProjects"));
         return $this->render('project/index.html.twig', array(
             'projects' => $filteredProjects,
         ));
@@ -163,8 +163,10 @@ class ProjectController extends Controller
                     $filesService = $this->get('app.service.files_service');
                         foreach ($managerFiles as $managerFile) {
                             /** @var UploadedFile  $managerFile */
-                            $fileName = $filesService->uploadFileAndReturnName($managerFile,$this->getParameter('files_directory'));
-                            $filesService->createFile($fileName, $project, $user,$managerFile->getExtension());
+                            if($managerFile) {
+                                $fileName = $filesService->uploadFileAndReturnName($managerFile, $this->getParameter('files_directory'));
+                                $filesService->createFile($fileName, $project, $user, $managerFile->getExtension());
+                            }
                         }
                     }
             return $this->redirectToRoute('project_show', array('id' => $project->getId()));
@@ -331,9 +333,9 @@ class ProjectController extends Controller
      * @Method("POST")
      */
     public function updateAction(Request $request, Project $project){
-
+        dump($request);
         //this function returns "" if the user is allowed and if not returns $this->render
-        $forbidden = $this->checkCredentials(array("LittleBoss","Boss"));
+        $forbidden = $this->checkCredentials(array("LittleBoss","Boss","Designer"));
         if($forbidden){
             return $forbidden;
         }
@@ -392,6 +394,8 @@ class ProjectController extends Controller
 
                 }
             }
+        }elseif(isset($_POST['link'])){
+            dump($request);
         }
         $em = $this->getDoctrine()->getManager();
         $em->persist($project);
@@ -456,6 +460,12 @@ class ProjectController extends Controller
         }
 
         return $this->redirectToRoute('project_index');
+    }
+    public function sortProjects(Project $a,Project $b)
+    {
+        $projectAOver = strtotime($a->getOverDate()->format("Y-m-d"));
+        $projectBOver = strtotime($b->getOverDate()->format("Y-m-d"));
+        return $projectBOver - $projectAOver;
     }
 
 }

@@ -27,7 +27,7 @@ class AddFilesType  extends AbstractType
             'label'=>'Прикачи файл',
             'multiple'=> true,
             'mapped'=> false,
-            "required"=>false
+            "required"=>false,
         ));
     }
 
