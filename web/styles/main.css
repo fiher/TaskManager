@@ -483,7 +483,7 @@ nav a:active, nav a:hover{
 }
 
 .content{
-    width:70%;
+    width:80%;
     margin-right: auto;
     margin-left: auto;
 }
@@ -643,8 +643,8 @@ input#button_delete:hover, #reject:hover, input#archive:hover, #button_edit:hove
     height: 30px;
 }
 #comments{
-	background-color:#9ba2b6;
-    margin: 10px 0px 50px 0px;
+	background-color:#c7cad4;
+    padding: 5px 0px 5px 0px;
 }
 
 .text-field{
@@ -890,26 +890,34 @@ select{
 .LittleBoss{
 	background:#a3df00;
     color:#000;
-    text-shadow:none;	
+    text-shadow:none;
+    border-bottom: 1px solid #000;	
 }
 .LittleBoss.vali{
 	background:#a3df00;	
+    border-bottom: 1px solid #000;
 }
 .LittleBoss.deleva{
 	background:#00dfa3;
+    border-bottom: 1px solid #000;
 }
 .Manager{
 	background:#7b74ff;
     color:#fff;
 	text-shadow: rgba(0,0,0,0.8) 1px 1px 1px;
+    border-bottom: 1px solid #000;
 }
 .Designer{
 	background:#ffea00;
     color:#000;
     text-shadow:none;	
+	border-bottom: 1px solid #000;
 }
 .Executioner{
 	background:#069147;
+    color:#fff;
+	text-shadow: rgba(0,0,0,0.8) 1px 1px 1px;
+	border-bottom: 1px solid #000;
 }
 .morecontent span {
     display: none;

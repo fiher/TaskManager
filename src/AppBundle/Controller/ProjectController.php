@@ -91,8 +91,47 @@ class ProjectController extends Controller
                 ->findByProjectID($project->getId());
             $project->setComments($commentsService->filterComments($comments,$user));
         }
+        $addFilesForm = $this->createForm('AppBundle\Form\AddFilesType');
         return $this->render('project/index.html.twig', array(
             'projects' => $filteredProjects,
+            'add_files_form'=> $addFilesForm
+        ));
+    }	
+    /**
+     * This function shows only Executioner projects. Seen only from LittleBoss
+     *
+     * @Route("/executioner", name="project_executioner")
+     * @Method("GET")
+     */
+    public function showExecutionerOnlyProjects(){
+        //this function returns "" if the user is allowed and if not returns $this->render
+    
+        //this function returns "" if the user is allowed and if not returns $this->render
+        $forbidden = $this->checkCredentials("all");
+        if($forbidden){
+            return $forbidden;
+        }
+        $commentsService = $this->get('app.service.comments_service');
+        $projectService = $this->get('app.service.projects_service');
+        /** @var User $user */
+        $user = $this->getUser();
+        $userType = $user->getType();
+        $em = $this->getDoctrine()->getManager();
+        $projects = $em->getRepository('AppBundle:Project')->findExecutionerProjects();
+        $projects = array_reverse($projects);
+        $filteredProjects = $projectService->filterProjects($projects,$user,$userType,"LittleBoss");
+        foreach ($filteredProjects as $project){
+
+            /** @var Project $project */
+            $comments = $this->getDoctrine()
+                ->getRepository('AppBundle:Comments')
+                ->findByProjectID($project->getId());
+            $project->setComments($commentsService->filterComments($comments,$user));
+        }
+        $addFilesForm = $this->createForm('AppBundle\Form\AddFilesType');
+        return $this->render('project/index.html.twig', array(
+            'projects' => $filteredProjects,
+            'add_files_form'=> $addFilesForm
         ));
     }
     /**
@@ -466,5 +505,5 @@ class ProjectController extends Controller
         $projectBOver = strtotime($b->getOverDate()->format("Y-m-d"));
         return $projectBOver - $projectAOver;
     }
-
+	
 }

@@ -17,4 +17,11 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         getResult();
 
     }
+    public function findExecutionerProjects(){
+        return $this->createQueryBuilder('project')->
+        where("project.executioner != 'null'")->
+        getQuery()->
+        getResult();
+
+    }
 }

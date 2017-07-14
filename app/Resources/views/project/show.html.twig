@@ -169,13 +169,15 @@
 						<input id="rejectPopup" readonly="readonly" name="rejectPopup" value="Отхвърлям" onclick="btnShowPopup({{ project.id }})"><div class="reject_icon"></div>
 					</div>
 					{% elseif app.user.type == "LittleBoss" or app.user.type == "Boss" %}
-					<div class="col-md-2">
-						<input type="submit" readonly="readonly" id="hold" name="hold" value="На изчакване"><div class="hold_icon"></div>
-					</div>
 					<div class="col-md-2" >
 						<input type="submit" readonly="readonly" id="forApproval" name="forApproval" value="За одобрение"/><div class="forApproval_icon"></div>
 					</div>
-                    {% endif %}		
+                    {% endif %}
+					{% if app.user.type == "LittleBoss" %}					
+					<div class="col-md-2">
+						<input type="submit" readonly="readonly" id="hold" name="hold" value="На изчакване"><div class="hold_icon"></div>
+					</div>
+					{% endif %}
 					{% if ( project.isApproved or project.isRejected ) and app.user.type == "LittleBoss" %}
 					<div class="col-md-3">
 						<input type="submit" readonly="readonly" id="archive" name="archive" value="Архивирай"><div class="archive_icon"></div>
@@ -187,7 +189,7 @@
 
         <div class="row" style="background: #dde5ee;">
             <div class="query_buttons">
-                <div class="col-md-4">
+                <div class="col-md-8">
                     <input id="button_edit" readonly="readonly" value="Обратно към заявките" onclick="location.href='{{ path('project_index') }}'"/><div class="back_icon"></div>
                 </div>
                 {% if app.user.type == "LittleBoss" or app.user.type == "Boss"  %}
@@ -222,26 +224,88 @@
 		
 		
 		{% if comments == false %}
-		<h1>Няма коментари</h1>
+		    <h1>Няма коментари</h1>
 		{% else %}
-		<h1>Коментари</h1>
-		{% endif %}
-        <div class="row">
-            <div class="container" id="comments">
-                {% for comment in comments %}
-                    <div class="{{ comment.class }}">
-                        <div class="row">
-                            <span class="pull-left">{{ comment.madeBy }}</span>
-                            <span class="pull-right">{{ comment.date }}</span>
-                        </div>
-                        <div class="row">
-                            <div class="text-field">
-                                {{ comment.content }}
-                            </div>
-                        </div>
-                    </div>
-               {% endfor %}
+			<h1>Коментари</h1>
+			<div class="row" id="comments">
+			{% if app.user.type == "LittleBoss" %}
+				<div class="col-md-7">
+				<p style="color:#000;">Дизайнери</p>
+					{% for comment in comments %}
+					{% if (comment.creatorRole == "LittleBoss" and comment.toUser == "Designer") or (comment.creatorRole == "Designer" and comment.toUser == "") %}
+						<div class="{{ comment.class }}">
+							<div class="row">
+								<span class="pull-left">{{ comment.madeBy }}</span>
+								<span class="pull-right">{{ comment.date }}</span>
+							</div>
+							<div class="row">
+								<div class="text-field">
+									{{ comment.content }}
+								</div>
+							</div>
+						</div>
+					{% else %}
+					{% endif %}
+					{% endfor %}		
+				</div>
+				<div class="col-md-7" >
+				<p style="color:#000;">Управители</p>
+					{% for comment in comments %}			   
+					{% if (comment.creatorRole == "LittleBoss" and comment.toUser == "Manager") or (comment.creatorRole == "Manager" and comment.toUser == "")  %}
+						<div class="{{ comment.class }}">
+							<div class="row">
+								<span class="pull-left">{{ comment.madeBy }}</span>
+								<span class="pull-right">{{ comment.date }}</span>
+							</div>
+							<div class="row">
+								<div class="text-field">
+									{{ comment.content }}
+								</div>
+							</div>
+						</div>
+				   {% else %}
+				   {% endif %}
+				   {% endfor %}
+				</div>
+				<div class="col-md-7" >
+				<p style="color:#000;">Подизпълнители</p>
+					{% for comment in comments %}			   
+					{% if (comment.creatorRole == "LittleBoss" and comment.toUser == "Executioner") or (comment.creatorRole == "Executioner" and comment.toUser == "")  %}
+						<div class="{{ comment.class }}">
+							<div class="row">
+								<span class="pull-left">{{ comment.madeBy }}</span>
+								<span class="pull-right">{{ comment.date }}</span>
+							</div>
+							<div class="row">
+								<div class="text-field">
+									{{ comment.content }}
+								</div>
+							</div>
+						</div>
+				   {% else %}
+				   {% endif %}
+				   {% endfor %}
+				</div>
+			{% else %}
+				<div class="col-md-12">
+					{% for comment in comments %}			
+						<div class="{{ comment.class }}">
+							<div class="row">
+								<span class="pull-left">{{ comment.madeBy }}</span>
+								<span class="pull-right">{{ comment.date }}</span>
+							</div>
+							<div class="row">
+								<div class="text-field">
+									{{ comment.content }}
+								</div>
+							</div>
+						</div>					
+				   {% endfor %}
+				</div>			   
+			{% endif %}
 			</div>
+		{% endif %}
+		<div class="row">
 		<h1>Нов коментар</h1>
 		{% include 'comments/new.html.twig' with {form:form,projectID:project.id} %}
         </div>

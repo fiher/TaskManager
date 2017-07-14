@@ -84,14 +84,15 @@
 									<input id="rejectPopup" readonly="readonly" name="rejectPopup" value="Отхвърлям" onclick="btnShowPopup({{ project.id }})"><div class="reject_icon"></div>
 								</div>
 								{% elseif app.user.type == "LittleBoss" or app.user.type == "Boss" %}
-								<div class="col-md-2">
-									<input type="submit" readonly="readonly" id="hold" name="hold" value="На изчакване" onclick="return check()"><div class="hold_icon"></div>
-								</div>
 								<div class="col-md-2" >
 									<input type="submit" readonly="readonly" id="forApproval" name="forApproval" value="За одобрение"/><div class="forApproval_icon"></div>
 								</div>
-
-                                {% endif %}		
+                                {% endif %}
+								{% if app.user.type == "LittleBoss" %}
+								<div class="col-md-2">
+									<input type="submit" readonly="readonly" id="hold" name="hold" value="На изчакване" onclick="return check()"><div class="hold_icon"></div>
+								</div>
+                                {% endif %}								
 							    </form>	
 
 								
