@@ -219,12 +219,9 @@ class Project
      * @ORM\Column(name="urgent", type="boolean", nullable=true)
      */
     private $urgent;
-    /**
-     * @var string
-     *
-     */
-    private $managerFiles;
 
+    private $managerFiles;
+    private $littleBossFiles;
     /**
      * @var string
      *
@@ -372,7 +369,7 @@ class Project
 
         foreach ($this->files as $file){
             /** @var Files $file */
-            if($file->getFromUser() == 'Manager' || $file->getFromUser() == "LittleBoss"){
+            if($file->getFromUser() == 'Manager'){
                 $this->managerFiles[] = $file;
             }
         }
@@ -439,6 +436,28 @@ class Project
     public function setDesignerFiles($designerFiles)
     {
         $this->designerFiles = $designerFiles;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLittleBossFiles()
+    {
+        foreach ($this->files as $file){
+            /** @var Files $file */
+            if($file->getFromUser() == 'LittleBoss'){
+                $this->designerFiles[] = $file;
+            }
+        }
+        return $this->littleBossFiles;
+    }
+
+    /**
+     * @param mixed $littleBossFiles
+     */
+    public function setLittleBossFiles($littleBossFiles)
+    {
+        $this->littleBossFiles = $littleBossFiles;
     }
 
 

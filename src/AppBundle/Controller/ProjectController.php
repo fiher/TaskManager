@@ -274,7 +274,8 @@ class ProjectController extends Controller
             'errorMessage' => $errorMessage,
             'successMessage' => $successMessage,
             'designerFiles' => $project->getDesignerFiles(),
-            'managerFiles' => $project->getManagerFiles()
+            'managerFiles' => $project->getManagerFiles(),
+            'littleBossFiles' => $project->getLittleBossFiles()
         ));
     }
     /**
