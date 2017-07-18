@@ -50,9 +50,9 @@ class ProjectController extends Controller
             $project->setStatus("Приключено");
             if($user->getType() == "LittleBoss"){
                 $filteredProjects[] = $project;
-            }elseif($project->getDesigner() == $user->getUsername()
-                || $project->getExecutioner() == $user->getUsername()
-                || $project->getFromUser() == $user->getUsername()){
+            }elseif($project->getDesigner() == $user->getFullName()
+                || $project->getExecutioner() == $user->getFullName()
+                || $project->getFromUser() == $user->getFullName()){
                 $filteredProjects[] = $project;
             }
 
@@ -377,6 +377,8 @@ class ProjectController extends Controller
         if($forbidden){
             return $forbidden;
         }
+        $successMessage = '';
+        $errorMessage = '';
         /** @var User $user */
         $user = $this->getUser();
         if (isset($_POST['approve'])) {
@@ -393,19 +395,19 @@ class ProjectController extends Controller
             $comment->setToUser("Designer");
             $commentsService = $this->get('app.service.comments_service');
             $commentsService->newComment($comment,$user,new \DateTime());
-            $successMessage = "Успешно отхвърлихте заявката!";
             $project->setRejected(true);
             $project->setApproved(false);
             $project->setForApproval(false);
             $project->setHold(false);
+            $successMessage = 'Успешно отхвърлихте заявката!';
         } elseif (isset($_POST['archive'])) {
             if ($project->isApproved()) {
-                $successMessage = "Успешно архивирахте заявката!";
                 $project->setIsOver(true);
                 $project->setOverDate(new \DateTime());
                 $project->setForApproval(true);
                 $project->setHold(false);
                 $project->setRejected(false);
+                $successMessage = "Успешно архивирахте заявката!";
             } else {
                 $errorMessage = "Не можете да архивирате заявка, която не е одобрена!";
             }
@@ -414,12 +416,14 @@ class ProjectController extends Controller
             $project->setRejected(false);
             $project->setForApproval(false);
             $project->setApproved(false);
+            $successMessage = 'Заявката успешно сложена на изчакване!';
 
         }elseif(isset($_POST['forApproval'])){
             $project->setForApproval(true);
             $project->setRejected(false);
             $project->setHold(false);
             $project->setApproved(false);
+            $successMessage = 'Заявката успешно сложена за одобрение!';
         }elseif(isset($_POST['working'])){
             $em = $this->getDoctrine()->getManager();
             $query = $em->getRepository('AppBundle:Project')->
@@ -440,9 +444,14 @@ class ProjectController extends Controller
         $em->flush();
         $requestURL = explode("/",$request->getUri())[5];
         if($requestURL== "update") {
-            return $this->redirectToRoute("project_index");
+            return $this->redirectToRoute("project_index",array(
+                'successMessage'=>$successMessage,
+                'errorMessage' => $errorMessage));
         }else{
-            return $this->redirectToRoute("project_show", array('id' => $project->getId()
+            return $this->redirectToRoute("project_show", array(
+                'id' => $project->getId(),
+                'successMessage'=>$successMessage,
+                'errorMessage' => $errorMessage
             ));
         }
     }
@@ -486,7 +495,8 @@ class ProjectController extends Controller
         if($forbidden){
             return $forbidden;
         }
-
+        $successMessage = '';
+        $errorMessage = '';
         $user = $this->getUser();
         $files = $managerFiles = $request->files->get('appbundle_file')['files'];
         $filesService = $this->get('app.service.files_service');
@@ -496,8 +506,9 @@ class ProjectController extends Controller
             $fileName = $filesService->uploadFileAndReturnName($file,$this->getParameter('files_directory'));
             $filesService->createFile($fileName, $project, $user,$file->getExtension());
         }
-
-        return $this->redirectToRoute('project_index');
+        $successMessage = 'Файловете успешно качени!';
+        return $this->redirectToRoute('project_index',array('successMessage'=>$successMessage,
+            'errorMessage' => $errorMessage));
     }
     public function sortProjects(Project $a,Project $b)
     {

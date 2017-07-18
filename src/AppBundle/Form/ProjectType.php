@@ -39,9 +39,8 @@ class ProjectType extends AbstractType
             'data'=>$project->getDescription()
             ))->
         add('term',DateType::class, array(
-            'widget' => 'choice',
+            'widget' => 'single_text',
             'label'=>"Краен срок",
-            'data'=>$data
         ))->add('withoutTerm',CheckboxType::class,array(
             'label'=>"Без Срок",
             'required'=> false
