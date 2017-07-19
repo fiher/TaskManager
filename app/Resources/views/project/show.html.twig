@@ -100,6 +100,30 @@
             {% endif %}
             </tbody>
         </table>
+        <div class="row" style="background: #dde5ee;border-bottom: 2px solid #9ba2b6;">
+		<div class="col-md-5">
+			 <h1 class="h1files">Прикачени файлове от ръководител</h1>
+		</div>
+		<div class="col-md-6">
+		{% for file in littleBossFiles %}
+		{% if  file.fileExtension == "png" or file.fileExtension == "jpg" or file.fileExtension == "jpeg"  %}
+			<div class="col-md-4" id="showImg">
+		        <a class="fancybox" rel="gallery" href="{{ file.filePath }}">
+			        <img src="{{ file.filePath }}" class="projectImages"/>
+			    </a>
+		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали файл<div class="downloadImg_icon"></div></a>
+		    </div>
+		{% else %}
+			<div class="col-md-4" id="showImg">
+		        <a rel="gallery" href="{{ file.filePath }}" target="_blank">
+			        <img src="{{ asset("images/pdf.png") }}" class="projectImages"/>
+			    </a>
+		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали файл<div class="downloadImg_icon"></div></a>
+		    </div>
+		{% endif %}
+		{% endfor %}
+		</div>
+		</div>
 		<div class="row" style="background: #dde5ee;border-bottom: 2px solid #9ba2b6;">
 		<div class="col-md-5">
 			 <h1 class="h1files">Прикачени файлове от управител</h1>
@@ -178,6 +202,7 @@
 						<input type="submit" readonly="readonly" id="hold" name="hold" value="На изчакване"><div class="hold_icon"></div>
 					</div>
 					{% endif %}
+
 					{% if ( project.isApproved or project.isRejected ) and app.user.type == "LittleBoss" %}
 					<div class="col-md-3">
 						<input type="submit" readonly="readonly" id="archive" name="archive" value="Архивирай"><div class="archive_icon"></div>
@@ -188,6 +213,12 @@
         {% endif %}
 
         <div class="row" style="background: #dde5ee;">
+								<div class="col-md-2">
+									<input value="Прикачи файл" id="button_upload"><div class="upload_icon"></div>
+                                    {{ form_start(add_files_form, {'action':path('image_upload', { 'id': project.id }),'attr': {'id': project.id}, 'method': 'POST'}) }}
+									{{ form_widget(add_files_form.files, {'attr' : {'onChange': 'submitForm(' ~ project.id ~ ')'}}) }}
+                                    {{ form_end(add_files_form) }}
+					            </div>
             <div class="query_buttons">
                 <div class="col-md-8">
                     <input id="button_edit" readonly="readonly" value="Обратно към заявките" onclick="location.href='{{ path('project_index') }}'"/><div class="back_icon"></div>

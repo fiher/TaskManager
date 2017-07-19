@@ -30,10 +30,11 @@
 					<a href="{{ path('project_designer') }}">Заявки Вали</a>
 					{% endif %}		
                     {% if app.user.type == "LittleBoss" %}
-					<a href="{{ path('project_executioner') }}">Заявки Подизпълнител</a>					
+					<a href="{{ path('project_executioner') }}">Заявки Подизпълнител</a>		
+					{% endif %}			
                     <a href="{{ path('project_archive') }}">Архивирани Заявки</a>
-					{% endif %}
-                    {% if app.user.type == "Manager" or app.user.type == "LittleBoss" or app.user.username == "Скай Строй" %}
+					{% if app.user.username == "a.vali" %}
+                    {% elseif app.user.type == "Manager" or app.user.type == "LittleBoss" or app.user.username == "Скай Строй" %}
                     <a href="{{ path('project_new') }}">Нова заявка</a>
                     {% endif %}
                 {% else %}

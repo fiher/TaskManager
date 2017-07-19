@@ -76,16 +76,24 @@ function HideTerm(){
 	var check = document.getElementById('appbundle_project_term');
 	var isCheck = document.getElementById('appbundle_project_withoutTerm');
 		if(isCheck.checked) {
+        var x = document.getElementById('appbundle_project_term');
+        x.setAttribute("value", "2020-02-09");
 		check.style.display = 'none';
 	    }else{
+        var x = document.getElementById('appbundle_project_term');
+        x.removeAttribute("value", "2020-02-09");
 		check.style.display = 'inline-block';
 	    }
     $( isCheck ).click (function() {
 	var check = document.getElementById('appbundle_project_term');
 	var isCheck = document.getElementById('appbundle_project_withoutTerm');
 	    if(isCheck.checked) {
+        var x = document.getElementById('appbundle_project_term');
+        x.setAttribute("value", "2020-02-09");
 		check.style.display = 'none';
 	    }else{
+        var x = document.getElementById('appbundle_project_term');
+        x.removeAttribute("value", "2020-02-09");
 		check.style.display = 'inline-block';
 	   }
     });
@@ -124,17 +132,26 @@ $(function () {
           e.preventDefault();
 
           $.ajax({
-            type: 'post',
-            url: '/project/16/update',
-            data: $('form'),
+            type: 'POST',
+            url: '/project/38/update',
             success: function () {
               alert('form was submitted');
             }
           });
 
         });
+
 });
 
-*/
 
+
+$('form.ajax').on('submit', function(){
+
+   var that = $(this),
+   url = that.attr('action'),
+   method = that.attr('method'),
+   data = {};
+
+});
+*/
 

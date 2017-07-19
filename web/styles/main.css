@@ -635,7 +635,7 @@ input#button_delete:hover, #reject:hover, input#archive:hover, #button_edit:hove
 }
 #appbundle_project input, #appbundle_project #appbundle_project_term{
 	display: inline-block;
-    width:70%;
+
 }
 
 #appbundle_project_urgent, #appbundle_project_withoutTerm{
@@ -953,7 +953,7 @@ select{
 }
 .border_for_comments{
 	border-bottom:2px solid #000; 
-	padding-bottom: 15px;
+	padding-bottom: 10px;
 }
 .popup {
 	background: rgba(100, 100, 100, 0.6);

@@ -72,7 +72,7 @@
                 </tr>
 			    <tr id="actions">
 				    <td colspan = "9" id="buttons" style="padding: 10px 0px 0px 0px;">
-				    {% if project.isOver and (app.user.type == "LittleBoss" or app.user.type == "Boss" ) %}
+				    {% if project.isOver and (app.user.type == "LittleBoss" or app.user.type == "Boss" or app.user.type == "Designer") %}
 
 					    {% else %}
 							<form action="{{ path('project_update', { 'id': project.id }) }}" method="post">
