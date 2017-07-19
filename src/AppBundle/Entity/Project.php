@@ -446,7 +446,7 @@ class Project
         foreach ($this->files as $file){
             /** @var Files $file */
             if($file->getFromUser() == 'LittleBoss'){
-                $this->designerFiles[] = $file;
+                $this->littleBossFiles[] = $file;
             }
         }
         return $this->littleBossFiles;

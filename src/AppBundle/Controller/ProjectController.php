@@ -260,7 +260,7 @@ class ProjectController extends Controller
         $em->persist($project);
         $em->flush();
         $comment = new Comments();
-
+        $addFilesForm = $this->createForm('AppBundle\Form\AddFilesType');
         $form = $this->createForm('AppBundle\Form\CommentsType', $comment);
         if ($user->getType() != "LittleBoss") {
             $form->remove("toUser");
@@ -271,6 +271,7 @@ class ProjectController extends Controller
             'comment' => $comment,
             'comments' => $comments,
             'form' => $form->createView(),
+            'add_files_form'=> $addFilesForm,
             'errorMessage' => $errorMessage,
             'successMessage' => $successMessage,
             'designerFiles' => $project->getDesignerFiles(),
