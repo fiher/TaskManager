@@ -52,19 +52,21 @@
 
     </nav>
 
-        {% if successMessage is defined and successMessage%}
-        <div class="row">
-            <div class="success">
-                <p>{{ successMessage }}</p>
-            </div>
-        </div>
-        {% elseif errorMessage is defined and errorMessage %}
+    {% for flashMessage in app.session.flashbag.get('error') %}
         <div class="row">
             <div class="error">
-                <p>{{ errorMessage }}</p>
+                <p>{{ flashMessage }}</p>
             </div>
         </div>
-        {% endif %}
+    {% endfor %}
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="row">
+            <div class="success">
+                <p>{{ flashMessage }}</p>
+            </div>
+        </div>
+    {% endfor %}
+
 
     {% block body %}{% endblock %}
     {% block javascripts %}

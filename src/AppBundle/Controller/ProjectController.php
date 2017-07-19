@@ -234,8 +234,6 @@ class ProjectController extends Controller
          * @var $user User
          */
         $commentsService = $this->get('app.service.comments_service');
-        $errorMessage = "";
-        $successMessage = "";
         $user = $this->getUser();
         $userType = $user->getType();
         $deleteForm = $this->createDeleteForm($project);
@@ -272,8 +270,6 @@ class ProjectController extends Controller
             'comments' => $comments,
             'form' => $form->createView(),
             'add_files_form'=> $addFilesForm,
-            'errorMessage' => $errorMessage,
-            'successMessage' => $successMessage,
             'designerFiles' => $project->getDesignerFiles(),
             'managerFiles' => $project->getManagerFiles(),
             'littleBossFiles' => $project->getLittleBossFiles()
@@ -293,7 +289,6 @@ class ProjectController extends Controller
             return $forbidden;
         }
         $userType = $this->getUser()->getType();
-        $successMessage = "";
         $deleteForm = $this->createDeleteForm($project);
         $project->setHold(false);
         $editForm = $this->createForm('AppBundle\Form\ProjectType', $project);
@@ -314,14 +309,13 @@ class ProjectController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
             $this->getDoctrine()->getManager()->flush();
-            $successMessage = "Успешно променихте заявката!";
+            $this->get('session')->getFlashBag()->set('success', "Успешно променихте заявката!");
             return $this->redirectToRoute('project_show', array('id' => $project->getId()));
         }
         return $this->render('project/edit.html.twig', array(
             'project' => $project,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-            'successMessage'=>$successMessage
         ));
     }
 
@@ -379,8 +373,6 @@ class ProjectController extends Controller
         if($forbidden){
             return $forbidden;
         }
-        $successMessage = '';
-        $errorMessage = '';
         /** @var User $user */
         $user = $this->getUser();
         if (isset($_POST['approve'])) {
@@ -389,7 +381,7 @@ class ProjectController extends Controller
             $project->setDesignerFinishedDate(new \DateTime());
             $project->setForApproval(false);
             $project->setHold(false);
-            $successMessage = "Успешно одобрихте заявката!";
+            $this->get('session')->getFlashBag()->set('success', "Успешно одобрихте заявката!");
         } elseif (isset($_POST['reject'])) {
             $comment =  new Comments();
             $comment->setProjectID($project->getId());
@@ -401,7 +393,7 @@ class ProjectController extends Controller
             $project->setApproved(false);
             $project->setForApproval(false);
             $project->setHold(false);
-            $successMessage = 'Успешно отхвърлихте заявката!';
+            $this->get('session')->getFlashBag()->set('success', "Успешно отхвърлихте заявката!");
         } elseif (isset($_POST['archive'])) {
             if ($project->isApproved()) {
                 $project->setIsOver(true);
@@ -409,23 +401,23 @@ class ProjectController extends Controller
                 $project->setForApproval(true);
                 $project->setHold(false);
                 $project->setRejected(false);
-                $successMessage = "Успешно архивирахте заявката!";
+                $this->get('session')->getFlashBag()->set('success', "Успешно архивирахте заявката!");
             } else {
-                $errorMessage = "Не можете да архивирате заявка, която не е одобрена!";
+                $this->get('session')->getFlashBag()->set('error', "Не можете да архивирате заявка, която не е одобрена!");
             }
         }elseif(isset($_POST['hold'])){
             $project->setHold(true);
             $project->setRejected(false);
             $project->setForApproval(false);
             $project->setApproved(false);
-            $successMessage = 'Заявката успешно сложена на изчакване!';
+            $this->get('session')->getFlashBag()->set('success', "Заявката успешно сложена на изчакване!");
 
         }elseif(isset($_POST['forApproval'])){
             $project->setForApproval(true);
             $project->setRejected(false);
             $project->setHold(false);
             $project->setApproved(false);
-            $successMessage = 'Заявката успешно сложена за одобрение!';
+            $this->get('session')->getFlashBag()->set('success', "Заявката успешно сложена за одобрение!");
         }elseif(isset($_POST['working'])){
             $em = $this->getDoctrine()->getManager();
             $query = $em->getRepository('AppBundle:Project')->
@@ -446,14 +438,10 @@ class ProjectController extends Controller
         $em->flush();
         $requestURL = explode("/",$request->getUri())[5];
         if($requestURL== "update") {
-            return $this->redirectToRoute("project_index",array(
-                'successMessage'=>$successMessage,
-                'errorMessage' => $errorMessage));
+            return $this->redirectToRoute("project_index");
         }else{
             return $this->redirectToRoute("project_show", array(
-                'id' => $project->getId(),
-                'successMessage'=>$successMessage,
-                'errorMessage' => $errorMessage
+                'id' => $project->getId()
             ));
         }
     }
@@ -474,14 +462,11 @@ class ProjectController extends Controller
                     return "";
                 }
             }
-            return  $this->render('::base.html.twig',array(
-                'errorMessage'=>"Нямате достъп до тази страница!",
-                'successMessage'=>""
-            ));
+            $this->get('session')->getFlashBag()->set('error', "Нямате достъп до тази страница!");
+            return  $this->render('::base.html.twig');
         }
+        $this->get('session')->getFlashBag()->set('error', "Моля, първо влезте в профила си!");
         return  $this->render('@App/Security/login.html.twig',array(
-            'errorMessage'=>"Моля първо влезте в профила си!",
-            'successMessage'=>"",
             'last_username'=> $lastUsername
         ));
     }
@@ -497,8 +482,6 @@ class ProjectController extends Controller
         if($forbidden){
             return $forbidden;
         }
-        $successMessage = '';
-        $errorMessage = '';
         $user = $this->getUser();
         $files = $managerFiles = $request->files->get('appbundle_file')['files'];
         $filesService = $this->get('app.service.files_service');
@@ -508,9 +491,8 @@ class ProjectController extends Controller
             $fileName = $filesService->uploadFileAndReturnName($file,$this->getParameter('files_directory'));
             $filesService->createFile($fileName, $project, $user,$file->getExtension());
         }
-        $successMessage = 'Файловете успешно качени!';
-        return $this->redirectToRoute('project_index',array('successMessage'=>$successMessage,
-            'errorMessage' => $errorMessage));
+        $this->get('session')->getFlashBag()->set('success', 'Файловете успешно качени!');
+        return $this->redirectToRoute('project_index');
     }
     public function sortProjects(Project $a,Project $b)
     {

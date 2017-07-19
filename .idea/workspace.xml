@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="056da0cf-db80-498e-bebe-f46eea1f8975" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Project.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Project.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,15 +19,15 @@
       <file leaf-file-name="ProjectController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="273" column="45" lean-forward="false" selection-start-line="273" selection-start-column="45" selection-end-line="273" selection-end-column="45" />
+            <state relative-caret-position="202">
+              <caret line="435" column="10" lean-forward="false" selection-start-line="435" selection-start-column="10" selection-end-line="435" selection-end-column="10" />
               <folding>
                 <element signature="e#40#64#0#PHP" expanded="true" />
                 <element signature="e#1411#1430#1#PHP" expanded="true" />
                 <element signature="e#3073#3092#1#PHP" expanded="true" />
                 <element signature="e#4698#4717#1#PHP" expanded="true" />
                 <element signature="e#6183#6202#1#PHP" expanded="true" />
-                <element signature="e#17358#17377#1#PHP" expanded="true" />
+                <element signature="e#17324#17343#1#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -46,25 +46,14 @@
       <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="63" column="33" lean-forward="false" selection-start-line="63" selection-start-column="33" selection-end-line="63" selection-end-column="33" />
+            <state relative-caret-position="315">
+              <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
               <folding>
-                <marker date="1500460064333" expanded="true" signature="1116:2025" ph="{% if app.user ...%}" />
-                <marker date="1500460064333" expanded="true" signature="1348:1462" ph="{% if app.user.type == &quot;LittleBoss&quot; ...%}" />
-                <marker date="1500460064333" expanded="true" signature="1636:1842" ph="{% if app.user.type == &quot;Manager&quot; or app.user.type == &quot;LittleBoss&quot; or app.user.username == &quot;Скай Строй&quot; ...%}" />
-                <marker date="1500460064333" expanded="false" signature="1777:1788" ph="project/new" />
-                <marker date="1500460064333" expanded="false" signature="1908:1916" ph="/" />
-                <marker date="1500460064333" expanded="false" signature="1972:1982" ph="/login" />
-                <marker date="1500460064333" expanded="true" signature="2080:2309" ph="..." />
-                <marker date="1500460064333" expanded="true" signature="2098:2291" ph="{% if app.user ...%}" />
-                <marker date="1500460064333" expanded="false" signature="2236:2247" ph="/logout" />
-                <marker date="1500460064333" expanded="true" signature="2347:2753" ph="{% if successMessage is defined and successMessage...%}" />
-                <marker date="1500460064333" expanded="true" signature="2424:2536" ph="..." />
-                <marker date="1500460064333" expanded="true" signature="2458:2521" ph="..." />
-                <marker date="1500460064333" expanded="true" signature="2624:2732" ph="..." />
-                <marker date="1500460064333" expanded="true" signature="2656:2717" ph="..." />
-                <marker date="1500460064333" expanded="true" signature="2759:2789" ph="{% block body ...%}" />
-                <marker date="1500460064333" expanded="true" signature="2794:3157" ph="{% block javascripts ...%}" />
+                <element signature="e#1521#1536#0#Twig" expanded="true" />
+                <marker date="1500465433217" expanded="false" signature="1777:1788" ph="project/new" />
+                <marker date="1500465433217" expanded="false" signature="1908:1916" ph="/" />
+                <marker date="1500465433217" expanded="false" signature="1972:1982" ph="/login" />
+                <marker date="1500465433217" expanded="false" signature="2236:2247" ph="/logout" />
               </folding>
             </state>
           </provider>
@@ -130,57 +119,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/project/index.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1680">
-              <caret line="80" column="114" lean-forward="false" selection-start-line="80" selection-start-column="113" selection-end-line="80" selection-end-column="114" />
-              <folding>
-                <marker date="1500460064334" expanded="true" signature="327:8595" ph="{% if projects ...%}" />
-                <marker date="1500460064334" expanded="true" signature="810:8480" ph="{% for project in projects ...%}" />
-                <marker date="1500460064334" expanded="true" signature="3016:5476" ph="{% if project.isOver and (app.user.type == &quot;LittleBoss&quot; or app.user.type == &quot;Boss&quot; ) ...%}" />
-                <marker date="1500460064334" expanded="true" signature="3241:4388" ph="..." />
-                <marker date="1500460064334" expanded="true" signature="3260:4077" ph="{% if ( project.forApproval or project.isApproved ) and ( app.user.type == &quot;LittleBoss&quot; or app.user.type == &quot;Boss&quot; ) ...%}" />
-                <marker date="1500460064334" expanded="true" signature="3260:4368" ph="{% if ( project.forApproval or project.isApproved ) and ( app.user.type == &quot;LittleBoss&quot; or app.user.type == &quot;Boss&quot; ) ...%}" />
-                <marker date="1500460064334" expanded="true" signature="3409:3553" ph="..." />
-                <marker date="1500460064334" expanded="true" signature="3584:3762" ph="..." />
-                <marker date="1500460064334" expanded="true" signature="3871:4032" ph="..." />
-                <marker date="1500460064334" expanded="true" signature="4086:4362" ph="{% if app.user.type == &quot;LittleBoss&quot; ...%}" />
-                <marker date="1500460064334" expanded="true" signature="4154:4317" ph="..." />
-                <marker date="1500460064334" expanded="true" signature="4409:5086" ph="{% if app.user.type == &quot;Designer&quot; or app.user.type == &quot;LittleBoss&quot; or ( app.user.type == &quot;Executioner&quot; and app.user.username == &quot;metro.reklama&quot; ) ...%}" />
-                <marker date="1500460064334" expanded="true" signature="4587:5065" ph="..." />
-                <marker date="1500460064334" expanded="true" signature="4598:4640" ph="{% set form = add_files_form.createView ...%}" />
-                <marker date="1500460064334" expanded="true" signature="5095:5459" ph="{% if app.user.type == &quot;Designer&quot; ...%}" />
-                <marker date="1500460064334" expanded="true" signature="5222:5438" ph="..." />
-                <marker date="1500460064334" expanded="true" signature="5254:5422" ph="..." />
-                <marker date="1500460064334" expanded="true" signature="5605:5851" ph="..." />
-                <marker date="1500460064334" expanded="true" signature="5637:5835" ph="..." />
-                <marker date="1500460064334" expanded="true" signature="5881:6258" ph="{% if project.isOver ...%}" />
-                <marker date="1500460064334" expanded="true" signature="6013:6203" ph="..." />
-                <marker date="1500460064334" expanded="true" signature="6269:8419" ph="{% if app.user.type == &quot;LittleBoss&quot; or app.user.type == &quot;Boss&quot; or app.user.type == &quot;Designer&quot; ...%}" />
-                <marker date="1500460064334" expanded="false" signature="6397:6411" ph="project/{id}/update" />
-                <marker date="1500460064334" expanded="true" signature="6453:7428" ph="..." />
-                <marker date="1500460064334" expanded="true" signature="6509:7387" ph="..." />
-                <marker date="1500460064334" expanded="true" signature="6546:7372" ph="..." />
-                <marker date="1500460064334" expanded="false" signature="6619:6626" ph="×" />
-                <marker date="1500460064334" expanded="false" signature="6932:6963" ph="..." />
-                <marker date="1500460064334" expanded="true" signature="6964:7356" ph="..." />
-                <marker date="1500460064334" expanded="true" signature="6998:7158" ph="..." />
-                <marker date="1500460064334" expanded="true" signature="7193:7339" ph="..." />
-                <marker date="1500460064334" expanded="false" signature="7461:7475" ph="project/{id}/update" />
-                <marker date="1500460064334" expanded="true" signature="7517:8386" ph="..." />
-                <marker date="1500460064334" expanded="true" signature="7571:8344" ph="..." />
-                <marker date="1500460064334" expanded="true" signature="7607:8329" ph="..." />
-                <marker date="1500460064334" expanded="false" signature="7679:7686" ph="×" />
-                <marker date="1500460064334" expanded="false" signature="7869:7900" ph="..." />
-                <marker date="1500460064334" expanded="true" signature="7901:8313" ph="..." />
-                <marker date="1500460064334" expanded="true" signature="7935:8094" ph="..." />
-                <marker date="1500460064334" expanded="true" signature="8129:8296" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ProjectService.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/ProjectService.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -204,8 +142,8 @@
       <file leaf-file-name="Project.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Project.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="440" column="7" lean-forward="false" selection-start-line="440" selection-start-column="7" selection-end-line="440" selection-end-column="7" />
+            <state relative-caret-position="169">
+              <caret line="441" column="20" lean-forward="false" selection-start-line="441" selection-start-column="20" selection-end-line="441" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -303,7 +241,6 @@
         <option value="$PROJECT_DIR$/app/config/config.yml" />
         <option value="$PROJECT_DIR$/web/app.php" />
         <option value="$PROJECT_DIR$/app/AppKernel.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Service/CommentsService.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/web/scripts/main.js" />
@@ -316,6 +253,7 @@
         <option value="$USER_HOME$/proba url1.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/ProjectType.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Project.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php" />
       </list>
     </option>
@@ -733,7 +671,7 @@
       <workItem from="1500269357643" duration="1234000" />
       <workItem from="1500286906620" duration="4985000" />
       <workItem from="1500375887701" duration="341000" />
-      <workItem from="1500376230383" duration="7117000" />
+      <workItem from="1500376230383" duration="11118000" />
     </task>
     <task id="LOCAL-00001" summary="Term fixed when creating new project">
       <created>1500380382174</created>
@@ -753,7 +691,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="398749000" />
+    <option name="totallyTimeSpent" value="402750000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -815,13 +753,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/DoctrineMigrations/Version20170614113440.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="20" column="77" lean-forward="false" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/DoctrineMigrations/Version20170614114459.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
@@ -1224,31 +1155,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="63" column="33" lean-forward="false" selection-start-line="63" selection-start-column="33" selection-end-line="63" selection-end-column="33" />
-          <folding>
-            <marker date="1500460064333" expanded="true" signature="1116:2025" ph="{% if app.user ...%}" />
-            <marker date="1500460064333" expanded="true" signature="1348:1462" ph="{% if app.user.type == &quot;LittleBoss&quot; ...%}" />
-            <marker date="1500460064333" expanded="true" signature="1636:1842" ph="{% if app.user.type == &quot;Manager&quot; or app.user.type == &quot;LittleBoss&quot; or app.user.username == &quot;Скай Строй&quot; ...%}" />
-            <marker date="1500460064333" expanded="false" signature="1777:1788" ph="project/new" />
-            <marker date="1500460064333" expanded="false" signature="1908:1916" ph="/" />
-            <marker date="1500460064333" expanded="false" signature="1972:1982" ph="/login" />
-            <marker date="1500460064333" expanded="true" signature="2080:2309" ph="..." />
-            <marker date="1500460064333" expanded="true" signature="2098:2291" ph="{% if app.user ...%}" />
-            <marker date="1500460064333" expanded="false" signature="2236:2247" ph="/logout" />
-            <marker date="1500460064333" expanded="true" signature="2347:2753" ph="{% if successMessage is defined and successMessage...%}" />
-            <marker date="1500460064333" expanded="true" signature="2424:2536" ph="..." />
-            <marker date="1500460064333" expanded="true" signature="2458:2521" ph="..." />
-            <marker date="1500460064333" expanded="true" signature="2624:2732" ph="..." />
-            <marker date="1500460064333" expanded="true" signature="2656:2717" ph="..." />
-            <marker date="1500460064333" expanded="true" signature="2759:2789" ph="{% block body ...%}" />
-            <marker date="1500460064333" expanded="true" signature="2794:3157" ph="{% block javascripts ...%}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/ProjectType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
@@ -1267,23 +1173,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Project.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="440" column="7" lean-forward="false" selection-start-line="440" selection-start-column="7" selection-end-line="440" selection-end-column="7" />
+        <state relative-caret-position="169">
+          <caret line="441" column="20" lean-forward="false" selection-start-line="441" selection-start-column="20" selection-end-line="441" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding>
+            <element signature="e#1521#1536#0#Twig" expanded="true" />
+            <marker date="1500465433217" expanded="false" signature="1777:1788" ph="project/new" />
+            <marker date="1500465433217" expanded="false" signature="1908:1916" ph="/" />
+            <marker date="1500465433217" expanded="false" signature="1972:1982" ph="/login" />
+            <marker date="1500465433217" expanded="false" signature="2236:2247" ph="/logout" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/Session/Session.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="244" column="20" lean-forward="false" selection-start-line="244" selection-start-column="20" selection-end-line="244" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="273" column="45" lean-forward="false" selection-start-line="273" selection-start-column="45" selection-end-line="273" selection-end-column="45" />
+        <state relative-caret-position="202">
+          <caret line="435" column="10" lean-forward="false" selection-start-line="435" selection-start-column="10" selection-end-line="435" selection-end-column="10" />
           <folding>
             <element signature="e#40#64#0#PHP" expanded="true" />
             <element signature="e#1411#1430#1#PHP" expanded="true" />
             <element signature="e#3073#3092#1#PHP" expanded="true" />
             <element signature="e#4698#4717#1#PHP" expanded="true" />
             <element signature="e#6183#6202#1#PHP" expanded="true" />
-            <element signature="e#17358#17377#1#PHP" expanded="true" />
+            <element signature="e#17324#17343#1#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
