@@ -269,7 +269,7 @@ class ProjectController extends Controller
             'comment' => $comment,
             'comments' => $comments,
             'form' => $form->createView(),
-            'add_files_form'=> $addFilesForm,
+            'add_files_form'=> $addFilesForm->createView(),
             'designerFiles' => $project->getDesignerFiles(),
             'managerFiles' => $project->getManagerFiles(),
             'littleBossFiles' => $project->getLittleBossFiles()
