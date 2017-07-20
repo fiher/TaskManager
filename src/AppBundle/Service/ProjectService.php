@@ -103,7 +103,7 @@ class ProjectService
                 $project->setStatus("За одобрение");
             }
             if($userType != "LittleBoss" && $userType != "Boss"){
-                if($userType == "Designer" && $user->getFullName() == $project->getDesigner()){
+                if($userType == "Designer" && $user->getFullName() == $project->getDesigner() && !$project->isApproved()){
                     $filteredProjects[] = $project;
                 }elseif($userType == "Executioner" && $user->getFullName() == $project->getExecutioner()){
                     $filteredProjects[] = $project;
