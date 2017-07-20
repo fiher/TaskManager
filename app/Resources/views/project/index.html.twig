@@ -14,6 +14,7 @@
         <table id="index">
             <thead>
             <tr>
+				<th>Id</th>
                 <th>Отдел</th>
                 <th>От</th>
                 <th>Вид</th>
@@ -33,6 +34,7 @@
 				{% else %}
 				    <tr>
 				{% endif %}
+                    <td>{{ project.id }}</td>
                     <td class="department">{{ project.department }}</td>
                     <td class="user">{{ project.fromUser }}</td>
                     <td class="type">{{ project.typeTask }}</td>
