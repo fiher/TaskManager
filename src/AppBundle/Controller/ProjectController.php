@@ -9,6 +9,7 @@ use AppBundle\Entity\Project;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\DateTime;
@@ -293,6 +294,12 @@ class ProjectController extends Controller
         $project->setHold(false);
         $editForm = $this->createForm('AppBundle\Form\ProjectType', $project);
         $editForm->remove('managerFiles');
+        $editForm->remove('term');
+        $editForm->add('term',DateType::class, array(
+            'widget' => 'choice',
+            'label'=>"Краен срок",
+            'data'=>$project->getTerm()
+        ));
         if($userType != "LittleBoss"){
             $editForm->remove('designer');
             $editForm->remove("executioner");
