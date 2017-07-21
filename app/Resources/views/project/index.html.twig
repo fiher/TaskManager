@@ -14,15 +14,18 @@
         <table id="index">
             <thead>
             <tr>
-				<th>Id</th>
+			    <th>Id</th>
                 <th>Отдел</th>
                 <th>От</th>
                 <th>Вид</th>
                 <th>Описание</th>
                 <th>Краен Срок</th>
-                <th>Дата</th>
-                <th>Дизайнер</th>
-                <th>Подизпълнител</th>
+					{% if app.user.type == "Designer" or app.user.type == "Executioner" %}
+					{% else %}
+						<th>Дата</th>
+						<th>Дизайнер</th>
+						<th>Подизпълнител</th>
+					{% endif %}
                 <th>Статус</th>	
                 <th>Коментари</th>	
             </tr>
@@ -34,23 +37,31 @@
 				{% else %}
 				    <tr>
 				{% endif %}
-                    <td>{{ project.id }}</td>
-                    <td class="department">{{ project.department }}</td>
-                    <td class="user">{{ project.fromUser }}</td>
+				    <td>{{ project.id }}</td>
+					{% if app.user.type == "Designer" or app.user.type == "Executioner" %}
+                    <td class="department" style="width:10%">{{ project.department }}</td>
+                    <td class="user" style="width:10%">{{ project.fromUser }}</td>
                     <td class="type">{{ project.typeTask }}</td>
-                    <td class="more">{{ project.description }}</td>
+                    <td class="more" style="width:30%">{{ project.description }}</td>
                     <td class="date">{% if project.term and project.withoutTerm %}Без срок{% else %}{{ project.term|date('d M H:i:s') }}{% endif %}</td>
-                    <td class="date">{% if project.date %}{{ project.date|date('d M H:i:s') }}{% endif %}</td>
-					{% if app.user.type == "LittleBoss" or app.user.type == "Boss"  %}
-                    <td>{{ project.designer }}</td>
 					{% else %}
+						<td class="department">{{ project.department }}</td>
+						<td class="user">{{ project.fromUser }}</td>
+						<td class="type">{{ project.typeTask }}</td>
+						<td class="more">{{ project.description }}</td>
+						<td class="date">{% if project.term and project.withoutTerm %}Без срок{% else %}{{ project.term|date('d M H:i:s') }}{% endif %}</td>
+						<td class="date">{% if project.date %}{{ project.date|date('d M H:i:s') }}{% endif %}</td>
+						{% if app.user.type == "LittleBoss" or app.user.type == "Boss"  %}
+						    <td>{{ project.designer }}</td>
+						{% else %}
 							{% if project.designerAccepted %}
-							<td>Разпределена</td>
+							    <td>Разпределена</td>
 							{% else %}
 							<td></td>
-					        {% endif %}
-					{% endif %}
+						    {% endif %}
+						{% endif %}
                     <td>{{ project.executioner }}</td>
+					{% endif %}
                     <td class="status {{ project.class }}">{{ project.status }}</td>
 					<td rowspan = "2" class="comments">
 					    {% if project.comments == false %}
@@ -73,11 +84,15 @@
                     </td>
                 </tr>
 			    <tr id="actions">
-				    <td colspan = "9" id="buttons" style="padding: 10px 0px 0px 0px;">
+					{% if app.user.type == "Designer" or app.user.type == "Executioner" %}
+				    <td colspan = "7" id="buttons" style="padding: 10px 0px 0px 0px;">
+					{% else %}
+				    <td colspan = "10" id="buttons" style="padding: 10px 0px 0px 0px;">
+					{% endif %}
 				    {% if project.isOver and (app.user.type == "LittleBoss" or app.user.type == "Boss" or app.user.type == "Designer") %}
 
 					    {% else %}
-							<form action="{{ path('project_update', { 'id': project.id }) }}" method="post">
+							<form action="{{ path('project_update', { 'id': project.id }) }}" method="post" id="reg-form">
 					            {% if ( project.forApproval or project.isApproved ) and ( app.user.type == "LittleBoss" or app.user.type == "Boss" ) %}
 								<div class="col-md-2">
 									<input type="submit" readonly="readonly" id="approve" name="approve" value="Одобрявам"><div class="approve_icon"></div>
@@ -92,7 +107,7 @@
                                 {% endif %}
 								{% if app.user.type == "LittleBoss" %}
 								<div class="col-md-2">
-									<input type="submit" readonly="readonly" id="hold" name="hold" value="На изчакване" onclick="return check()"><div class="hold_icon"></div>
+									<input type="submit" readonly="readonly" id="hold" name="hold" value="На изчакване" onclick="return chk()"><div class="hold_icon"></div>
 								</div>
                                 {% endif %}								
 							    </form>	
@@ -129,7 +144,16 @@
 								</div>
                             </div>
 							{% endif %}
-				
+								<div class="col-md-9">
+								{% if project.files|length == 1 %}
+								    <p class="attachedFiles">Прикачен {{ project.files|length }} файл.</p>
+									{% elseif project.files|length < 1 %}
+								    <p class="noAttachedFiles">Няма прикачени файлове</p>
+									{% else %}
+								    <p class="attachedFiles">Прикачени {{ project.files|length }} файла.</p>									
+								{% endif %}
+                                </div>								
+								
 					{% if app.user.type == "LittleBoss" or app.user.type == "Boss" or app.user.type == "Designer" %}
 								<form action="{{ path('project_update', { 'id': project.id }) }}" method="post">
 								<div  class="popup" id="popup{{ project.id }}">

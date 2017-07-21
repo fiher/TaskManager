@@ -154,8 +154,8 @@ nav a{
     padding: 10px 10px 10px 10px;
     text-align: center;
 }
-nav a:active, nav a:hover{
-    background-color: #9caee7;
+nav a.active, nav a:hover{
+    background-color: #96abea;
     border-bottom: 2px solid #8195d3;
     border-radius: 0;
     color: #fff;
@@ -1044,5 +1044,30 @@ input#appbundle_file_files {
     cursor: pointer;
 }
 #showImg{
-	height:250px;
+	height:auto;
 }
+#appbundle_project_term{
+	width: 140px;
+    padding: 3px;
+}
+#appbundle_project_term::-webkit-calendar-picker-indicator{
+    opacity: 1;
+    display: block;
+	width: 15px;
+	height:15px;
+}
+#appbundle_project_term::-webkit-inner-spin-button {
+	display:none;
+}
+.attachedFiles{
+	color: #f91843;
+	font-weight: 600;
+}
+.noAttachedFiles{
+	color: #000;
+	font-weight: 600;	
+}
+
+
+
+

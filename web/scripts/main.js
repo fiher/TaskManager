@@ -73,14 +73,14 @@ function btnHideLink(id) {
 
 /* checkbox hide and show termdate */
 function HideTerm(){
+	var x = document.getElementById('appbundle_project_term');
+    x.setAttribute("onkeydown", "return false");
 	var check = document.getElementById('appbundle_project_term');
 	var isCheck = document.getElementById('appbundle_project_withoutTerm');
 		if(isCheck.checked) {
-        var x = document.getElementById('appbundle_project_term');
         x.setAttribute("value", "2020-02-09");
 		check.style.display = 'none';
 	    }else{
-        var x = document.getElementById('appbundle_project_term');
         x.removeAttribute("value", "2020-02-09");
 		check.style.display = 'inline-block';
 	    }
@@ -88,11 +88,9 @@ function HideTerm(){
 	var check = document.getElementById('appbundle_project_term');
 	var isCheck = document.getElementById('appbundle_project_withoutTerm');
 	    if(isCheck.checked) {
-        var x = document.getElementById('appbundle_project_term');
         x.setAttribute("value", "2020-02-09");
 		check.style.display = 'none';
 	    }else{
-        var x = document.getElementById('appbundle_project_term');
         x.removeAttribute("value", "2020-02-09");
 		check.style.display = 'inline-block';
 	   }
@@ -103,7 +101,7 @@ window.onload = HideTerm;
 
 
 
-/* scroll for commnets always bottom */
+/* scroll for comments always bottom */
 
 var height = 0;
 $('.overflow').each(function(i, value){
@@ -122,7 +120,24 @@ function submitForm(id) {
 
 
 
+//add active class to current page button in navigation
+jQuery(function($) {
+    var path = window.location.href;
+    $('.pull-left a').each(function() {
+        if (this.href === path) {
+            $(this).addClass('active');
+        }
+    });
+});
 
+/*
+var first = $(location).attr('pathname');
+var second = $(location).attr('pathname');
+first = first.split("/")[1];
+second = second.split("/")[2];
+document.getElementById("demo").innerHTML = 
+"The full URL of this page is:<br>" + window.location.host + "/" + first + "/" + second;
+*/
 
 
 /* ajax request */
@@ -154,4 +169,19 @@ $('form.ajax').on('submit', function(){
 
 });
 */
+/*
+function chk(){	
+          $.ajax({
+            type: 'POST',
+            url: '/project/46/update',
+			data: $(this).serialize(),
+            success: function () {
+              alert('form was submitted');
+            }
+          });
+		  return false;
+}
+*/
+
+
 

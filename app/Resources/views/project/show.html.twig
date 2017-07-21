@@ -105,7 +105,7 @@
 			 <h1 class="h1files">Прикачени файлове от ръководител</h1>
 		</div>
 		<div class="col-md-6">
-		{% for file in littleBossFiles %}
+		{% for file in littleBossFiles |reverse %}
 		{% if  file.fileExtension == "png" or file.fileExtension == "jpg" or file.fileExtension == "jpeg"  %}
 			<div class="col-md-4" id="showImg">
 		        <a class="fancybox" rel="gallery" href="{{ file.filePath }}">
@@ -129,7 +129,7 @@
 			 <h1 class="h1files">Прикачени файлове от управител</h1>
 		</div>
 		<div class="col-md-6">
-		{% for file in managerFiles %}
+		{% for file in managerFiles |reverse %}
 		{% if  file.fileExtension == "png" or file.fileExtension == "jpg" or file.fileExtension == "jpeg"  %}
 			<div class="col-md-4" id="showImg">
 		        <a class="fancybox" rel="gallery" href="{{ file.filePath }}">
@@ -153,7 +153,7 @@
 			 <h1 class="h1files">Прикачени файлове от дизайнер</h1>
 		</div>
 		<div class="col-md-6">
-		{% for file in designerFiles %}
+		{% for file in designerFiles |reverse %}
 		{% if  file.fileExtension == "png" or file.fileExtension == "jpg" or file.fileExtension == "jpeg"  %}
 			<div class="col-md-4" id="showImg">
 		        <a class="fancybox" rel="gallery" href="{{ file.filePath }}">
@@ -173,15 +173,7 @@
 		</div>
 		</div>
 		{% if project.isOver and (app.user.type == "LittleBoss" or app.user.type == "Boss" ) %}
-			<div class="row" style="background: #f0d9d9;">
-				<div class="query_buttons">
-					{{ form_start(delete_form) }}
-					<div class="col-md-2">
-						<input id="button_delete" readonly="readonly" type="submit" value="Изтрий"><div class="delete_icon"></div>
-					</div>
-					{{ form_end(delete_form) }}
-				</div>
-			</div>
+
 		    {% else %}		
 		    <div class="row" style="background: #dcf0d9;">
                 <form action="{{ path('project_fast_update', { 'id': project.id }) }}" method="post" style="margin-top: 10px; margin-left: 0px; margin-right: 0px;">
@@ -209,16 +201,17 @@
 					</div>
 					{% endif %}
                 </form>
+				<div class="col-md-2">
+					<input value="Прикачи файл" id="button_upload"><div class="upload_icon"></div>
+                    {{ form_start(add_files_form, {'action':path('image_upload', { 'id': project.id }),'attr': {'id': project.id}, 'method': 'POST'}) }}
+					{{ form_widget(add_files_form.files, {'attr' : {'onChange': 'submitForm(' ~ project.id ~ ')'}}) }}
+                    {{ form_end(add_files_form) }}
+				</div>
             </div>		
         {% endif %}
 
         <div class="row" style="background: #dde5ee;">
-								<div class="col-md-2">
-									<input value="Прикачи файл" id="button_upload"><div class="upload_icon"></div>
-                                    {{ form_start(add_files_form, {'action':path('image_upload', { 'id': project.id }),'attr': {'id': project.id}, 'method': 'POST'}) }}
-									{{ form_widget(add_files_form.files, {'attr' : {'onChange': 'submitForm(' ~ project.id ~ ')'}}) }}
-                                    {{ form_end(add_files_form) }}
-					            </div>
+
             <div class="query_buttons">
                 <div class="col-md-8">
                     <input id="button_edit" readonly="readonly" value="Обратно към заявките" onclick="location.href='{{ path('project_index') }}'"/><div class="back_icon"></div>
