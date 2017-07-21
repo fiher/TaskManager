@@ -24,11 +24,12 @@
     <nav>
         <div>
             <div class="pull-left">
-			<p id="demo"></p>
                 {% if app.user %}
                     <a href="{{ path('project_index') }}">Заявки</a>
                     {% if app.user.type == "LittleBoss" %}
-					<a href="{{ path('project_designer') }}">Заявки Вали</a>
+					<a href="{{ path('project_designerVali') }}">Заявки Вали</a>
+					<a href="{{ path('project_designerYoana') }}">Заявки Йоана</a>
+					<a href="{{ path('project_designerReneta') }}">Заявки Рената</a>
 					<a href="{{ path('project_executioner') }}">Заявки Подизпълнител</a>		
 					{% endif %}			
                     <a href="{{ path('project_archive') }}">Архивирани Заявки</a>
