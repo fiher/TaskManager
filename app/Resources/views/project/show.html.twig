@@ -106,20 +106,34 @@
 		</div>
 		<div class="col-md-6">
 		{% for file in littleBossFiles |reverse %}
+		{% if file.rejected == false %}
 		{% if  file.fileExtension == "png" or file.fileExtension == "jpg" or file.fileExtension == "jpeg"  %}
 			<div class="col-md-4" id="showImg">
 		        <a class="fancybox" rel="gallery" href="{{ file.filePath }}">
 			        <img src="{{ file.filePath }}" class="projectImages"/>
 			    </a>
-		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали файл<div class="downloadImg_icon"></div></a>
+		        <a href="{{ file.filePath }}" class="downloadLink" download><div class="downloadImg_icon"></div></a>
+				{% if app.user.type == "LittleBoss" %}
+                <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
+				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
+		        <a id="rejectImg" name="rejectImg" class="rejectImg"><div class="rejectImg_icon"></div></a>
+				</form>
+				{% endif %}
 		    </div>
 		{% else %}
 			<div class="col-md-4" id="showImg">
 		        <a rel="gallery" href="{{ file.filePath }}" target="_blank">
 			        <img src="{{ asset("images/pdf.png") }}" class="projectImages"/>
 			    </a>
-		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали файл<div class="downloadImg_icon"></div></a>
+		        <a href="{{ file.filePath }}" class="downloadLink" download><div class="downloadImg_icon"></div></a>
+				{% if app.user.type == "LittleBoss" %}
+                <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
+				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
+		        <a id="rejectImg" name="rejectImg" class="rejectImg"><div class="rejectImg_icon"></div></a>
+				</form>
+				{% endif %}
 		    </div>
+		{% endif %}
 		{% endif %}
 		{% endfor %}
 		</div>
@@ -130,20 +144,34 @@
 		</div>
 		<div class="col-md-6">
 		{% for file in managerFiles |reverse %}
+		{% if file.rejected == false %}
 		{% if  file.fileExtension == "png" or file.fileExtension == "jpg" or file.fileExtension == "jpeg"  %}
 			<div class="col-md-4" id="showImg">
 		        <a class="fancybox" rel="gallery" href="{{ file.filePath }}">
 			        <img src="{{ file.filePath }}" class="projectImages"/>
 			    </a>
-		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали файл<div class="downloadImg_icon"></div></a>
+		        <a href="{{ file.filePath }}" class="downloadLink" download><div class="downloadImg_icon"></div></a>
+				{% if app.user.type == "LittleBoss" %}
+                <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
+				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
+		        <a id="rejectImg" name="rejectImg" class="rejectImg"><div class="rejectImg_icon"></div></a>
+				</form>
+				{% endif %}
 		    </div>
 		{% else %}
 			<div class="col-md-4" id="showImg">
 		        <a rel="gallery" href="{{ file.filePath }}" target="_blank">
 			        <img src="{{ asset("images/pdf.png") }}" class="projectImages"/>
 			    </a>
-		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали файл<div class="downloadImg_icon"></div></a>
+		        <a href="{{ file.filePath }}" class="downloadLink" download><div class="downloadImg_icon"></div></a>
+				{% if app.user.type == "LittleBoss" %}
+                <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
+				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
+		        <a id="rejectImg" name="rejectImg" class="rejectImg"><div class="rejectImg_icon"></div></a>
+				</form>
+				{% endif %}
 		    </div>
+		{% endif %}
 		{% endif %}
 		{% endfor %}
 		</div>
@@ -154,20 +182,72 @@
 		</div>
 		<div class="col-md-6">
 		{% for file in designerFiles |reverse %}
+		{% if file.rejected == false %}
 		{% if  file.fileExtension == "png" or file.fileExtension == "jpg" or file.fileExtension == "jpeg"  %}
 			<div class="col-md-4" id="showImg">
 		        <a class="fancybox" rel="gallery" href="{{ file.filePath }}">
 			        <img src="{{ file.filePath }}" class="projectImages"/>
 			    </a>
-		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали файл<div class="downloadImg_icon"></div></a>
+		        <a href="{{ file.filePath }}" class="downloadLink" download><div class="downloadImg_icon"></div></a>
+				{% if app.user.type == "LittleBoss" %}
+                <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
+				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
+		        <a id="rejectImg" name="rejectImg" class="rejectImg"><div class="rejectImg_icon"></div></a>
+				</form>
+				{% endif %}
 		    </div>
 		{% else %}
 			<div class="col-md-4" id="showImg">
 		        <a rel="gallery" href="{{ file.filePath }}" target="_blank">
 			        <img src="{{ asset("images/pdf.png") }}" class="projectImages"/>
 			    </a>
-		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали файл<div class="downloadImg_icon"></div></a>
+		        <a href="{{ file.filePath }}" class="downloadLink" download><div class="downloadImg_icon"></div></a>
+				{% if app.user.type == "LittleBoss" %}
+                <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
+				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
+		        <a id="rejectImg" name="rejectImg" class="rejectImg"><div class="rejectImg_icon"></div></a>
+				</form>
+				{% endif %}
 		    </div>
+		{% endif %}
+		{% endif %}
+		{% endfor %}
+		</div>
+		</div>
+		<div class="row" style="background: #dde5ee;border-bottom: 2px solid #9ba2b6;">
+		<div class="col-md-5">
+			 <h1 class="h1files">Отхвърлени файлове</h1>
+		</div>
+		<div class="col-md-6">
+		{% for file in project.files |reverse %}
+		{% if file.rejected == true %}
+		{% if  file.fileExtension == "png" or file.fileExtension == "jpg" or file.fileExtension == "jpeg"  %}
+			<div class="col-md-4" id="showImg">
+		        <a class="fancybox" rel="gallery" href="{{ file.filePath }}">
+			        <img src="{{ file.filePath }}" class="projectImages"/>
+			    </a>
+		        <a href="{{ file.filePath }}" class="downloadLink" download><div class="downloadImg_icon"></div></a>
+				{% if app.user.type == "LittleBoss" %}
+                <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
+				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
+		        <a id="rejectImg" name="rejectImg" class="rejectImg"><div class="rejectImg_icon"></div></a>
+				</form>
+				{% endif %}
+		    </div>
+		{% else %}
+			<div class="col-md-4" id="showImg">
+		        <a rel="gallery" href="{{ file.filePath }}" target="_blank">
+			        <img src="{{ asset("images/pdf.png") }}" class="projectImages"/>
+			    </a>
+		        <a href="{{ file.filePath }}" class="downloadLink" download><div class="downloadImg_icon"></div></a>
+				{% if app.user.type == "LittleBoss" %}
+                <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
+				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
+		        <a id="rejectImg" name="rejectImg" class="rejectImg"><div class="rejectImg_icon"></div></a>
+				</form>
+				{% endif %}
+		    </div>
+		{% endif %}
 		{% endif %}
 		{% endfor %}
 		</div>

@@ -669,7 +669,7 @@ select{
     border-radius: 3px;
 }
 
- .delete_icon a, .approve_icon a, .reject_icon a, .archive_icon a, .back_icon a, .edit_icon a, .comment_icon a, .save_new_query_icon a, .login_icon a, .hold_icon a, .forApproval_icon a, .details_icon a, .working_icon a, .upload_icon a, .link_icon a{
+ .delete_icon a, .approve_icon a, .reject_icon a, .archive_icon a, .back_icon a, .edit_icon a, .comment_icon a, .save_new_query_icon a, .login_icon a, .hold_icon a, .forApproval_icon a, .details_icon a, .working_icon a, .upload_icon a, .link_icon a, .rejectImg_icon a{
     line-height: 2.5;
     -webkit-transition: .3s ease;
     transition: .3s ease; 		
@@ -865,14 +865,30 @@ select{
     font-weight: normal;
     text-decoration: inherit;
     color: #6dc831;
-    font-size: 20px;
+    font-size: 30px;
     margin-right: 5px;
 }
+.rejectImg_icon:before {
+    content: "\f00d";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    color: #fb1b2a;
+    font-size: 30px;
+    margin-right: 5px;
+}	
 .downloadLink, .downloadLink:hover{
-    color: #6dc831;
-    margin-left: 30px;
+    cursor:pointer;
+    margin-left: 20px;
     text-decoration: none;
     float: left;
+}
+.rejectImg, .rejectImg:hover{
+    cursor:pointer;
+    margin-right: 20px;
+    text-decoration: none;
+    float: right;	
 }
 .success p{
 	width:100%;
@@ -1068,6 +1084,8 @@ input#appbundle_file_files {
 	font-weight: 600;	
 }
 
-
+.inputNotVisible{
+	display:none;
+}
 
 
