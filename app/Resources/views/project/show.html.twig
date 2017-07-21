@@ -116,7 +116,7 @@
 				{% if app.user.type == "LittleBoss" %}
                 <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
 				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
-		        <a id="rejectImg" name="rejectImg" class="rejectImg"><div class="rejectImg_icon"></div></a>
+		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg"><div class="rejectImg_icon"></div>
 				</form>
 				{% endif %}
 		    </div>
@@ -129,7 +129,7 @@
 				{% if app.user.type == "LittleBoss" %}
                 <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
 				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
-		        <a id="rejectImg" name="rejectImg" class="rejectImg"><div class="rejectImg_icon"></div></a>
+		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg"><div class="rejectImg_icon"></div>
 				</form>
 				{% endif %}
 		    </div>
@@ -154,7 +154,7 @@
 				{% if app.user.type == "LittleBoss" %}
                 <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
 				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
-		        <a id="rejectImg" name="rejectImg" class="rejectImg"><div class="rejectImg_icon"></div></a>
+		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg"><div class="rejectImg_icon"></div>
 				</form>
 				{% endif %}
 		    </div>
@@ -167,7 +167,7 @@
 				{% if app.user.type == "LittleBoss" %}
                 <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
 				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
-		        <a id="rejectImg" name="rejectImg" class="rejectImg"><div class="rejectImg_icon"></div></a>
+		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg"><div class="rejectImg_icon"></div>
 				</form>
 				{% endif %}
 		    </div>
@@ -192,7 +192,7 @@
 				{% if app.user.type == "LittleBoss" %}
                 <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
 				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
-		        <a id="rejectImg" name="rejectImg" class="rejectImg"><div class="rejectImg_icon"></div></a>
+		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg"><div class="rejectImg_icon"></div>
 				</form>
 				{% endif %}
 		    </div>
@@ -205,7 +205,7 @@
 				{% if app.user.type == "LittleBoss" %}
                 <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
 				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
-		        <a id="rejectImg" name="rejectImg" class="rejectImg"><div class="rejectImg_icon"></div></a>
+		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg"><div class="rejectImg_icon"></div>
 				</form>
 				{% endif %}
 		    </div>
@@ -224,28 +224,18 @@
 		{% if  file.fileExtension == "png" or file.fileExtension == "jpg" or file.fileExtension == "jpeg"  %}
 			<div class="col-md-4" id="showImg">
 		        <a class="fancybox" rel="gallery" href="{{ file.filePath }}">
-			        <img src="{{ file.filePath }}" class="projectImages"/>
+			        <img src="{{ file.filePath }}" class="projectImagesReject"/>
 			    </a>
 		        <a href="{{ file.filePath }}" class="downloadLink" download><div class="downloadImg_icon"></div></a>
-				{% if app.user.type == "LittleBoss" %}
-                <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
-				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
-		        <a id="rejectImg" name="rejectImg" class="rejectImg"><div class="rejectImg_icon"></div></a>
-				</form>
-				{% endif %}
+
 		    </div>
 		{% else %}
 			<div class="col-md-4" id="showImg">
 		        <a rel="gallery" href="{{ file.filePath }}" target="_blank">
-			        <img src="{{ asset("images/pdf.png") }}" class="projectImages"/>
+			        <img src="{{ asset("images/pdf.png") }}" class="projectImagesReject"/>
 			    </a>
 		        <a href="{{ file.filePath }}" class="downloadLink" download><div class="downloadImg_icon"></div></a>
-				{% if app.user.type == "LittleBoss" %}
-                <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
-				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
-		        <a id="rejectImg" name="rejectImg" class="rejectImg"><div class="rejectImg_icon"></div></a>
-				</form>
-				{% endif %}
+
 		    </div>
 		{% endif %}
 		{% endif %}
