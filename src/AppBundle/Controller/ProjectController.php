@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\AppBundle;
 use AppBundle\Entity\Comments;
+use AppBundle\Entity\Files;
 use AppBundle\Entity\User;
 use AppBundle\Entity\Project;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -12,6 +13,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
@@ -224,8 +226,9 @@ class ProjectController extends Controller
      * @Route("/{id}", name="project_show")
      * @Method({"GET", "POST"})
      */
-    public function showAction(Project $project)
+    public function showAction(Request $request, Project $project)
     {
+        dump($request);
         //this function returns "" if the user is allowed and if not returns $this->render
         $forbidden = $this->checkCredentials("all");
         if($forbidden){
@@ -347,7 +350,6 @@ class ProjectController extends Controller
             $em->remove($project);
             $em->flush();
         }
-
         return $this->redirectToRoute('project_index');
     }
 
@@ -380,6 +382,7 @@ class ProjectController extends Controller
         if($forbidden){
             return $forbidden;
         }
+        $referer = $request->headers->get('referer');
         /** @var User $user */
         $user = $this->getUser();
         if (isset($_POST['approve'])) {
@@ -440,17 +443,20 @@ class ProjectController extends Controller
         }elseif(isset($_POST['link'])){
             $project->setDesignerLink($_POST['link']);
         }
+        elseif(isset($_POST['rejectImg'])){
+            $file = $this->getDoctrine()->getManager()->getRepository('AppBundle:Files')->find($_POST['fileId']);
+
+        }
         $em = $this->getDoctrine()->getManager();
         $em->persist($project);
         $em->flush();
         $requestURL = explode("/",$request->getUri())[5];
-        if($requestURL== "update") {
-            return $this->redirectToRoute("project_index");
-        }else{
-            return $this->redirectToRoute("project_show", array(
-                'id' => $project->getId()
-            ));
-        }
+       // if($requestURL== "update") {
+            return $this->redirect($referer);
+        //}else{
+        //    return $this->redirect($referer, array('id' => $project->getId()
+        //    ));
+        //}
     }
 
     private function checkCredentials($allowedUserRoles){
