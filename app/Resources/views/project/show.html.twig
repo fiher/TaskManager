@@ -112,24 +112,36 @@
 		        <a class="fancybox" rel="gallery" href="{{ file.filePath }}">
 			        <img src="{{ file.filePath }}" class="projectImages"/>
 			    </a>
-		        <a href="{{ file.filePath }}" class="downloadLink" download><div class="downloadImg_icon"></div></a>
+		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
                 <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
 				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
-		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg"><div class="rejectImg_icon"></div>
+		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg" value="Изтрий">
 				</form>
 				{% endif %}
 		    </div>
-		{% else %}
+		{% elseif file.fileExtension == "pdf" or file.fileExtension == "tiff" %}
 			<div class="col-md-4" id="showImg">
 		        <a rel="gallery" href="{{ file.filePath }}" target="_blank">
 			        <img src="{{ asset("images/pdf.png") }}" class="projectImages"/>
 			    </a>
-		        <a href="{{ file.filePath }}" class="downloadLink" download><div class="downloadImg_icon"></div></a>
+		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
                 <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
 				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
-		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg"><div class="rejectImg_icon"></div>
+		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg" value="Изтрий">
+				</form>
+				{% endif %}
+        {% else %}
+			<div class="col-md-4" id="showImg">
+		        <a rel="gallery">
+			        <img src="{{ asset("images/rar.png") }}" class="projectImages"/>
+			    </a>
+		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
+				{% if app.user.type == "LittleBoss" %}
+                <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
+				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
+		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg" value="Изтрий">
 				</form>
 				{% endif %}
 		    </div>
@@ -150,24 +162,36 @@
 		        <a class="fancybox" rel="gallery" href="{{ file.filePath }}">
 			        <img src="{{ file.filePath }}" class="projectImages"/>
 			    </a>
-		        <a href="{{ file.filePath }}" class="downloadLink" download><div class="downloadImg_icon"></div></a>
+		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
                 <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
 				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
-		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg"><div class="rejectImg_icon"></div>
+		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg" value="Изтрий">
 				</form>
 				{% endif %}
 		    </div>
-		{% else %}
+		{% elseif file.fileExtension == "pdf" or file.fileExtension == "tiff" %}
 			<div class="col-md-4" id="showImg">
 		        <a rel="gallery" href="{{ file.filePath }}" target="_blank">
 			        <img src="{{ asset("images/pdf.png") }}" class="projectImages"/>
 			    </a>
-		        <a href="{{ file.filePath }}" class="downloadLink" download><div class="downloadImg_icon"></div></a>
+		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
                 <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
 				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
-		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg"><div class="rejectImg_icon"></div>
+		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg" value="Изтрий">
+				</form>
+				{% endif %}
+        {% else %}
+			<div class="col-md-4" id="showImg">
+		        <a rel="gallery">
+			        <img src="{{ asset("images/rar.png") }}" class="projectImages"/>
+			    </a>
+		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
+				{% if app.user.type == "LittleBoss" %}
+                <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
+				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
+		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg" value="Изтрий">
 				</form>
 				{% endif %}
 		    </div>
@@ -188,24 +212,36 @@
 		        <a class="fancybox" rel="gallery" href="{{ file.filePath }}">
 			        <img src="{{ file.filePath }}" class="projectImages"/>
 			    </a>
-		        <a href="{{ file.filePath }}" class="downloadLink" download><div class="downloadImg_icon"></div></a>
+		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
                 <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
 				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
-		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg"><div class="rejectImg_icon"></div>
+		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg" value="Изтрий">
 				</form>
 				{% endif %}
 		    </div>
-		{% else %}
+		{% elseif file.fileExtension == "pdf" or file.fileExtension == "tiff" %}
 			<div class="col-md-4" id="showImg">
 		        <a rel="gallery" href="{{ file.filePath }}" target="_blank">
 			        <img src="{{ asset("images/pdf.png") }}" class="projectImages"/>
 			    </a>
-		        <a href="{{ file.filePath }}" class="downloadLink" download><div class="downloadImg_icon"></div></a>
+		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
                 <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
 				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
-		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg"><div class="rejectImg_icon"></div>
+		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg" value="Изтрий">
+				</form>
+				{% endif %}
+        {% else %}
+			<div class="col-md-4" id="showImg">
+		        <a rel="gallery">
+			        <img src="{{ asset("images/rar.png") }}" class="projectImages"/>
+			    </a>
+		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
+				{% if app.user.type == "LittleBoss" %}
+                <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
+				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
+		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg" value="Изтрий">
 				</form>
 				{% endif %}
 		    </div>
@@ -226,15 +262,23 @@
 		        <a class="fancybox" rel="gallery" href="{{ file.filePath }}">
 			        <img src="{{ file.filePath }}" class="projectImagesReject"/>
 			    </a>
-		        <a href="{{ file.filePath }}" class="downloadLink" download><div class="downloadImg_icon"></div></a>
+		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 
 		    </div>
-		{% else %}
+		{% elseif file.fileExtension == "pdf" or file.fileExtension == "tiff" %}
 			<div class="col-md-4" id="showImg">
 		        <a rel="gallery" href="{{ file.filePath }}" target="_blank">
 			        <img src="{{ asset("images/pdf.png") }}" class="projectImagesReject"/>
 			    </a>
-		        <a href="{{ file.filePath }}" class="downloadLink" download><div class="downloadImg_icon"></div></a>
+		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
+
+		    </div>
+        {% else %}
+			<div class="col-md-4" id="showImg">
+		        <a rel="gallery">
+			        <img src="{{ asset("images/rar.png") }}" class="projectImages"/>
+			    </a>
+		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 
 		    </div>
 		{% endif %}
@@ -286,7 +330,7 @@
                 <div class="col-md-8">
                     <input id="button_edit" readonly="readonly" value="Обратно към заявките" onclick="location.href='{{ path('project_index') }}'"/><div class="back_icon"></div>
                 </div>
-                {% if app.user.type == "LittleBoss" or app.user.type == "Boss"  %}
+                {% if ( app.user.type == "LittleBoss" or app.user.type == "Boss" ) and  project.isOver == false %}
                 <div class="col-md-2">
                     <input id="button_edit" readonly="readonly" value="Промяна" onclick="location.href='{{ path('project_edit', { 'id': project.id }) }}'"/><div class="edit_icon"></div>
                 </div>
@@ -296,7 +340,7 @@
 				    {% if project.isOver %}					
 					{% elseif project.forApproval or project.isApproved and ( app.user.type == "LittleBoss" or app.user.type == "Boss" )  %}
 								<form action="{{ path('project_fast_update', { 'id': project.id }) }}" method="post">
-								<div  class="popup" id="{{ project.id }}">
+								<div  class="popup" id="popup{{ project.id }}">
 									<div class="popup-content">
 										<span class="close" onclick="btnHidePopup({{ project.id }})">&times;</span>
 										<p>Сигурни ли сте, че искате да отхвърлите заявката?</p>

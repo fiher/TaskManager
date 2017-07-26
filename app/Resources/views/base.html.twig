@@ -27,7 +27,10 @@
                 {% if app.user %}
                     <a href="{{ path('project_index') }}">Заявки</a>
                     {% if app.user.type == "LittleBoss" %}
-					<a href="{{ path('project_executioner') }}">Заявки Подизпълнител</a>
+					<a href="{{ path('project_designer{{ user.id == 5 }}') }}">Заявки Вали</a>
+					<a href="{{ path('project_designer{{ user.id == 6 }}') }}">Заявки Йоана</a>
+					<a href="{{ path('project_designer{{ user.id == 9 }}') }}">Заявки Рената</a>
+					<a href="{{ path('project_executioner') }}">Заявки Подизпълнител</a>		
 					{% endif %}			
                     <a href="{{ path('project_archive') }}">Архивирани Заявки</a>
 					{% if app.user.username == "a.vali" %}
