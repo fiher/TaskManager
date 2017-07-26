@@ -67,13 +67,11 @@ class ProjectController extends Controller
     }
 
     /**
-     * There is a user which is both LittleBoss and Designer (Senior Designer) that should be able to view all
-     * projects, but also manage it's own. This function shows only this person's
      *
-     * @Route("/designer", name="project_designer")
+     * @Route("/designer/{username}", name="project_designer")
      * @Method("GET")
      */
-    public function showDesignerOnlyProjects(){
+    public function showDesignerOnlyProjects(Request $request, string $username){
         //this function returns "" if the user is allowed and if not returns $this->render
         $forbidden = $this->checkCredentials("all");
         if($forbidden){
@@ -81,8 +79,11 @@ class ProjectController extends Controller
         }
         $commentsService = $this->get('app.service.comments_service');
         $projectService = $this->get('app.service.projects_service');
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->getRepository('AppBundle:User');
         /** @var User $user */
-        $user = $this->getUser();
+        $user = $query->loadUserByUsername($username);
+        dump($user);
         $em = $this->getDoctrine()->getManager();
         $projects = $em->getRepository('AppBundle:Project')->findAll();
         $projects = array_reverse($projects);
@@ -122,7 +123,7 @@ class ProjectController extends Controller
         $em = $this->getDoctrine()->getManager();
         $projects = $em->getRepository('AppBundle:Project')->findExecutionerProjects();
         $projects = array_reverse($projects);
-        $filteredProjects = $projectService->filterProjects($projects,$user,$userType,"LittleBoss");
+        $filteredProjects = $projectService->filterProjects($projects,$user,"LittleBoss");
         foreach ($filteredProjects as $project){
 
             /** @var Project $project */

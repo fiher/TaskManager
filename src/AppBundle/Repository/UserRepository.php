@@ -28,6 +28,6 @@ class UserRepository extends \Doctrine\ORM\EntityRepository implements UserLoade
             ->where($queryBuilder->expr()->eq('u.username', ':username'))
             ->setParameter(':username', $username);
 
-        return $queryBuilder->getQuery()->getOneOrNullResult();;
+        return $queryBuilder->getQuery()->getOneOrNullResult();
     }
 }
