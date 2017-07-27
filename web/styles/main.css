@@ -626,6 +626,34 @@ form[name=appbundle_file] {
     width: 100%;
 	opacity:0.8;
 }
+.rejectImg{
+    background-color: #ee5454;
+    border-bottom: 2px solid #ff1212;
+    border-radius: 0;
+    color: #f4f4f4;
+    padding:5px 5px 5px 5px;
+    text-align: center;
+    width: 30%;
+	opacity:0.8;
+    cursor:pointer;
+    margin-right: 10px;
+    text-decoration: none;
+    float: right;	
+}
+.downloadLink{
+	background-color: #84cc06;
+    border-bottom: 2px solid #72a21e;
+    border-radius: 0;
+    color: #f4f4f4;
+    padding:5px 5px 5px 5px;
+    text-align: center;
+    width: 30%;
+	opacity:0.8;
+    cursor:pointer;
+    margin-left: 10px;
+    text-decoration: none;
+    float: left;	
+}
 input#button_delete:hover, #reject:hover, input#archive:hover, #button_edit:hover, #button_create:hover,#approve:hover, #appbundle_comments_Comment:hover, #hold:hover, #forApproval:hover, #button_details:hover, #working:hover{
     color: #fff;
 	opacity:1;
@@ -878,18 +906,6 @@ select{
     font-size: 30px;
     margin-right: 5px;
 }	
-.downloadLink, .downloadLink:hover{
-    cursor:pointer;
-    margin-left: 20px;
-    text-decoration: none;
-    float: left;
-}
-.rejectImg, .rejectImg:hover{
-    cursor:pointer;
-    margin-right: 20px;
-    text-decoration: none;
-    float: right;	
-}
 .success p{
 	width:100%;
     text-align: center;
@@ -1051,6 +1067,11 @@ select{
 	width: 100%;
     padding:10px;	
 }
+.projectImagesReject{
+	opacity:0.3;
+	width: 100%;
+    padding:10px;	
+}
 input#appbundle_file_files {
     height: 39px;
     margin-top: -35px;
@@ -1063,7 +1084,7 @@ input#appbundle_file_files {
 	height:auto;
 }
 #appbundle_project_term{
-	width: 140px;
+	width: 200px;
     padding: 3px;
 }
 #appbundle_project_term::-webkit-calendar-picker-indicator{
