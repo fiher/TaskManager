@@ -125,6 +125,9 @@
 								{% if app.user.type == "Designer" %}
 							    <form action="{{ path('project_update', { 'id': project.id }) }}" method="post">
 									<div class="col-md-2">
+										<input type="submit" id="working" readonly="readonly" name="working" value="Работи се"><div class="working_icon"></div>
+									</div>
+									<div class="col-md-2">
 										<input id="inserLink" readonly="readonly" name="inserLink" value="Линк" onclick="btnShowLink({{ project.id }})"><div class="link_icon"></div>
 									</div>
 								</form>

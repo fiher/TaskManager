@@ -112,6 +112,9 @@
 		        <a class="fancybox" rel="gallery" href="{{ file.filePath }}">
 			        <img src="{{ file.filePath }}" class="projectImages"/>
 			    </a>
+				{% if project.isOver %}
+				<p style="text-align:center;">{{ file.date|date('d M H:i:s') }}</p>
+				{% endif %}
 		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
                 <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
@@ -125,6 +128,9 @@
 		        <a rel="gallery" href="{{ file.filePath }}" target="_blank">
 			        <img src="{{ asset("images/pdf.png") }}" class="projectImages"/>
 			    </a>
+				{% if project.isOver %}
+				<p style="text-align:center;">{{ file.date|date('d M H:i:s') }}</p>
+				{% endif %}
 		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
                 <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
@@ -132,11 +138,15 @@
 		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg" value="Изтрий">
 				</form>
 				{% endif %}
+		    </div>
         {% else %}
 			<div class="col-md-4" id="showImg">
 		        <a rel="gallery">
 			        <img src="{{ asset("images/rar.png") }}" class="projectImages"/>
 			    </a>
+				{% if project.isOver %}
+				<p style="text-align:center;">{{ file.date|date('d M H:i:s') }}</p>
+				{% endif %}
 		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
                 <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
@@ -162,6 +172,9 @@
 		        <a class="fancybox" rel="gallery" href="{{ file.filePath }}">
 			        <img src="{{ file.filePath }}" class="projectImages"/>
 			    </a>
+				{% if project.isOver %}
+				<p style="text-align:center;">{{ file.date|date('d M H:i:s') }}</p>
+				{% endif %}
 		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
                 <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
@@ -175,6 +188,9 @@
 		        <a rel="gallery" href="{{ file.filePath }}" target="_blank">
 			        <img src="{{ asset("images/pdf.png") }}" class="projectImages"/>
 			    </a>
+				{% if project.isOver %}
+				<p style="text-align:center;">{{ file.date|date('d M H:i:s') }}</p>
+				{% endif %}
 		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
                 <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
@@ -182,11 +198,15 @@
 		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg" value="Изтрий">
 				</form>
 				{% endif %}
+		    </div>
         {% else %}
 			<div class="col-md-4" id="showImg">
 		        <a rel="gallery">
 			        <img src="{{ asset("images/rar.png") }}" class="projectImages"/>
 			    </a>
+				{% if project.isOver %}
+				<p style="text-align:center;">{{ file.date|date('d M H:i:s') }}</p>
+				{% endif %}
 		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
                 <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
@@ -212,6 +232,9 @@
 		        <a class="fancybox" rel="gallery" href="{{ file.filePath }}">
 			        <img src="{{ file.filePath }}" class="projectImages"/>
 			    </a>
+				{% if project.isOver %}
+				<p style="text-align:center;">{{ file.date|date('d M H:i:s') }}</p>
+				{% endif %}
 		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
                 <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
@@ -225,6 +248,9 @@
 		        <a rel="gallery" href="{{ file.filePath }}" target="_blank">
 			        <img src="{{ asset("images/pdf.png") }}" class="projectImages"/>
 			    </a>
+				{% if project.isOver %}
+				<p style="text-align:center;">{{ file.date|date('d M H:i:s') }}</p>
+				{% endif %}
 		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
                 <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
@@ -232,11 +258,15 @@
 		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg" value="Изтрий">
 				</form>
 				{% endif %}
+		    </div>
         {% else %}
 			<div class="col-md-4" id="showImg">
 		        <a rel="gallery">
 			        <img src="{{ asset("images/rar.png") }}" class="projectImages"/>
 			    </a>
+				{% if project.isOver %}
+				<p style="text-align:center;">{{ file.date|date('d M H:i:s') }}</p>
+				{% endif %}
 		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
                 <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
