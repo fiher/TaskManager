@@ -78,9 +78,11 @@ function HideTerm(){
 	var check = document.getElementById('appbundle_project_term');
 	var isCheck = document.getElementById('appbundle_project_withoutTerm');
 		if(isCheck.checked) {
+        $("label[for='appbundle_project_term']").attr("id", "showterm");
         x.setAttribute("value", "2020-02-09");
 		check.style.display = 'none';
 	    }else{
+        $("label[for='appbundle_project_term']").removeAttr("id", "showterm");
         x.removeAttribute("value", "2020-02-09");
 		check.style.display = 'inline-block';
 	    }
@@ -88,9 +90,11 @@ function HideTerm(){
 	var check = document.getElementById('appbundle_project_term');
 	var isCheck = document.getElementById('appbundle_project_withoutTerm');
 	    if(isCheck.checked) {
+        $("label[for='appbundle_project_term']").attr("id", "showterm");
         x.setAttribute("value", "2020-02-09");
 		check.style.display = 'none';
 	    }else{
+        $("label[for='appbundle_project_term']").removeAttr("id", "showterm");
         x.removeAttribute("value", "2020-02-09");
 		check.style.display = 'inline-block';
 	   }

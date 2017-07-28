@@ -1108,5 +1108,7 @@ input#appbundle_file_files {
 .inputNotVisible{
 	display:none;
 }
-
+#showterm{
+	display:none;
+}
 
