@@ -489,6 +489,7 @@ class ProjectController extends Controller
         if($forbidden){
             return $forbidden;
         }
+        $referer = $request->headers->get('referer');
         $user = $this->getUser();
         $files = $managerFiles = $request->files->get('appbundle_file')['files'];
         $filesService = $this->get('app.service.files_service');
@@ -499,7 +500,7 @@ class ProjectController extends Controller
             $filesService->createFile($fileName, $project, $user,$file->getExtension());
         }
         $this->get('session')->getFlashBag()->set('success', 'Файловете успешно качени!');
-        return $this->redirectToRoute('project_index');
+        return $this->redirect($referer);
     }
     public function sortProjects(Project $a,Project $b)
     {
