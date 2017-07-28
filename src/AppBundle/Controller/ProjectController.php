@@ -431,16 +431,14 @@ class ProjectController extends Controller
             $this->get('session')->getFlashBag()->set('success', "Заявката успешно сложена за одобрение!");
         }elseif(isset($_POST['working'])){
             $em = $this->getDoctrine()->getManager();
-            $query = $em->getRepository('AppBundle:Project')->
-            createQueryBuilder('project')->
-            where('project.id != currentId')->setParameter('currentId',$project->getId())->getQuery();
-            $projects = $query->getResult();
+            $projects = $em->getRepository('AppBundle:Project')->findDesignerProjects($user->getFullName());
             if($projects){
                 foreach ($projects as $singleProject){
                     /** @var  $singleProject Project */
-
+                    $singleProject->setWorking(false);
                 }
             }
+            $project->setWorking(true);
         }elseif(isset($_POST['link'])){
             $project->setDesignerLink($_POST['link']);
         }
@@ -451,13 +449,8 @@ class ProjectController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->persist($project);
         $em->flush();
-        $requestURL = explode("/",$request->getUri())[5];
-       // if($requestURL== "update") {
+
             return $this->redirect($referer);
-        //}else{
-        //    return $this->redirect($referer, array('id' => $project->getId()
-        //    ));
-        //}
     }
 
     private function checkCredentials($allowedUserRoles){

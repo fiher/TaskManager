@@ -22,6 +22,12 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         where("project.executioner != 'null'")->
         getQuery()->
         getResult();
-
+    }
+    public function findDesignerProjects($fullName){
+        return $this->createQueryBuilder('project')->
+        where('project.designer = :fullName')->
+        setParameter('fullName',$fullName)->
+        getQuery()->
+        getResult();
     }
 }

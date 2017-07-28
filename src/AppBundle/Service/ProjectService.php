@@ -102,6 +102,10 @@ class ProjectService
                 $project->setClass("forApproval");
                 $project->setStatus("За одобрение");
             }
+            if($project->isWorking()){
+                $project->setClass('working');
+                $project->setStatus('Дизайнера работи по тази заявка');
+            }
             if($userType != "LittleBoss" && $userType != "Boss"){
                 if($userType == "Designer" && $user->getFullName() == $project->getDesigner() && !$project->isApproved()){
                     $filteredProjects[] = $project;
