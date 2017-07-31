@@ -117,10 +117,7 @@
 				{% endif %}
 		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
-                <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
-				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
-		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg" value="Изтрий">
-				</form>
+                    {% include 'files/rejectFile.html.twig' with {fileID:file.id,projectID:project.id} %}
 				{% endif %}
 		    </div>
 		{% elseif file.fileExtension == "pdf" or file.fileExtension == "tiff" %}
@@ -133,10 +130,7 @@
 				{% endif %}
 		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
-                <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
-				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
-		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg" value="Изтрий">
-				</form>
+                    {% include 'files/rejectFile.html.twig' with {fileID:file.id,projectID:project.id} %}
 				{% endif %}
 		    </div>
         {% else %}
@@ -149,10 +143,7 @@
 				{% endif %}
 		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
-                <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
-				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
-		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg" value="Изтрий">
-				</form>
+                    {% include 'files/rejectFile.html.twig' with {fileID:file.id,projectID:project.id} %}
 				{% endif %}
 		    </div>
 		{% endif %}
@@ -177,10 +168,7 @@
 				{% endif %}
 		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
-                <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
-				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
-		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg" value="Изтрий">
-				</form>
+                    {% include 'files/rejectFile.html.twig' with {fileID:file.id,projectID:project.id} %}
 				{% endif %}
 		    </div>
 		{% elseif file.fileExtension == "pdf" or file.fileExtension == "tiff" %}
@@ -193,10 +181,7 @@
 				{% endif %}
 		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
-                <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
-				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
-		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg" value="Изтрий">
-				</form>
+                    {% include 'files/rejectFile.html.twig' with {fileID:file.id,projectID:project.id} %}
 				{% endif %}
 		    </div>
         {% else %}
@@ -209,10 +194,7 @@
 				{% endif %}
 		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
-                <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
-				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
-		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg" value="Изтрий">
-				</form>
+                    {% include 'files/rejectFile.html.twig' with {fileID:file.id,projectID:project.id} %}
 				{% endif %}
 		    </div>
 		{% endif %}
@@ -237,10 +219,7 @@
 				{% endif %}
 		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
-                <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
-				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
-		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg" value="Изтрий">
-				</form>
+                    {% include 'files/rejectFile.html.twig' with {fileID:file.id,projectID:project.id} %}
 				{% endif %}
 		    </div>
 		{% elseif file.fileExtension == "pdf" or file.fileExtension == "tiff" %}
@@ -253,10 +232,7 @@
 				{% endif %}
 		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
-                <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
-				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
-		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg" value="Изтрий">
-				</form>
+                    {% include 'files/rejectFile.html.twig' with {fileID:file.id,projectID:project.id} %}
 				{% endif %}
 		    </div>
         {% else %}
@@ -269,10 +245,7 @@
 				{% endif %}
 		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
-                <form action="{{ path('project_fast_update', { 'id':project.id }) }}" method="post">
-				<input name="{{ file.id }}" value="{{ project.id }}" class="inputNotVisible">
-		        <input type="submit" id="rejectImg" name="rejectImg" class="rejectImg" value="Изтрий">
-				</form>
+                    {% include 'files/rejectFile.html.twig' with {fileID:file.id,projectID:project.id} %}
 				{% endif %}
 		    </div>
 		{% endif %}

@@ -442,8 +442,12 @@ class ProjectController extends Controller
         }elseif(isset($_POST['link'])){
             $project->setDesignerLink($_POST['link']);
         }
-        elseif(isset($_POST['rejectImg'])){
-            $file = $this->getDoctrine()->getManager()->getRepository('AppBundle:Files')->find($_POST['fileId']);
+        elseif(isset($_POST['rejectFile'])){
+            $file = $this->getDoctrine()->getManager()->getRepository('AppBundle:Files')->find($_POST['rejectFile']);
+            $file->setRejected(true);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($file);
+            $em->flush();
 
         }
         $em = $this->getDoctrine()->getManager();
