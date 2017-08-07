@@ -10,6 +10,7 @@ use AppBundle\Entity\Project;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
@@ -193,6 +194,16 @@ class ProjectController extends Controller
         if($user->getType() != "LittleBoss"){
             $form->remove("designer");
             $form->remove("executioner");
+            if($user->getUsername() == 'winbet.online') {
+                $form->add('designer', ChoiceType::class, array('label' => "Дизайнер",
+                    "required" => false,
+                    'choices' => array(
+                        "Няма дизайнер" => "Няма дизайнер",
+                        "Михаил Станев" => "Михаил Станев"
+                    ),
+                    'data' => $project->getDesigner()
+                ));
+            }
         }
         $form->handleRequest($request);
 
@@ -379,7 +390,7 @@ class ProjectController extends Controller
      */
     public function updateAction(Request $request, Project $project){
         //this function returns "" if the user is allowed and if not returns $this->render
-        $forbidden = $this->checkCredentials(array("LittleBoss","Boss","Designer"));
+        $forbidden = $this->checkCredentials("all");
         if($forbidden){
             return $forbidden;
         }
