@@ -51,7 +51,10 @@ class CommentsService
                         $comments = array_values($comments);
                     }
                 } else {
-                    if ($comment->getCreatorRole() != $user->getType()) {
+                    if ($comment->getCreatorRole() == 'Manager' && $user->getUsername() == 'm.stanev'){
+                        continue;
+                    }
+                    else if ($comment->getCreatorRole() != $user->getType()) {
                         unset($comments[$i]);
                         $i--;
                         $comments = array_values($comments);

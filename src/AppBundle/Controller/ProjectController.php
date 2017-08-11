@@ -259,16 +259,12 @@ class ProjectController extends Controller
         $comments = $commentsService->filterComments($comments,$user);
         if ($userType == "LittleBoss" && !$project->isSeenByLittleBoss()) {
             $project->setSeenByLittleBoss(true);
-        } elseif ($userType == "Manager" && !$project->isSeenByManager()) {
-            $project->setSeenByManager(true);
-        } elseif ($userType == "Designer" && !$project->isSeenByDesigner()) {
+        }elseif ($userType == "Designer" && !$project->isSeenByDesigner()) {
             $project->setDesignerAccepted(true);
             $project->setDateDesigner(new \DateTime());
-            $project->setSeenByDesigner(true);
-        } elseif ($userType == "Executioner" && !$project->isSeenByExecutioner()) {
+        }elseif ($userType == "Executioner" && !$project->isSeenByExecutioner()) {
             $project->setExecutionerAccepted(true);
             $project->setDateExecutioner(new \DateTime());
-            $project->setSeenByExecutioner(true);
         }
         $em = $this->getDoctrine()->getManager();
         $em->persist($project);
@@ -417,16 +413,12 @@ class ProjectController extends Controller
             $project->setHold(false);
             $this->get('session')->getFlashBag()->set('success', "Успешно отхвърлихте заявката!");
         } elseif (isset($_POST['archive'])) {
-            if ($project->isApproved()) {
-                $project->setIsOver(true);
-                $project->setOverDate(new \DateTime());
-                $project->setForApproval(true);
-                $project->setHold(false);
-                $project->setRejected(false);
-                $this->get('session')->getFlashBag()->set('success', "Успешно архивирахте заявката!");
-            } else {
-                $this->get('session')->getFlashBag()->set('error', "Не можете да архивирате заявка, която не е одобрена!");
-            }
+            $project->setIsOver(true);
+            $project->setOverDate(new \DateTime());
+            $project->setForApproval(true);
+            $project->setHold(false);
+            $project->setRejected(false);
+            $this->get('session')->getFlashBag()->set('success', "Успешно архивирахте заявката!");
         }elseif(isset($_POST['hold'])){
             $project->setHold(true);
             $project->setRejected(false);
@@ -465,16 +457,13 @@ class ProjectController extends Controller
         $em->persist($project);
         $em->flush();
 
-            return $this->redirect($referer);
+        return $this->redirect($referer);
     }
-
     private function checkCredentials($allowedUserRoles){
         $authenticationUtils = $this->get('security.authentication_utils');
         $lastUsername = $authenticationUtils->getLastUsername();
-
         /** @var User $user */
         $user = $this->getUser();
-
         if($user){
             if($allowedUserRoles == "all"){
                 return "";
