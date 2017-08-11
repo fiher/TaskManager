@@ -52,6 +52,10 @@ class ProjectService
                 $project->setClass("notSeen");
                 $project->setStatus("Не е видяно");
             }
+            if($user->getUsername() == 'm.stanev'){
+                $project->setClass("assigned");
+                $project->setStatus("Разпределено");
+            }
 
             if ($project->getClass() == "seen"&& !$project->getDesigner()){
                 $project->setClass("seenNotAsssigned");
@@ -106,6 +110,22 @@ class ProjectService
                 $project->setClass('working');
                 $project->setStatus('Дизайнера работи по тази заявка');
             }
+            if($project->getDesigner() == 'Михаил Станев' && $user->getUsername() == 'winbet.online'){
+                if($project->isSeenByDesigner()){
+                    $project->setClass('seen');
+                    $project->setStatus('Видяно');
+                }
+                if($project->isApproved()) {
+                    $project->setClass("approved");
+                    $project->setStatus("Одобрено");
+                    $project->setUrgent(false);
+
+                }if($project->isRejected()){
+                    $project->setStatus("Отхвърлено");
+                    $project->setClass("rejected");
+                }
+            }
+
             if($userType != "LittleBoss" && $userType != "Boss"){
                 if($userType == "Designer" && $user->getFullName() == $project->getDesigner() && !$project->isApproved()){
                     $filteredProjects[] = $project;

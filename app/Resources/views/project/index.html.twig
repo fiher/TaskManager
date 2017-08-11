@@ -98,12 +98,12 @@
 										<input type="submit" readonly="readonly" id="archive" name="archive" value="Архивирай"><div class="archive_icon"></div>
 									</div>
                                 {% endif %}
-					            {% if ( project.forApproval or project.isApproved ) and ( app.user.type == "LittleBoss" or app.user.type == "Boss" ) %}
+					            {% if (( project.forApproval or project.isApproved ) and ( app.user.type == "LittleBoss" or app.user.type == "Boss" )) or (project.designer == 'Михаил Станев' and app.user.username == 'winbet.online') %}
 								<div class="col-md-2">
 									<input type="submit" readonly="readonly" id="approve" name="approve" value="Одобрявам"><div class="approve_icon"></div>
 								</div>
 								<div class="col-md-2">
-									<input id="rejectPopup" readonly="readonly" name="rejectPopup" value="Отхвърлям" onclick="btnShowPopup({{ project.id }})"><div class="reject_icon"></div>
+									<input id="rejectPopup" readonly="readonly" name="rejectPopup" value="Отхвърлям" onclick="btnShowPopup({{ project.id }})"/><div class="reject_icon"></div>
 								</div>
 								{% elseif app.user.type == "LittleBoss" or app.user.type == "Boss" %}
 								<div class="col-md-2" >
