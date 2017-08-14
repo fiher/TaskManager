@@ -84,7 +84,6 @@ class ProjectController extends Controller
         $query = $em->getRepository('AppBundle:User');
         /** @var User $user */
         $user = $query->loadUserByUsername($username);
-        dump($user);
         $em = $this->getDoctrine()->getManager();
         $projects = $em->getRepository('AppBundle:Project')->findAll();
         $projects = array_reverse($projects);
@@ -240,7 +239,7 @@ class ProjectController extends Controller
      */
     public function showAction(Request $request, Project $project)
     {
-        dump($request);
+
         //this function returns "" if the user is allowed and if not returns $this->render
         $forbidden = $this->checkCredentials("all");
         if($forbidden){
