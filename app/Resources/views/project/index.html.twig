@@ -93,32 +93,27 @@
 
 					    {% else %}
 							<form action="{{ path('project_update', { 'id': project.id }) }}" method="post" id="reg-form">
-                                {% if ( project.isApproved or project.isRejected ) and app.user.type == "LittleBoss" %}
-									<div class="col-md-3">
-										<input type="submit" readonly="readonly" id="archive" name="archive" value="Архивирай"><div class="archive_icon"></div>
-									</div>
-                                {% endif %}
-					            {% if (( project.forApproval or project.isApproved ) and ( app.user.type == "LittleBoss" or app.user.type == "Boss" )) or (project.designer == 'Михаил Станев' and app.user.username == 'winbet.online') %}
+					            {% if  project.forApproval  and ( app.user.type == "LittleBoss" or app.user.type == "Boss" or ( project.designer == 'Михаил Станев' and app.user.username == 'winbet.online' ) ) %}
 								<div class="col-md-2">
 									<input type="submit" readonly="readonly" id="approve" name="approve" value="Одобрявам"><div class="approve_icon"></div>
 								</div>
 								<div class="col-md-2">
-									<input id="rejectPopup" readonly="readonly" name="rejectPopup" value="Отхвърлям" onclick="btnShowPopup({{ project.id }})"/><div class="reject_icon"></div>
+									<input id="rejectPopup" readonly="readonly" name="rejectPopup" value="Отхвърлям" onclick="btnShowPopup({{ project.id }})"><div class="reject_icon"></div>
 								</div>
-								{% elseif app.user.type == "LittleBoss" or app.user.type == "Boss" %}
+								{% elseif ( project.isApproved or project.isRejected ) and ( app.user.type == "LittleBoss" or app.user.type == "Boss" or ( project.designer == 'Михаил Станев' and app.user.username == 'winbet.online' ) )  %}
+									<div class="col-md-2">
+										<input type="submit" readonly="readonly" id="archive" name="archive" value="Архивирай"><div class="archive_icon"></div>
+									</div>								
+								{% elseif  app.user.type == "LittleBoss" or app.user.type == "Boss" or ( project.designer == 'Михаил Станев' and app.user.username == 'winbet.online' )   %}
 								<div class="col-md-2" >
 									<input type="submit" readonly="readonly" id="forApproval" name="forApproval" value="За одобрение"/><div class="forApproval_icon"></div>
 								</div>
-                                {% endif %}
-
-								{% if app.user.type == "LittleBoss" %}
 								<div class="col-md-2">
 									<input type="submit" readonly="readonly" id="hold" name="hold" value="На изчакване" onclick="return chk()"><div class="hold_icon"></div>
 								</div>
-                                {% endif %}								
+                                {% endif %}						
 							    </form>	
 
-								
 								{% if app.user.type == "Designer" or app.user.type == "LittleBoss" or ( app.user.type == "Executioner" and app.user.username == "metro.reklama" ) %}
 								<div class="col-md-2">
 									{% set form = add_files_form.createView %}
@@ -163,7 +158,7 @@
 								{% endif %}
                                 </div>								
 								
-					{% if app.user.type == "LittleBoss" or app.user.type == "Boss" or app.user.type == "Designer" %}
+
 								<form action="{{ path('project_update', { 'id': project.id }) }}" method="post">
 								<div  class="popup" id="popup{{ project.id }}">
 									<div class="popup-content">
@@ -201,7 +196,7 @@
 									</div>
 								</div>		
                                 </form>
-                    {% endif %}	
+
 
 					</td>
 

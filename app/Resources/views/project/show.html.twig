@@ -117,7 +117,7 @@
 				{% endif %}
 		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
-                    {% include 'files/rejectFile.html.twig' with {fileID:file.id,projectID:project.id} %}
+                {% include 'files/rejectFile.html.twig' with {fileID:file.id,projectID:project.id} %}
 				{% endif %}
 		    </div>
 		{% elseif file.fileExtension == "pdf" or file.fileExtension == "tiff" %}
@@ -130,7 +130,7 @@
 				{% endif %}
 		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
-                    {% include 'files/rejectFile.html.twig' with {fileID:file.id,projectID:project.id} %}
+                {% include 'files/rejectFile.html.twig' with {fileID:file.id,projectID:project.id} %}
 				{% endif %}
 		    </div>
         {% else %}
@@ -143,7 +143,7 @@
 				{% endif %}
 		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
-                    {% include 'files/rejectFile.html.twig' with {fileID:file.id,projectID:project.id} %}
+                {% include 'files/rejectFile.html.twig' with {fileID:file.id,projectID:project.id} %}
 				{% endif %}
 		    </div>
 		{% endif %}
@@ -168,7 +168,7 @@
 				{% endif %}
 		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
-                    {% include 'files/rejectFile.html.twig' with {fileID:file.id,projectID:project.id} %}
+                {% include 'files/rejectFile.html.twig' with {fileID:file.id,projectID:project.id} %}
 				{% endif %}
 		    </div>
 		{% elseif file.fileExtension == "pdf" or file.fileExtension == "tiff" %}
@@ -181,7 +181,7 @@
 				{% endif %}
 		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
-                    {% include 'files/rejectFile.html.twig' with {fileID:file.id,projectID:project.id} %}
+                {% include 'files/rejectFile.html.twig' with {fileID:file.id,projectID:project.id} %}
 				{% endif %}
 		    </div>
         {% else %}
@@ -194,7 +194,7 @@
 				{% endif %}
 		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
-                    {% include 'files/rejectFile.html.twig' with {fileID:file.id,projectID:project.id} %}
+                {% include 'files/rejectFile.html.twig' with {fileID:file.id,projectID:project.id} %}
 				{% endif %}
 		    </div>
 		{% endif %}
@@ -219,7 +219,7 @@
 				{% endif %}
 		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
-                    {% include 'files/rejectFile.html.twig' with {fileID:file.id,projectID:project.id} %}
+                {% include 'files/rejectFile.html.twig' with {fileID:file.id,projectID:project.id} %}
 				{% endif %}
 		    </div>
 		{% elseif file.fileExtension == "pdf" or file.fileExtension == "tiff" %}
@@ -232,7 +232,7 @@
 				{% endif %}
 		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
-                    {% include 'files/rejectFile.html.twig' with {fileID:file.id,projectID:project.id} %}
+                {% include 'files/rejectFile.html.twig' with {fileID:file.id,projectID:project.id} %}
 				{% endif %}
 		    </div>
         {% else %}
@@ -245,7 +245,7 @@
 				{% endif %}
 		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
-                    {% include 'files/rejectFile.html.twig' with {fileID:file.id,projectID:project.id} %}
+                {% include 'files/rejectFile.html.twig' with {fileID:file.id,projectID:project.id} %}
 				{% endif %}
 		    </div>
 		{% endif %}
@@ -294,29 +294,26 @@
 		    {% else %}		
 		    <div class="row" style="background: #dcf0d9;">
                 <form action="{{ path('project_fast_update', { 'id': project.id }) }}" method="post" style="margin-top: 10px; margin-left: 0px; margin-right: 0px;">
-					{% if ( project.forApproval or project.isApproved ) and ( app.user.type == "LittleBoss" or app.user.type == "Boss" )  %}
+					{% if ( project.forApproval or project.isApproved ) and ( app.user.type == "LittleBoss" or app.user.type == "Boss" or ( project.designer == 'Михаил Станев' and app.user.username == 'winbet.online' ) )  %}
                     <div class="col-md-2">
                         <input type="submit" readonly="readonly" id="approve" name="approve" value="Одобрявам"><div class="approve_icon"></div>
                     </div>
 					<div class="col-md-2">
 						<input id="rejectPopup" readonly="readonly" name="rejectPopup" value="Отхвърлям" onclick="btnShowPopup({{ project.id }})"><div class="reject_icon"></div>
 					</div>
-					{% elseif app.user.type == "LittleBoss" or app.user.type == "Boss" %}
+					{% elseif ( project.isApproved or project.isRejected ) and ( app.user.type == "LittleBoss" or app.user.type == "Boss" or ( project.designer == 'Михаил Станев' and app.user.username == 'winbet.online' ) )  %}
+					<div class="col-md-3">
+					    <input type="submit" readonly="readonly" id="archive" name="archive" value="Архивирай"><div class="archive_icon"></div>
+					</div>		
+					{% elseif  app.user.type == "LittleBoss" or app.user.type == "Boss" or ( project.designer == 'Михаил Станев' and app.user.username == 'winbet.online' )   %}
 					<div class="col-md-2" >
 						<input type="submit" readonly="readonly" id="forApproval" name="forApproval" value="За одобрение"/><div class="forApproval_icon"></div>
-					</div>
-                    {% endif %}
-					{% if app.user.type == "LittleBoss" %}					
+					</div>			
 					<div class="col-md-2">
 						<input type="submit" readonly="readonly" id="hold" name="hold" value="На изчакване"><div class="hold_icon"></div>
 					</div>
 					{% endif %}
 
-					{% if ( project.isApproved or project.isRejected ) and app.user.type == "LittleBoss" %}
-					<div class="col-md-3">
-						<input type="submit" readonly="readonly" id="archive" name="archive" value="Архивирай"><div class="archive_icon"></div>
-					</div>
-					{% endif %}
                 </form>
 				<div class="col-md-2">
 					<input value="Прикачи файл" id="button_upload"><div class="upload_icon"></div>

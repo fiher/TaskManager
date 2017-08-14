@@ -481,11 +481,20 @@ nav a.active, nav a:hover{
     text-shadow: rgba(0,0,0,0) 1px 1px 1px;
 	font-weight: 600;
 }
-
-.content{
+  
+@media (min-width: 300px) {
+ .content{
+    width:100%;
+    margin-right: auto;
+    margin-left: auto;
+ }
+}
+@media (min-width: 1200px) {
+ .content{
     width:80%;
     margin-right: auto;
     margin-left: auto;
+ }
 }
 .show_query, #appbundle_project{
     width:100%;
@@ -626,21 +635,21 @@ form[name=appbundle_file] {
     width: 100%;
 	opacity:0.8;
 }
-.rejectImg{
+.rejectFileButton, .rejectFileButton:hover{
     background-color: #ee5454;
     border-bottom: 2px solid #ff1212;
     border-radius: 0;
     color: #f4f4f4;
     padding:5px 5px 5px 5px;
     text-align: center;
-    width: 30%;
+    width: 35%;
 	opacity:0.8;
     cursor:pointer;
     margin-right: 10px;
     text-decoration: none;
     float: right;	
 }
-.downloadLink{
+.downloadLink, .downloadLink:hover{
 	background-color: #84cc06;
     border-bottom: 2px solid #72a21e;
     border-radius: 0;
@@ -661,9 +670,14 @@ input#button_delete:hover, #reject:hover, input#archive:hover, #button_edit:hove
 #appbundle_project label{
     width:25%;
 }
-#appbundle_project input, #appbundle_project #appbundle_project_term{
+#appbundle_project input, #appbundle_project #appbundle_project_term, #showtermMozilla{
 	display: inline-block;
-
+}
+@-moz-document url-prefix() {
+#appbundle_project_term{
+	background-color:none;
+	display: none;
+}
 }
 
 #appbundle_project_urgent, #appbundle_project_withoutTerm{
@@ -905,11 +919,54 @@ select{
     color: #fb1b2a;
     font-size: 30px;
     margin-right: 5px;
+}
+.success, .error{
+    background-color: #fefefe;
+    border: 2px solid #343434;
+	border-radius:5px;
+    position: fixed;
+    z-index: 1;
+    left:30%;
+    top: 0;
+    width: 550px;
+    height: 70px;
+    padding-top: 25px;	
+    padding-left: 15px;
+    padding-right: 15px;
+    overflow: auto;
+    -moz-animation: hideMessage 0s ease-in 5s forwards;
+    /* Firefox */
+    -webkit-animation: hideMessage 0s ease-in 5s forwards;
+    /* Safari and Chrome */
+    -o-animation: hideMessage 0s ease-in 5s forwards;
+    /* Opera */
+    animation: hideMessage 0s ease-in 5s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+@keyframes hideMessage {
+    to {
+        width:0;
+        height:0;
+		border:0;
+		padding:0;
+        overflow:hidden;
+    }
+}
+@-webkit-keyframes hideMessage {
+    to {
+        width:0;
+        height:0;
+        border:0;
+		padding:0;
+        visibility:hidden;
+    }
 }	
 .success p{
 	width:100%;
     text-align: center;
 	color:#3f9b39;
+	font-size:16px;
 }
 .error p{
 	width:100%;
@@ -1111,4 +1168,6 @@ input#appbundle_file_files {
 #showterm{
 	display:none;
 }
-
+.ws-popover, .date-popover, .input-picker, .ws-size-1, .wsshadow-1501495474078, .ws-po-outerbox, .ws-po-arrow, .ws-po-box{
+	display:inline-block;
+}
