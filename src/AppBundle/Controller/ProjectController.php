@@ -85,6 +85,7 @@ class ProjectController extends Controller
         $user = $userService->getUserByUsername($username);
         $projects = $projectService->getDesignerProjects($user->getFullName());
         $projects = $projectService->addCommentsToProjects($projects, $user);
+        $projects = $projectService->filterProjects($projects, $user, $user->getType());
         $addFilesForm = $this->createForm('AppBundle\Form\AddFilesType');
         return $this->render('project/index.html.twig', array(
             'projects' => $projects,
