@@ -11,6 +11,7 @@ namespace AppBundle\Service;
 
 use AppBundle\Entity\Comments;
 use AppBundle\Entity\User;
+use AppBundle\Repository\CommentsRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -20,14 +21,16 @@ class CommentsService
     private $entityManager;
     private $session;
     private $manager;
+    private $commentsRepository;
     public function __construct(
         EntityManagerInterface $entityManager,
         Session $session,
-        ManagerRegistry $manager)
+        ManagerRegistry $manager,CommentsRepository $commentsRepository)
     {
         $this->entityManager = $entityManager;
         $this->session = $session;
         $this->manager = $manager;
+        $this->commentsRepository = $commentsRepository;
     }
     public function newComment(Comments $comment, User $user, \DateTime $date){
         $comment->setMadeBy($user->getFullName());
@@ -67,5 +70,7 @@ class CommentsService
         }
         return $comments;
     }
-
+    public function findCommentsByProjectID(int $id) {
+        return $this->commentsRepository->findByProjectID($id);
+    }
 }

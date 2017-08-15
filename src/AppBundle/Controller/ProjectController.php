@@ -80,24 +80,14 @@ class ProjectController extends Controller
         }
         $commentsService = $this->get('app.service.comments_service');
         $projectService = $this->get('app.service.projects_service');
-        $em = $this->getDoctrine()->getManager();
-        $query = $em->getRepository('AppBundle:User');
+        $userService = $this->get('app.service.users_service');
         /** @var User $user */
-        $user = $query->loadUserByUsername($username);
-        $em = $this->getDoctrine()->getManager();
-        $projects = $em->getRepository('AppBundle:Project')->findAll();
-        $projects = array_reverse($projects);
-        $filteredProjects = $projectService->filterProjects($projects,$user,"Designer");
-        foreach ($filteredProjects as $project){
-            /** @var Project $project */
-            $comments = $this->getDoctrine()
-                ->getRepository('AppBundle:Comments')
-                ->findByProjectID($project->getId());
-            $project->setComments($commentsService->filterComments($comments,$user));
-        }
+        $user = $userService->getUserByUsername($username);
+        $projects = $projectService->getDesignerProjects($user->getFullName());
+        $projects = $projectService->addCommentsToProjects($projects, $user);
         $addFilesForm = $this->createForm('AppBundle\Form\AddFilesType');
         return $this->render('project/index.html.twig', array(
-            'projects' => $filteredProjects,
+            'projects' => $projects,
             'add_files_form'=> $addFilesForm
         ));
     }	
@@ -185,30 +175,26 @@ class ProjectController extends Controller
     public function newAction(Request $request)
     {
         //this function returns "" if the user is allowed and if not returns $this->render
-        $this->checkCredentials(array("Manager","LittleBoss","Boss"));
+        $forbidden = $this->checkCredentials(array("Manager","LittleBoss","Boss"));
+        if($forbidden){
+            return $forbidden;
+        }
         /** @var  $user User */
         $user = $this->getUser();
         $project = new Project();
+        $projectService = $this->get('app.service.projects_service');
         $form = $this->createForm('AppBundle\Form\ProjectType', $project);
         if($user->getType() != "LittleBoss"){
-            $form->remove("designer");
-            $form->remove("executioner");
+            $form = $projectService->removeFormFieldsForManagers($form);
             if($user->getUsername() == 'winbet.online') {
-                $form->add('designer', ChoiceType::class, array('label' => "Дизайнер",
-                    "required" => false,
-                    'choices' => array(
-                        "Няма дизайнер" => "Няма дизайнер",
-                        "Михаил Станев" => "Михаил Станев"
-                    ),
-                    'data' => $project->getDesigner()
-                ));
+                $form = $projectService->addDesignerFieldForManagers($form,$project->getDesigner());
             }
         }
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
                 $this->getDoctrine()->getManager()->flush();
-                $projectService = $this->get('app.service.projects_service');
+
                 $managerFiles = $managerFiles = $request->files->get('appbundle_project')['managerFiles'];
 
                     $projectService->createProject($project, $user);
@@ -248,26 +234,16 @@ class ProjectController extends Controller
         /**
          * @var $user User
          */
+        $projectService = $this->get('app.service.projects_service');
         $commentsService = $this->get('app.service.comments_service');
         $user = $this->getUser();
         $userType = $user->getType();
         $deleteForm = $this->createDeleteForm($project);
-        $comments = $this->getDoctrine()
-            ->getRepository('AppBundle:Comments')
-            ->findByProjectID($project->getId());
+        $comments = $commentsService->findCommentsByProjectID($project->getId());
         $comments = $commentsService->filterComments($comments,$user);
-        if ($userType == "LittleBoss" && !$project->isSeenByLittleBoss()) {
-            $project->setSeenByLittleBoss(true);
-        }elseif ($userType == "Designer" && !$project->isSeenByDesigner()) {
-            $project->setDesignerAccepted(true);
-            $project->setDateDesigner(new \DateTime());
-        }elseif ($userType == "Executioner" && !$project->isSeenByExecutioner()) {
-            $project->setExecutionerAccepted(true);
-            $project->setDateExecutioner(new \DateTime());
-        }
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($project);
-        $em->flush();
+        $project =  $projectService->setProject($project, $user);
+        $projectService->flushProject($project);
+
         $comment = new Comments();
         $addFilesForm = $this->createForm('AppBundle\Form\AddFilesType');
         $form = $this->createForm('AppBundle\Form\CommentsType', $comment);
@@ -299,6 +275,7 @@ class ProjectController extends Controller
         if($forbidden){
             return $forbidden;
         }
+        $projectService = $this->get('app.service.projects_service');
         $userType = $this->getUser()->getType();
         $deleteForm = $this->createDeleteForm($project);
         $project->setHold(false);
@@ -311,16 +288,10 @@ class ProjectController extends Controller
             'data'=>$project->getTerm()
         ));
         if($userType != "LittleBoss"){
-            $editForm->remove('designer');
-            $editForm->remove("executioner");
+            $editForm = $projectService->removeFormFieldsForManagers($editForm);
         }
         if($userType == "Designer"){
-            $editForm->remove('description');
-            $editForm->remove('term');
-            $editForm->remove('fromUser');
-            $editForm->remove('department');
-            $editForm->remove('urgent');
-
+            $editForm = $projectService->removeFormFieldsForDesigners($editForm);
         }
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -335,7 +306,6 @@ class ProjectController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
-
     /**
      * Deletes a project entity.
      *
@@ -458,6 +428,7 @@ class ProjectController extends Controller
 
         return $this->redirect($referer);
     }
+
     private function checkCredentials($allowedUserRoles){
         $authenticationUtils = $this->get('security.authentication_utils');
         $lastUsername = $authenticationUtils->getLastUsername();
@@ -489,19 +460,23 @@ class ProjectController extends Controller
     public function uploadImage(Request $request, Project $project){
         //this function returns "" if the user is allowed and if not returns $this->render
         $forbidden = $this->checkCredentials(array("Designer","LittleBoss","Manager","Executioner"));
+
         if($forbidden){
             return $forbidden;
         }
+
         $referer = $request->headers->get('referer');
         $user = $this->getUser();
         $files = $managerFiles = $request->files->get('appbundle_file')['files'];
         $filesService = $this->get('app.service.files_service');
+
         foreach ($files as $file) {
             /** @var UploadedFile $file */
 
             $fileName = $filesService->uploadFileAndReturnName($file,$this->getParameter('files_directory'));
             $filesService->createFile($fileName, $project, $user,$file->getExtension());
         }
+
         $this->get('session')->getFlashBag()->set('success', 'Файловете успешно качени!');
         return $this->redirect($referer);
     }
@@ -511,5 +486,4 @@ class ProjectController extends Controller
         $projectBOver = strtotime($b->getOverDate()->format("Y-m-d"));
         return $projectBOver - $projectAOver;
     }
-	
 }

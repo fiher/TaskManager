@@ -11,8 +11,12 @@ namespace AppBundle\Service;
 
 use AppBundle\Entity\Project;
 use AppBundle\Entity\User;
+use AppBundle\Repository\CommentsRepository;
+use AppBundle\Repository\ProjectRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class ProjectService
@@ -21,15 +25,21 @@ class ProjectService
     private $session;
     private $manager;
     private $commentsService;
+    private $projectRepository;
+    private $commentsRepository;
     public function __construct(
         EntityManagerInterface $entityManager,
         Session $session,
-        ManagerRegistry $manager,CommentsService $commentsService)
+        ManagerRegistry $manager,CommentsService $commentsService,
+        ProjectRepository $projectRepository,
+        CommentsRepository $commentsRepository)
     {
         $this->entityManager = $entityManager;
         $this->session = $session;
         $this->manager = $manager;
         $this->commentsService = $commentsService;
+        $this->projectRepository = $projectRepository;
+        $this->commentsRepository = $commentsRepository;
     }
     public function filterProjects($projects,$user,$userType){
         $filteredProjects = [];
@@ -162,4 +172,61 @@ class ProjectService
         $this->entityManager->persist($project);
         $this->entityManager->flush();
     }
+    public function setProject(Project $project, User $user) {
+        $userType = $user->getType();
+        if ($userType == "LittleBoss" && !$project->isSeenByLittleBoss()) {
+            $project->setSeenByLittleBoss(true);
+        }elseif ($userType == "Designer" && !$project->isSeenByDesigner()) {
+            $project->setDesignerAccepted(true);
+            $project->setDateDesigner(new \DateTime());
+        }elseif ($userType == "Executioner" && !$project->isSeenByExecutioner()) {
+            $project->setExecutionerAccepted(true);
+            $project->setDateExecutioner(new \DateTime());
+        }
+        return $project;
+    }
+    public function flushProject(Project $project) {
+        $this->entityManager->persist($project);
+        $this->entityManager->flush();
+    }
+    public function removeFormFieldsForDesigners($form) {
+        /** @var FormBuilder $form */
+        $form->remove('description');
+        $form->remove('term');
+        $form->remove('fromUser');
+        $form->remove('department');
+        $form->remove('urgent');
+
+        return $form;
+    }
+    public function removeFormFieldsForManagers($form) {
+        /** @var FormBuilder $form */
+        $form->remove('designer');
+        $form->remove("executioner");
+
+        return $form;
+    }
+    public function addDesignerFieldForManagers($form, $data){
+        /** @var FormBuilder $form */
+        $form->add('designer', ChoiceType::class, array('label' => "Дизайнер",
+            "required" => false,
+            'choices' => array(
+                "Няма дизайнер" => "Няма дизайнер",
+                "Михаил Станев" => "Михаил Станев"
+            ),
+            'data' => $data
+        ));
+    }
+    public function getDesignerProjects($fullName) {
+        return $this->projectRepository->findDesignerProjects($fullName);
+    }
+    public function addCommentsToProjects (array $projects, User $user) {
+        foreach ($projects as $project){
+            /** @var Project $project */
+            $comments = $this->commentsRepository->findByProjectID($project->getId());
+            $project->setComments($this->commentsService->filterComments($comments,$user));
+        }
+        return $projects;
+    }
+
 }

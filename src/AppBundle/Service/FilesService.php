@@ -25,12 +25,11 @@ class FilesService
     public function __construct(
         EntityManagerInterface $entityManager,
         Session $session,
-        ManagerRegistry $manager,CommentsService $commentsService)
+        ManagerRegistry $manager)
     {
         $this->entityManager = $entityManager;
         $this->session = $session;
         $this->manager = $manager;
-
     }
     public function uploadFileAndReturnName(UploadedFile $file,$targetDirectory){
         $this->targetDirectory = $targetDirectory;

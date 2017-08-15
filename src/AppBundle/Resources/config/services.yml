@@ -9,3 +9,6 @@ services:
     app.service.files_service:
             class: AppBundle\Service\FilesService
             autowire: true
+    app.service.users_service:
+                class: AppBundle\Service\UserService
+                autowire: true
