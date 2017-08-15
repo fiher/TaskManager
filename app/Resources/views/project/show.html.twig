@@ -100,7 +100,7 @@
             {% endif %}
             </tbody>
         </table>
-        <div class="row" style="background: #dde5ee;border-bottom: 2px solid #9ba2b6;">
+        <div class="row" style="background: #dde5ee;border-bottom: 1px solid #9ba2b6;">
 		<div class="col-md-5">
 			 <h1 class="h1files">Прикачени файлове от ръководител</h1>
 		</div>
@@ -151,7 +151,7 @@
 		{% endfor %}
 		</div>
 		</div>
-		<div class="row" style="background: #dde5ee;border-bottom: 2px solid #9ba2b6;">
+		<div class="row" style="background: #dde5ee;border-bottom: 1px solid #9ba2b6;">
 		<div class="col-md-5">
 			 <h1 class="h1files">Прикачени файлове от управител</h1>
 		</div>
@@ -202,7 +202,7 @@
 		{% endfor %}
 		</div>
 		</div>
-		<div class="row" style="background: #dde5ee;border-bottom: 2px solid #9ba2b6;">
+		<div class="row" style="background: #dde5ee;border-bottom: 1px solid #9ba2b6;">
 		<div class="col-md-5">
 			 <h1 class="h1files">Прикачени файлове от дизайнер</h1>
 		</div>
@@ -253,7 +253,8 @@
 		{% endfor %}
 		</div>
 		</div>
-		<div class="row" style="background: #dde5ee;border-bottom: 2px solid #9ba2b6;">
+		{% if app.user.type == "LittleBoss" or ( app.user.type == "Designer" and project.IsOver ) %}
+		<div class="row" style="background: #dde5ee;border-bottom: 1px solid #9ba2b6;">
 		<div class="col-md-5">
 			 <h1 class="h1files">Отхвърлени файлове</h1>
 		</div>
@@ -289,12 +290,13 @@
 		{% endfor %}
 		</div>
 		</div>
+		{% endif %}
 		{% if project.isOver and (app.user.type == "LittleBoss" or app.user.type == "Boss" ) %}
 
 		    {% else %}		
 		    <div class="row" style="background: #dcf0d9;">
                 <form action="{{ path('project_fast_update', { 'id': project.id }) }}" method="post" style="margin-top: 10px; margin-left: 0px; margin-right: 0px;">
-					{% if ( project.forApproval or project.isApproved ) and ( app.user.type == "LittleBoss" or app.user.type == "Boss" or ( project.designer == 'Михаил Станев' and app.user.username == 'winbet.online' ) )  %}
+					{% if project.forApproval and ( app.user.type == "LittleBoss" or app.user.type == "Boss" or ( project.designer == 'Михаил Станев' and app.user.username == 'winbet.online' ) )  %}
                     <div class="col-md-2">
                         <input type="submit" readonly="readonly" id="approve" name="approve" value="Одобрявам"><div class="approve_icon"></div>
                     </div>
