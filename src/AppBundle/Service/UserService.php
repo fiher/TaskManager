@@ -22,16 +22,15 @@ class UserService
     private $entityManager;
     private $session;
     private $manager;
-    private $userRepository;
     public function __construct(
         EntityManagerInterface $entityManager,
         Session $session,
-        ManagerRegistry $manager, UserRepository $userRepository)
+        ManagerRegistry $manager)
     {
         $this->entityManager = $entityManager;
         $this->session = $session;
         $this->manager = $manager;
-        $this->userRepository = $userRepository;
+        $this->userRepository = $this->manager->getRepository('AppBundle:User');
     }
     public function getUserByUsername(string $username) {
         return $this->userRepository->loadUserByUsername($username);

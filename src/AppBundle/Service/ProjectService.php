@@ -25,21 +25,17 @@ class ProjectService
     private $session;
     private $manager;
     private $commentsService;
-    private $projectRepository;
-    private $commentsRepository;
     public function __construct(
         EntityManagerInterface $entityManager,
         Session $session,
-        ManagerRegistry $manager,CommentsService $commentsService,
-        ProjectRepository $projectRepository,
-        CommentsRepository $commentsRepository)
+        ManagerRegistry $manager,CommentsService $commentsService)
     {
         $this->entityManager = $entityManager;
         $this->session = $session;
         $this->manager = $manager;
         $this->commentsService = $commentsService;
-        $this->projectRepository = $projectRepository;
-        $this->commentsRepository = $commentsRepository;
+        $this->projectRepository = $this->manager->getRepository('AppBundle:Project');
+        $this->commentsRepository = $this->manager->getRepository('AppBundle:Comments');
     }
     public function filterProjects($projects,$user,$userType){
         $filteredProjects = [];

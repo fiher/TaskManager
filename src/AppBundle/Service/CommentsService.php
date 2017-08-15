@@ -25,12 +25,12 @@ class CommentsService
     public function __construct(
         EntityManagerInterface $entityManager,
         Session $session,
-        ManagerRegistry $manager,CommentsRepository $commentsRepository)
+        ManagerRegistry $manager)
     {
         $this->entityManager = $entityManager;
         $this->session = $session;
         $this->manager = $manager;
-        $this->commentsRepository = $commentsRepository;
+        $this->commentsRepository = $this->manager->getRepository('AppBundle:Comments');
     }
     public function newComment(Comments $comment, User $user, \DateTime $date){
         $comment->setMadeBy($user->getFullName());
@@ -44,6 +44,7 @@ class CommentsService
          * @var $comment Comments
          * @var $user User
          */
+
         if($user->getType() != "LittleBoss") {
             for ($i = 0; $i < count($comments); $i++) {
                 $comment = $comments[$i];
