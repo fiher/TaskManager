@@ -86,6 +86,7 @@ class ProjectController extends Controller
         /** @var User $user */
         $user = $userService->getUserByUsername($username);
         $projects = $projectService->getDesignerProjects($user->getFullName());
+        $projects = array_reverse($projects);
         $projects = $projectService->addCommentsToProjects($projects, $user);
         $projects = $projectService->filterProjects($projects, $user, "LittleBoss");
         $addFilesForm = $this->createForm('AppBundle\Form\AddFilesType');
@@ -501,6 +502,9 @@ class ProjectController extends Controller
         $referer = $request->headers->get('referer');
         $fileSystem = new Filesystem();
         $fileSystem->remove($file->getFilePath());
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($file);
+        $em->flush();
         return $this->redirect($referer);
     }
     public function sortProjects(Project $a,Project $b)

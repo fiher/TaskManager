@@ -4,8 +4,6 @@
     <list default="true" id="056da0cf-db80-498e-bebe-f46eea1f8975" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Project.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Project.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Service/ProjectService.php" afterPath="$PROJECT_DIR$/src/AppBundle/Service/ProjectService.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,8 +18,8 @@
       <file leaf-file-name="ProjectController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="503" column="40" lean-forward="true" selection-start-line="503" selection-start-column="40" selection-end-line="503" selection-end-column="40" />
+            <state relative-caret-position="397">
+              <caret line="505" column="21" lean-forward="true" selection-start-line="505" selection-start-column="21" selection-end-line="505" selection-end-column="21" />
               <folding>
                 <element signature="e#40#64#0#PHP" expanded="true" />
                 <element signature="e#1208#2466#0#PHP" expanded="false" />
@@ -35,7 +33,7 @@
                 <element signature="e#16739#16758#1#PHP" expanded="true" />
                 <element signature="e#17290#17307#1#PHP" expanded="true" />
                 <element signature="e#17658#18592#0#PHP" expanded="false" />
-                <element signature="e#20328#20579#0#PHP" expanded="false" />
+                <element signature="e#20428#20679#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -57,6 +55,7 @@
             <state relative-caret-position="330">
               <caret line="16" column="5" lean-forward="false" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
               <folding>
+                <element signature="e#42#89#0#PHP" expanded="false" />
                 <marker date="1503316321816" expanded="true" signature="585:650" ph="ALTER TABLE project... " />
               </folding>
             </state>
@@ -794,7 +793,7 @@
       <workItem from="1502103139417" duration="1487000" />
       <workItem from="1502782735451" duration="11361000" />
       <workItem from="1503293518577" duration="7730000" />
-      <workItem from="1503379433825" duration="4516000" />
+      <workItem from="1503379433825" duration="6018000" />
     </task>
     <task id="LOCAL-00001" summary="Term fixed when creating new project">
       <created>1500380382174</created>
@@ -814,10 +813,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="474003000" />
+    <option name="totallyTimeSpent" value="475505000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="0" width="1932" height="1038" extended-state="1" />
+    <frame x="-8" y="0" width="1932" height="1038" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2182112" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1213,6 +1212,7 @@
         <state relative-caret-position="330">
           <caret line="16" column="5" lean-forward="false" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
           <folding>
+            <element signature="e#42#89#0#PHP" expanded="false" />
             <marker date="1503316321816" expanded="true" signature="585:650" ph="ALTER TABLE project... " />
           </folding>
         </state>
@@ -1255,8 +1255,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="503" column="40" lean-forward="true" selection-start-line="503" selection-start-column="40" selection-end-line="503" selection-end-column="40" />
+        <state relative-caret-position="397">
+          <caret line="505" column="21" lean-forward="true" selection-start-line="505" selection-start-column="21" selection-end-line="505" selection-end-column="21" />
           <folding>
             <element signature="e#40#64#0#PHP" expanded="true" />
             <element signature="e#1208#2466#0#PHP" expanded="false" />
@@ -1270,7 +1270,7 @@
             <element signature="e#16739#16758#1#PHP" expanded="true" />
             <element signature="e#17290#17307#1#PHP" expanded="true" />
             <element signature="e#17658#18592#0#PHP" expanded="false" />
-            <element signature="e#20328#20579#0#PHP" expanded="false" />
+            <element signature="e#20428#20679#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
