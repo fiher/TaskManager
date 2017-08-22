@@ -10,10 +10,12 @@ use AppBundle\Entity\Project;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
+
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints\DateTime;
 
@@ -98,9 +100,7 @@ class ProjectController extends Controller
      * @Route("/executioner", name="project_executioner")
      * @Method("GET")
      */
-    public function showExecutionerOnlyProjects(){
-        //this function returns "" if the user is allowed and if not returns $this->render
-    
+    public function showExecutionerOnlyProjects() {
         //this function returns "" if the user is allowed and if not returns $this->render
         $forbidden = $this->checkCredentials("all");
         if($forbidden){
@@ -190,6 +190,8 @@ class ProjectController extends Controller
             if($user->getUsername() == 'winbet.online') {
                 $form = $projectService->addDesignerFieldForManagers($form,$project->getDesigner());
             }
+        }else{
+            $form = $projectService->addSecondDesignerField($form,$project->getDesigner());
         }
         $form->handleRequest($request);
 
@@ -288,12 +290,15 @@ class ProjectController extends Controller
             'label'=>"Краен срок",
             'data'=>$project->getTerm()
         ));
+
+
         if($userType != "LittleBoss"){
             $editForm = $projectService->removeFormFieldsForManagers($editForm);
         }
         if($userType == "Designer"){
             $editForm = $projectService->removeFormFieldsForDesigners($editForm);
         }
+        $editform = $projectService->addSecondDesignerField($editForm,$project->getDesigner());
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
@@ -455,10 +460,10 @@ class ProjectController extends Controller
     /**
      *Uploads images
      *
-     * @Route("/{id}/imageUpload", name="image_upload")
+     * @Route("/{id}/fileUpload", name="file_upload")
      * @Method("POST")
      */
-    public function uploadImage(Request $request, Project $project){
+    public function uploadFile(Request $request, Project $project){
         //this function returns "" if the user is allowed and if not returns $this->render
         $forbidden = $this->checkCredentials(array("Designer","LittleBoss","Manager","Executioner"));
 
@@ -479,6 +484,23 @@ class ProjectController extends Controller
         }
 
         $this->get('session')->getFlashBag()->set('success', 'Файловете успешно качени!');
+        return $this->redirect($referer);
+    }
+    /**
+     *Uploads images
+     *
+     * @Route("/{id}/fileDelete", name="file_delete")
+     * @Method("POST")
+     */
+    public function deleteFile(Request $request, Files $file){
+        //this function returns "" if the user is allowed and if not returns $this->render
+        $forbidden = $this->checkCredentials(array("Manager","LittleBoss","Boss"));
+        if($forbidden){
+            return $forbidden;
+        }
+        $referer = $request->headers->get('referer');
+        $fileSystem = new Filesystem();
+        $fileSystem->remove($file->getFilePath());
         return $this->redirect($referer);
     }
     public function sortProjects(Project $a,Project $b)

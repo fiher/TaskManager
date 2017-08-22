@@ -220,7 +220,14 @@ class Project
      */
     private $urgent;
 
+    /**
+     * @var string
+     * @ORM\Column(name="second_designer", type="string", nullable=true)
+     */
+    private $second_designer;
+
     private $managerFiles;
+
     private $littleBossFiles;
     /**
      * @var string
@@ -972,6 +979,22 @@ class Project
     public function setWithoutTerm(bool $withoutTerm)
     {
         $this->withoutTerm = $withoutTerm;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSecondDesigner()
+    {
+        return $this->second_designer;
+    }
+
+    /**
+     * @param string $second_designer
+     */
+    public function setSecondDesigner(string $second_designer)
+    {
+        $this->second_designer = $second_designer;
     }
 
 

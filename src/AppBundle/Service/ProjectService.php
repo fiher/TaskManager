@@ -133,7 +133,7 @@ class ProjectService
             }
 
             if($userType != "LittleBoss" && $userType != "Boss"){
-                if($userType == "Designer" && $user->getFullName() == $project->getDesigner() && !$project->isApproved()){
+                if($userType == "Designer" && ($user->getFullName() == $project->getDesigner() || $user->getFullName() == $project->getSecondDesigner()) && !$project->isApproved()){
                     $filteredProjects[] = $project;
                 }elseif($userType == "Executioner" && $user->getFullName() == $project->getExecutioner()){
                     $filteredProjects[] = $project;
@@ -212,6 +212,7 @@ class ProjectService
             ),
             'data' => $data
         ));
+        return $form;
     }
     public function getDesignerProjects($fullName) {
         return $this->projectRepository->findDesignerProjects($fullName);
@@ -224,5 +225,19 @@ class ProjectService
         }
         return $projects;
     }
-
+    public function addSecondDesignerField ($form, $data) {
+        /** @var FormBuilder $form */
+        $form->add('second_designer',ChoiceType::class,array('label'=>" Помощник Дизайнер",
+            "required"=>false,
+            'choices'=>array(
+                "Няма дизайнер"=>"Няма дизайнер",
+                "Александра Вали" => "Александра Вали",
+                "Йоана Борисова" => "Йоана Борисова",
+                "Рената Дудлей" => "Рената Дудлей",
+                "Михаил Станев" => "Михаил Станев"
+            ),
+            'data'=>$data
+        ));
+        return $form;
+    }
 }
