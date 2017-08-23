@@ -108,7 +108,7 @@
 		{% for file in littleBossFiles |reverse %}
 		{% if file.rejected == false %}
 		{% if  file.fileExtension == "png" or file.fileExtension == "jpg" or file.fileExtension == "jpeg"  %}
-			<div class="col-md-4" id="showImg">
+			<div class="boxImages" id="showImg">
 		        <a class="fancybox" rel="gallery" href="{{ file.filePath }}">
 			        <img src="{{ file.filePath }}" class="projectImages"/>
 			    </a>
@@ -118,10 +118,11 @@
 		        <a href="{{ file.filePath }}" class="downloadLink" download>Свали</a>
 				{% if app.user.type == "LittleBoss" %}
                 {% include 'files/rejectFile.html.twig' with {fileID:file.id,projectID:project.id} %}
+                {% include 'files/deleteFile.html.twig' with {fileID:file.id,projectID:project.id} %}
 				{% endif %}
 		    </div>
 		{% elseif file.fileExtension == "pdf" or file.fileExtension == "tiff" %}
-			<div class="col-md-4" id="showImg">
+			<div class="boxImages" id="showImg">
 		        <a rel="gallery" href="{{ file.filePath }}" target="_blank">
 			        <img src="{{ asset("images/pdf.png") }}" class="projectImages"/>
 			    </a>
@@ -134,7 +135,7 @@
 				{% endif %}
 		    </div>
         {% else %}
-			<div class="col-md-4" id="showImg">
+			<div class="boxImages" id="showImg">
 		        <a rel="gallery">
 			        <img src="{{ asset("images/rar.png") }}" class="projectImages"/>
 			    </a>
@@ -159,7 +160,7 @@
 		{% for file in managerFiles |reverse %}
 		{% if file.rejected == false %}
 		{% if  file.fileExtension == "png" or file.fileExtension == "jpg" or file.fileExtension == "jpeg"  %}
-			<div class="col-md-4" id="showImg">
+			<div class="boxImages" id="showImg">
 		        <a class="fancybox" rel="gallery" href="{{ file.filePath }}">
 			        <img src="{{ file.filePath }}" class="projectImages"/>
 			    </a>
@@ -172,7 +173,7 @@
 				{% endif %}
 		    </div>
 		{% elseif file.fileExtension == "pdf" or file.fileExtension == "tiff" %}
-			<div class="col-md-4" id="showImg">
+			<div class="boxImages" id="showImg">
 		        <a rel="gallery" href="{{ file.filePath }}" target="_blank">
 			        <img src="{{ asset("images/pdf.png") }}" class="projectImages"/>
 			    </a>
@@ -185,7 +186,7 @@
 				{% endif %}
 		    </div>
         {% else %}
-			<div class="col-md-4" id="showImg">
+			<div class="boxImages" id="showImg">
 		        <a rel="gallery">
 			        <img src="{{ asset("images/rar.png") }}" class="projectImages"/>
 			    </a>
@@ -210,7 +211,7 @@
 		{% for file in designerFiles |reverse %}
 		{% if file.rejected == false %}
 		{% if  file.fileExtension == "png" or file.fileExtension == "jpg" or file.fileExtension == "jpeg"  %}
-			<div class="col-md-4" id="showImg">
+			<div class="boxImages" id="showImg">
 		        <a class="fancybox" rel="gallery" href="{{ file.filePath }}">
 			        <img src="{{ file.filePath }}" class="projectImages"/>
 			    </a>
@@ -223,7 +224,7 @@
 				{% endif %}
 		    </div>
 		{% elseif file.fileExtension == "pdf" or file.fileExtension == "tiff" %}
-			<div class="col-md-4" id="showImg">
+			<div class="boxImages" id="showImg">
 		        <a rel="gallery" href="{{ file.filePath }}" target="_blank">
 			        <img src="{{ asset("images/pdf.png") }}" class="projectImages"/>
 			    </a>
@@ -236,7 +237,7 @@
 				{% endif %}
 		    </div>
         {% else %}
-			<div class="col-md-4" id="showImg">
+			<div class="boxImages" id="showImg">
 		        <a rel="gallery">
 			        <img src="{{ asset("images/rar.png") }}" class="projectImages"/>
 			    </a>
@@ -262,7 +263,7 @@
 		{% for file in project.files |reverse %}
 		{% if file.rejected == true %}
 		{% if  file.fileExtension == "png" or file.fileExtension == "jpg" or file.fileExtension == "jpeg"  %}
-			<div class="col-md-4" id="showImg">
+			<div class="boxImages" id="showImg">
 		        <a class="fancybox" rel="gallery" href="{{ file.filePath }}">
 			        <img src="{{ file.filePath }}" class="projectImagesReject"/>
 			    </a>
@@ -270,7 +271,7 @@
 
 		    </div>
 		{% elseif file.fileExtension == "pdf" or file.fileExtension == "tiff" %}
-			<div class="col-md-4" id="showImg">
+			<div class="boxImages" id="showImg">
 		        <a rel="gallery" href="{{ file.filePath }}" target="_blank">
 			        <img src="{{ asset("images/pdf.png") }}" class="projectImagesReject"/>
 			    </a>
@@ -278,7 +279,7 @@
 
 		    </div>
         {% else %}
-			<div class="col-md-4" id="showImg">
+			<div class="boxImages" id="showImg">
 		        <a rel="gallery">
 			        <img src="{{ asset("images/rar.png") }}" class="projectImages"/>
 			    </a>
@@ -319,7 +320,7 @@
                 </form>
 				<div class="col-md-2">
 					<input value="Прикачи файл" id="button_upload"><div class="upload_icon"></div>
-                    {{ form_start(add_files_form, {'action':path('image_upload', { 'id': project.id }),'attr': {'id': project.id}, 'method': 'POST'}) }}
+                    {{ form_start(add_files_form, {'action':path('file_upload', { 'id': project.id }),'attr': {'id': project.id}, 'method': 'POST'}) }}
 					{{ form_widget(add_files_form.files, {'attr' : {'onChange': 'submitForm(' ~ project.id ~ ')'}}) }}
                     {{ form_end(add_files_form) }}
 				</div>

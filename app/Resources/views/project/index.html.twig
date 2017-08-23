@@ -52,7 +52,7 @@
 						<td class="date">{% if project.term and project.withoutTerm %}Без срок{% else %}{{ project.term|date('d M H:i:s') }}{% endif %}</td>
 						<td class="date">{% if project.date %}{{ project.date|date('d M H:i:s') }}{% endif %}</td>
 						{% if app.user.type == "LittleBoss" or app.user.type == "Boss"  %}
-						    <td>{{ project.designer }}</td>
+						    <td>{{ project.designer }}<br><br>{{ project.secondDesigner }}</td>
 						{% else %}
 							{% if project.designerAccepted %}
 							    <td>Разпределена</td>
@@ -118,7 +118,7 @@
 								<div class="col-md-2">
 									{% set form = add_files_form.createView %}
 									<input value="Прикачи файл" id="button_upload"><div class="upload_icon"></div>
-                                    {{ form_start(form, {'action':path('image_upload', { 'id': project.id }),'attr': {'id': project.id}, 'method': 'POST'}) }}
+                                    {{ form_start(form, {'action':path('file_upload', { 'id': project.id }),'attr': {'id': project.id}, 'method': 'POST'}) }}
 									{{ form_widget(form.files, {'attr' : {'onChange': 'submitForm(' ~ project.id ~ ')'}}) }}
                                     {{ form_end(form) }}
 					            </div>

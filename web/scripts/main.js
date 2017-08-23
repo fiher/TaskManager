@@ -72,6 +72,7 @@ function btnHideLink(id) {
 
 
 /* checkbox hide and show termdate */
+
 function HideTerm(){
 	var x = document.getElementById('appbundle_project_term');
     x.setAttribute("onkeydown", "return false");
@@ -100,9 +101,37 @@ function HideTerm(){
 	   }
     });
 }
-window.onload = HideTerm;
 
+function HideTermMozilla(){
+	$(".ws-date").attr("id","showtermMozilla");
+	var x = document.getElementById('showtermMozilla');
+    x.setAttribute("onkeydown", "return false");
+	var check = document.getElementById('showtermMozilla');
+	var isCheck = document.getElementById('appbundle_project_withoutTerm');
+		if(isCheck.checked) {
+        $("label[for='appbundle_project_term']").attr("id", "showterm");
+        x.setAttribute("value", "2020-02-09");
+		check.style.display = 'none';
+	    }else{
+        $("label[for='appbundle_project_term']").removeAttr("id", "showterm");
+        x.removeAttribute("value", "2020-02-09");
+		check.style.display = 'inline-block';
+	    }
+    $( isCheck ).click (function() {
+	var check = document.getElementById('showtermMozilla');
+	var isCheck = document.getElementById('appbundle_project_withoutTerm');
+	    if(isCheck.checked) {
+        $("label[for='appbundle_project_term']").attr("id", "showterm");
+        x.setAttribute("value", "2020-02-09");
+		check.style.display = 'none';
+	    }else{
+        $("label[for='appbundle_project_term']").removeAttr("id", "showterm");
 
+        x.removeAttribute("value", "2020-02-09");
+		check.style.display = 'inline-block';
+	   }
+    });
+}
 
 
 /* scroll for comments always bottom */
@@ -134,16 +163,15 @@ jQuery(function($) {
     });
 });
 
-/*
-var first = $(location).attr('pathname');
-var second = $(location).attr('pathname');
-first = first.split("/")[1];
-second = second.split("/")[2];
-document.getElementById("demo").innerHTML = 
-"The full URL of this page is:<br>" + window.location.host + "/" + first + "/" + second;
-*/
 
-
+$(window).scroll(function() {
+  sessionStorage.scrollTop = $(this).scrollTop();
+});
+$(document).ready(function() {
+  if (sessionStorage.scrollTop != "undefined") {
+    $(window).scrollTop(sessionStorage.scrollTop);
+  }
+});
 /* ajax request */
 /*
 $(function () {
@@ -186,6 +214,5 @@ function chk(){
 		  return false;
 }
 */
-
 
 
