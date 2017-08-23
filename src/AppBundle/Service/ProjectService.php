@@ -135,8 +135,8 @@ class ProjectService
             if($userType != "LittleBoss" && $userType != "Boss"){
                 if(($userType == "Designer" && $user->getFullName() == $project->getDesigner() && !$project->isApproved()) ||
                     ($userType == "Designer" && $user->getFullName() == $project->getSecondDesigner() && !$project->isApproved()) ||
-                    ($userType = "Executioner" && $user->getFullName() == $project->getExecutioner()) ||
-                    ($userType = "Manager" && $user->getFullName() == $project->getFromUser())){
+                    ($userType == "Executioner" && $user->getFullName() == $project->getExecutioner()) ||
+                    ($userType == "Manager" && $user->getFullName() == $project->getFromUser())){
                     $filteredProjects[] = $project;
                 }
             }else {
