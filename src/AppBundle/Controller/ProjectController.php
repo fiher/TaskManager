@@ -241,7 +241,6 @@ class ProjectController extends Controller
         $projectService = $this->get('app.service.projects_service');
         $commentsService = $this->get('app.service.comments_service');
         $user = $this->getUser();
-        $userType = $user->getType();
         $deleteForm = $this->createDeleteForm($project);
         $comments = $commentsService->findCommentsByProjectID($project->getId());
         $comments = $commentsService->filterComments($comments,$user);
@@ -299,7 +298,9 @@ class ProjectController extends Controller
         if($userType == "Designer"){
             $editForm = $projectService->removeFormFieldsForDesigners($editForm);
         }
-        $editform = $projectService->addSecondDesignerField($editForm,$project->getDesigner());
+        if($userType == "LittleBoss"){
+            $editForm = $projectService->addSecondDesignerField($editForm,$project->getSecondDesigner());
+        }
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 

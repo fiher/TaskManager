@@ -25,7 +25,9 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
     }
     public function findDesignerProjects($fullName){
         return $this->createQueryBuilder('project')->
-        where('project.designer = :fullName and project.isOver = false')->
+        where('project.designer = :fullName')->
+        orWhere('project.second_designer = :fullName')->
+        andWhere('project.isOver = false')->
         setParameter('fullName',$fullName)->
         getQuery()->
         getResult();
