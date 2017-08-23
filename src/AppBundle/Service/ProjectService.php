@@ -133,11 +133,10 @@ class ProjectService
             }
 
             if($userType != "LittleBoss" && $userType != "Boss"){
-                if($userType == "Designer" && ($user->getFullName() == $project->getDesigner() || $user->getFullName() == $project->getSecondDesigner()) && !$project->isApproved()){
-                    $filteredProjects[] = $project;
-                }elseif($userType == "Executioner" && $user->getFullName() == $project->getExecutioner()){
-                    $filteredProjects[] = $project;
-                }elseif ($userType == "Manager" && $user->getFullName() == $project->getFromUser()){
+                if(($userType == "Designer" && $user->getFullName() == $project->getDesigner() && !$project->isApproved()) ||
+                    ($userType == "Designer" && $user->getFullName() == $project->getSecondDesigner() && !$project->isApproved()) ||
+                    ($userType = "Executioner" && $user->getFullName() == $project->getExecutioner()) ||
+                    ($userType = "Manager" && $user->getFullName() == $project->getFromUser())){
                     $filteredProjects[] = $project;
                 }
             }else {

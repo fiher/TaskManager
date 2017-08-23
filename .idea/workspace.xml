@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="056da0cf-db80-498e-bebe-f46eea1f8975" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Service/FilesService.php" afterPath="$PROJECT_DIR$/src/AppBundle/Service/FilesService.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Service/ProjectService.php" afterPath="$PROJECT_DIR$/src/AppBundle/Service/ProjectService.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,25 +16,25 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="ProjectController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ProjectController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="505" column="21" lean-forward="true" selection-start-line="505" selection-start-column="21" selection-end-line="505" selection-end-column="21" />
+            <state relative-caret-position="-5389">
+              <caret line="88" column="45" lean-forward="false" selection-start-line="88" selection-start-column="45" selection-end-line="88" selection-end-column="45" />
               <folding>
                 <element signature="e#40#64#0#PHP" expanded="true" />
                 <element signature="e#1208#2466#0#PHP" expanded="false" />
                 <element signature="e#1648#1667#1#PHP" expanded="true" />
-                <element signature="e#4421#4440#1#PHP" expanded="true" />
-                <element signature="e#5318#6646#0#PHP" expanded="false" />
-                <element signature="e#5896#5915#1#PHP" expanded="true" />
-                <element signature="e#12880#13515#0#PHP" expanded="false" />
-                <element signature="e#13704#13973#0#PHP" expanded="false" />
-                <element signature="e#14184#17652#0#PHP" expanded="false" />
-                <element signature="e#16739#16758#1#PHP" expanded="true" />
-                <element signature="e#17290#17307#1#PHP" expanded="true" />
-                <element signature="e#17658#18592#0#PHP" expanded="false" />
-                <element signature="e#20428#20679#0#PHP" expanded="false" />
+                <element signature="e#3877#5237#0#PHP" expanded="false" />
+                <element signature="e#4467#4486#1#PHP" expanded="true" />
+                <element signature="e#5942#5961#1#PHP" expanded="true" />
+                <element signature="e#12926#13561#0#PHP" expanded="false" />
+                <element signature="e#13750#14019#0#PHP" expanded="false" />
+                <element signature="e#14230#17698#0#PHP" expanded="false" />
+                <element signature="e#16785#16804#1#PHP" expanded="true" />
+                <element signature="e#17336#17353#1#PHP" expanded="true" />
+                <element signature="e#17704#18638#0#PHP" expanded="false" />
+                <element signature="e#20474#20725#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -104,6 +105,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="FilesService.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/FilesService.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="12" column="18" lean-forward="true" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="UserRepository.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/UserRepository.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -116,35 +127,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommentsService.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/CommentsService.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="638">
-              <caret line="39" column="38" lean-forward="false" selection-start-line="39" selection-start-column="38" selection-end-line="39" selection-end-column="38" />
-              <folding>
-                <element signature="e#7#84#0#PHP" expanded="false" />
-                <element signature="e#116#146#0#PHP" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProjectService.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ProjectService.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/ProjectService.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="135" column="151" lean-forward="false" selection-start-line="135" selection-start-column="151" selection-end-line="135" selection-end-column="151" />
+            <state relative-caret-position="327">
+              <caret line="143" column="13" lean-forward="true" selection-start-line="143" selection-start-column="13" selection-end-line="143" selection-end-column="13" />
               <folding>
                 <element signature="e#635#1159#0#PHP" expanded="false" />
-                <element signature="e#5449#5602#0#PHP" expanded="false" />
-                <element signature="e#5805#6048#0#PHP" expanded="false" />
-                <element signature="e#6053#6682#0#PHP" expanded="false" />
-                <element signature="e#6687#7325#0#PHP" expanded="false" />
-                <element signature="e#7330#7472#0#PHP" expanded="false" />
-                <element signature="e#7477#7771#0#PHP" expanded="false" />
-                <element signature="e#8404#8532#0#PHP" expanded="false" />
-                <element signature="e#8537#8909#0#PHP" expanded="false" />
-                <element signature="e#8615#8877#0#PHP" expanded="false" />
+                <element signature="e#5772#6015#0#PHP" expanded="false" />
+                <element signature="e#6020#6649#0#PHP" expanded="false" />
+                <element signature="e#6654#7292#0#PHP" expanded="false" />
+                <element signature="e#7297#7439#0#PHP" expanded="false" />
+                <element signature="e#7444#7738#0#PHP" expanded="false" />
+                <element signature="e#8371#8499#0#PHP" expanded="false" />
+                <element signature="e#8504#8876#0#PHP" expanded="false" />
+                <element signature="e#8582#8844#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -234,15 +231,15 @@
         <option value="$PROJECT_DIR$/app/Resources/views/images/rejectImage.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/files/rejectFile.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/project/show.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Service/FilesService.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/config/services.yml" />
         <option value="$PROJECT_DIR$/src/AppBundle/Service/CommentsService.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Service/UserService.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/ProjectRepository.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/ProjectType.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Service/ProjectService.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Project.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Service/FilesService.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Service/ProjectService.php" />
       </list>
     </option>
   </component>
@@ -793,7 +790,7 @@
       <workItem from="1502103139417" duration="1487000" />
       <workItem from="1502782735451" duration="11361000" />
       <workItem from="1503293518577" duration="7730000" />
-      <workItem from="1503379433825" duration="6018000" />
+      <workItem from="1503379433825" duration="9029000" />
     </task>
     <task id="LOCAL-00001" summary="Term fixed when creating new project">
       <created>1500380382174</created>
@@ -813,11 +810,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="475505000" />
+    <option name="totallyTimeSpent" value="478516000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1932" height="1038" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2182112" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -826,7 +822,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22261904" sideWeight="0.48066595" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22023809" sideWeight="0.48066595" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1150,16 +1146,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/FilesService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="31" column="34" lean-forward="false" selection-start-line="31" selection-start-column="34" selection-end-line="31" selection-end-column="34" />
-          <folding>
-            <element signature="e#6#83#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/CommentsService.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="638">
@@ -1226,25 +1212,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/ProjectService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="135" column="151" lean-forward="false" selection-start-line="135" selection-start-column="151" selection-end-line="135" selection-end-column="151" />
-          <folding>
-            <element signature="e#635#1159#0#PHP" expanded="false" />
-            <element signature="e#5449#5602#0#PHP" expanded="false" />
-            <element signature="e#5805#6048#0#PHP" expanded="false" />
-            <element signature="e#6053#6682#0#PHP" expanded="false" />
-            <element signature="e#6687#7325#0#PHP" expanded="false" />
-            <element signature="e#7330#7472#0#PHP" expanded="false" />
-            <element signature="e#7477#7771#0#PHP" expanded="false" />
-            <element signature="e#8404#8532#0#PHP" expanded="false" />
-            <element signature="e#8537#8909#0#PHP" expanded="false" />
-            <element signature="e#8615#8877#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Project.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="107">
@@ -1255,22 +1222,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ProjectController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="505" column="21" lean-forward="true" selection-start-line="505" selection-start-column="21" selection-end-line="505" selection-end-column="21" />
+        <state relative-caret-position="-5389">
+          <caret line="88" column="45" lean-forward="false" selection-start-line="88" selection-start-column="45" selection-end-line="88" selection-end-column="45" />
           <folding>
             <element signature="e#40#64#0#PHP" expanded="true" />
             <element signature="e#1208#2466#0#PHP" expanded="false" />
             <element signature="e#1648#1667#1#PHP" expanded="true" />
-            <element signature="e#4421#4440#1#PHP" expanded="true" />
-            <element signature="e#5318#6646#0#PHP" expanded="false" />
-            <element signature="e#5896#5915#1#PHP" expanded="true" />
-            <element signature="e#12880#13515#0#PHP" expanded="false" />
-            <element signature="e#13704#13973#0#PHP" expanded="false" />
-            <element signature="e#14184#17652#0#PHP" expanded="false" />
-            <element signature="e#16739#16758#1#PHP" expanded="true" />
-            <element signature="e#17290#17307#1#PHP" expanded="true" />
-            <element signature="e#17658#18592#0#PHP" expanded="false" />
-            <element signature="e#20428#20679#0#PHP" expanded="false" />
+            <element signature="e#3877#5237#0#PHP" expanded="false" />
+            <element signature="e#4467#4486#1#PHP" expanded="true" />
+            <element signature="e#5942#5961#1#PHP" expanded="true" />
+            <element signature="e#12926#13561#0#PHP" expanded="false" />
+            <element signature="e#13750#14019#0#PHP" expanded="false" />
+            <element signature="e#14230#17698#0#PHP" expanded="false" />
+            <element signature="e#16785#16804#1#PHP" expanded="true" />
+            <element signature="e#17336#17353#1#PHP" expanded="true" />
+            <element signature="e#17704#18638#0#PHP" expanded="false" />
+            <element signature="e#20474#20725#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/FilesService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="12" column="18" lean-forward="true" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/ProjectService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="143" column="13" lean-forward="true" selection-start-line="143" selection-start-column="13" selection-end-line="143" selection-end-column="13" />
+          <folding>
+            <element signature="e#635#1159#0#PHP" expanded="false" />
+            <element signature="e#5772#6015#0#PHP" expanded="false" />
+            <element signature="e#6020#6649#0#PHP" expanded="false" />
+            <element signature="e#6654#7292#0#PHP" expanded="false" />
+            <element signature="e#7297#7439#0#PHP" expanded="false" />
+            <element signature="e#7444#7738#0#PHP" expanded="false" />
+            <element signature="e#8371#8499#0#PHP" expanded="false" />
+            <element signature="e#8504#8876#0#PHP" expanded="false" />
+            <element signature="e#8582#8844#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
