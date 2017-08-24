@@ -9,10 +9,9 @@
 namespace AppBundle\Service;
 
 
+use AppBundle\Entity\Comments;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\User;
-use AppBundle\Repository\CommentsRepository;
-use AppBundle\Repository\ProjectRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -25,10 +24,13 @@ class ProjectService
     private $session;
     private $manager;
     private $commentsService;
+    private $commentsRepository;
+    private $projectRepository;
     public function __construct(
         EntityManagerInterface $entityManager,
         Session $session,
-        ManagerRegistry $manager,CommentsService $commentsService)
+        ManagerRegistry $manager,
+        CommentsService $commentsService)
     {
         $this->entityManager = $entityManager;
         $this->session = $session;
@@ -37,28 +39,27 @@ class ProjectService
         $this->projectRepository = $this->manager->getRepository('AppBundle:Project');
         $this->commentsRepository = $this->manager->getRepository('AppBundle:Comments');
     }
-    public function filterProjects($projects,$user,$userType){
-        $filteredProjects = [];
-        /**
-         * @var $project Project
-         */
+    public function filterProjects(array $projects,User $user){
+
         foreach ($projects as $project){
-            if($project->getIsOver()){
-                continue;
-            }
             /**
              * @var Project $project
-             * @var $user User
              */
 
-            if($project->isSeenByLittleBoss()){
+            //if project is archived he doesn't need status
+            if ($project->getIsOver()) {
+                continue;
+            }
+
+
+            if ($project->isSeenByLittleBoss()) {
                 $project->setClass("seen");
                 $project->setStatus("Видяно");
-            }else{
+            } else {
                 $project->setClass("notSeen");
                 $project->setStatus("Не е видяно");
             }
-            if($user->getUsername() == 'm.stanev'){
+            if ($user->getUsername() == 'm.stanev') {
                 $project->setClass("assigned");
                 $project->setStatus("Разпределено");
             }
@@ -66,36 +67,36 @@ class ProjectService
             if ($project->getClass() == "seen"&& !$project->getDesigner()){
                 $project->setClass("seenNotAsssigned");
                 $project->setStatus("Видяно, но неразпределено");
-            }elseif ($project->getClass() == "seen"&& $project->getDesigner()){
+            } elseif ($project->getClass() == "seen"&& $project->getDesigner()){
                 $project->setClass("assigned");
                 $project->setStatus("Разпределено");
             }
-            if(!$project->isWithoutTerm()){
+            if (!$project->isWithoutTerm()) {
                 $now = strtotime(date('Y-m-d H:i:s'));
                 $term = strtotime($project->getTerm()->format("Y-m-d H:i:s"));
 
-                $datediff = $term - $now;
-                $datediff = floor($datediff / (60 * 60 * 24));
+                $dateDiff = $term - $now;
+                $dateDiff = floor($dateDiff / (60 * 60 * 24));
                 $createdDate = strtotime($project->getDate()->format("Y-m-d"));
                 $diffCreatedToday = $term - $createdDate;
                 $diffCreatedToday = floor($diffCreatedToday / (60 * 60 * 24));
                 if($diffCreatedToday<= 1){
                     $project->setUrgent(true);
                 }
-                if(!in_array("Manager",explode(" ",$user->getRole()))) {
-                    if($datediff<=1){
+                if(!in_array("Manager",explode (" ",$user->getRole()))) {
+                    if($dateDiff<=1){
                         $project->setClass("due");
                         $project->setStatus("Изтичащ срок");
                     }
                 }
             }
-            if(!in_array("Manager",explode(" ",$user->getRole()))) {
-                if($project->isApproved()) {
+            if( !in_array("Manager",explode (" ",$user->getRole())) ) {
+                if ($project->isApproved()) {
                     $project->setClass("approved");
                     $project->setStatus("Одобрено");
                     $project->setUrgent(false);
 
-                }if($project->isRejected()){
+                }if ($project->isRejected()) {
                     $project->setStatus("Отхвърлено");
                     $project->setClass("rejected");
                 }
@@ -104,53 +105,35 @@ class ProjectService
                 }
             }
 
-            if($project->isHold()){
+            if ($project->isHold()) {
                 $project->setClass("onHold");
                 $project->setStatus("Изчакване");
             }
-            if($project->isForApproval()){
+            if ($project->isForApproval()) {
                 $project->setClass("forApproval");
                 $project->setStatus("За одобрение");
             }
-            if($project->isWorking()){
+            if ($project->isWorking()) {
                 $project->setClass('working');
                 $project->setStatus('Дизайнера работи по тази заявка');
             }
-            if($project->getDesigner() == 'Михаил Станев' && $user->getUsername() == 'winbet.online'){
-                if($project->isSeenByDesigner()){
+            if ($project->getDesigner() == 'Михаил Станев' && $user->getUsername() == 'winbet.online') {
+                if ($project->isSeenByDesigner()) {
                     $project->setClass('seen');
                     $project->setStatus('Видяно');
                 }
-                if($project->isApproved()) {
+                if ($project->isApproved()) {
                     $project->setClass("approved");
                     $project->setStatus("Одобрено");
                     $project->setUrgent(false);
 
-                }if($project->isRejected()){
+                }if ($project->isRejected()) {
                     $project->setStatus("Отхвърлено");
                     $project->setClass("rejected");
                 }
             }
-
-            if($userType != "LittleBoss" && $userType != "Boss"){
-                if(($userType == "Designer" && $user->getFullName() == $project->getDesigner() && !$project->isApproved()) ||
-                    ($userType == "Designer" && $user->getFullName() == $project->getSecondDesigner() && !$project->isApproved()) ||
-                    ($userType == "Executioner" && $user->getFullName() == $project->getExecutioner()) ||
-                    ($userType == "Manager" && $user->getFullName() == $project->getFromUser())){
-                    $filteredProjects[] = $project;
-                }
-            }else {
-                $filteredProjects[] = $project;
-            }
         }
-        //usort($filteredProjects, array($this, "sortProjects"));
-        return $filteredProjects;
-    }
-    public function sortProjects(Project $a,Project $b)
-    {
-        $projectATerm = strtotime($a->getTerm()->format("Y-m-d"));
-        $projectBTerm = strtotime($b->getTerm()->format("Y-m-d"));
-        return $projectATerm - $projectBTerm;
+        return $projects;
     }
     public function createProject(Project $project, User $user){
         $project->setFromUser($user->getFullName());
@@ -213,9 +196,6 @@ class ProjectService
         ));
         return $form;
     }
-    public function getDesignerProjects($fullName) {
-        return $this->projectRepository->findDesignerProjects($fullName);
-    }
     public function addCommentsToProjects (array $projects, User $user) {
         foreach ($projects as $project){
             /** @var Project $project */
@@ -238,5 +218,57 @@ class ProjectService
             'data'=>$data
         ));
         return $form;
+    }
+    public function getProjects(User $user) {
+        $userType = $user->getType();
+        $fullName = $user->getFullName();
+        $projects = [];
+        if ($userType == "LittleBoss") {
+            $projects = $this->projectRepository->findAllActiveProjects();
+        } elseif ($userType == "Manager") {
+            $projects = $this->projectRepository->findManagerProjects($fullName);
+        } elseif ($userType == "Designer") {
+            $projects = $this->projectRepository->findDesignerProjects($fullName);
+        } elseif ($userType == "Executioner") {
+            $projects = $this->projectRepository->findExecutionerProjects($fullName);
+        }
+
+        return $projects;
+    }
+    public function getArchivedProjects(User $user) {
+        $userType = $user->getType();
+        $fullName = $user->getFullName();
+        $projects = [];
+        if ($userType == "LittleBoss") {
+            $projects = $this->projectRepository->findArchivedProjects();
+        } elseif ($userType == "Manager") {
+            $projects = $this->projectRepository->findManagerArchivedProjects($fullName);
+        } elseif ($userType == "Designer") {
+            $projects = $this->projectRepository->findDesignerArchivedProjects($fullName);
+        } elseif ($userType == "Executioner") {
+            $projects = $this->projectRepository->findExecutionerArchivedProjects($fullName);
+        }
+
+        return $projects;
+    }
+    public function approveProject (Project $project) {
+        $project->setApproved(true);
+        $project->setRejected(false);
+        $project->setDesignerFinishedDate(new \DateTime());
+        $project->setForApproval(false);
+        $project->setHold(false);
+        return $project;
+    }
+    public function rejectProject (Project $project, User $user) {
+        $comment =  new Comments();
+        $comment->setProjectID($project->getId());
+        $comment->setContent($_POST['rejectComment']);
+        $comment->setToUser("Designer");
+        $this->commentsService->newComment($comment,$user,new \DateTime());
+        $project->setRejected(true);
+        $project->setApproved(false);
+        $project->setForApproval(false);
+        $project->setHold(false);
+        return $project;
     }
 }

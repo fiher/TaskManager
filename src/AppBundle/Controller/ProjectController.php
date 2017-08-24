@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\AppBundle;
 use AppBundle\Entity\Comments;
 use AppBundle\Entity\Files;
 use AppBundle\Entity\User;
@@ -11,13 +10,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
-
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Project controller.
@@ -26,9 +22,6 @@ use Symfony\Component\Validator\Constraints\DateTime;
  */
 class ProjectController extends Controller
 {
-    //if new term is entered without a term date this will be set as a date then it will be checked when rendering them
-    //if term is this exact date and if so - we display "No date" in bulgarian!
-    const NO_TERM_DEFAULT_VALUE = '2050-03-19';
     /**
      * Lists all project entities.
      *
@@ -42,53 +35,33 @@ class ProjectController extends Controller
         if($forbidden){
             return $forbidden;
         }
-        /** @var User $user */
+        $projectService = $this->get('app.service.projects_service');
         $user = $this->getUser();
-
-        $userType = $user->getType();
-        $em = $this->getDoctrine()->getManager();
-        $projects = $em->getRepository('AppBundle:Project')->findArchivedProjects();
-
-        $filteredProjects = [];
-        foreach ($projects as $project){
-            /** @var $project Project */
-            $project->setClass("archive");
-            $project->setStatus("Приключено");
-            if($user->getType() == "LittleBoss"){
-                $filteredProjects[] = $project;
-            }elseif($project->getDesigner() == $user->getFullName()
-                || $project->getExecutioner() == $user->getFullName()
-                || $project->getFromUser() == $user->getFullName()){
-                $filteredProjects[] = $project;
-            }
-
-        }
-        usort($filteredProjects, array($this, "sortProjects"));
+        $projects = $projectService->getArchivedProjects($user);
+        usort($projects, array($this, "sortProjects"));
         return $this->render('project/index.html.twig', array(
-            'projects' => $filteredProjects,
+            'projects' => $projects,
         ));
     }
-
     /**
      *
      * @Route("/designer/{username}", name="project_designer")
      * @Method("GET")
      */
-    public function showDesignerOnlyProjects(Request $request, string $username){
+    public function showDesignerOnlyProjects(string $username)
+    {
         //this function returns "" if the user is allowed and if not returns $this->render
         $forbidden = $this->checkCredentials("all");
         if($forbidden){
             return $forbidden;
         }
-        $commentsService = $this->get('app.service.comments_service');
         $projectService = $this->get('app.service.projects_service');
         $userService = $this->get('app.service.users_service');
         /** @var User $user */
         $user = $userService->getUserByUsername($username);
-        $projects = $projectService->getDesignerProjects($user->getFullName());
-        $projects = array_reverse($projects);
+        $projects = array_reverse($projectService->getProjects($user));
         $projects = $projectService->addCommentsToProjects($projects, $user);
-        $projects = $projectService->filterProjects($projects, $user, "LittleBoss");
+        $projects = $projectService->filterProjects($projects, $user);
         $addFilesForm = $this->createForm('AppBundle\Form\AddFilesType');
         return $this->render('project/index.html.twig', array(
             'projects' => $projects,
@@ -101,29 +74,19 @@ class ProjectController extends Controller
      * @Route("/executioner", name="project_executioner")
      * @Method("GET")
      */
-    public function showExecutionerOnlyProjects() {
+    public function showExecutionerOnlyProjects()
+    {
         //this function returns "" if the user is allowed and if not returns $this->render
         $forbidden = $this->checkCredentials("all");
         if($forbidden){
             return $forbidden;
         }
-        $commentsService = $this->get('app.service.comments_service');
         $projectService = $this->get('app.service.projects_service');
         /** @var User $user */
         $user = $this->getUser();
-        $userType = $user->getType();
-        $em = $this->getDoctrine()->getManager();
-        $projects = $em->getRepository('AppBundle:Project')->findExecutionerProjects();
-        $projects = array_reverse($projects);
-        $filteredProjects = $projectService->filterProjects($projects,$user,"LittleBoss");
-        foreach ($filteredProjects as $project){
-
-            /** @var Project $project */
-            $comments = $this->getDoctrine()
-                ->getRepository('AppBundle:Comments')
-                ->findByProjectID($project->getId());
-            $project->setComments($commentsService->filterComments($comments,$user));
-        }
+        $projects = array_reverse($projectService->getProjects($user));
+        $filteredProjects = $projectService->filterProjects($projects,$user);
+        $filteredProjects = $projectService->addCommentsToProjects($filteredProjects,$user);
         $addFilesForm = $this->createForm('AppBundle\Form\AddFilesType');
         return $this->render('project/index.html.twig', array(
             'projects' => $filteredProjects,
@@ -144,30 +107,18 @@ class ProjectController extends Controller
         if($forbidden){
             return $forbidden;
         }
-        $commentsService = $this->get('app.service.comments_service');
         $projectService = $this->get('app.service.projects_service');
         /** @var User $user */
         $user = $this->getUser();
-        $userType = $user->getType();
-        $em = $this->getDoctrine()->getManager();
-        $projects = $em->getRepository('AppBundle:Project')->findAll();
-        $projects = array_reverse($projects);
-        $filteredProjects = $projectService->filterProjects($projects,$user,$userType);
-        foreach ($filteredProjects as $project){
-            /** @var Project $project */
-            $comments = $this->getDoctrine()
-                ->getRepository('AppBundle:Comments')
-                ->findByProjectID($project->getId());
-            $project->setComments($commentsService->filterComments($comments,$user));
-        }
+        $projects = array_reverse($projectService->getProjects($user));
+        $filteredProjects = $projectService->filterProjects($projects,$user);
+        $filteredProjects = $projectService->addCommentsToProjects($filteredProjects,$user);
         $addFilesForm = $this->createForm('AppBundle\Form\AddFilesType');
         return $this->render('project/index.html.twig', array(
             'projects' => $filteredProjects,
             'add_files_form'=> $addFilesForm
         ));
     }
-
-
     /**
      * Creates a new project entity.
      *
@@ -194,40 +145,36 @@ class ProjectController extends Controller
         }else{
             $form = $projectService->addSecondDesignerField($form,$project->getDesigner());
         }
+        /** @var Form $form */
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-                $this->getDoctrine()->getManager()->flush();
-
-                $managerFiles = $managerFiles = $request->files->get('appbundle_project')['managerFiles'];
-
-                    $projectService->createProject($project, $user);
-                    if($managerFiles){
-                    $filesService = $this->get('app.service.files_service');
-                        foreach ($managerFiles as $managerFile) {
-                            /** @var UploadedFile  $managerFile */
-                            if($managerFile) {
-                                $fileName = $filesService->uploadFileAndReturnName($managerFile, $this->getParameter('files_directory'));
-                                $filesService->createFile($fileName, $project, $user, $managerFile->getExtension());
-                            }
-                        }
+            $this->getDoctrine()->getManager()->flush();
+            $managerFiles = $managerFiles = $request->files->get('appbundle_project')['managerFiles'];
+            $projectService->createProject($project, $user);
+            if($managerFiles){
+                $filesService = $this->get('app.service.files_service');
+                foreach ($managerFiles as $managerFile) {
+                    /** @var UploadedFile  $managerFile */
+                    if($managerFile) {
+                        $fileName = $filesService->uploadFileAndReturnName($managerFile, $this->getParameter('files_directory'));
+                        $filesService->createFile($fileName, $project, $user, $managerFile->getExtension());
                     }
+                }
+            }
             return $this->redirectToRoute('project_show', array('id' => $project->getId()));
         }
-
         return $this->render('project/new.html.twig', array(
             'project' => $project,
             'form' => $form->createView(),
         ));
     }
-
     /**
      * Finds and displays a project entity.
      *
      * @Route("/{id}", name="project_show")
      * @Method({"GET", "POST"})
      */
-    public function showAction(Request $request, Project $project)
+    public function showAction(Project $project)
     {
 
         //this function returns "" if the user is allowed and if not returns $this->render
@@ -275,7 +222,7 @@ class ProjectController extends Controller
     {
         //this function returns "" if the user is allowed and if not returns $this->render
         $forbidden = $this->checkCredentials(array("Manager","LittleBoss","Boss"));
-        if($forbidden){
+        if($forbidden) {
             return $forbidden;
         }
         $projectService = $this->get('app.service.projects_service');
@@ -290,20 +237,17 @@ class ProjectController extends Controller
             'label'=>"Краен срок",
             'data'=>$project->getTerm()
         ));
-
-
-        if($userType != "LittleBoss"){
+        if ($userType != "LittleBoss") {
             $editForm = $projectService->removeFormFieldsForManagers($editForm);
         }
-        if($userType == "Designer"){
+        if ($userType == "Designer") {
             $editForm = $projectService->removeFormFieldsForDesigners($editForm);
         }
-        if($userType == "LittleBoss"){
+        if ($userType == "LittleBoss") {
             $editForm = $projectService->addSecondDesignerField($editForm,$project->getSecondDesigner());
         }
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-
             $this->getDoctrine()->getManager()->flush();
             $this->get('session')->getFlashBag()->set('success', "Успешно променихте заявката!");
             return $this->redirectToRoute('project_show', array('id' => $project->getId()));
@@ -324,7 +268,7 @@ class ProjectController extends Controller
     {
         //this function returns "" if the user is allowed and if not returns $this->render
         $forbidden = $this->checkCredentials(array("LittleBoss","Boss"));
-        if($forbidden){
+        if ($forbidden) {
             return $forbidden;
         }
         $form = $this->createDeleteForm($project);
@@ -361,33 +305,22 @@ class ProjectController extends Controller
      * @Route("/{id}/fastupdate", name="project_fast_update")
      * @Method("POST")
      */
-    public function updateAction(Request $request, Project $project){
+    public function updateAction(Request $request, Project $project)
+    {
         //this function returns "" if the user is allowed and if not returns $this->render
         $forbidden = $this->checkCredentials("all");
-        if($forbidden){
+        if ($forbidden) {
             return $forbidden;
         }
         $referer = $request->headers->get('referer');
+        $projectService = $this->get('app.service.projects_service');
         /** @var User $user */
         $user = $this->getUser();
         if (isset($_POST['approve'])) {
-            $project->setApproved(true);
-            $project->setRejected(false);
-            $project->setDesignerFinishedDate(new \DateTime());
-            $project->setForApproval(false);
-            $project->setHold(false);
+           $project = $projectService->approveProject($project);
             $this->get('session')->getFlashBag()->set('success', "Успешно одобрихте заявката!");
         } elseif (isset($_POST['reject'])) {
-            $comment =  new Comments();
-            $comment->setProjectID($project->getId());
-            $comment->setContent($_POST['rejectComment']);
-            $comment->setToUser("Designer");
-            $commentsService = $this->get('app.service.comments_service');
-            $commentsService->newComment($comment,$user,new \DateTime());
-            $project->setRejected(true);
-            $project->setApproved(false);
-            $project->setForApproval(false);
-            $project->setHold(false);
+            $project = $projectService->rejectProject($project, $user);
             $this->get('session')->getFlashBag()->set('success', "Успешно отхвърлихте заявката!");
         } elseif (isset($_POST['archive'])) {
             $project->setIsOver(true);
@@ -396,33 +329,32 @@ class ProjectController extends Controller
             $project->setHold(false);
             $project->setRejected(false);
             $this->get('session')->getFlashBag()->set('success', "Успешно архивирахте заявката!");
-        }elseif(isset($_POST['hold'])){
+        }elseif (isset($_POST['hold'])) {
             $project->setHold(true);
             $project->setRejected(false);
             $project->setForApproval(false);
             $project->setApproved(false);
             $this->get('session')->getFlashBag()->set('success', "Заявката успешно сложена на изчакване!");
-
-        }elseif(isset($_POST['forApproval'])){
+        }elseif (isset($_POST['forApproval'])) {
             $project->setForApproval(true);
             $project->setRejected(false);
             $project->setHold(false);
             $project->setApproved(false);
             $this->get('session')->getFlashBag()->set('success', "Заявката успешно сложена за одобрение!");
-        }elseif(isset($_POST['working'])){
+        }elseif (isset($_POST['working'])) {
             $em = $this->getDoctrine()->getManager();
             $projects = $em->getRepository('AppBundle:Project')->findDesignerProjects($user->getFullName());
-            if($projects){
+            if ($projects) {
                 foreach ($projects as $singleProject){
                     /** @var  $singleProject Project */
                     $singleProject->setWorking(false);
                 }
             }
             $project->setWorking(true);
-        }elseif(isset($_POST['link'])){
+        }elseif (isset($_POST['link'])) {
             $project->setDesignerLink($_POST['link']);
         }
-        elseif(isset($_POST['rejectFile'])){
+        elseif (isset($_POST['rejectFile'])) {
             $file = $this->getDoctrine()->getManager()->getRepository('AppBundle:Files')->find($_POST['rejectFile']);
             $file->setRejected(true);
             $em = $this->getDoctrine()->getManager();
@@ -436,18 +368,18 @@ class ProjectController extends Controller
 
         return $this->redirect($referer);
     }
-
-    private function checkCredentials($allowedUserRoles){
+    private function checkCredentials($allowedUserRoles)
+    {
         $authenticationUtils = $this->get('security.authentication_utils');
         $lastUsername = $authenticationUtils->getLastUsername();
         /** @var User $user */
         $user = $this->getUser();
-        if($user){
-            if($allowedUserRoles == "all"){
+        if ($user) {
+            if ($allowedUserRoles == "all") {
                 return "";
             }
-            foreach (explode(" ",$user->getRole()) as $role){
-                if(in_array($role,$allowedUserRoles)){
+            foreach (explode(" ",$user->getRole()) as $role) {
+                if (in_array($role,$allowedUserRoles)) {
                     return "";
                 }
             }
@@ -465,11 +397,11 @@ class ProjectController extends Controller
      * @Route("/{id}/fileUpload", name="file_upload")
      * @Method("POST")
      */
-    public function uploadFile(Request $request, Project $project){
+    public function uploadFile(Request $request, Project $project)
+    {
         //this function returns "" if the user is allowed and if not returns $this->render
         $forbidden = $this->checkCredentials(array("Designer","LittleBoss","Manager","Executioner"));
-
-        if($forbidden){
+        if ($forbidden) {
             return $forbidden;
         }
 
@@ -480,11 +412,9 @@ class ProjectController extends Controller
 
         foreach ($files as $file) {
             /** @var UploadedFile $file */
-
             $fileName = $filesService->uploadFileAndReturnName($file,$this->getParameter('files_directory'));
             $filesService->createFile($fileName, $project, $user,$file->getExtension());
         }
-
         $this->get('session')->getFlashBag()->set('success', 'Файловете успешно качени!');
         return $this->redirect($referer);
     }
@@ -494,10 +424,11 @@ class ProjectController extends Controller
      * @Route("/{id}/fileDelete", name="file_delete")
      * @Method("POST")
      */
-    public function deleteFile(Request $request, Files $file){
+    public function deleteFile(Request $request, Files $file)
+    {
         //this function returns "" if the user is allowed and if not returns $this->render
         $forbidden = $this->checkCredentials(array("Manager","LittleBoss","Boss"));
-        if($forbidden){
+        if ($forbidden) {
             return $forbidden;
         }
         $referer = $request->headers->get('referer');

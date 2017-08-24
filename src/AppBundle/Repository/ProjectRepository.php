@@ -10,25 +10,72 @@ namespace AppBundle\Repository;
  */
 class ProjectRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findArchivedProjects(){
+    public function findArchivedProjects() {
         return $this->createQueryBuilder('project')->
         where("project.isOver = true")->
         getQuery()->
         getResult();
 
     }
-    public function findExecutionerProjects(){
+    public function findAllExecutionerProjects() {
         return $this->createQueryBuilder('project')->
         where("project.executioner != 'null'")->
         getQuery()->
         getResult();
     }
-    public function findDesignerProjects($fullName){
+    public function findDesignerProjects($fullName) {
         return $this->createQueryBuilder('project')->
         where('project.designer = :fullName')->
         orWhere('project.second_designer = :fullName')->
         andWhere('project.isOver = false')->
         setParameter('fullName',$fullName)->
+        getQuery()->
+        getResult();
+    }
+    public function findManagerProjects($fullName) {
+        return $this->createQueryBuilder('project')
+            ->where('project.fromUser = :fullName')->
+            andWhere('project.isOver = false')->
+            setParameter('fullName',$fullName)->
+            getQuery()->
+            getResult();
+    }
+    public function findExecutionerProjects($fullName) {
+        return $this->createQueryBuilder('project')
+            ->where('project.executioner = :fullName')->
+            andWhere('project.isOver = false')->
+            setParameter('fullName',$fullName)->
+            getQuery()->
+            getResult();
+    }
+    public function findExecutionerArchivedProjects($fullName) {
+        return $this->createQueryBuilder('project')
+            ->where('project.executioner = :fullName')->
+            andWhere('project.isOver = true')->
+            setParameter('fullName',$fullName)->
+            getQuery()->
+            getResult();
+    }
+    public function findManagerArchivedProjects($fullName) {
+        return $this->createQueryBuilder('project')
+            ->where('project.fromUser = :fullName')->
+            andWhere('project.isOver = true')->
+            setParameter('fullName',$fullName)->
+            getQuery()->
+            getResult();
+    }
+    public function findDesignerArchivedProjects($fullName) {
+        return $this->createQueryBuilder('project')
+            ->where('project.designer = :fullName')->
+            orWhere('project.second_designer = :fullName')->
+            andWhere('project.isOver = true')->
+            setParameter('fullName',$fullName)->
+            getQuery()->
+            getResult();
+    }
+    public function findAllActiveProjects () {
+        return $this->createQueryBuilder('project')->
+        where('project.isOver = false')->
         getQuery()->
         getResult();
     }

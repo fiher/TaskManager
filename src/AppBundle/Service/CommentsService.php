@@ -45,7 +45,7 @@ class CommentsService
          * @var $user User
          */
 
-        if($user->getType() != "LittleBoss") {
+        if ($user->getType() != "LittleBoss") {
             for ($i = 0; $i < count($comments); $i++) {
                 $comment = $comments[$i];
                 if ($comment->getCreatorRole() == "LittleBoss") {
