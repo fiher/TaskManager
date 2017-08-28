@@ -39,7 +39,8 @@ class ProjectService
         $this->projectRepository = $this->manager->getRepository('AppBundle:Project');
         $this->commentsRepository = $this->manager->getRepository('AppBundle:Comments');
     }
-    public function filterProjects(array $projects,User $user){
+    public function filterProjects(array $projects,User $user)
+    {
 
         foreach ($projects as $project){
             /**
@@ -135,7 +136,8 @@ class ProjectService
         }
         return $projects;
     }
-    public function createProject(Project $project, User $user){
+    public function createProject(Project $project, User $user)
+    {
         $project->setFromUser($user->getFullName());
         $project->setDepartment($user->getDepartment());
         $project->setIsOver(false);
@@ -150,7 +152,8 @@ class ProjectService
         $this->entityManager->persist($project);
         $this->entityManager->flush();
     }
-    public function setProject(Project $project, User $user) {
+    public function setProject(Project $project, User $user)
+    {
         $userType = $user->getType();
         if ($userType == "LittleBoss" && !$project->isSeenByLittleBoss()) {
             $project->setSeenByLittleBoss(true);
@@ -163,11 +166,13 @@ class ProjectService
         }
         return $project;
     }
-    public function flushProject(Project $project) {
+    public function flushProject(Project $project)
+    {
         $this->entityManager->persist($project);
         $this->entityManager->flush();
     }
-    public function removeFormFieldsForDesigners($form) {
+    public function removeFormFieldsForDesigners($form)
+    {
         /** @var FormBuilder $form */
         $form->remove('description');
         $form->remove('term');
@@ -177,14 +182,16 @@ class ProjectService
 
         return $form;
     }
-    public function removeFormFieldsForManagers($form) {
+    public function removeFormFieldsForManagers($form)
+    {
         /** @var FormBuilder $form */
         $form->remove('designer');
         $form->remove("executioner");
 
         return $form;
     }
-    public function addDesignerFieldForManagers($form, $data){
+    public function addDesignerFieldForManagers($form, $data)
+    {
         /** @var FormBuilder $form */
         $form->add('designer', ChoiceType::class, array('label' => "Дизайнер",
             "required" => false,
@@ -196,7 +203,8 @@ class ProjectService
         ));
         return $form;
     }
-    public function addCommentsToProjects (array $projects, User $user) {
+    public function addCommentsToProjects (array $projects, User $user)
+    {
         foreach ($projects as $project){
             /** @var Project $project */
             $comments = $this->commentsRepository->findByProjectID($project->getId());
@@ -204,7 +212,8 @@ class ProjectService
         }
         return $projects;
     }
-    public function addSecondDesignerField ($form, $data) {
+    public function addSecondDesignerField ($form, $data)
+    {
         /** @var FormBuilder $form */
         $form->add('second_designer',ChoiceType::class,array('label'=>" Помощник Дизайнер",
             "required"=>false,
@@ -219,7 +228,8 @@ class ProjectService
         ));
         return $form;
     }
-    public function getProjects(User $user) {
+    public function getProjects(User $user)
+    {
         $userType = $user->getType();
         $fullName = $user->getFullName();
         $projects = [];
@@ -235,7 +245,8 @@ class ProjectService
 
         return $projects;
     }
-    public function getArchivedProjects(User $user) {
+    public function getArchivedProjects(User $user)
+    {
         $userType = $user->getType();
         $fullName = $user->getFullName();
         $projects = [];
@@ -251,7 +262,8 @@ class ProjectService
 
         return $projects;
     }
-    public function approveProject (Project $project) {
+    public function approveProject (Project $project)
+    {
         $project->setApproved(true);
         $project->setRejected(false);
         $project->setDesignerFinishedDate(new \DateTime());
@@ -259,7 +271,8 @@ class ProjectService
         $project->setHold(false);
         return $project;
     }
-    public function rejectProject (Project $project, User $user) {
+    public function rejectProject (Project $project, User $user)
+    {
         $comment =  new Comments();
         $comment->setProjectID($project->getId());
         $comment->setContent($_POST['rejectComment']);
@@ -270,5 +283,51 @@ class ProjectService
         $project->setForApproval(false);
         $project->setHold(false);
         return $project;
+    }
+    public function deleteProject (Project $project)
+    {
+        $this->entityManager->remove($project);
+        $this->entityManager->flush();
+    }
+    public function updateProject (Project $project)
+    {
+        $this->entityManager->persist($project);
+        $this->entityManager->flush();
+    }
+    public function archiveProject (Project $project)
+    {
+        $project->setIsOver(true);
+        $project->setOverDate(new \DateTime());
+        $project->setForApproval(true);
+        $project->setHold(false);
+        $project->setRejected(false);
+
+        return $project;
+    }
+    public function setProjectOnHold (Project $project)
+    {
+        $project->setHold(true);
+        $project->setRejected(false);
+        $project->setForApproval(false);
+        $project->setApproved(false);
+
+        return $project;
+    }
+    public function setProjectForApproval (Project $project)
+    {
+        $project->setForApproval(true);
+        $project->setRejected(false);
+        $project->setHold(false);
+        $project->setApproved(false);
+
+        return $project;
+    }
+    public function setProjectWorking (Project $project, User $user) {
+        $projects = $this->getProjects($user);
+        foreach ($projects as $oneProject){
+            /*** @var Project $oneProject */
+            $oneProject->setWorking(false);
+        }
+        $project->setWorking(true);
     }
 }

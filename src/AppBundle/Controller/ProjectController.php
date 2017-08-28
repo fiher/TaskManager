@@ -9,7 +9,6 @@ use AppBundle\Entity\Project;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -67,7 +66,7 @@ class ProjectController extends Controller
             'projects' => $projects,
             'add_files_form'=> $addFilesForm
         ));
-    }	
+    }
     /**
      * This function shows only Executioner projects. Seen only from LittleBoss
      *
@@ -99,7 +98,6 @@ class ProjectController extends Controller
      * @Route("/", name="project_index")
      * @Method("GET")
      */
-
     public function indexAction()
     {
         //this function returns "" if the user is allowed and if not returns $this->render
@@ -176,7 +174,6 @@ class ProjectController extends Controller
      */
     public function showAction(Project $project)
     {
-
         //this function returns "" if the user is allowed and if not returns $this->render
         $forbidden = $this->checkCredentials("all");
         if($forbidden){
@@ -193,7 +190,6 @@ class ProjectController extends Controller
         $comments = $commentsService->filterComments($comments,$user);
         $project =  $projectService->setProject($project, $user);
         $projectService->flushProject($project);
-
         $comment = new Comments();
         $addFilesForm = $this->createForm('AppBundle\Form\AddFilesType');
         $form = $this->createForm('AppBundle\Form\CommentsType', $comment);
@@ -271,17 +267,14 @@ class ProjectController extends Controller
         if ($forbidden) {
             return $forbidden;
         }
+        $projectService = $this->get('app.service.projects_service');
         $form = $this->createDeleteForm($project);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($project);
-            $em->flush();
+            $projectService->deleteProject($project);
         }
         return $this->redirectToRoute('project_index');
     }
-
     /**
      * Creates a form to delete a project entity.
      *
@@ -297,7 +290,6 @@ class ProjectController extends Controller
             ->getForm()
         ;
     }
-
     /**
      *Updates project by one property only.
      *
@@ -314,58 +306,33 @@ class ProjectController extends Controller
         }
         $referer = $request->headers->get('referer');
         $projectService = $this->get('app.service.projects_service');
+        $fileService = $this->get('app.service.files_service');
         /** @var User $user */
         $user = $this->getUser();
         if (isset($_POST['approve'])) {
            $project = $projectService->approveProject($project);
-            $this->get('session')->getFlashBag()->set('success', "Успешно одобрихте заявката!");
+            $this->successMessage("Успешно одобрихте заявката!");
         } elseif (isset($_POST['reject'])) {
             $project = $projectService->rejectProject($project, $user);
-            $this->get('session')->getFlashBag()->set('success', "Успешно отхвърлихте заявката!");
+            $this->successMessage("Успешно отхвърлихте заявката!");
         } elseif (isset($_POST['archive'])) {
-            $project->setIsOver(true);
-            $project->setOverDate(new \DateTime());
-            $project->setForApproval(true);
-            $project->setHold(false);
-            $project->setRejected(false);
-            $this->get('session')->getFlashBag()->set('success', "Успешно архивирахте заявката!");
+            $project = $projectService->archiveProject($project);
+            $this->successMessage("Успешно архивирахте заявката!");
         }elseif (isset($_POST['hold'])) {
-            $project->setHold(true);
-            $project->setRejected(false);
-            $project->setForApproval(false);
-            $project->setApproved(false);
-            $this->get('session')->getFlashBag()->set('success', "Заявката успешно сложена на изчакване!");
+            $project = $projectService->setProjectOnHold($project);
+            $this->successMessage("Заявката успешно сложена на изчакване!");
         }elseif (isset($_POST['forApproval'])) {
-            $project->setForApproval(true);
-            $project->setRejected(false);
-            $project->setHold(false);
-            $project->setApproved(false);
-            $this->get('session')->getFlashBag()->set('success', "Заявката успешно сложена за одобрение!");
+            $project = $projectService->setProjectForApproval($project);
+            $this->successMessage("Заявката успешно сложена за одобрение!");
         }elseif (isset($_POST['working'])) {
-            $em = $this->getDoctrine()->getManager();
-            $projects = $em->getRepository('AppBundle:Project')->findDesignerProjects($user->getFullName());
-            if ($projects) {
-                foreach ($projects as $singleProject){
-                    /** @var  $singleProject Project */
-                    $singleProject->setWorking(false);
-                }
-            }
-            $project->setWorking(true);
+            $project = $projectService->setProjectWorking($project, $user);
         }elseif (isset($_POST['link'])) {
             $project->setDesignerLink($_POST['link']);
         }
         elseif (isset($_POST['rejectFile'])) {
-            $file = $this->getDoctrine()->getManager()->getRepository('AppBundle:Files')->find($_POST['rejectFile']);
-            $file->setRejected(true);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($file);
-            $em->flush();
-
+           $fileService->rejectFile($_POST['rejectFile']);
         }
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($project);
-        $em->flush();
-
+        $projectService->updateProject($project);
         return $this->redirect($referer);
     }
     private function checkCredentials($allowedUserRoles)
@@ -383,10 +350,10 @@ class ProjectController extends Controller
                     return "";
                 }
             }
-            $this->get('session')->getFlashBag()->set('error', "Нямате достъп до тази страница!");
+            $this->errorMessage("Нямате достъп до тази страница!");
             return  $this->render('::base.html.twig');
         }
-        $this->get('session')->getFlashBag()->set('error', "Моля, първо влезте в профила си!");
+        $this->errorMessage("Моля, първо влезте в профила си!");
         return  $this->render('@App/Security/login.html.twig',array(
             'last_username'=> $lastUsername
         ));
@@ -404,18 +371,16 @@ class ProjectController extends Controller
         if ($forbidden) {
             return $forbidden;
         }
-
         $referer = $request->headers->get('referer');
         $user = $this->getUser();
         $files = $managerFiles = $request->files->get('appbundle_file')['files'];
         $filesService = $this->get('app.service.files_service');
-
         foreach ($files as $file) {
             /** @var UploadedFile $file */
             $fileName = $filesService->uploadFileAndReturnName($file,$this->getParameter('files_directory'));
             $filesService->createFile($fileName, $project, $user,$file->getExtension());
         }
-        $this->get('session')->getFlashBag()->set('success', 'Файловете успешно качени!');
+        $this->successMessage('Файловете успешно качени!');
         return $this->redirect($referer);
     }
     /**
@@ -432,11 +397,8 @@ class ProjectController extends Controller
             return $forbidden;
         }
         $referer = $request->headers->get('referer');
-        $fileSystem = new Filesystem();
-        $fileSystem->remove($file->getFilePath());
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($file);
-        $em->flush();
+        $filesService = $this->get('app.service.files_service');
+        $filesService->deleteFile($file);
         return $this->redirect($referer);
     }
     public function sortProjects(Project $a,Project $b)
@@ -444,5 +406,13 @@ class ProjectController extends Controller
         $projectAOver = strtotime($a->getOverDate()->format("Y-m-d"));
         $projectBOver = strtotime($b->getOverDate()->format("Y-m-d"));
         return $projectBOver - $projectAOver;
+    }
+    private function successMessage (string $message)
+    {
+        $this->get('session')->getFlashBag()->set('success', $message);
+    }
+    private function errorMessage (string $message)
+    {
+        $this->get('session')->getFlashBag()->set('error', $message);
     }
 }
