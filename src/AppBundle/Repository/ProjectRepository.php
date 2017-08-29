@@ -28,6 +28,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         orWhere('project.second_designer = :fullName')->
         andWhere('project.isOver = false')->
         andWhere('project.approved IS NULL')->
+        orWhere('project.approved = false')->
         setParameter('fullName',$fullName)->
         getQuery()->
         getResult();
@@ -80,7 +81,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         getResult();
     }
     public function findAllDesignerProjects ($fullName) {
-        // this function is little different. We already have one that finds designer projects by given designer's fullname.
+        //This function is little different. We already have one that finds designer projects by given designer's full name.
         //This function does the same but also gives us the approved projects. The reason behind this is that if we have
         //designer logged in we take all their active projects without archived ones and approved. However if we have
         //LittleBoss logged in and they want to see designer projects they need to also see the approved ones.

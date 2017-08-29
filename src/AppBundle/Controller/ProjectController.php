@@ -108,9 +108,7 @@ class ProjectController extends Controller
         $projectService = $this->get('app.service.projects_service');
         /** @var User $user */
         $user = $this->getUser();
-        dump($user->getFullName());
         $projects = array_reverse($projectService->getProjects($user));
-        dump($projects);
         $filteredProjects = $projectService->filterProjects($projects,$user);
         $filteredProjects = $projectService->addCommentsToProjects($filteredProjects,$user);
         $addFilesForm = $this->createForm('AppBundle\Form\AddFilesType');
