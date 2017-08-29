@@ -15,7 +15,6 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         where("project.isOver = true")->
         getQuery()->
         getResult();
-
     }
     public function findAllExecutionerProjects() {
         return $this->createQueryBuilder('project')->
@@ -28,7 +27,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         where('project.designer = :fullName')->
         orWhere('project.second_designer = :fullName')->
         andWhere('project.isOver = false')->
-        andWhere('project.approved = false')->
+        andWhere('project.approved IS NULL')->
         setParameter('fullName',$fullName)->
         getQuery()->
         getResult();

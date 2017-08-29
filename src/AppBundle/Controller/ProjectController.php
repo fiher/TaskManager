@@ -108,7 +108,9 @@ class ProjectController extends Controller
         $projectService = $this->get('app.service.projects_service');
         /** @var User $user */
         $user = $this->getUser();
+        dump($user->getFullName());
         $projects = array_reverse($projectService->getProjects($user));
+        dump($projects);
         $filteredProjects = $projectService->filterProjects($projects,$user);
         $filteredProjects = $projectService->addCommentsToProjects($filteredProjects,$user);
         $addFilesForm = $this->createForm('AppBundle\Form\AddFilesType');
@@ -135,7 +137,7 @@ class ProjectController extends Controller
         $project = new Project();
         $projectService = $this->get('app.service.projects_service');
         $form = $this->createForm('AppBundle\Form\ProjectType', $project);
-        if($user->getType() != "LittleBoss"){
+        if($user->getType() != "LittleBoss") {
             $form = $projectService->removeFormFieldsForManagers($form);
             if($user->getUsername() == 'winbet.online') {
                 $form = $projectService->addDesignerFieldForManagers($form,$project->getDesigner());
