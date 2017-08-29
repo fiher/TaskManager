@@ -58,7 +58,7 @@ class ProjectController extends Controller
         $userService = $this->get('app.service.users_service');
         /** @var User $user */
         $user = $userService->getUserByUsername($username);
-        $projects = array_reverse($projectService->getProjects($user));
+        $projects = array_reverse($projectService->getDesignerProjects($user->getFullName()));
         $projects = $projectService->addCommentsToProjects($projects, $user);
         $projects = $projectService->filterProjects($projects, $user);
         $addFilesForm = $this->createForm('AppBundle\Form\AddFilesType');
@@ -83,7 +83,7 @@ class ProjectController extends Controller
         $projectService = $this->get('app.service.projects_service');
         /** @var User $user */
         $user = $this->getUser();
-        $projects = array_reverse($projectService->getProjects($user));
+        $projects = array_reverse($projectService->getExecutionerProjects());
         $filteredProjects = $projectService->filterProjects($projects,$user);
         $filteredProjects = $projectService->addCommentsToProjects($filteredProjects,$user);
         $addFilesForm = $this->createForm('AppBundle\Form\AddFilesType');

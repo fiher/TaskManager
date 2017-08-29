@@ -330,4 +330,10 @@ class ProjectService
         }
         $project->setWorking(true);
     }
+    public function getExecutionerProjects () {
+        return $this->projectRepository->findAllExecutionerProjects();
+    }
+    public function getDesignerProjects($fullName) {
+        return $this->projectRepository->findAllDesignerProjects($fullName);
+    }
 }
