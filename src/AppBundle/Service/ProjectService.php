@@ -329,6 +329,7 @@ class ProjectService
             $oneProject->setWorking(false);
         }
         $project->setWorking(true);
+        return $project;
     }
     public function getExecutionerProjects () {
         return $this->projectRepository->findAllExecutionerProjects();

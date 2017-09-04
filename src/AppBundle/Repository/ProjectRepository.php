@@ -27,8 +27,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         where('project.designer = :fullName')->
         orWhere('project.second_designer = :fullName')->
         andWhere('project.isOver = false')->
-        andWhere('project.approved IS NULL')->
-        orWhere('project.approved = false')->
+        andWhere('project.approved IS NULL OR project.approved = false')->
         setParameter('fullName',$fullName)->
         getQuery()->
         getResult();
